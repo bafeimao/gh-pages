@@ -26,7 +26,7 @@ $ hexo init ~/blog &amp;amp;&amp;amp; cd ~/blog &amp;amp;&amp;amp; cnpm install
 $ hexo init ~/blog &amp;amp;&amp;amp; cd ~/blog &amp;amp;&amp;amp; cnpm install
 
 成功执行后查看文件夹下的内容如下：12345678910total 24drwxr-xr-x   9 ktgu  staff   306  7 28 13:23 .drwxr-xr-x+ 66 ktgu  staff  2244">
-<meta property="og:updated_time" content="2015-09-25T09:56:07.000Z">
+<meta property="og:updated_time" content="2015-09-25T10:01:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用Hexo在github上建立博客">
 <meta name="twitter:description" content="初始化运行如下命令以完成初始化操作
@@ -235,32 +235,25 @@ $ hexo init ~/blog &amp;amp;&amp;amp; cd ~/blog &amp;amp;&amp;amp; cnpm install
         <div class="main-content-wrap">
             <h3 id="初始化">初始化</h3><p>运行如下命令以完成初始化操作</p>
 <blockquote>
-<p>$ hexo init ~/blog &amp;&amp; cd ~/blog &amp;&amp; cnpm install</p>
+<p><code>$ hexo init ~/blog &amp;&amp; cd ~/blog &amp;&amp; cnpm install</code></p>
 </blockquote>
 <p>成功执行后查看文件夹下的内容如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">total <span class="number">24</span></span><br><span class="line">drwxr-xr-x   <span class="number">9</span> ktgu  staff   <span class="number">306</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> .</span><br><span class="line">drwxr-xr-x+ <span class="number">66</span> ktgu  staff  <span class="number">2244</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> ..</span><br><span class="line">-rw-r--r--   <span class="number">1</span> ktgu  staff    <span class="number">65</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> .gitignore</span><br><span class="line">-rw-r--r--   <span class="number">1</span> ktgu  staff  <span class="number">1477</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> _config.yml</span><br><span class="line">drwxr-xr-x  <span class="number">12</span> ktgu  staff   <span class="number">408</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">24</span> node_modules</span><br><span class="line">-rw-r--r--   <span class="number">1</span> ktgu  staff   <span class="number">442</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> package.json</span><br><span class="line">drwxr-xr-x   <span class="number">5</span> ktgu  staff   <span class="number">170</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> scaffolds</span><br><span class="line">drwxr-xr-x   <span class="number">3</span> ktgu  staff   <span class="number">102</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> source</span><br><span class="line">drwxr-xr-x   <span class="number">3</span> ktgu  staff   <span class="number">102</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> themes</span><br></pre></td></tr></table></figure></p>
-<h3 id="生成文件">生成文件</h3><p>Hexo生成文件速度非常快，使用如下命令即可生成文件</p>
-<blockquote>
-<p><code>$ hexo generate</code><br>或者<br><code>$ hexo g</code></p>
-</blockquote>
+<h3 id="生成文件">生成文件</h3><p>Hexo生成文件速度非常快，使用如下命令即可生成文件<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo generate</span><br><span class="line">或者</span><br><span class="line"><span class="variable">$ </span>hexo g</span><br></pre></td></tr></table></figure></p>
 <h3 id="部署到github">部署到github</h3><p>Hexo提供了便捷的一键部署功能，并且支持部署到多个目的地，如：Git，HeroKu，Rsync，OpenShift，FTPSync等。下面以部署到github为例：</p>
 <p>首先要安装hexo-deployer-git插件</p>
 <blockquote>
-<p><code>$ cnpm install hexo-deployer-git --save</code></p>
+<p>$ cnpm install hexo-deployer-git –save</p>
 </blockquote>
 <p>然后打开_config.yaml文件，修改如下配置：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github<span class="class">.com</span>:bafeimao/pages1<span class="class">.git</span></span><br><span class="line">  branch: gh-pages</span><br></pre></td></tr></table></figure></p>
-<p>然后执行生成并部署</p>
-<blockquote>
-<p><code>$ hexo g &amp;&amp; hexo d</code><br>或者<br><code>$ hexo g --deploy</code><br>或者<br><code>$ hexo d --generate</code></p>
-</blockquote>
+<p>然后执行生成并部署<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ hexo <span class="keyword">g</span> &amp;&amp; hexo <span class="literal">d</span></span><br><span class="line">或者</span><br><span class="line">$ hexo <span class="keyword">g</span> --deploy</span><br><span class="line">或者</span><br><span class="line">$ hexo <span class="keyword">d</span> --<span class="keyword">generate</span></span><br></pre></td></tr></table></figure></p>
 <p>若成功部署，会看到如下信息：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">To git<span class="annotation">@github</span>.<span class="string">com:</span>bafeimao/pages.git</span><br><span class="line">* [<span class="keyword">new</span> branch]      master -&gt; gh-pages</span><br><span class="line">Branch master set up to track remote branch gh-pages from git<span class="annotation">@github</span>.<span class="string">com:</span>bafeimao/pages.git.</span><br><span class="line">INFO  Deploy <span class="string">done:</span> git</span><br></pre></td></tr></table></figure></p>
 <p><strong>注意</strong>：如部署失败，默认不显示任何错误信息，你可以加上–debug参数查看详情</p>
 <blockquote>
-<p><code>$ hexo d --debug</code></p>
+<p>$ hexo d –debug</p>
 </blockquote>
-<p>最后，打开github博客验证是否成功部署</p>
-<blockquote>
-<p><code>http://{github-user-name}.github.io/{repo-name}</code><br>比如我的博客：<a href="http://bafeimao.github.io/gh-pages/">http://bafeimao.github.io/gh-pages/</a></p>
-</blockquote>
+<p>最后，打开github博客验证是否成功部署：</p>
+<p><code>http://{github-user-name}.github.io/{repo-name}</code></p>
+<p>比如我的博客：<a href="http://bafeimao.github.io/gh-pages/">http://bafeimao.github.io/gh-pages/</a></p>
 
             
                 
