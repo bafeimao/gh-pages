@@ -6,25 +6,31 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="知行合一">
-    <title>使用Hexo在github上建立博客 - 知行合一</title>
+    <title>Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案 - 知行合一</title>
     <meta name="author" content="巴菲猫(29283212@qq.com)">
     
     
         <link rel="alternative" type="application/atom+xml" title="RSS" href="/gh-pages/atom.xml">
     
-    <meta name="description" content="初始化运行如下命令以完成初始化操作1$ hexo init ~/blog &amp;amp;&amp;amp; cd ~/blog &amp;amp;&amp;amp; cnpm install
-成功执行后查看文件夹下的内容如下：12345678910total 24drwxr-xr-x   9 ktgu  staff   306  7 28 13:23 .drwxr-xr-x+ 66 ktgu  staff  2244  7">
+    <meta name="description" content="产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值
+1set CATALINA_OPTS = -XX:PermSize=128m -XX:MaxPermSize=512m
+如果是堆栈溢出,则需要提高xms的值
+1set CATALINA_OPTS = -Xms128m -Xmx1024m -XX:PermSize=128m">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="使用Hexo在github上建立博客">
-<meta property="og:url" content="http://bafeimao.github.io/gh-pages/2015/08/25/how-to-build-blog-on-github-by-hexo/index.html">
+<meta property="og:title" content="Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案">
+<meta property="og:url" content="http://bafeimao.github.io/gh-pages/2015/09/25/tomcat-oom-permgen-solution/index.html">
 <meta property="og:site_name" content="知行合一">
-<meta property="og:description" content="初始化运行如下命令以完成初始化操作1$ hexo init ~/blog &amp;amp;&amp;amp; cd ~/blog &amp;amp;&amp;amp; cnpm install
-成功执行后查看文件夹下的内容如下：12345678910total 24drwxr-xr-x   9 ktgu  staff   306  7 28 13:23 .drwxr-xr-x+ 66 ktgu  staff  2244  7">
-<meta property="og:updated_time" content="2015-09-25T15:16:00.000Z">
+<meta property="og:description" content="产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值
+1set CATALINA_OPTS = -XX:PermSize=128m -XX:MaxPermSize=512m
+如果是堆栈溢出,则需要提高xms的值
+1set CATALINA_OPTS = -Xms128m -Xmx1024m -XX:PermSize=128m">
+<meta property="og:updated_time" content="2015-09-25T15:11:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用Hexo在github上建立博客">
-<meta name="twitter:description" content="初始化运行如下命令以完成初始化操作1$ hexo init ~/blog &amp;amp;&amp;amp; cd ~/blog &amp;amp;&amp;amp; cnpm install
-成功执行后查看文件夹下的内容如下：12345678910total 24drwxr-xr-x   9 ktgu  staff   306  7 28 13:23 .drwxr-xr-x+ 66 ktgu  staff  2244  7">
+<meta name="twitter:title" content="Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案">
+<meta name="twitter:description" content="产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值
+1set CATALINA_OPTS = -XX:PermSize=128m -XX:MaxPermSize=512m
+如果是堆栈溢出,则需要提高xms的值
+1set CATALINA_OPTS = -Xms128m -Xmx1024m -XX:PermSize=128m">
     
     
     
@@ -209,40 +215,36 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            使用Hexo在github上建立博客
+            Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案
         </h1>
     
     <div class="post-meta">
-    <time itemprop="datePublished" content="Tue Aug 25 2015 14:07:42 GMT+0800">
+    <time itemprop="datePublished" content="Fri Sep 25 2015 22:59:35 GMT+0800">
 	
-		    2015年08月25日
+		    2015年09月25日
     	
     </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/gh-pages/categories/aaa/">aaa</a>
+
+
     
 </div>
 </div>
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <h3 id="初始化">初始化</h3><p>运行如下命令以完成初始化操作<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init ~/<span class="keyword">blog </span>&amp;&amp; cd ~/<span class="keyword">blog </span>&amp;&amp; cnpm install</span><br></pre></td></tr></table></figure></p>
-<p>成功执行后查看文件夹下的内容如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">total <span class="number">24</span></span><br><span class="line">drwxr-xr-x   <span class="number">9</span> ktgu  staff   <span class="number">306</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> .</span><br><span class="line">drwxr-xr-x+ <span class="number">66</span> ktgu  staff  <span class="number">2244</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> ..</span><br><span class="line">-rw-r--r--   <span class="number">1</span> ktgu  staff    <span class="number">65</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> .gitignore</span><br><span class="line">-rw-r--r--   <span class="number">1</span> ktgu  staff  <span class="number">1477</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> _config.yml</span><br><span class="line">drwxr-xr-x  <span class="number">12</span> ktgu  staff   <span class="number">408</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">24</span> node_modules</span><br><span class="line">-rw-r--r--   <span class="number">1</span> ktgu  staff   <span class="number">442</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> package.json</span><br><span class="line">drwxr-xr-x   <span class="number">5</span> ktgu  staff   <span class="number">170</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> scaffolds</span><br><span class="line">drwxr-xr-x   <span class="number">3</span> ktgu  staff   <span class="number">102</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> source</span><br><span class="line">drwxr-xr-x   <span class="number">3</span> ktgu  staff   <span class="number">102</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> themes</span><br></pre></td></tr></table></figure></p>
-<h3 id="生成文件">生成文件</h3><p>Hexo生成文件速度非常快，使用如下命令即可生成文件<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo generate</span><br><span class="line">或者</span><br><span class="line"><span class="variable">$ </span>hexo g</span><br></pre></td></tr></table></figure></p>
-<h3 id="部署到github">部署到github</h3><p>Hexo提供了便捷的一键部署功能，并且支持部署到多个目的地，如：Git，HeroKu，Rsync，OpenShift，FTPSync等。下面以部署到github为例：</p>
-<p>首先要安装hexo-deployer-git插件</p>
-<blockquote>
-<p>$ cnpm install hexo-deployer-git –save</p>
+            <p>产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> CATALINA_OPTS = -XX:PermSize=<span class="number">128</span>m -XX:MaxPermSize=<span class="number">512</span>m</span><br></pre></td></tr></table></figure>
+<p>如果是堆栈溢出,则需要提高xms的值</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> CATALINA_OPTS = -Xms128m -Xmx1024m -XX:PermSize=<span class="number">128</span>m -XX:MaxPermSize=<span class="number">512</span>m</span><br></pre></td></tr></table></figure>
+<h3 id="参数解释:">参数解释:</h3><blockquote>
+<p>-xms128：表示JVM初始堆栈大小<br>-xmx1024：表示JVM堆栈大小最大可以达到1M内存<br>-XX:PermSize=128m：表示初始永久带内存大小<br>-XX:MaxPermSize=512m：表示永久带最大内存大小</p>
 </blockquote>
-<p>然后打开_config.yaml文件，修改如下配置：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github<span class="class">.com</span>:bafeimao/pages1<span class="class">.git</span></span><br><span class="line">  branch: gh-pages</span><br></pre></td></tr></table></figure></p>
-<p>然后执行生成并部署<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ hexo <span class="keyword">g</span> &amp;&amp; hexo <span class="literal">d</span></span><br><span class="line">或者</span><br><span class="line">$ hexo <span class="keyword">g</span> --deploy</span><br><span class="line">或者</span><br><span class="line">$ hexo <span class="keyword">d</span> --<span class="keyword">generate</span></span><br></pre></td></tr></table></figure></p>
-<p>若成功部署，会看到如下信息：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">To git<span class="annotation">@github</span>.<span class="string">com:</span>bafeimao/pages.git</span><br><span class="line">* [<span class="keyword">new</span> branch]      master -&gt; gh-pages</span><br><span class="line">Branch master set up to track remote branch gh-pages from git<span class="annotation">@github</span>.<span class="string">com:</span>bafeimao/pages.git.</span><br><span class="line">INFO  Deploy <span class="string">done:</span> git</span><br></pre></td></tr></table></figure></p>
-<p><strong>注意</strong>：如部署失败，默认不显示任何错误信息，你可以加上–debug参数查看详情</p>
-<blockquote>
-<p>$ hexo d –debug</p>
-</blockquote>
-<p>最后，打开github博客验证是否成功部署：</p>
-<p><code>http://{github-user-name}.github.io/{repo-name}</code></p>
-<p>比如我的博客：<a href="http://bafeimao.github.io/gh-pages/">http://bafeimao.github.io/gh-pages/</a></p>
-
+<h3 id="为什么设置CATALINA_OPTS就会生效？">为什么设置CATALINA_OPTS就会生效？</h3><p>因为在tomcat启动时会使用环境变量：JAVA_OPTS，CATALINA_OPTS, DEBUG_OPTS指定的值，查看%CATALINA_HOME%/bin/catalina.sh文件可以看到如下的代码段：</p>
+<figure class="highlight mojolicious"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span><span class="perl"><span class="variable">%_EXECJAVA</span>% <span class="variable">%JAVA_OPTS</span>% <span class="variable">%CATALINA_OPTS</span>% <span class="variable">%DEBUG_OPTS</span>% -Djava.endorsed.dirs=<span class="string">"<span class="variable">%JAVA_ENDORSED_DIRS</span><span class="variable">%"</span> -classpath "</span><span class="variable">%CLASSPATH</span><span class="variable">%"</span> -Dcatalina.base=<span class="string">"<span class="variable">%CATALINA_BASE</span><span class="variable">%"</span> -Dcatalina.home="</span><span class="variable">%CATALINA_HOME</span><span class="variable">%"</span> -Djava.io.tmpdir=<span class="string">"<span class="variable">%CATALINA_TMPDIR</span><span class="variable">%"</span> <span class="variable">%MAINCLASS</span>% <span class="variable">%CMD_LINE_ARGS</span>% <span class="variable">%ACTION</span>%</span></span><span class="xml"></span></span><br></pre></td></tr></table></figure>
             
                 
 
@@ -254,7 +256,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">TAGGED IN</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/gh-pages/tags/github/">github</a>
+    <a class="tag tag--primary tag--small t-link" href="/gh-pages/tags/tomcat/">tomcat</a> <a class="tag tag--primary tag--small t-link" href="/gh-pages/tags/troubleshooting/">troubleshooting</a>
 
             </div>
         
@@ -263,7 +265,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2015/09/25/how-to-use-git-remote-commands/"  data-tooltip="Git常用远程操作">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2015/09/25/ssh-login-without-password-configuration/"  data-tooltip="配置SSH无密码登陆">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -271,7 +273,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2015/09/25/how-to-use-git-remote-commands/" data-tooltip="Git常用远程操作">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -286,17 +288,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.github.io/gh-pages/2015/08/25/how-to-build-blog-on-github-by-hexo/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.github.io/gh-pages/2015/09/25/tomcat-oom-permgen-solution/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.github.io/gh-pages/2015/08/25/how-to-build-blog-on-github-by-hexo/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.github.io/gh-pages/2015/09/25/tomcat-oom-permgen-solution/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.github.io/gh-pages/2015/08/25/how-to-build-blog-on-github-by-hexo/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.github.io/gh-pages/2015/09/25/tomcat-oom-permgen-solution/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -320,7 +322,7 @@
 
         
         
-            <div class="ds-thread" data-thread-key="post-how-to-build-blog-on-github-by-hexo" data-title="使用Hexo在github上建立博客" data-url="http://bafeimao.github.io/gh-pages/2015/08/25/how-to-build-blog-on-github-by-hexo/"></div>
+            <div class="ds-thread" data-thread-key="post-tomcat-oom-permgen-solution" data-title="Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案" data-url="http://bafeimao.github.io/gh-pages/2015/09/25/tomcat-oom-permgen-solution/"></div>
 
         
     </div>
@@ -342,7 +344,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2015/09/25/how-to-use-git-remote-commands/"  data-tooltip="Git常用远程操作">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2015/09/25/ssh-login-without-password-configuration/"  data-tooltip="配置SSH无密码登陆">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -350,7 +352,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2015/09/25/how-to-use-git-remote-commands/" data-tooltip="Git常用远程操作">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -365,17 +367,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.github.io/gh-pages/2015/08/25/how-to-build-blog-on-github-by-hexo/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.github.io/gh-pages/2015/09/25/tomcat-oom-permgen-solution/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.github.io/gh-pages/2015/08/25/how-to-build-blog-on-github-by-hexo/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.github.io/gh-pages/2015/09/25/tomcat-oom-permgen-solution/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.github.io/gh-pages/2015/08/25/how-to-build-blog-on-github-by-hexo/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.github.io/gh-pages/2015/09/25/tomcat-oom-permgen-solution/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -401,17 +403,17 @@
                 <div id="share-options-bar" class="share-options-bar" data-behavior="3">
     <ul class="share-options">
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://bafeimao.github.io/gh-pages/2015/08/25/how-to-build-blog-on-github-by-hexo/">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://bafeimao.github.io/gh-pages/2015/09/25/tomcat-oom-permgen-solution/">
                 <i class="fa fa-google-plus"></i><span class="">分享到Google+</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.github.io/gh-pages/2015/08/25/how-to-build-blog-on-github-by-hexo/">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.github.io/gh-pages/2015/09/25/tomcat-oom-permgen-solution/">
                 <i class="fa fa-facebook-official"></i><span>分享到Facebook</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.github.io/gh-pages/2015/08/25/how-to-build-blog-on-github-by-hexo/">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.github.io/gh-pages/2015/09/25/tomcat-oom-permgen-solution/">
                 <i class="fa fa-twitter"></i><span>分享到Twitter</span>
             </a>
         </li>
