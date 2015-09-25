@@ -42,7 +42,7 @@
   src: local("Merriweather Bold Italic"), local("Merriweather-BoldItalic"), url(https://fonts.gstatic.com/s/merriweather/v8/EYh7Vl4ywhowqULgRdYwII1kRdeHIFWYEsp6A2f99b0.ttf) format("truetype"); }
 
 html {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Helvetica Neue", Arial, "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "WenQuanYi Micro Hei", SimSun, Song, sans-serif;
   font-size: 62.5%;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -56,7 +56,7 @@ body {
   margin: 0;
   padding: 0;
   background: white;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Helvetica Neue", Arial, "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "WenQuanYi Micro Hei", SimSun, Song, sans-serif;
   font-size: 1.5rem;
   line-height: 1.85em;
   letter-spacing: 0.01em;
@@ -146,24 +146,68 @@ dl dt {
 dl dd {
   margin-left: 0; }
 
+/**
 code {
-  display: inline-block;
-  font-family: 'Open Sans';
-  font-weight: 400;
-  border-radius: 3px;
-  background: #f5f5f5;
-  padding: 0 10px; }
+    display:       inline-block;
+    font-family:   'Open Sans';
+    font-weight:   400;
+    border-radius: 3px;
+    background:    #f5f5f5;
+    padding:       0 10px;
+}
+*/
+code {
+  font-family: "Source Code Pro",monospace;
+  color: #F6F7F7;
+  background-color: #222125;
+  border-radius: 4px;
+  padding: 2px 4px;
+  margin: 0px 2px; }
 
 acronym,
 abbr {
   border-bottom: 1px dotted #5d686f; }
 
+/*
 blockquote {
-  border-left: 2px solid #d1dced;
-  padding: 10px 20px; }
-  blockquote cite:before {
-    content: ' — ';
-    padding: 0 0.3em; }
+    border-left: 2px solid darken(#dce4f1, 3);
+    padding:     10px 20px;
+
+    cite {
+        &:before {
+            content: ' — ';
+            padding: 0 0.3em;
+        }
+
+    }
+}
+*/
+blockquote {
+  border-left-width: 10px;
+  background-color: rgba(102, 128, 153, 0.05);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 15px 20px; }
+
+blockquote p {
+  font-size: 1em;
+  font-weight: 300;
+  line-height: 1.25; }
+
+blockquote ul:last-child, blockquote ol:last-child, blockquote p:last-child {
+  margin-bottom: 0; }
+
+blockquote {
+  margin: 0 0 21px;
+  border-left: 10px solid rgba(102, 128, 153, 0.075); }
+
+blockquote small, blockquote .small {
+  display: block;
+  line-height: 1.45;
+  color: #999; }
+
+blockquote small:before, blockquote .small:before {
+  content: '\2014 \00A0'; }
 
 @media only screen and (max-width: 767px) {
   body {
@@ -1130,7 +1174,7 @@ figure.highlight {
   border-radius: 3px;
   line-height: 1.2em;
   color: #333;
-  font-family: Menlo;
+  font-family: "Source Code Pro";
   border: 1px solid #d9d9d9;
   overflow: hidden; }
   figure.highlight table {
@@ -1164,12 +1208,11 @@ figure.highlight {
   figure.highlight .code {
     padding: 0.3em 0.3em 0.3em 1em; }
   figure.highlight .line {
-    height: 1.2em;
-    font-size: 1.3rem; }
+    height: 1.2em; }
 
 .gist .line,
 .gist .line-number {
-  font-size: Menlo;
+  font-size: "Source Code Pro";
   font-family: 1em;
   margin: 0 0 5px 0; }
 
@@ -1692,9 +1735,9 @@ a.link-unstyled a.link:active {
     .post .post-meta a {
       color: #9eabb3; }
   .post .post-content {
-    font-family: 'Merriweather', serif;
+    font-family: "Helvetica Neue", Arial, "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "WenQuanYi Micro Hei", SimSun, Song, sans-serif;
     color: #5d686f;
-    margin-top: 60px;
+    margin-top: 30px;
     font-weight: 300;
     overflow: hidden;
     word-break: break-word;

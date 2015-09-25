@@ -4,7 +4,7 @@
   <subtitle><![CDATA[苹果越分越少，知识越分越多]]></subtitle>
   <link href="/gh-pages/atom.xml" rel="self"/>
   <link href="http://bafeimao.github.io/gh-pages/"/>
-  <updated>2015-09-25T03:48:57.000Z</updated>
+  <updated>2015-09-25T08:30:34.000Z</updated>
   <id>http://bafeimao.github.io/gh-pages/</id>
   
   <author>
@@ -15,13 +15,99 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Git常用远程操作]]></title>
+    <link href="http://bafeimao.github.io/gh-pages/2015/09/25/how-to-use-git-remote-commands/"/>
+    <id>http://bafeimao.github.io/gh-pages/2015/09/25/how-to-use-git-remote-commands/</id>
+    <published>2015-09-25T08:29:29.000Z</published>
+    <updated>2015-09-25T08:30:34.000Z</updated>
+    <content type="html"><![CDATA[<h4 id="Git常用远程操作">Git常用远程操作</h4><p>在对Git远程操作命令理解之前，首先看下图，该图可以直观地帮助我们理解各操作命令执行后所影响的区域。</p>
+<blockquote>
+<p>本文假设你对git的常规概念如：工作区（workspace），索引区（index）,本地仓库（local repository）和远程仓库（remote repository）都已经有了初步的了解。</p>
+</blockquote>
+<p><img src="http://image.beekka.com/blog/2014/bg2014061202.jpg" alt="Git"></p>
+<h3 id="git_clone">git clone</h3><p>该命令用于克隆一个远程仓库到本地文件。</p>
+<blockquote>
+<p>$ git clone <a href="https://github.com/bafeimao/pages1" target="_blank" rel="external">https://github.com/bafeimao/pages1</a><br>该命令会在本地自动创建文件夹<code>pages1</code></p>
+</blockquote>
+<p>也可以指定要克隆到的本地文件夹名</p>
+<blockquote>
+<p>$ git clone <a href="https://github.com/bafeimao/pages1" target="_blank" rel="external">https://github.com/bafeimao/pages1</a> blog</p>
+</blockquote>
+<p>可以提供多种协议访问方式，例如，github上提供如下三种常见的协议：</p>
+<blockquote>
+<p>$ git clone <a href="https://github.com/bafeimao/pages1" target="_blank" rel="external">https://github.com/bafeimao/pages1</a><br>$ git clone git@github.com:bafeimao/pages1.git</p>
+</blockquote>
+<h3 id="git_remote">git remote</h3><p>要想对远程仓库进行管理，首先要使用<code>remote add</code>命令添加一个远程仓库对应的名称（其他命令如：<code>git pull</code>,<code>git push</code>等操作都将依赖于该远程仓库名 ）</p>
+<p>添加一个远程仓库(需要指定一个名称和仓库的具体地址)</p>
+<blockquote>
+<p>$ git remote add origin git@github.com:bafeimao/pages1.git</p>
+</blockquote>
+<p> 查看当前已经添加过的所有远程仓库列表</p>
+<blockquote>
+<p>$ git remote<br>origin</p>
+</blockquote>
+<p>使用-v选项可以看到更具体的名称和远程仓库URL</p>
+<blockquote>
+<p>$ git remote -v<br>origin    git@github.com:bafeimao/coconut-projects.git (fetch)<br>origin    git@github.com:bafeimao/coconut-projects.git (push)</p>
+</blockquote>
+<h3 id="git_fetch">git fetch</h3><p>成功添加远程仓库后，一旦远程仓库有更新，我就可以使用<code>fetch</code>命令将远程更改取回到本地仓库， 注意：这里是将更改取到本地仓库（local repository）而非本地工作区(workspace)，详见参考图）</p>
+<blockquote>
+<p>$ git fetch origin</p>
+</blockquote>
+<p>默认取回所有分支的更改，可以指定只获取具体分支的更改</p>
+<blockquote>
+<p>$ git fetch origin dev</p>
+</blockquote>
+<h3 id="git_pull">git pull</h3><p>根据上图，也可以直接将远程的某个分支的更改取回到工作区（workspace）中的指定分支上，这就要用到<code>git pull</code>命令了，该命令的基本用法如下:</p>
+<p><code>$ git pull [&lt;remote-repo&gt; [&lt;remote-branch&gt;[:&lt;local-branch&gt;]]]</code></p>
+<p>将远程仓库master分支上的更改合并到本地工作区的dev分支</p>
+<blockquote>
+<p>$ git pull origin master:dev</p>
+<p>冒号后面的本地分支名可以省略，省略时表示合并到当前工作分支:<br>$ git pull origin master</p>
+</blockquote>
+<h3 id="git_push">git push</h3><p>如果需要将本地仓库的更改提交到远程，就需要使用<code>git push</code>命令，该命令的基本用法如下：</p>
+<p><code>$ git push [&lt;remote-repo&gt; [&lt;local-branch&gt;[:&lt;remote-branch&gt;]]]</code></p>
+<p>将本地dev分支推送到远程dev分支</p>
+<blockquote>
+<p>$ git push origin dev:dev</p>
+</blockquote>
+<p>另外可以设定当前工作分支（假设为dev）的upstream分支（即对应的远程分支），这样设定以后，在执行push时可以省略<code>本地分支名：远程分支名</code>，甚至远程仓库名称origin也可以省略</p>
+<blockquote>
+<p>$ git push –set-upstream origin dev</p>
+</blockquote>
+<p>此时可以省略分支名</p>
+<blockquote>
+<p>$ git push origin</p>
+</blockquote>
+<p>甚至连origin都可以省略</p>
+<blockquote>
+<p>$ git push</p>
+</blockquote>
+<p><strong>注意</strong>：如果指定的远程分支不存在，则会在远程自动创建 </p>
+<p>如果没有指定本地分支名则表示删除远程分支，下面两种方式均执行删除远程分支dev<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>git push origin <span class="symbol">:dev</span> </span><br><span class="line"><span class="variable">$ </span>git push origin --delete dev</span><br></pre></td></tr></table></figure></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h4 id="Git常用远程操作">Git常用远程操作</h4><p>在对Git远程操作命令理解之前，首先看下图，该图可以直观地帮助我们理解各操作命令执行后所影响的区域。</p>
+<blockquote>
+<p>本文假设你对git的常规概念如：工作区（workspace），索引]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Hello World]]></title>
     <link href="http://bafeimao.github.io/gh-pages/2015/09/25/hello-world/"/>
     <id>http://bafeimao.github.io/gh-pages/2015/09/25/hello-world/</id>
-    <published>2015-09-25T03:48:57.000Z</published>
-    <updated>2015-09-25T03:48:57.000Z</updated>
+    <published>2015-09-25T07:14:50.000Z</published>
+    <updated>2015-09-25T07:14:50.000Z</updated>
     <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><p>以下是&lt;code&gt;标签：</p>
+<p><code>hexo new &quot;My New Post&quot;</code></p>
+<p>这是引用：</p>
+<blockquote>
+<p>hexo new “My New Post”</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
 <h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
