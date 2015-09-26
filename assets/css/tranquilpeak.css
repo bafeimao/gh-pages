@@ -41,8 +41,20 @@
   font-weight: 700;
   src: local("Merriweather Bold Italic"), local("Merriweather-BoldItalic"), url(https://fonts.gstatic.com/s/merriweather/v8/EYh7Vl4ywhowqULgRdYwII1kRdeHIFWYEsp6A2f99b0.ttf) format("truetype"); }
 
+/* 
+Commented by bafeimao
+
+$markdown-headings-font-size: (
+    'h1': 2.15rem,
+    'h2': 2rem,
+    'h3': 1.8rem,
+    'h4': 1.7rem,
+    'h5': 1.6rem,
+    'h6': 1.5rem
+);
+*/
 html {
-  font-family: "Helvetica Neue", Arial, "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "WenQuanYi Micro Hei", SimSun, Song, sans-serif;
+  font-family: "Helvetica Neue", Arial, STHeiti, "Microsoft YaHei", "WenQuanYi Micro Hei", SimSun, Song, sans-serif;
   font-size: 62.5%;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -56,7 +68,7 @@ body {
   margin: 0;
   padding: 0;
   background: white;
-  font-family: "Helvetica Neue", Arial, "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "WenQuanYi Micro Hei", SimSun, Song, sans-serif;
+  font-family: "Helvetica Neue", Arial, STHeiti, "Microsoft YaHei", "WenQuanYi Micro Hei", SimSun, Song, sans-serif;
   font-size: 1.5rem;
   line-height: 1.85em;
   letter-spacing: 0.01em;
@@ -80,7 +92,7 @@ h6 {
 h1,
 h2,
 h3 {
-  margin: 2em 0 1em 0; }
+  margin: 0 0 1em 0; }
 
 h4,
 h5,
@@ -1176,7 +1188,11 @@ figure.highlight {
   color: #333;
   font-family: "Source Code Pro";
   border: 1px solid #d9d9d9;
-  overflow: hidden; }
+  overflow: hidden;
+  padding: 10px 15px;
+  background-color: #f0f0f0;
+  border-width: 0px;
+  font-family: "Helvetica Neue", Arial, STHeiti, "Microsoft YaHei", "WenQuanYi Micro Hei", SimSun, Song, sans-serif; }
   figure.highlight table {
     display: block;
     width: 100%;
@@ -1200,9 +1216,10 @@ figure.highlight {
     figure.highlight figcaption a {
       float: right; }
   figure.highlight .gutter {
-    background: white;
+    background: #eee;
     border-right: 1px solid #d9d9d9;
-    padding: 0.3em 0.5em; }
+    padding: 0.3em 0.5em;
+    width: 0; }
     figure.highlight .gutter .line {
       color: #aaa; }
   figure.highlight .code {
@@ -1655,45 +1672,45 @@ a.link-unstyled a.link:active {
 
 @media only screen and (min-width: 1024px) {
   .markdown h1 {
-    font-size: 2.15rem; }
+    font-size: 4.16rem; }
   .markdown h2 {
-    font-size: 2rem; }
+    font-size: 3.4rem; }
   .markdown h3 {
-    font-size: 1.8rem; }
+    font-size: 2.72rem; }
   .markdown h4 {
-    font-size: 1.7rem; }
+    font-size: 2rem; }
   .markdown h5 {
     font-size: 1.6rem; }
   .markdown h6 {
-    font-size: 1.5rem; } }
+    font-size: 1.36rem; } }
 
 @media only screen and (max-width: 767px) {
   .markdown h1 {
-    font-size: 1.8rem; }
+    font-size: 3.81rem; }
   .markdown h2 {
-    font-size: 1.65rem; }
+    font-size: 3.05rem; }
   .markdown h3 {
-    font-size: 1.45rem; }
+    font-size: 2.37rem; }
   .markdown h4 {
-    font-size: 1.35rem; }
+    font-size: 1.65rem; }
   .markdown h5 {
     font-size: 1.25rem; }
   .markdown h6 {
-    font-size: 1.15rem; } }
+    font-size: 1.01rem; } }
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   .markdown h1 {
-    font-size: 1.95rem; }
+    font-size: 3.96rem; }
   .markdown h2 {
-    font-size: 1.8rem; }
+    font-size: 3.2rem; }
   .markdown h3 {
-    font-size: 1.6rem; }
+    font-size: 2.52rem; }
   .markdown h4 {
-    font-size: 1.5rem; }
+    font-size: 1.8rem; }
   .markdown h5 {
     font-size: 1.4rem; }
   .markdown h6 {
-    font-size: 1.3rem; } }
+    font-size: 1.16rem; } }
 
 .pagination-bar {
   height: auto;
@@ -1735,7 +1752,7 @@ a.link-unstyled a.link:active {
     .post .post-meta a {
       color: #9eabb3; }
   .post .post-content {
-    font-family: "Helvetica Neue", Arial, "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "WenQuanYi Micro Hei", SimSun, Song, sans-serif;
+    font-family: "Helvetica Neue", Arial, STHeiti, "Microsoft YaHei", "WenQuanYi Micro Hei", SimSun, Song, sans-serif;
     color: #5d686f;
     margin-top: 30px;
     font-weight: 300;
