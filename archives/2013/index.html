@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="知行合一">
-    <title>Tag : load balance - 知行合一</title>
+    <title>All archives : 2013 - 知行合一</title>
     <meta name="author" content="巴菲猫(29283212@qq.com)">
     
     
@@ -15,7 +15,7 @@
     <meta name="description" content="巴菲猫的博客">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="知行合一">
-<meta property="og:url" content="http://bafeimao.net/tags/load-balance/index.html">
+<meta property="og:url" content="http://bafeimao.net/archives/2013/index.html">
 <meta property="og:site_name" content="知行合一">
 <meta property="og:description" content="巴菲猫的博客">
 <meta name="twitter:card" content="summary">
@@ -210,13 +210,61 @@
                 <div class="postShorten-header">
                     <h1 class="postShorten-title" itemprop="headline">
                         
-                                <a class="link-unstyled" href="/2012/07/25/ipvs-based-load-balance-in-detail/">基于IPVS的IP负载均衡技术</a>
+                                <a class="link-unstyled" href="/2013/05/25/tomcat-oom-permgen-solution/">Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案</a>
                         
                     </h1>
                     <div class="postShorten-meta">
-    <time itemprop="datePublished" content="Wed Jul 25 2012 23:58:46 GMT+0800">
+    <time itemprop="datePublished" content="Sat May 25 2013 22:59:35 GMT+0800">
 	
-		    2012年07月25日
+		    2013年05月25日
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/aaa/">aaa</a>
+
+
+    
+</div>
+                </div>
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    
+                        <p>
+                            产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值
+1set CATALINA_OPTS = -XX:PermSize=128m -XX:MaxPermSize=512m
+如果是堆栈溢出,则需要提高xms的值
+1set CATALINA_OPTS = -Xms128m -Xmx1024m -XX:PermSize=128m <br>
+                    
+                    
+                        
+                            <a href="/2013/05/25/tomcat-oom-permgen-solution/" class="postShorten-excerpt_link link ">阅读全文</a>
+                            
+                        
+                    
+                    
+                        </p>
+                    
+                </div>
+            </div>
+            
+        </article>
+    
+        
+        
+                <article class="postShorten" itemscope itemType="http://schema.org/BlogPosting">
+        
+            <div class="postShorten-wrap">
+                <div class="postShorten-header">
+                    <h1 class="postShorten-title" itemprop="headline">
+                        
+                                <a class="link-unstyled" href="/2013/02/26/setup-svn-server-on-linux/">在linux上搭建svn服务器</a>
+                        
+                    </h1>
+                    <div class="postShorten-meta">
+    <time itemprop="datePublished" content="Tue Feb 26 2013 08:40:53 GMT+0800">
+	
+		    2013年02月26日
     	
     </time>
     
@@ -225,13 +273,16 @@
                 <div class="postShorten-excerpt" itemprop="articleBody">
                     
                         <p>
-                            随着互联网的高速发展，应用规模日益膨胀，越来越多的应用面临大流量，高并发的压力，因此大型互联网应用开始对构建高可用，高可扩展，不间断的服务提出了更高的要求。为应对大规模高并发的要求，分布式集群以及负载均衡等技术应运而生，本文主要讲解基于IP的负载均衡技术。
-
-IP负载均衡技术工作在IP层，并且在运行在操作系统内核中，相比于其他工作在应用层（如HTTP层）的负载均衡技术（如：HTTP重定向负载均衡，<br>
+                            创建svn仓库根目录在创建代码仓库之前，我们需要创建一个svn仓库根目录，以后所有的代码仓库都是在这个根目录下创建
+1$ mkdir ~/.svn
+创建仓库1$ svnadmin create ~/.svn/coconut
+成功创建后，会在coconut目录下生成一些文件：
+1$ cd ~/.svn/coconut
+12345678$ ls -ltotal 16-rw-r--r--   1 ktg<br>
                     
                     
                         
-                            <a href="/2012/07/25/ipvs-based-load-balance-in-detail/" class="postShorten-excerpt_link link ">阅读全文</a>
+                            <a href="/2013/02/26/setup-svn-server-on-linux/" class="postShorten-excerpt_link link ">阅读全文</a>
                             
                         
                     
@@ -252,6 +303,7 @@ IP负载均衡技术工作在IP层，并且在运行在操作系统内核中，�
 </div>
 
 </section>
+
 
 
                 <footer id="footer" class="main-content-wrap">
