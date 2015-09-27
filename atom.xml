@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title><![CDATA[知行合一]]></title>
   <subtitle><![CDATA[苹果越分越少，知识越分越多]]></subtitle>
-  <link href="/atom.xml" rel="self"/>
-  <link href="http://bafeimao.net/"/>
+  <link href="/gh-pages/atom.xml" rel="self"/>
+  <link href="http://bafeimao.github.io/gh-pages/"/>
   <updated>2015-09-26T14:10:23.000Z</updated>
-  <id>http://bafeimao.net/</id>
+  <id>http://bafeimao.github.io/gh-pages/</id>
   
   <author>
     <name><![CDATA[巴菲猫(29283212@qq.com)]]></name>
@@ -16,8 +16,8 @@
   
   <entry>
     <title><![CDATA[常见的Web负载均衡技术详解]]></title>
-    <link href="http://bafeimao.net/2015/09/25/web-load-balance-technologies-in-detail/"/>
-    <id>http://bafeimao.net/2015/09/25/web-load-balance-technologies-in-detail/</id>
+    <link href="http://bafeimao.github.io/gh-pages/2015/09/25/web-load-balance-technologies-in-detail/"/>
+    <id>http://bafeimao.github.io/gh-pages/2015/09/25/web-load-balance-technologies-in-detail/</id>
     <published>2015-09-25T15:51:01.000Z</published>
     <updated>2015-09-26T14:10:23.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-_基于镜像站点的负载均衡">1. 基于镜像站点的负载均衡</h3><p>最早的负载均衡技术可以追溯到古老的镜像站点技术，其本质是制作多个站点的拷贝（镜像），然后在网页上提供站点列表，供用户选择，从而达到分流负载的目的。该技术现在仍然被一些如下载站点使用。</p>
@@ -118,22 +118,22 @@
     <![CDATA[<h3 id="1-_基于镜像站点的负载均衡">1. 基于镜像站点的负载均衡</h3><p>最早的负载均衡技术可以追溯到古老的镜像站点技术，其本质是制作多个站点的拷贝（镜像），然后在网页上提供站点列表，供用户选择，从而达到分流负载的目的。该技术现在仍然被一些如下载站点使用。</p]]>
     </summary>
     
-      <category term="dns" scheme="http://bafeimao.net/tags/dns/"/>
+      <category term="dns" scheme="http://bafeimao.github.io/gh-pages/tags/dns/"/>
     
-      <category term="ipvs" scheme="http://bafeimao.net/tags/ipvs/"/>
+      <category term="ipvs" scheme="http://bafeimao.github.io/gh-pages/tags/ipvs/"/>
     
-      <category term="load balance" scheme="http://bafeimao.net/tags/load-balance/"/>
+      <category term="load balance" scheme="http://bafeimao.github.io/gh-pages/tags/load-balance/"/>
     
-      <category term="lvs" scheme="http://bafeimao.net/tags/lvs/"/>
+      <category term="lvs" scheme="http://bafeimao.github.io/gh-pages/tags/lvs/"/>
     
-      <category term="web" scheme="http://bafeimao.net/tags/web/"/>
+      <category term="web" scheme="http://bafeimao.github.io/gh-pages/tags/web/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[配置SSH无密码登陆]]></title>
-    <link href="http://bafeimao.net/2015/09/25/ssh-login-without-password-configuration/"/>
-    <id>http://bafeimao.net/2015/09/25/ssh-login-without-password-configuration/</id>
+    <link href="http://bafeimao.github.io/gh-pages/2015/09/25/ssh-login-without-password-configuration/"/>
+    <id>http://bafeimao.github.io/gh-pages/2015/09/25/ssh-login-without-password-configuration/</id>
     <published>2015-09-25T15:19:08.000Z</published>
     <updated>2015-09-25T15:20:02.000Z</updated>
     <content type="html"><![CDATA[<p>SSH(Secure Shell)是建立在应用层和传输层基础上的安全协议，利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题，他提供两种方式的验证：</p>
@@ -169,16 +169,16 @@
 <bloc]]>
     </summary>
     
-      <category term="linux" scheme="http://bafeimao.net/tags/linux/"/>
+      <category term="linux" scheme="http://bafeimao.github.io/gh-pages/tags/linux/"/>
     
-      <category term="ssh" scheme="http://bafeimao.net/tags/ssh/"/>
+      <category term="ssh" scheme="http://bafeimao.github.io/gh-pages/tags/ssh/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[使用Hexo在github上建立博客]]></title>
-    <link href="http://bafeimao.net/2014/08/25/how-to-build-blog-on-github-by-hexo/"/>
-    <id>http://bafeimao.net/2014/08/25/how-to-build-blog-on-github-by-hexo/</id>
+    <link href="http://bafeimao.github.io/gh-pages/2014/08/25/how-to-build-blog-on-github-by-hexo/"/>
+    <id>http://bafeimao.github.io/gh-pages/2014/08/25/how-to-build-blog-on-github-by-hexo/</id>
     <published>2014-08-25T06:07:42.000Z</published>
     <updated>2015-09-26T04:31:51.000Z</updated>
     <content type="html"><![CDATA[<h3 id="初始化">初始化</h3><p>运行如下命令以完成初始化操作<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init ~<span class="regexp">/blog &amp;&amp; cd ~/</span>blog &amp;&amp; cnpm install</span><br></pre></td></tr></table></figure></p>
@@ -198,20 +198,20 @@
 </blockquote>
 <p>最后，打开github博客验证是否成功部署：</p>
 <p><code>http://{github-user-name}.github.io/{repo-name}</code></p>
-<p>比如我的博客：<a href="http://bafeimao.github.io/gh-pages/" target="_blank" rel="external">http://bafeimao.github.io/gh-pages/</a></p>
+<p>比如我的博客：<a href="http://bafeimao.github.io/gh-pages/">http://bafeimao.github.io/gh-pages/</a></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<h3 id="初始化">初始化</h3><p>运行如下命令以完成初始化操作<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span]]>
     </summary>
     
-      <category term="github" scheme="http://bafeimao.net/tags/github/"/>
+      <category term="github" scheme="http://bafeimao.github.io/gh-pages/tags/github/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案]]></title>
-    <link href="http://bafeimao.net/2013/05/25/tomcat-oom-permgen-solution/"/>
-    <id>http://bafeimao.net/2013/05/25/tomcat-oom-permgen-solution/</id>
+    <link href="http://bafeimao.github.io/gh-pages/2013/05/25/tomcat-oom-permgen-solution/"/>
+    <id>http://bafeimao.github.io/gh-pages/2013/05/25/tomcat-oom-permgen-solution/</id>
     <published>2013-05-25T14:59:35.000Z</published>
     <updated>2015-09-26T05:44:11.000Z</updated>
     <content type="html"><![CDATA[<p>产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值</p>
@@ -228,18 +228,18 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span]]>
     </summary>
     
-      <category term="tomcat" scheme="http://bafeimao.net/tags/tomcat/"/>
+      <category term="tomcat" scheme="http://bafeimao.github.io/gh-pages/tags/tomcat/"/>
     
-      <category term="troubleshooting" scheme="http://bafeimao.net/tags/troubleshooting/"/>
+      <category term="troubleshooting" scheme="http://bafeimao.github.io/gh-pages/tags/troubleshooting/"/>
     
-      <category term="aaa" scheme="http://bafeimao.net/categories/aaa/"/>
+      <category term="aaa" scheme="http://bafeimao.github.io/gh-pages/categories/aaa/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[在linux上搭建svn服务器]]></title>
-    <link href="http://bafeimao.net/2013/02/26/setup-svn-server-on-linux/"/>
-    <id>http://bafeimao.net/2013/02/26/setup-svn-server-on-linux/</id>
+    <link href="http://bafeimao.github.io/gh-pages/2013/02/26/setup-svn-server-on-linux/"/>
+    <id>http://bafeimao.github.io/gh-pages/2013/02/26/setup-svn-server-on-linux/</id>
     <published>2013-02-26T00:40:53.000Z</published>
     <updated>2015-09-26T05:43:39.000Z</updated>
     <content type="html"><![CDATA[<h3 id="创建svn仓库根目录">创建svn仓库根目录</h3><p>在创建代码仓库之前，我们需要创建一个svn仓库根目录，以后所有的代码仓库都是在这个根目录下创建</p>
@@ -278,16 +278,16 @@
 <figure class="highlight crystal"><table><tr><td c]]>
     </summary>
     
-      <category term="linux" scheme="http://bafeimao.net/tags/linux/"/>
+      <category term="linux" scheme="http://bafeimao.github.io/gh-pages/tags/linux/"/>
     
-      <category term="svn" scheme="http://bafeimao.net/tags/svn/"/>
+      <category term="svn" scheme="http://bafeimao.github.io/gh-pages/tags/svn/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[基于IPVS的IP负载均衡技术]]></title>
-    <link href="http://bafeimao.net/2012/07/25/ipvs-based-load-balance-in-detail/"/>
-    <id>http://bafeimao.net/2012/07/25/ipvs-based-load-balance-in-detail/</id>
+    <link href="http://bafeimao.github.io/gh-pages/2012/07/25/ipvs-based-load-balance-in-detail/"/>
+    <id>http://bafeimao.github.io/gh-pages/2012/07/25/ipvs-based-load-balance-in-detail/</id>
     <published>2012-07-25T15:58:46.000Z</published>
     <updated>2015-09-26T00:39:12.000Z</updated>
     <content type="html"><![CDATA[<p>随着互联网的高速发展，应用规模日益膨胀，越来越多的应用面临大流量，高并发的压力，因此大型互联网应用开始对构建高可用，高可扩展，不间断的服务提出了更高的要求。为应对大规模高并发的要求，分布式集群以及负载均衡等技术应运而生，本文主要讲解基于IP的负载均衡技术。</p>
@@ -360,18 +360,18 @@
 <blo]]>
     </summary>
     
-      <category term="ipvs" scheme="http://bafeimao.net/tags/ipvs/"/>
+      <category term="ipvs" scheme="http://bafeimao.github.io/gh-pages/tags/ipvs/"/>
     
-      <category term="linux" scheme="http://bafeimao.net/tags/linux/"/>
+      <category term="linux" scheme="http://bafeimao.github.io/gh-pages/tags/linux/"/>
     
-      <category term="load balance" scheme="http://bafeimao.net/tags/load-balance/"/>
+      <category term="load balance" scheme="http://bafeimao.github.io/gh-pages/tags/load-balance/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Git常用远程操作]]></title>
-    <link href="http://bafeimao.net/2012/01/03/how-to-use-git-remote-commands/"/>
-    <id>http://bafeimao.net/2012/01/03/how-to-use-git-remote-commands/</id>
+    <link href="http://bafeimao.github.io/gh-pages/2012/01/03/how-to-use-git-remote-commands/"/>
+    <id>http://bafeimao.github.io/gh-pages/2012/01/03/how-to-use-git-remote-commands/</id>
     <published>2012-01-03T08:29:29.000Z</published>
     <updated>2015-09-26T00:38:47.000Z</updated>
     <content type="html"><![CDATA[<h4 id="Git常用远程操作">Git常用远程操作</h4><p>在对Git远程操作命令理解之前，首先看下图，该图可以直观地帮助我们理解各操作命令执行后所影响的区域。</p>
