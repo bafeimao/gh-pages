@@ -40,8 +40,7 @@
 基本原理：
 
 假设我们需要从A机器上登陆远程主机B，我只需要在主机">
-<meta property="og:image" content="http://i.creativecommons.org/l/by-nc-nd/3.0/cn/88x31.png"署名-非商业性使用-禁止演绎"">
-<meta property="og:updated_time" content="2015-10-17T03:54:45.000Z">
+<meta property="og:updated_time" content="2015-10-17T04:37:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="配置SSH无密码登陆">
 <meta name="twitter:description" content="SSH(Secure Shell)是建立在应用层和传输层基础上的安全协议，利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题，他提供两种方式的验证：
@@ -278,20 +277,18 @@
 <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-<span class="keyword">copy</span>-<span class="property">id</span> hadoop@vm2</span><br><span class="line">The authenticity <span class="keyword">of</span> host 'vm2 (<span class="number">172.16</span><span class="number">.115</span><span class="number">.102</span>)' can't be established.</span><br><span class="line">RSA key fingerprint <span class="keyword">is</span> <span class="number">9</span>c:<span class="number">43</span>:<span class="number">77</span>:<span class="number">79</span>:<span class="number">08</span>:<span class="number">1</span>e:<span class="number">23</span>:ec:<span class="number">3</span>b:<span class="number">3</span>b:ad:d0:a1:<span class="number">63</span>:<span class="number">0</span>c:e0.</span><br><span class="line">Are you sure you want <span class="keyword">to</span> <span class="keyword">continue</span> connecting (yes/no)? yes</span><br><span class="line">Warning: Permanently added 'vm2,<span class="number">172.16</span><span class="number">.115</span><span class="number">.102</span>' (RSA) <span class="keyword">to</span> <span class="keyword">the</span> <span class="type">list</span> <span class="keyword">of</span> known hosts.</span><br><span class="line">hadoop@vm2's password: </span><br><span class="line">Now <span class="keyword">try</span> logging <span class="keyword">into</span> <span class="keyword">the</span> machine, <span class="keyword">with</span> <span class="string">"ssh 'hadoop@vm2'"</span>, <span class="keyword">and</span> check <span class="keyword">in</span>:</span><br><span class="line"></span><br><span class="line">  .ssh/authorized_keys</span><br><span class="line"></span><br><span class="line"><span class="keyword">to</span> make sure we haven't added extra keys <span class="keyword">that</span> you weren't expecting.</span><br></pre></td></tr></table></figure>
 <h3 id="验证无密码登陆">验证无密码登陆</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>ssh hadoop<span class="variable">@vm2</span></span><br><span class="line">[此处没有提示输入密码]</span><br></pre></td></tr></table></figure>
 <p>##@see also:<br><a href="http://linuxconfig.org/passwordless-ssh" target="_blank" rel="external">http://linuxconfig.org/passwordless-ssh</a><a href="https://en.wikipedia.org/wiki/Ssh-agent" target="_blank" rel="external">enter link description here</a></p>
-<hr>
-<blockquote>
-<p><strong>版权声明:</strong> 本博客所有文章未经特别说明，均采用“署名-非商业性使用-禁止演绎 3.0 中国大陆”授权，欢迎转载，转载时务请注明出处，请尊重作者劳动成果。<br><a href="http://creativecommons.org/licenses/by-nc-nd/3.0/cn/" target="_blank" rel="external"><img src="http://i.creativecommons.org/l/by-nc-nd/3.0/cn/88x31.png&quot;署名-非商业性使用-禁止演绎&quot;" alt="署名-非商业性使用-禁止演绎"></a></p>
-</blockquote>
 
             
                 
 
             
-        </div>
 
-        <!-- Copyright info here by bafeimao -->
-        > **版权声明:** 本博客所有文章未经特别说明，均采用“署名-非商业性使用-禁止演绎 2.5 中国大陆”授权，欢迎转载，转载时务请注明出处，请尊重作者劳动成果。
-[![署名-非商业性使用-禁止演绎](http://i.creativecommons.org/l/by-nc-nd/2.5/cn/88x31.png"署名-非商业性使用-禁止演绎")](http://creativecommons.org/licenses/by-nc-nd/3.0/cn/)
+            <!-- Copyright info here by bafeimao -->
+            <blockquote>
+                <p><strong>版权声明:</strong> 本博客所有文章未经特别说明，均采用“署名-非商业性使用-禁止演绎 3.0 中国大陆”授权，欢迎转载，转载时务请注明出处，请尊重作者劳动成果。<br><a href="http://creativecommons.org/licenses/by-nc-nd/3.0/cn/" target="_blank" rel="external"><img src="http://i.creativecommons.org/l/by-nc-nd/2.5/cn/88x31.png" alt="署名-非商业性使用-禁止演绎"></a>
+                </p>
+            </blockquote>
+        </div>
     </div>
     <div class="post-footer main-content-wrap">
         

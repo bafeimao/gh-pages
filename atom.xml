@@ -4,7 +4,7 @@
   <subtitle><![CDATA[苹果越分越少，知识越分越多]]></subtitle>
   <link href="/gh-pages/atom.xml" rel="self"/>
   <link href="http://bafeimao.github.io/gh-pages/"/>
-  <updated>2015-10-17T03:54:45.000Z</updated>
+  <updated>2015-10-17T04:37:16.000Z</updated>
   <id>http://bafeimao.github.io/gh-pages/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://bafeimao.github.io/gh-pages/2014/08/25/how-to-build-blog-on-github-by-hexo/"/>
     <id>http://bafeimao.github.io/gh-pages/2014/08/25/how-to-build-blog-on-github-by-hexo/</id>
     <published>2014-08-25T06:07:42.000Z</published>
-    <updated>2015-10-17T03:54:45.000Z</updated>
+    <updated>2015-10-17T04:37:16.000Z</updated>
     <content type="html"><![CDATA[<h3 id="初始化">初始化</h3><p>运行如下命令以完成初始化操作<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init ~<span class="regexp">/blog &amp;&amp; cd ~/</span>blog &amp;&amp; cnpm install</span><br></pre></td></tr></table></figure></p>
 <p>成功执行后查看文件夹下的内容如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">total <span class="number">24</span></span><br><span class="line">drwxr-xr-x   <span class="number">9</span> ktgu  staff   <span class="number">306</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> .</span><br><span class="line">drwxr-xr-x+ <span class="number">66</span> ktgu  staff  <span class="number">2244</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> ..</span><br><span class="line">-rw-r--r--   <span class="number">1</span> ktgu  staff    <span class="number">65</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> .gitignore</span><br><span class="line">-rw-r--r--   <span class="number">1</span> ktgu  staff  <span class="number">1477</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> _config.yml</span><br><span class="line">drwxr-xr-x  <span class="number">12</span> ktgu  staff   <span class="number">408</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">24</span> node_modules</span><br><span class="line">-rw-r--r--   <span class="number">1</span> ktgu  staff   <span class="number">442</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> package.json</span><br><span class="line">drwxr-xr-x   <span class="number">5</span> ktgu  staff   <span class="number">170</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> scaffolds</span><br><span class="line">drwxr-xr-x   <span class="number">3</span> ktgu  staff   <span class="number">102</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> source</span><br><span class="line">drwxr-xr-x   <span class="number">3</span> ktgu  staff   <span class="number">102</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> themes</span><br></pre></td></tr></table></figure></p>
 <h3 id="生成文件">生成文件</h3><p>Hexo生成文件速度非常快，使用如下命令即可生成文件<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo generate</span><br><span class="line">或者</span><br><span class="line"><span class="variable">$ </span>hexo g</span><br></pre></td></tr></table></figure></p>
@@ -38,10 +38,6 @@
 <p>最后，打开github博客验证是否成功部署：</p>
 <p><code>http://{github-user-name}.github.io/{repo-name}</code></p>
 <p>比如我的博客：<a href="http://bafeimao.github.io/gh-pages/">http://bafeimao.github.io/gh-pages/</a></p>
-<hr>
-<blockquote>
-<p><strong>版权声明:</strong> 本博客所有文章未经特别说明，均采用“署名-非商业性使用-禁止演绎 3.0 中国大陆”授权，欢迎转载，转载时务请注明出处，请尊重作者劳动成果。<br><a href="http://creativecommons.org/licenses/by-nc-nd/3.0/cn/" target="_blank" rel="external"><img src="http://i.creativecommons.org/l/by-nc-nd/3.0/cn/88x31.png&quot;署名-非商业性使用-禁止演绎&quot;" alt="署名-非商业性使用-禁止演绎"></a></p>
-</blockquote>
 ]]></content>
     <summary type="html">
     <![CDATA[<h3 id="初始化">初始化</h3><p>运行如下命令以完成初始化操作<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span]]>
@@ -58,7 +54,7 @@
     <link href="http://bafeimao.github.io/gh-pages/2013/06/17/generate-unique-id-in-distributed-system/"/>
     <id>http://bafeimao.github.io/gh-pages/2013/06/17/generate-unique-id-in-distributed-system/</id>
     <published>2013-06-17T11:45:37.000Z</published>
-    <updated>2015-10-17T03:54:45.000Z</updated>
+    <updated>2015-10-17T04:37:16.000Z</updated>
     <content type="html"><![CDATA[<p>常见的游戏架构和部署中，很多采用分服的一服一库的部署模式，而且运营过程中经常会有合服要求。</p>
 <blockquote>
 <p>所谓合服就是随着游戏单服活跃用户数不断的下降，为节省资源和提高用户活跃度，在运营过程中将两个或多个服务数据合并到一起的做法。</p>
@@ -121,10 +117,6 @@
 <p>###附录：</p>
 <p>Twitter是用Scale实现该算法并开源的，其中Java版本如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * @author zhujuan</span><br><span class="line"> *         From: https://github.com/twitter/snowflake</span><br><span class="line"> *         An object that generates IDs.</span><br><span class="line"> *         This is broken into a separate class in case</span><br><span class="line"> *         we ever want to support multiple worker threads</span><br><span class="line"> *         per process</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> IdWorker &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> final Logger LOG = LoggerFactory.getLogger(IdWorker.<span class="keyword">class</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> workerId;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> datacenterId;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sequence = <span class="number">0L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> twepoch = <span class="number">1288834974657L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> workerIdBits = <span class="number">5L</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> datacenterIdBits = <span class="number">5L</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> maxWorkerId = -<span class="number">1L</span> ^ (-<span class="number">1L</span> &lt;&lt; workerIdBits);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> maxDatacenterId = -<span class="number">1L</span> ^ (-<span class="number">1L</span> &lt;&lt; datacenterIdBits);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sequenceBits = <span class="number">12L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> workerIdShift = sequenceBits;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> datacenterIdShift = sequenceBits + workerIdBits;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> timestampLeftShift = sequenceBits + workerIdBits + datacenterIdBits;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sequenceMask = -<span class="number">1L</span> ^ (-<span class="number">1L</span> &lt;&lt; sequenceBits);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> lastTimestamp = -<span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">IdWorker</span><span class="params">(<span class="keyword">long</span> workerId, <span class="keyword">long</span> datacenterId)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// sanity check for workerId</span></span><br><span class="line">        <span class="keyword">if</span> (workerId &gt; maxWorkerId || workerId &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(String.format(<span class="string">"worker Id can't be greater than %d or less than 0"</span>, maxWorkerId));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (datacenterId &gt; maxDatacenterId || datacenterId &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(String.format(<span class="string">"datacenter Id can't be greater than %d or less than 0"</span>, maxDatacenterId));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.workerId = workerId;</span><br><span class="line">        <span class="keyword">this</span>.datacenterId = datacenterId;</span><br><span class="line">        LOG.info(String.format(<span class="string">"worker starting. timestamp left shift %d, datacenter id bits %d, worker id bits %d, sequence bits %d, workerid %d"</span>, timestampLeftShift, datacenterIdBits, workerIdBits, sequenceBits, workerId));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> synchronized <span class="keyword">long</span> <span class="title">nextId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> timestamp = timeGen();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (timestamp &lt; lastTimestamp) &#123;</span><br><span class="line">            LOG.error(String.format(<span class="string">"clock is moving backwards.  Rejecting requests until %d."</span>, lastTimestamp));</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(String.format(<span class="string">"Clock moved backwards.  Refusing to generate id for %d milliseconds"</span>, lastTimestamp - timestamp));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (lastTimestamp == timestamp) &#123;</span><br><span class="line">            sequence = (sequence + <span class="number">1</span>) &amp; sequenceMask;</span><br><span class="line">            <span class="keyword">if</span> (sequence == <span class="number">0</span>) &#123;</span><br><span class="line">                timestamp = tilNextMillis(lastTimestamp);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            sequence = <span class="number">0L</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        lastTimestamp = timestamp;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ((timestamp - twepoch) &lt;&lt; timestampLeftShift) | (datacenterId &lt;&lt; datacenterIdShift) | (workerId &lt;&lt; workerIdShift) | sequence;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">long</span> <span class="title">tilNextMillis</span><span class="params">(<span class="keyword">long</span> lastTimestamp)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> timestamp = timeGen();</span><br><span class="line">        <span class="keyword">while</span> (timestamp &lt;= lastTimestamp) &#123;</span><br><span class="line">            timestamp = timeGen();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> timestamp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">long</span> <span class="title">timeGen</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> System.currentTimeMillis();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<blockquote>
-<p><strong>版权声明:</strong> 本博客所有文章未经特别说明，均采用“署名-非商业性使用-禁止演绎 3.0 中国大陆”授权，欢迎转载，转载时务请注明出处，请尊重作者劳动成果。<br><a href="http://creativecommons.org/licenses/by-nc-nd/3.0/cn/" target="_blank" rel="external"><img src="http://i.creativecommons.org/l/by-nc-nd/3.0/cn/88x31.png&quot;署名-非商业性使用-禁止演绎&quot;" alt="署名-非商业性使用-禁止演绎"></a></p>
-</blockquote>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>常见的游戏架构和部署中，很多采用分服的一服一库的部署模式，而且运营过程中经常会有合服要求。</p>
@@ -150,7 +142,7 @@
     <link href="http://bafeimao.github.io/gh-pages/2012/11/17/data-interactive-in-game/"/>
     <id>http://bafeimao.github.io/gh-pages/2012/11/17/data-interactive-in-game/</id>
     <published>2012-11-17T01:49:33.000Z</published>
-    <updated>2015-10-17T03:55:35.000Z</updated>
+    <updated>2015-10-17T04:37:16.000Z</updated>
     <content type="html"><![CDATA[<p>设计网络游戏，首先要面对的就是考虑如何实现客户端与服务端的数据交互。</p>
 <p>这大体会涉及到两个方面的内容：</p>
 <ol>
@@ -205,10 +197,6 @@
 <blockquote>
 <p>请参见<a href="http://www.infoq.com/cn/news/2015/03/grpc-google-http2-protobuf" target="_blank" rel="external">这篇文章</a>中对gRPC的描述</p>
 <p>gRPC的代码托管在Github上：<a href="https://github.com/grpc/grpc" target="_blank" rel="external">https://github.com/grpc/grpc</a></p>
-</blockquote>
-<hr>
-<blockquote>
-<p><strong>版权声明:</strong> 本博客所有文章未经特别说明，均采用“署名-非商业性使用-禁止演绎 3.0 中国大陆”授权，欢迎转载，转载时务请注明出处，请尊重作者劳动成果。<br><a href="http://creativecommons.org/licenses/by-nc-nd/3.0/cn/" target="_blank" rel="external"><img src="http://i.creativecommons.org/l/by-nc-nd/3.0/cn/88x31.png&quot;署名-非商业性使用-禁止演绎&quot;" alt="署名-非商业性使用-禁止演绎"></a></p>
 </blockquote>
 ]]></content>
     <summary type="html">
@@ -275,7 +263,7 @@
     <link href="http://bafeimao.github.io/gh-pages/2012/09/25/web-load-balance-technologies-in-detail/"/>
     <id>http://bafeimao.github.io/gh-pages/2012/09/25/web-load-balance-technologies-in-detail/</id>
     <published>2012-09-25T15:51:01.000Z</published>
-    <updated>2015-10-17T03:54:45.000Z</updated>
+    <updated>2015-10-17T04:37:16.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-_基于镜像站点的负载均衡">1. 基于镜像站点的负载均衡</h3><p>最早的负载均衡技术可以追溯到古老的镜像站点技术，其本质是制作多个站点的拷贝（镜像），然后在网页上提供站点列表，供用户选择，从而达到分流负载的目的。该技术现在仍然被一些如下载站点使用。</p>
 <h4 id="优缺点">优缺点</h4><p>该方案最大的特点就是简单；服务端不需要特别的技术支持，只要克隆多个站点即可，制作镜像本质上是文件的同步，因为它更加适合用在静态网站上。</p>
 <h3 id="2-_基于HTTP重定向的负载均衡">2. 基于HTTP重定向的负载均衡</h3><h4 id="什么是HTTP重定向">什么是HTTP重定向</h4><blockquote>
@@ -368,7 +356,7 @@
 <li>所有HTTP请求都要经过反向代理服务器，因此它容易成为集群新的瓶颈，当成为瓶颈后，增加再多的分流节点也无济于事。</li>
 </ul>
 <h2 id="&gt;">&gt; </h2><blockquote>
-<p><strong>版权声明:</strong> 本博客所有文章未经特别说明，均采用“署名-非商业性使用-禁止演绎 3.0 中国大陆”授权，欢迎转载，转载时务请注明出处，请尊重作者劳动成果。<br><a href="http://creativecommons.org/licenses/by-nc-nd/3.0/cn/" target="_blank" rel="external"><img src="http://i.creativecommons.org/l/by-nc-nd/3.0/cn/88x31.png&quot;署名-非商业性使用-禁止演绎&quot;" alt="署名-非商业性使用-禁止演绎"></a></p>
+<p><strong>版权声明:</strong> 本博客所有文章未经特别说明，均采用“署名-非商业性使用-禁止演绎 2.5 中国大陆”授权，欢迎转载，转载时务请注明出处，请尊重作者劳动成果。<br><a href="http://creativecommons.org/licenses/by-nc-nd/3.0/cn/" target="_blank" rel="external"><img src="http://i.creativecommons.org/l/by-nc-nd/2.5/cn/88x31.png&quot;署名-非商业性使用-禁止演绎&quot;" alt="署名-非商业性使用-禁止演绎"></a></p>
 </blockquote>
 ]]></content>
     <summary type="html">
@@ -392,7 +380,7 @@
     <link href="http://bafeimao.github.io/gh-pages/2011/09/25/ssh-login-without-password-configuration/"/>
     <id>http://bafeimao.github.io/gh-pages/2011/09/25/ssh-login-without-password-configuration/</id>
     <published>2011-09-25T15:19:08.000Z</published>
-    <updated>2015-10-17T03:54:45.000Z</updated>
+    <updated>2015-10-17T04:37:16.000Z</updated>
     <content type="html"><![CDATA[<p>SSH(Secure Shell)是建立在应用层和传输层基础上的安全协议，利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题，他提供两种方式的验证：</p>
 <ol>
 <li>基于口令的安全验证</li>
@@ -416,10 +404,6 @@
 <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-<span class="keyword">copy</span>-<span class="property">id</span> hadoop@vm2</span><br><span class="line">The authenticity <span class="keyword">of</span> host 'vm2 (<span class="number">172.16</span><span class="number">.115</span><span class="number">.102</span>)' can't be established.</span><br><span class="line">RSA key fingerprint <span class="keyword">is</span> <span class="number">9</span>c:<span class="number">43</span>:<span class="number">77</span>:<span class="number">79</span>:<span class="number">08</span>:<span class="number">1</span>e:<span class="number">23</span>:ec:<span class="number">3</span>b:<span class="number">3</span>b:ad:d0:a1:<span class="number">63</span>:<span class="number">0</span>c:e0.</span><br><span class="line">Are you sure you want <span class="keyword">to</span> <span class="keyword">continue</span> connecting (yes/no)? yes</span><br><span class="line">Warning: Permanently added 'vm2,<span class="number">172.16</span><span class="number">.115</span><span class="number">.102</span>' (RSA) <span class="keyword">to</span> <span class="keyword">the</span> <span class="type">list</span> <span class="keyword">of</span> known hosts.</span><br><span class="line">hadoop@vm2's password: </span><br><span class="line">Now <span class="keyword">try</span> logging <span class="keyword">into</span> <span class="keyword">the</span> machine, <span class="keyword">with</span> <span class="string">"ssh 'hadoop@vm2'"</span>, <span class="keyword">and</span> check <span class="keyword">in</span>:</span><br><span class="line"></span><br><span class="line">  .ssh/authorized_keys</span><br><span class="line"></span><br><span class="line"><span class="keyword">to</span> make sure we haven't added extra keys <span class="keyword">that</span> you weren't expecting.</span><br></pre></td></tr></table></figure>
 <h3 id="验证无密码登陆">验证无密码登陆</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>ssh hadoop<span class="variable">@vm2</span></span><br><span class="line">[此处没有提示输入密码]</span><br></pre></td></tr></table></figure>
 <p>##@see also:<br><a href="http://linuxconfig.org/passwordless-ssh" target="_blank" rel="external">http://linuxconfig.org/passwordless-ssh</a><a href="https://en.wikipedia.org/wiki/Ssh-agent" target="_blank" rel="external">enter link description here</a></p>
-<hr>
-<blockquote>
-<p><strong>版权声明:</strong> 本博客所有文章未经特别说明，均采用“署名-非商业性使用-禁止演绎 3.0 中国大陆”授权，欢迎转载，转载时务请注明出处，请尊重作者劳动成果。<br><a href="http://creativecommons.org/licenses/by-nc-nd/3.0/cn/" target="_blank" rel="external"><img src="http://i.creativecommons.org/l/by-nc-nd/3.0/cn/88x31.png&quot;署名-非商业性使用-禁止演绎&quot;" alt="署名-非商业性使用-禁止演绎"></a></p>
-</blockquote>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>SSH(Secure Shell)是建立在应用层和传输层基础上的安全协议，利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题，他提供两种方式的验证：</p>
@@ -523,7 +507,7 @@
     <link href="http://bafeimao.github.io/gh-pages/2010/07/25/ipvs-based-load-balance-in-detail/"/>
     <id>http://bafeimao.github.io/gh-pages/2010/07/25/ipvs-based-load-balance-in-detail/</id>
     <published>2010-07-25T15:58:46.000Z</published>
-    <updated>2015-10-17T03:54:45.000Z</updated>
+    <updated>2015-10-17T04:37:16.000Z</updated>
     <content type="html"><![CDATA[<p>随着互联网的高速发展，应用规模日益膨胀，越来越多的应用面临大流量，高并发的压力，因此大型互联网应用开始对构建高可用，高可扩展，不间断的服务提出了更高的要求。为应对大规模高并发的要求，分布式集群以及负载均衡等技术应运而生，本文主要讲解基于IP的负载均衡技术。</p>
 <blockquote>
 <p>IP负载均衡技术工作在IP层，并且在运行在操作系统内核中，相比于其他工作在应用层（如HTTP层）的负载均衡技术（如：HTTP重定向负载均衡，反向代理负载均衡）而言，它的分发效率是最高的。</p>
@@ -588,10 +572,6 @@
 <hr>
 <h3 id="FAQ:">FAQ:</h3><p>A：为什么当Client和负载均衡器位于同一子网中时不可使用NAT模式？</p>
 <h2 id="A：在DR模式下，为什么不能在RS上将VIP映射到本地网卡上，而是映射到环回接口呢？">A：在DR模式下，为什么不能在RS上将VIP映射到本地网卡上，而是映射到环回接口呢？</h2><p>Q: 因为lo接口是一个non-arp网络设备，它不会响应ARP请求，而其他接口会响应ARP请求。我们知道Director上的VIP是必须要对外的，整个集群的前端应该只有Director来接受“目标IP地址=VIP”的请求，如果在RS上将VIP映射到能够响应ARP请求的网络设备接口上，那么就会出现Director和RS都告诉ARP请求端它们各自的mac地址，这时就会造成混乱，请求报文可能不会发送到Director上而是直接被RS接收到了。</p>
-<hr>
-<blockquote>
-<p><strong>版权声明:</strong> 本博客所有文章未经特别说明，均采用“署名-非商业性使用-禁止演绎 3.0 中国大陆”授权，欢迎转载，转载时务请注明出处，请尊重作者劳动成果。<br><a href="http://creativecommons.org/licenses/by-nc-nd/3.0/cn/" target="_blank" rel="external"><img src="http://i.creativecommons.org/l/by-nc-nd/3.0/cn/88x31.png&quot;署名-非商业性使用-禁止演绎&quot;" alt="署名-非商业性使用-禁止演绎"></a></p>
-</blockquote>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>随着互联网的高速发展，应用规模日益膨胀，越来越多的应用面临大流量，高并发的压力，因此大型互联网应用开始对构建高可用，高可扩展，不间断的服务提出了更高的要求。为应对大规模高并发的要求，分布式集群以及负载均衡等技术应运而生，本文主要讲解基于IP的负载均衡技术。</p>
@@ -611,7 +591,7 @@
     <link href="http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/"/>
     <id>http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/</id>
     <published>2010-05-25T14:59:35.000Z</published>
-    <updated>2015-10-17T03:54:45.000Z</updated>
+    <updated>2015-10-17T04:37:16.000Z</updated>
     <content type="html"><![CDATA[<p>产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> CATALINA_OPTS = -XX:PermSize=<span class="number">128</span>m -XX:MaxPermSize=<span class="number">512</span>m</span><br></pre></td></tr></table></figure>
 <p>如果是堆栈溢出,则需要提高xms的值</p>
@@ -621,10 +601,6 @@
 </blockquote>
 <h3 id="为什么设置CATALINA_OPTS就会生效？">为什么设置CATALINA_OPTS就会生效？</h3><p>因为在tomcat启动时会使用环境变量：JAVA_OPTS，CATALINA_OPTS, DEBUG_OPTS指定的值，查看%CATALINA_HOME%/bin/catalina.sh文件可以看到如下的代码段：</p>
 <figure class="highlight mojolicious"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span><span class="perl"><span class="variable">%_EXECJAVA</span>% <span class="variable">%JAVA_OPTS</span>% <span class="variable">%CATALINA_OPTS</span>% <span class="variable">%DEBUG_OPTS</span>% -Djava.endorsed.dirs=<span class="string">"<span class="variable">%JAVA_ENDORSED_DIRS</span><span class="variable">%"</span> -classpath "</span><span class="variable">%CLASSPATH</span><span class="variable">%"</span> -Dcatalina.base=<span class="string">"<span class="variable">%CATALINA_BASE</span><span class="variable">%"</span> -Dcatalina.home="</span><span class="variable">%CATALINA_HOME</span><span class="variable">%"</span> -Djava.io.tmpdir=<span class="string">"<span class="variable">%CATALINA_TMPDIR</span><span class="variable">%"</span> <span class="variable">%MAINCLASS</span>% <span class="variable">%CMD_LINE_ARGS</span>% <span class="variable">%ACTION</span>%</span></span><span class="xml"></span></span><br></pre></td></tr></table></figure>
-<hr>
-<blockquote>
-<p><strong>版权声明:</strong> 本博客所有文章未经特别说明，均采用“署名-非商业性使用-禁止演绎 3.0 中国大陆”授权，欢迎转载，转载时务请注明出处，请尊重作者劳动成果。<br><a href="http://creativecommons.org/licenses/by-nc-nd/3.0/cn/" target="_blank" rel="external"><img src="http://i.creativecommons.org/l/by-nc-nd/3.0/cn/88x31.png&quot;署名-非商业性使用-禁止演绎&quot;" alt="署名-非商业性使用-禁止演绎"></a></p>
-</blockquote>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值</p>
@@ -644,7 +620,7 @@
     <link href="http://bafeimao.github.io/gh-pages/2010/02/26/setup-svn-server-on-linux/"/>
     <id>http://bafeimao.github.io/gh-pages/2010/02/26/setup-svn-server-on-linux/</id>
     <published>2010-02-26T00:40:53.000Z</published>
-    <updated>2015-10-17T03:54:45.000Z</updated>
+    <updated>2015-10-17T04:37:16.000Z</updated>
     <content type="html"><![CDATA[<h3 id="创建svn仓库根目录">创建svn仓库根目录</h3><p>在创建代码仓库之前，我们需要创建一个svn仓库根目录，以后所有的代码仓库都是在这个根目录下创建</p>
 <figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>mkdir ~<span class="regexp">/.svn</span></span><br></pre></td></tr></table></figure>
 <h3 id="创建仓库">创建仓库</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>svnadmin create ~<span class="regexp">/.svn/coconut</span></span><br></pre></td></tr></table></figure>
@@ -675,10 +651,6 @@
 <p>以上命令首次运行会提示输入用户名和密码（使用在passwd中配置的用户名和密码即可）</p>
 <p>或者可以在运行<code>svn checkout</code>命令时指定用户名和密码</p>
 <figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$svn</span> checkout svn://<span class="number">127.0</span>.<span class="number">0</span>.<span class="number">1</span>/coconut --username=dev1 --password=aaa ~/coconut</span><br></pre></td></tr></table></figure>
-<hr>
-<blockquote>
-<p><strong>版权声明:</strong> 本博客所有文章未经特别说明，均采用“署名-非商业性使用-禁止演绎 3.0 中国大陆”授权，欢迎转载，转载时务请注明出处，请尊重作者劳动成果。<br><a href="http://creativecommons.org/licenses/by-nc-nd/3.0/cn/" target="_blank" rel="external"><img src="http://i.creativecommons.org/l/by-nc-nd/3.0/cn/88x31.png&quot;署名-非商业性使用-禁止演绎&quot;" alt="署名-非商业性使用-禁止演绎"></a></p>
-</blockquote>
 ]]></content>
     <summary type="html">
     <![CDATA[<h3 id="创建svn仓库根目录">创建svn仓库根目录</h3><p>在创建代码仓库之前，我们需要创建一个svn仓库根目录，以后所有的代码仓库都是在这个根目录下创建</p>

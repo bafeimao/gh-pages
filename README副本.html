@@ -6,31 +6,25 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="知行合一">
-    <title>Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案 - 知行合一</title>
+    <title> - 知行合一</title>
     <meta name="author" content="巴菲猫(29283212@qq.com)">
     
     
         <link rel="alternative" type="application/atom+xml" title="RSS" href="/gh-pages/atom.xml">
     
-    <meta name="description" content="产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值
-1set CATALINA_OPTS = -XX:PermSize=128m -XX:MaxPermSize=512m
-如果是堆栈溢出,则需要提高xms的值
-1set CATALINA_OPTS = -Xms128m -Xmx1024m -XX:PermSize=128m">
+    <meta name="description" content="#Welcome to bafeimao’s blog
+Please visit http://www.bafeimao.net for details">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案">
-<meta property="og:url" content="http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/index.html">
+<meta property="og:title" content="知行合一">
+<meta property="og:url" content="http://bafeimao.github.io/gh-pages/README副本.html">
 <meta property="og:site_name" content="知行合一">
-<meta property="og:description" content="产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值
-1set CATALINA_OPTS = -XX:PermSize=128m -XX:MaxPermSize=512m
-如果是堆栈溢出,则需要提高xms的值
-1set CATALINA_OPTS = -Xms128m -Xmx1024m -XX:PermSize=128m">
-<meta property="og:updated_time" content="2015-10-17T04:37:16.000Z">
+<meta property="og:description" content="#Welcome to bafeimao’s blog
+Please visit http://www.bafeimao.net for details">
+<meta property="og:updated_time" content="2015-09-26T16:37:41.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案">
-<meta name="twitter:description" content="产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值
-1set CATALINA_OPTS = -XX:PermSize=128m -XX:MaxPermSize=512m
-如果是堆栈溢出,则需要提高xms的值
-1set CATALINA_OPTS = -Xms128m -Xmx1024m -XX:PermSize=128m">
+<meta name="twitter:title" content="知行合一">
+<meta name="twitter:description" content="#Welcome to bafeimao’s blog
+Please visit http://www.bafeimao.net for details">
     
     
     
@@ -64,7 +58,7 @@
 
     <body>
         <div id="blog">
-            <header id="header" data-behavior="3">
+            <header id="header" data-behavior="1">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <h1 class="header-title">
         <a class="header-title-link" href="/gh-pages/ ">知行合一</a>
@@ -75,7 +69,7 @@
         </a>
     
 </header>
-            <nav id="sidebar" data-behavior="3">
+            <nav id="sidebar" data-behavior="1">
     
         <div class="sidebar-profile">
             <a href="/#about">
@@ -204,7 +198,7 @@
 </nav>
 
             
-            <div id="main" data-behavior="3"
+            <div id="main" data-behavior="1"
                  class="
                         hasCoverMetaIn
                         ">
@@ -215,36 +209,23 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案
+            (无标题)
         </h1>
     
     <div class="post-meta">
-    <time itemprop="datePublished" content="Tue May 25 2010 22:59:35 GMT+0800">
+    <time itemprop="datePublished" content="Sun Sep 27 2015 09:08:39 GMT+0800">
 	
-		    2010年05月25日
+		    2015年09月27日
     	
     </time>
-    
-        <span>in </span>
-        
-    <a class="category-link" href="/gh-pages/categories/aaa/">aaa</a>
-
-
     
 </div>
 </div>
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <p>产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> CATALINA_OPTS = -XX:PermSize=<span class="number">128</span>m -XX:MaxPermSize=<span class="number">512</span>m</span><br></pre></td></tr></table></figure>
-<p>如果是堆栈溢出,则需要提高xms的值</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> CATALINA_OPTS = -Xms128m -Xmx1024m -XX:PermSize=<span class="number">128</span>m -XX:MaxPermSize=<span class="number">512</span>m</span><br></pre></td></tr></table></figure>
-<h3 id="参数解释:">参数解释:</h3><blockquote>
-<p>-xms128：表示JVM初始堆栈大小<br>-xmx1024：表示JVM堆栈大小最大可以达到1M内存<br>-XX:PermSize=128m：表示初始永久带内存大小<br>-XX:MaxPermSize=512m：表示永久带最大内存大小</p>
-</blockquote>
-<h3 id="为什么设置CATALINA_OPTS就会生效？">为什么设置CATALINA_OPTS就会生效？</h3><p>因为在tomcat启动时会使用环境变量：JAVA_OPTS，CATALINA_OPTS, DEBUG_OPTS指定的值，查看%CATALINA_HOME%/bin/catalina.sh文件可以看到如下的代码段：</p>
-<figure class="highlight mojolicious"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span><span class="perl"><span class="variable">%_EXECJAVA</span>% <span class="variable">%JAVA_OPTS</span>% <span class="variable">%CATALINA_OPTS</span>% <span class="variable">%DEBUG_OPTS</span>% -Djava.endorsed.dirs=<span class="string">"<span class="variable">%JAVA_ENDORSED_DIRS</span><span class="variable">%"</span> -classpath "</span><span class="variable">%CLASSPATH</span><span class="variable">%"</span> -Dcatalina.base=<span class="string">"<span class="variable">%CATALINA_BASE</span><span class="variable">%"</span> -Dcatalina.home="</span><span class="variable">%CATALINA_HOME</span><span class="variable">%"</span> -Djava.io.tmpdir=<span class="string">"<span class="variable">%CATALINA_TMPDIR</span><span class="variable">%"</span> <span class="variable">%MAINCLASS</span>% <span class="variable">%CMD_LINE_ARGS</span>% <span class="variable">%ACTION</span>%</span></span><span class="xml"></span></span><br></pre></td></tr></table></figure>
+            <p>#Welcome to bafeimao’s blog</p>
+<p>Please visit <a href="http://www.bafeimao.net" target="_blank" rel="external">http://www.bafeimao.net</a> for details</p>
 
             
                 
@@ -260,19 +241,12 @@
     </div>
     <div class="post-footer main-content-wrap">
         
-            <div class="post-footer-tags">
-                <span class="text-color-light text-small">标签</span><br/>
-                
-    <a class="tag tag--primary tag--small t-link" href="/gh-pages/tags/tomcat/">tomcat</a> <a class="tag tag--primary tag--small t-link" href="/gh-pages/tags/troubleshooting/">troubleshooting</a>
-
-            </div>
-        
         <div class="post-actions-wrap">
     <nav>
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2010/07/25/ipvs-based-load-balance-in-detail/"  data-tooltip="基于IPVS的IP负载均衡技术">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -280,7 +254,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2010/02/26/setup-svn-server-on-linux/" data-tooltip="在linux上搭建svn服务器">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -295,17 +269,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.github.io/gh-pages/README副本.html">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.github.io/gh-pages/README副本.html">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.github.io/gh-pages/README副本.html">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -329,7 +303,7 @@
 
         
         
-            <div class="ds-thread" data-thread-key="post-tomcat-oom-permgen-solution" data-title="Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案" data-url="http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/"></div>
+            <div class="ds-thread" data-thread-key="page-undefined" data-title="" data-url="http://bafeimao.github.io/gh-pages/README副本.html"></div>
 
         
     </div>
@@ -344,89 +318,6 @@
 </footer>
 
             </div>
-            
-                <div id="bottom-bar" class="post-bottom-bar" data-behavior="3">
-                    <div class="post-actions-wrap">
-    <nav>
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
-                
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2010/07/25/ipvs-based-load-balance-in-detail/"  data-tooltip="基于IPVS的IP负载均衡技术">
-                
-                    <i class="fa fa-angle-left"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
-                </a>
-            </li>
-            <li class="post-action">
-                
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2010/02/26/setup-svn-server-on-linux/" data-tooltip="在linux上搭建svn服务器">
-                
-                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <ul class="post-actions post-action-share">
-        <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
-                <i class="fa fa-share-alt"></i>
-            </a>
-        </li>
-        <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/">
-                <i class="fa fa-google-plus"></i>
-            </a>
-        </li>
-        <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/">
-                <i class="fa fa-facebook-official"></i>
-            </a>
-        </li>
-        <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/">
-                <i class="fa fa-twitter"></i>
-            </a>
-        </li>
-        
-            <li class="post-action">
-                <a class="post-action-btn btn btn--default" href="#disqus_thread">
-                    <i class="fa fa-comment-o"></i>
-                </a>
-            </li>
-        
-        <li class="post-action">
-            
-                <a class="post-action-btn btn btn--default" href="#">
-            
-                <i class="fa fa-list"></i>
-            </a>
-        </li>
-    </ul>
-</div>
-
-
-                </div>
-                <div id="share-options-bar" class="share-options-bar" data-behavior="3">
-    <ul class="share-options">
-        <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/">
-                <i class="fa fa-google-plus"></i><span class="">分享到Google+</span>
-            </a>
-        </li>
-        <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/">
-                <i class="fa fa-facebook-official"></i><span>分享到Facebook</span>
-            </a>
-        </li>
-        <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/">
-                <i class="fa fa-twitter"></i><span>分享到Twitter</span>
-            </a>
-        </li>
-    </ul>
-</div>
-<div id="share-options-mask" class="share-options-mask"></div>
             
         </div>
         <div id="about">
@@ -463,18 +354,6 @@
 <script src="/gh-pages/assets/js/tranquilpeak.js" type="text/javascript"></script>
 <!--SCRIPTS END-->
 
-
-    <script type="text/javascript">
-        var duoshuoQuery = {short_name: 'bafeimao'};
-        (function() {
-            var ds = document.createElement('script');
-            ds.type = 'text/javascript';ds.async = true;
-            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-            ds.charset = 'UTF-8';
-            (document.getElementsByTagName('head')[0] 
-             || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
-    </script>
 
 
     <script type="text/javascript">
