@@ -4,7 +4,7 @@
   <subtitle><![CDATA[苹果越分越少，知识越分越多]]></subtitle>
   <link href="/gh-pages/atom.xml" rel="self"/>
   <link href="http://bafeimao.github.io/gh-pages/"/>
-  <updated>2015-09-26T14:10:23.000Z</updated>
+  <updated>2015-10-17T01:58:30.000Z</updated>
   <id>http://bafeimao.github.io/gh-pages/</id>
   
   <author>
@@ -15,11 +15,213 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[使用Hexo在github上建立博客]]></title>
+    <link href="http://bafeimao.github.io/gh-pages/2014/08/25/how-to-build-blog-on-github-by-hexo/"/>
+    <id>http://bafeimao.github.io/gh-pages/2014/08/25/how-to-build-blog-on-github-by-hexo/</id>
+    <published>2014-08-25T06:07:42.000Z</published>
+    <updated>2015-10-17T01:58:30.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="初始化">初始化</h3><p>运行如下命令以完成初始化操作<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init ~<span class="regexp">/blog &amp;&amp; cd ~/</span>blog &amp;&amp; cnpm install</span><br></pre></td></tr></table></figure></p>
+<p>成功执行后查看文件夹下的内容如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">total <span class="number">24</span></span><br><span class="line">drwxr-xr-x   <span class="number">9</span> ktgu  staff   <span class="number">306</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> .</span><br><span class="line">drwxr-xr-x+ <span class="number">66</span> ktgu  staff  <span class="number">2244</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> ..</span><br><span class="line">-rw-r--r--   <span class="number">1</span> ktgu  staff    <span class="number">65</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> .gitignore</span><br><span class="line">-rw-r--r--   <span class="number">1</span> ktgu  staff  <span class="number">1477</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> _config.yml</span><br><span class="line">drwxr-xr-x  <span class="number">12</span> ktgu  staff   <span class="number">408</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">24</span> node_modules</span><br><span class="line">-rw-r--r--   <span class="number">1</span> ktgu  staff   <span class="number">442</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> package.json</span><br><span class="line">drwxr-xr-x   <span class="number">5</span> ktgu  staff   <span class="number">170</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> scaffolds</span><br><span class="line">drwxr-xr-x   <span class="number">3</span> ktgu  staff   <span class="number">102</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> source</span><br><span class="line">drwxr-xr-x   <span class="number">3</span> ktgu  staff   <span class="number">102</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> themes</span><br></pre></td></tr></table></figure></p>
+<h3 id="生成文件">生成文件</h3><p>Hexo生成文件速度非常快，使用如下命令即可生成文件<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo generate</span><br><span class="line">或者</span><br><span class="line"><span class="variable">$ </span>hexo g</span><br></pre></td></tr></table></figure></p>
+<h3 id="部署到github">部署到github</h3><p>Hexo提供了便捷的一键部署功能，并且支持部署到多个目的地，如：Git，HeroKu，Rsync，OpenShift，FTPSync等。下面以部署到github为例：</p>
+<p>首先要安装hexo-deployer-git插件</p>
+<blockquote>
+<p>$ cnpm install hexo-deployer-git –save</p>
+</blockquote>
+<p>然后打开_config.yaml文件，修改如下配置：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github<span class="class">.com</span>:bafeimao/pages1<span class="class">.git</span></span><br><span class="line">  branch: gh-pages</span><br></pre></td></tr></table></figure></p>
+<p>然后执行生成并部署<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ hexo <span class="keyword">g</span> &amp;&amp; hexo <span class="literal">d</span></span><br><span class="line">或者</span><br><span class="line">$ hexo <span class="keyword">g</span> --deploy</span><br><span class="line">或者</span><br><span class="line">$ hexo <span class="keyword">d</span> --<span class="keyword">generate</span></span><br></pre></td></tr></table></figure></p>
+<p>若成功部署，会看到如下信息：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">To git<span class="annotation">@github</span>.<span class="string">com:</span>bafeimao/pages.git</span><br><span class="line">* [<span class="keyword">new</span> branch]      master -&gt; gh-pages</span><br><span class="line">Branch master set up to track remote branch gh-pages from git<span class="annotation">@github</span>.<span class="string">com:</span>bafeimao/pages.git.</span><br><span class="line">INFO  Deploy <span class="string">done:</span> git</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意</strong>：如部署失败，默认不显示任何错误信息，你可以加上–debug参数查看详情</p>
+<blockquote>
+<p>$ hexo d –debug</p>
+</blockquote>
+<p>最后，打开github博客验证是否成功部署：</p>
+<p><code>http://{github-user-name}.github.io/{repo-name}</code></p>
+<p>比如我的博客：<a href="http://bafeimao.github.io/gh-pages/">http://bafeimao.github.io/gh-pages/</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="初始化">初始化</h3><p>运行如下命令以完成初始化操作<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span]]>
+    </summary>
+    
+      <category term="github" scheme="http://bafeimao.github.io/gh-pages/tags/github/"/>
+    
+      <category term="hexo" scheme="http://bafeimao.github.io/gh-pages/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[游戏服务器中的ID生成策略]]></title>
+    <link href="http://bafeimao.github.io/gh-pages/2013/06/17/generate-unique-id-in-distributed-system/"/>
+    <id>http://bafeimao.github.io/gh-pages/2013/06/17/generate-unique-id-in-distributed-system/</id>
+    <published>2013-06-17T11:45:37.000Z</published>
+    <updated>2015-10-17T02:00:44.000Z</updated>
+    <content type="html"><![CDATA[<p>常见的游戏架构和部署中，很多采用分服的一服一库的部署模式，而且运营过程中经常会有合服要求。</p>
+<blockquote>
+<p>所谓合服就是随着游戏单服活跃用户数不断的下降，为节省资源和提高用户活跃度，在运营过程中将两个或多个服务数据合并到一起的做法。</p>
+</blockquote>
+<p>合服时经常碰到的一个最大的问题就是：相同表中的记录不能有ID重复的情况发生。如果有重复ID的情况，那么合服时就要写特定的脚本去处理重复ID的问题，这会比较麻烦。</p>
+<p>要解决不能有重复ID的情况，最好的办法是让每台服务器上出生的ID都是全局唯一的。</p>
+<h4 id="1-_使用UUID">1. 使用UUID</h4><p>首先想到的是<a href="https://en.wikipedia.org/w/index.php?title=Universally_unique_identifier&amp;redirect=no" target="_blank" rel="external">UUID</a>，它天生就是全局唯一的并运用于分布式计算中，UUID是16字节128位长的数字，通常以36字节的字符串表示：</p>
+<blockquote>
+<p>UUID: 21e58ba8-5c7e-4524-ae8f-079faf987b3b</p>
+</blockquote>
+<p>由于它太长而且可读性差，因此不用这货。</p>
+<h4 id="2-_Flickr的Ticket_Server方案">2. Flickr的Ticket Server方案</h4><p>Flickr的实现方式比较简单巧妙，它是利用两台Ticket Server按指定的步长递增生成ID。将两台服务器的初始偏移值设置不一样，会让两台服务器交替生成ID而不会产生冲突，其配置如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">TicketServer1:</span><br><span class="line"><span class="keyword">auto</span>-increment-increment = <span class="number">2</span></span><br><span class="line"><span class="keyword">auto</span>-increment-offset = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">TicketServer2:</span><br><span class="line"><span class="keyword">auto</span>-increment-increment = <span class="number">2</span></span><br><span class="line"><span class="keyword">auto</span>-increment-offset = <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>这样，TicketServer1将一直生成”奇数ID”，TicketServer2生成“偶数ID”</p>
+<p>两台Ticket Server做负载均衡，使用Round-Robin策略轮询访问，避免了单点故障，如果两台不够也可以扩展至更多台。</p>
+<p>关于该技术方案的细节请见<a href="http://code.flickr.net/2010/02/08/ticket-servers-distributed-unique-primary-keys-on-the-cheap/" target="_blank" rel="external">官方博客原文(要翻墙)</a>，也可见<a href="http://blog.csdn.net/wangzhen199009/article/details/38761575" target="_blank" rel="external">这篇译文</a></p>
+<p><strong>该方案的缺点：</strong></p>
+<ol>
+<li><p>TicketServer会成为性能瓶颈，当负载较重时数据库写压力较大，对于Flickr这种读频繁写较少的应用来说也许够用，但是对于游戏服务器来说，会有短期内密集生成ID的需求，该方案似乎应付这样的需求会显得有点吃力。</p>
+</li>
+<li><p>生成的ID不带时间信息，IDC机房信息，或机器ID等信息</p>
+</li>
+</ol>
+<h4 id="3-_MongoDB的ObjectId方案">3. MongoDB的ObjectId方案</h4><p>ObjectId使用了12个字节来存储，每个字节用16进制字符串来表示，所以的表示形式是由24个字符组成，如：507f1f77bcf86cd799439011</p>
+<p>ObjectId组成部分有：</p>
+<ul>
+<li>4字节：UNIX时间戳</li>
+<li>3字节：表示运行MongoDB的机器</li>
+<li>2字节：表示生成此_id的进程</li>
+<li>3字节：由一个随机数开始的计数器生成的值</li>
+</ul>
+<p><strong>该方案的好处：</strong></p>
+<p>ObjectId是可按时间排序的并且带机器ID的，根据ObjectId可以反推得到时间戳和机器ID信息，而且比UUID短。</p>
+<p>但是，我们希望最好能够用长整形来表示ID，因为那样既短小不占空间又容易识别。</p>
+<h4 id="4-_Twitter的Snowflake算法">4. Twitter的Snowflake算法</h4><p>Snowflake是twitter为解决在分布式系统中高效生成全局ID所提出的解决方案，该算法使用Scale实现的并且已开源，地址在：<a href="https://github.com/twitter/snowflake" target="_blank" rel="external">https://github.com/twitter/snowflake</a></p>
+<p>其原理是用一个64位的长整形来储存ID，其内部位的表示如下：</p>
+<blockquote>
+<p>毫秒时间（41bits）+ datacenterId(5bits) + workerId(5bits) + sequence(12bits)</p>
+</blockquote>
+<p>该方案的优点明显：</p>
+<ul>
+<li>生成的ID能够按时间排序，并且可带机器ID，IDC等信息</li>
+<li>用64位表示的，储存空间小，并且易读</li>
+<li>每台机器可独立生成ID，无需中心节点，无单点故障风险</li>
+<li>生成ID高效并且速度快，如果用12位表示sequence，那么每毫秒将可以生成1024个ID</li>
+</ul>
+<p>在游戏应用中，我们可将内部位调整为如下表现形式：</p>
+<blockquote>
+<p>毫秒时间（37bits）+ serverId (20bits) + sequence (16bits)</p>
+</blockquote>
+<p>说明：</p>
+<ul>
+<li>37bits的毫秒时间可供我们使用约93年</li>
+<li>serverId最大可以表示为2^20(1048576)个服务器</li>
+<li>每毫秒最多可以生成2^16(65535)个ID</li>
+</ul>
+<p>###总结：</p>
+<p>在分布式应用或游戏服务器中，Snowflake作为全局唯一ID的生成算法具有生产ID迅速高效，无单点故障，ID带丰富的信息，并且可按时间排序等诸多特性，是可靠高效的方案。</p>
+<hr>
+<p>###附录：</p>
+<p>Twitter是用Scale实现该算法并开源的，其中Java版本如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * @author zhujuan</span><br><span class="line"> *         From: https://github.com/twitter/snowflake</span><br><span class="line"> *         An object that generates IDs.</span><br><span class="line"> *         This is broken into a separate class in case</span><br><span class="line"> *         we ever want to support multiple worker threads</span><br><span class="line"> *         per process</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> IdWorker &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> final Logger LOG = LoggerFactory.getLogger(IdWorker.<span class="keyword">class</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> workerId;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> datacenterId;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sequence = <span class="number">0L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> twepoch = <span class="number">1288834974657L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> workerIdBits = <span class="number">5L</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> datacenterIdBits = <span class="number">5L</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> maxWorkerId = -<span class="number">1L</span> ^ (-<span class="number">1L</span> &lt;&lt; workerIdBits);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> maxDatacenterId = -<span class="number">1L</span> ^ (-<span class="number">1L</span> &lt;&lt; datacenterIdBits);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sequenceBits = <span class="number">12L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> workerIdShift = sequenceBits;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> datacenterIdShift = sequenceBits + workerIdBits;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> timestampLeftShift = sequenceBits + workerIdBits + datacenterIdBits;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sequenceMask = -<span class="number">1L</span> ^ (-<span class="number">1L</span> &lt;&lt; sequenceBits);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> lastTimestamp = -<span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">IdWorker</span><span class="params">(<span class="keyword">long</span> workerId, <span class="keyword">long</span> datacenterId)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// sanity check for workerId</span></span><br><span class="line">        <span class="keyword">if</span> (workerId &gt; maxWorkerId || workerId &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(String.format(<span class="string">"worker Id can't be greater than %d or less than 0"</span>, maxWorkerId));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (datacenterId &gt; maxDatacenterId || datacenterId &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(String.format(<span class="string">"datacenter Id can't be greater than %d or less than 0"</span>, maxDatacenterId));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.workerId = workerId;</span><br><span class="line">        <span class="keyword">this</span>.datacenterId = datacenterId;</span><br><span class="line">        LOG.info(String.format(<span class="string">"worker starting. timestamp left shift %d, datacenter id bits %d, worker id bits %d, sequence bits %d, workerid %d"</span>, timestampLeftShift, datacenterIdBits, workerIdBits, sequenceBits, workerId));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> synchronized <span class="keyword">long</span> <span class="title">nextId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> timestamp = timeGen();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (timestamp &lt; lastTimestamp) &#123;</span><br><span class="line">            LOG.error(String.format(<span class="string">"clock is moving backwards.  Rejecting requests until %d."</span>, lastTimestamp));</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(String.format(<span class="string">"Clock moved backwards.  Refusing to generate id for %d milliseconds"</span>, lastTimestamp - timestamp));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (lastTimestamp == timestamp) &#123;</span><br><span class="line">            sequence = (sequence + <span class="number">1</span>) &amp; sequenceMask;</span><br><span class="line">            <span class="keyword">if</span> (sequence == <span class="number">0</span>) &#123;</span><br><span class="line">                timestamp = tilNextMillis(lastTimestamp);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            sequence = <span class="number">0L</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        lastTimestamp = timestamp;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ((timestamp - twepoch) &lt;&lt; timestampLeftShift) | (datacenterId &lt;&lt; datacenterIdShift) | (workerId &lt;&lt; workerIdShift) | sequence;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">long</span> <span class="title">tilNextMillis</span><span class="params">(<span class="keyword">long</span> lastTimestamp)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> timestamp = timeGen();</span><br><span class="line">        <span class="keyword">while</span> (timestamp &lt;= lastTimestamp) &#123;</span><br><span class="line">            timestamp = timeGen();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> timestamp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">long</span> <span class="title">timeGen</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> System.currentTimeMillis();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<p>常见的游戏架构和部署中，很多采用分服的一服一库的部署模式，而且运营过程中经常会有合服要求。</p>
+<blockquote>
+<p>所谓合服就是随着游戏单服活跃用户数不断的下降，为节省资源和提高用户活跃度，在运营过程中将两个或多个服务数据合并到一起的做法。</p>
+</bl]]>
+    </summary>
+    
+      <category term="distributed" scheme="http://bafeimao.github.io/gh-pages/tags/distributed/"/>
+    
+      <category term="game" scheme="http://bafeimao.github.io/gh-pages/tags/game/"/>
+    
+      <category term="unique-id" scheme="http://bafeimao.github.io/gh-pages/tags/unique-id/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[网络游戏中的数据交互]]></title>
+    <link href="http://bafeimao.github.io/gh-pages/2012/11/17/data-interactive-in-game/"/>
+    <id>http://bafeimao.github.io/gh-pages/2012/11/17/data-interactive-in-game/</id>
+    <published>2012-11-17T01:49:33.000Z</published>
+    <updated>2015-10-17T02:00:44.000Z</updated>
+    <content type="html"><![CDATA[<p>设计网络游戏，首先要面对的就是考虑如何实现客户端与服务端的数据交互。</p>
+<p>这大体会涉及到两个方面的内容：</p>
+<ol>
+<li>客户端与服务器之间的通讯协议，</li>
+<li>通讯双方使用的数据交换格式</li>
+</ol>
+<p>通讯协议常用的无外乎两种：1：TCP，2：HTTP</p>
+<blockquote>
+<p>在一些即时战斗类或战网类游戏中可能还会涉及到客户端之间使用P2P方式连接，以及使用UDP进行传输</p>
+</blockquote>
+<p>大体上，弱交互的游戏使用HTTP，强交互实时性较强的游戏使用TCP。</p>
+<p>但这依赖于具体的使用场景还可以进一步划分，比如：</p>
+<blockquote>
+<p>在一款实时战斗的手机游戏中，往往使用TCP进行连接，但是聊天功能由于在手机上使用不是很方便，所以聊天就变的弱交互了，因此聊天可以使用HTTP调用单独的聊天API。</p>
+</blockquote>
+<p><strong>对于HTTP，常用的数据交换格式是：JSON或XML</strong></p>
+<p>使用JSON/XML的优点是：</p>
+<ol>
+<li>使用方便</li>
+<li>内容自描述</li>
+</ol>
+<p>缺点是：</p>
+<ol>
+<li>传输数据量大了点</li>
+<li>Marshall和UnMarshall的时间长了一点</li>
+</ol>
+<blockquote>
+<p>但无所谓，因为他们应用的场景本就是弱交互的环境，因此劣势比起优势可以忽略。</p>
+</blockquote>
+<p><strong>但对于强交互游戏，数据交互格式就要好好选择了，特别地，在手机游戏中，如何最大限度的减少消息的大小是首要考虑的指标，这将会带来如下几个方面的收益：</strong></p>
+<ol>
+<li>节省用户流量，为用户省钱（土豪除外）</li>
+<li>省服务器带宽，为公司省钱</li>
+<li>提高了网络吞吐率（单台服务器网卡可以处理更多的消息）</li>
+</ol>
+<p>讲了这么多前奏，该轮到大名鼎鼎的<a href="http://code.google.com/p/protobuf/" target="_blank" rel="external">protobuf</a>闪亮登场了，它的优点有：</p>
+<ul>
+<li>名厂Google出品，有口皆碑，久经考验</li>
+<li>数据压缩比高，满足我们指标要求</li>
+<li>性能好，Google对性能的抠门程度不用我们担心</li>
+<li>支持消息协议的向前和向后兼容（消息协议升级时，既有系统不会受到协议变更的影响）</li>
+<li>多语言支持，如C++，Java，Python等（社区提供了非常多的对其他语言支持）</li>
+<li>代码自动生成</li>
+</ul>
+<p>如此多的特性正适合在游戏应用！！！</p>
+<p>####题外：</p>
+<p>使用protobuf还有有另外一个好处，它自带提供对RPC的支持，这方便了内部系统之间的远程调用，但是遗憾的是之前并没有提供RPC的实现，这需要我们自己实现。这一点不像它的对手Thrift提供的全套的RPC解决方案。</p>
+<blockquote>
+<p>自行实现基于Protobuf的RPC也不是很难的事，github上又很多基于Mina，Netty或ZeroMQ的实现，有兴趣可以自行去搜索。</p>
+</blockquote>
+<p>幸运的是，Google最近开源了基于HTTP/2和ProtoBuf的通用RPC框架的gRPC，</p>
+<blockquote>
+<p>请参见<a href="http://www.infoq.com/cn/news/2015/03/grpc-google-http2-protobuf" target="_blank" rel="external">这篇文章</a>中对gRPC的描述</p>
+<p>gRPC的代码托管在Github上：<a href="https://github.com/grpc/grpc" target="_blank" rel="external">https://github.com/grpc/grpc</a></p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>设计网络游戏，首先要面对的就是考虑如何实现客户端与服务端的数据交互。</p>
+<p>这大体会涉及到两个方面的内容：</p>
+<ol>
+<li>客户端与服务器之间的通讯协议，</li>
+<li>通讯双方使用的数据交换格式</li>
+</ol>
+<p>通讯协议常用的无外乎两种：]]>
+    </summary>
+    
+      <category term="game" scheme="http://bafeimao.github.io/gh-pages/tags/game/"/>
+    
+      <category term="grpc" scheme="http://bafeimao.github.io/gh-pages/tags/grpc/"/>
+    
+      <category term="json" scheme="http://bafeimao.github.io/gh-pages/tags/json/"/>
+    
+      <category term="protobuf" scheme="http://bafeimao.github.io/gh-pages/tags/protobuf/"/>
+    
+      <category term="rpc" scheme="http://bafeimao.github.io/gh-pages/tags/rpc/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[常见的Web负载均衡技术详解]]></title>
-    <link href="http://bafeimao.github.io/gh-pages/2015/09/25/web-load-balance-technologies-in-detail/"/>
-    <id>http://bafeimao.github.io/gh-pages/2015/09/25/web-load-balance-technologies-in-detail/</id>
-    <published>2015-09-25T15:51:01.000Z</published>
-    <updated>2015-09-26T14:10:23.000Z</updated>
+    <link href="http://bafeimao.github.io/gh-pages/2012/09/25/web-load-balance-technologies-in-detail/"/>
+    <id>http://bafeimao.github.io/gh-pages/2012/09/25/web-load-balance-technologies-in-detail/</id>
+    <published>2012-09-25T15:51:01.000Z</published>
+    <updated>2015-10-17T02:00:40.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-_基于镜像站点的负载均衡">1. 基于镜像站点的负载均衡</h3><p>最早的负载均衡技术可以追溯到古老的镜像站点技术，其本质是制作多个站点的拷贝（镜像），然后在网页上提供站点列表，供用户选择，从而达到分流负载的目的。该技术现在仍然被一些如下载站点使用。</p>
 <h4 id="优缺点">优缺点</h4><p>该方案最大的特点就是简单；服务端不需要特别的技术支持，只要克隆多个站点即可，制作镜像本质上是文件的同步，因为它更加适合用在静态网站上。</p>
 <h3 id="2-_基于HTTP重定向的负载均衡">2. 基于HTTP重定向的负载均衡</h3><h4 id="什么是HTTP重定向">什么是HTTP重定向</h4><blockquote>
@@ -132,10 +334,10 @@
   
   <entry>
     <title><![CDATA[配置SSH无密码登陆]]></title>
-    <link href="http://bafeimao.github.io/gh-pages/2015/09/25/ssh-login-without-password-configuration/"/>
-    <id>http://bafeimao.github.io/gh-pages/2015/09/25/ssh-login-without-password-configuration/</id>
-    <published>2015-09-25T15:19:08.000Z</published>
-    <updated>2015-09-25T15:20:02.000Z</updated>
+    <link href="http://bafeimao.github.io/gh-pages/2011/09/25/ssh-login-without-password-configuration/"/>
+    <id>http://bafeimao.github.io/gh-pages/2011/09/25/ssh-login-without-password-configuration/</id>
+    <published>2011-09-25T15:19:08.000Z</published>
+    <updated>2015-10-17T02:00:44.000Z</updated>
     <content type="html"><![CDATA[<p>SSH(Secure Shell)是建立在应用层和传输层基础上的安全协议，利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题，他提供两种方式的验证：</p>
 <ol>
 <li>基于口令的安全验证</li>
@@ -176,289 +378,93 @@
   </entry>
   
   <entry>
-    <title><![CDATA[使用Hexo在github上建立博客]]></title>
-    <link href="http://bafeimao.github.io/gh-pages/2014/08/25/how-to-build-blog-on-github-by-hexo/"/>
-    <id>http://bafeimao.github.io/gh-pages/2014/08/25/how-to-build-blog-on-github-by-hexo/</id>
-    <published>2014-08-25T06:07:42.000Z</published>
-    <updated>2015-10-17T01:58:30.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="初始化">初始化</h3><p>运行如下命令以完成初始化操作<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init ~<span class="regexp">/blog &amp;&amp; cd ~/</span>blog &amp;&amp; cnpm install</span><br></pre></td></tr></table></figure></p>
-<p>成功执行后查看文件夹下的内容如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">total <span class="number">24</span></span><br><span class="line">drwxr-xr-x   <span class="number">9</span> ktgu  staff   <span class="number">306</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> .</span><br><span class="line">drwxr-xr-x+ <span class="number">66</span> ktgu  staff  <span class="number">2244</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> ..</span><br><span class="line">-rw-r--r--   <span class="number">1</span> ktgu  staff    <span class="number">65</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> .gitignore</span><br><span class="line">-rw-r--r--   <span class="number">1</span> ktgu  staff  <span class="number">1477</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> _config.yml</span><br><span class="line">drwxr-xr-x  <span class="number">12</span> ktgu  staff   <span class="number">408</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">24</span> node_modules</span><br><span class="line">-rw-r--r--   <span class="number">1</span> ktgu  staff   <span class="number">442</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> package.json</span><br><span class="line">drwxr-xr-x   <span class="number">5</span> ktgu  staff   <span class="number">170</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> scaffolds</span><br><span class="line">drwxr-xr-x   <span class="number">3</span> ktgu  staff   <span class="number">102</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> source</span><br><span class="line">drwxr-xr-x   <span class="number">3</span> ktgu  staff   <span class="number">102</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> themes</span><br></pre></td></tr></table></figure></p>
-<h3 id="生成文件">生成文件</h3><p>Hexo生成文件速度非常快，使用如下命令即可生成文件<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo generate</span><br><span class="line">或者</span><br><span class="line"><span class="variable">$ </span>hexo g</span><br></pre></td></tr></table></figure></p>
-<h3 id="部署到github">部署到github</h3><p>Hexo提供了便捷的一键部署功能，并且支持部署到多个目的地，如：Git，HeroKu，Rsync，OpenShift，FTPSync等。下面以部署到github为例：</p>
-<p>首先要安装hexo-deployer-git插件</p>
+    <title><![CDATA[Git常用远程操作]]></title>
+    <link href="http://bafeimao.github.io/gh-pages/2011/01/03/how-to-use-git-remote-commands/"/>
+    <id>http://bafeimao.github.io/gh-pages/2011/01/03/how-to-use-git-remote-commands/</id>
+    <published>2011-01-03T08:29:29.000Z</published>
+    <updated>2015-10-17T02:00:44.000Z</updated>
+    <content type="html"><![CDATA[<h4 id="Git常用远程操作">Git常用远程操作</h4><p>在对Git远程操作命令理解之前，首先看下图，该图可以直观地帮助我们理解各操作命令执行后所影响的区域。</p>
 <blockquote>
-<p>$ cnpm install hexo-deployer-git –save</p>
+<p>本文假设你对git的常规概念如：工作区（workspace），索引区（index）,本地仓库（local repository）和远程仓库（remote repository）都已经有了初步的了解。</p>
 </blockquote>
-<p>然后打开_config.yaml文件，修改如下配置：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github<span class="class">.com</span>:bafeimao/pages1<span class="class">.git</span></span><br><span class="line">  branch: gh-pages</span><br></pre></td></tr></table></figure></p>
-<p>然后执行生成并部署<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ hexo <span class="keyword">g</span> &amp;&amp; hexo <span class="literal">d</span></span><br><span class="line">或者</span><br><span class="line">$ hexo <span class="keyword">g</span> --deploy</span><br><span class="line">或者</span><br><span class="line">$ hexo <span class="keyword">d</span> --<span class="keyword">generate</span></span><br></pre></td></tr></table></figure></p>
-<p>若成功部署，会看到如下信息：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">To git<span class="annotation">@github</span>.<span class="string">com:</span>bafeimao/pages.git</span><br><span class="line">* [<span class="keyword">new</span> branch]      master -&gt; gh-pages</span><br><span class="line">Branch master set up to track remote branch gh-pages from git<span class="annotation">@github</span>.<span class="string">com:</span>bafeimao/pages.git.</span><br><span class="line">INFO  Deploy <span class="string">done:</span> git</span><br></pre></td></tr></table></figure></p>
-<p><strong>注意</strong>：如部署失败，默认不显示任何错误信息，你可以加上–debug参数查看详情</p>
+<p><img src="http://image.beekka.com/blog/2014/bg2014061202.jpg" alt="Git"></p>
+<h3 id="git_clone">git clone</h3><p>该命令用于克隆一个远程仓库到本地文件。</p>
 <blockquote>
-<p>$ hexo d –debug</p>
+<p>$ git clone <a href="https://github.com/bafeimao/pages1" target="_blank" rel="external">https://github.com/bafeimao/pages1</a><br>该命令会在本地自动创建文件夹<code>pages1</code></p>
 </blockquote>
-<p>最后，打开github博客验证是否成功部署：</p>
-<p><code>http://{github-user-name}.github.io/{repo-name}</code></p>
-<p>比如我的博客：<a href="http://bafeimao.github.io/gh-pages/">http://bafeimao.github.io/gh-pages/</a></p>
+<p>也可以指定要克隆到的本地文件夹名</p>
+<blockquote>
+<p>$ git clone <a href="https://github.com/bafeimao/pages1" target="_blank" rel="external">https://github.com/bafeimao/pages1</a> blog</p>
+</blockquote>
+<p>可以提供多种协议访问方式，例如，github上提供如下三种常见的协议：</p>
+<blockquote>
+<p>$ git clone <a href="https://github.com/bafeimao/pages1" target="_blank" rel="external">https://github.com/bafeimao/pages1</a><br>$ git clone git@github.com:bafeimao/pages1.git</p>
+</blockquote>
+<h3 id="git_remote">git remote</h3><p>要想对远程仓库进行管理，首先要使用<code>remote add</code>命令添加一个远程仓库对应的名称（其他命令如：<code>git pull</code>,<code>git push</code>等操作都将依赖于该远程仓库名 ）</p>
+<p>添加一个远程仓库(需要指定一个名称和仓库的具体地址)</p>
+<blockquote>
+<p>$ git remote add origin git@github.com:bafeimao/pages1.git</p>
+</blockquote>
+<p> 查看当前已经添加过的所有远程仓库列表</p>
+<blockquote>
+<p>$ git remote<br>origin</p>
+</blockquote>
+<p>使用-v选项可以看到更具体的名称和远程仓库URL</p>
+<blockquote>
+<p>$ git remote -v<br>origin    git@github.com:bafeimao/coconut-projects.git (fetch)<br>origin    git@github.com:bafeimao/coconut-projects.git (push)</p>
+</blockquote>
+<h3 id="git_fetch">git fetch</h3><p>成功添加远程仓库后，一旦远程仓库有更新，我就可以使用<code>fetch</code>命令将远程更改取回到本地仓库， 注意：这里是将更改取到本地仓库（local repository）而非本地工作区(workspace)，详见参考图）</p>
+<blockquote>
+<p>$ git fetch origin</p>
+</blockquote>
+<p>默认取回所有分支的更改，可以指定只获取具体分支的更改</p>
+<blockquote>
+<p>$ git fetch origin dev</p>
+</blockquote>
+<h3 id="git_pull">git pull</h3><p>根据上图，也可以直接将远程的某个分支的更改取回到工作区（workspace）中的指定分支上，这就要用到<code>git pull</code>命令了，该命令的基本用法如下:</p>
+<p><code>$ git pull [&lt;remote-repo&gt; [&lt;remote-branch&gt;[:&lt;local-branch&gt;]]]</code></p>
+<p>将远程仓库master分支上的更改合并到本地工作区的dev分支</p>
+<blockquote>
+<p>$ git pull origin master:dev</p>
+<p>冒号后面的本地分支名可以省略，省略时表示合并到当前工作分支:<br>$ git pull origin master</p>
+</blockquote>
+<h3 id="git_push">git push</h3><p>如果需要将本地仓库的更改提交到远程，就需要使用<code>git push</code>命令，该命令的基本用法如下：</p>
+<p><code>$ git push [&lt;remote-repo&gt; [&lt;local-branch&gt;[:&lt;remote-branch&gt;]]]</code></p>
+<p>将本地dev分支推送到远程dev分支</p>
+<blockquote>
+<p>$ git push origin dev:dev</p>
+</blockquote>
+<p>另外可以设定当前工作分支（假设为dev）的upstream分支（即对应的远程分支），这样设定以后，在执行push时可以省略<code>本地分支名：远程分支名</code>，甚至远程仓库名称origin也可以省略</p>
+<blockquote>
+<p>$ git push –set-upstream origin dev</p>
+</blockquote>
+<p>此时可以省略分支名</p>
+<blockquote>
+<p>$ git push origin</p>
+</blockquote>
+<p>甚至连origin都可以省略</p>
+<blockquote>
+<p>$ git push</p>
+</blockquote>
+<p><strong>注意</strong>：如果指定的远程分支不存在，则会在远程自动创建 </p>
+<p>如果没有指定本地分支名则表示删除远程分支，下面两种方式均执行删除远程分支dev<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>git push origin <span class="symbol">:dev</span> </span><br><span class="line"><span class="variable">$ </span>git push origin --delete dev</span><br></pre></td></tr></table></figure></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h3 id="初始化">初始化</h3><p>运行如下命令以完成初始化操作<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span]]>
+    <![CDATA[<h4 id="Git常用远程操作">Git常用远程操作</h4><p>在对Git远程操作命令理解之前，首先看下图，该图可以直观地帮助我们理解各操作命令执行后所影响的区域。</p>
+<blockquote>
+<p>本文假设你对git的常规概念如：工作区（workspace），索引]]>
     </summary>
     
-      <category term="github" scheme="http://bafeimao.github.io/gh-pages/tags/github/"/>
-    
-      <category term="hexo" scheme="http://bafeimao.github.io/gh-pages/tags/hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[游戏服务器中的ID生成策略]]></title>
-    <link href="http://bafeimao.github.io/gh-pages/2014/01/17/generate-unique-id-in-distributed-system/"/>
-    <id>http://bafeimao.github.io/gh-pages/2014/01/17/generate-unique-id-in-distributed-system/</id>
-    <published>2014-01-17T11:45:37.000Z</published>
-    <updated>2015-10-17T01:58:31.000Z</updated>
-    <content type="html"><![CDATA[<p>常见的游戏架构和部署中，很多采用分服的一服一库的部署模式，而且运营过程中经常会有合服要求。</p>
-<blockquote>
-<p>所谓合服就是随着游戏单服活跃用户数不断的下降，为节省资源和提高用户活跃度，在运营过程中将两个或多个服务数据合并到一起的做法。</p>
-</blockquote>
-<p>合服时经常碰到的一个最大的问题就是：相同表中的记录不能有ID重复的情况发生。如果有重复ID的情况，那么合服时就要写特定的脚本去处理重复ID的问题，这会比较麻烦。</p>
-<p>要解决不能有重复ID的情况，最好的办法是让每台服务器上出生的ID都是全局唯一的。</p>
-<h4 id="1-_使用UUID">1. 使用UUID</h4><p>首先想到的是<a href="https://en.wikipedia.org/w/index.php?title=Universally_unique_identifier&amp;redirect=no" target="_blank" rel="external">UUID</a>，它天生就是全局唯一的并运用于分布式计算中，UUID是16字节128位长的数字，通常以36字节的字符串表示：</p>
-<blockquote>
-<p>UUID: 21e58ba8-5c7e-4524-ae8f-079faf987b3b</p>
-</blockquote>
-<p>由于它太长而且可读性差，因此不用这货。</p>
-<h4 id="2-_Flickr的Ticket_Server方案">2. Flickr的Ticket Server方案</h4><p>Flickr的实现方式比较简单巧妙，它是利用两台Ticket Server按指定的步长递增生成ID。将两台服务器的初始偏移值设置不一样，会让两台服务器交替生成ID而不会产生冲突，其配置如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">TicketServer1:</span><br><span class="line"><span class="keyword">auto</span>-increment-increment = <span class="number">2</span></span><br><span class="line"><span class="keyword">auto</span>-increment-offset = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">TicketServer2:</span><br><span class="line"><span class="keyword">auto</span>-increment-increment = <span class="number">2</span></span><br><span class="line"><span class="keyword">auto</span>-increment-offset = <span class="number">2</span></span><br></pre></td></tr></table></figure>
-<p>这样，TicketServer1将一直生成”奇数ID”，TicketServer2生成“偶数ID”</p>
-<p>两台Ticket Server做负载均衡，使用Round-Robin策略轮询访问，避免了单点故障，如果两台不够也可以扩展至更多台。</p>
-<p>关于该技术方案的细节请见<a href="http://code.flickr.net/2010/02/08/ticket-servers-distributed-unique-primary-keys-on-the-cheap/" target="_blank" rel="external">官方博客原文(要翻墙)</a>，也可见<a href="http://blog.csdn.net/wangzhen199009/article/details/38761575" target="_blank" rel="external">这篇译文</a></p>
-<p><strong>该方案的缺点：</strong></p>
-<ol>
-<li><p>TicketServer会成为性能瓶颈，当负载较重时数据库写压力较大，对于Flickr这种读频繁写较少的应用来说也许够用，但是对于游戏服务器来说，会有短期内密集生成ID的需求，该方案似乎应付这样的需求会显得有点吃力。</p>
-</li>
-<li><p>生成的ID不带时间信息，IDC机房信息，或机器ID等信息</p>
-</li>
-</ol>
-<h4 id="3-_MongoDB的ObjectId方案">3. MongoDB的ObjectId方案</h4><p>ObjectId使用了12个字节来存储，每个字节用16进制字符串来表示，所以的表示形式是由24个字符组成，如：507f1f77bcf86cd799439011</p>
-<p>ObjectId组成部分有：</p>
-<ul>
-<li>4字节：UNIX时间戳</li>
-<li>3字节：表示运行MongoDB的机器</li>
-<li>2字节：表示生成此_id的进程</li>
-<li>3字节：由一个随机数开始的计数器生成的值</li>
-</ul>
-<p><strong>该方案的好处：</strong></p>
-<p>ObjectId是可按时间排序的并且带机器ID的，根据ObjectId可以反推得到时间戳和机器ID信息，而且比UUID短。</p>
-<p>但是，我们希望最好能够用长整形来表示ID，因为那样既短小不占空间又容易识别。</p>
-<h4 id="4-_Twitter的Snowflake算法">4. Twitter的Snowflake算法</h4><p>Snowflake是twitter为解决在分布式系统中高效生成全局ID所提出的解决方案，该算法使用Scale实现的并且已开源，地址在：<a href="https://github.com/twitter/snowflake" target="_blank" rel="external">https://github.com/twitter/snowflake</a></p>
-<p>其原理是用一个64位的长整形来储存ID，其内部位的表示如下：</p>
-<blockquote>
-<p>毫秒时间（41bits）+ datacenterId(5bits) + workerId(5bits) + sequence(12bits)</p>
-</blockquote>
-<p>该方案的优点明显：</p>
-<ul>
-<li>生成的ID能够按时间排序，并且可带机器ID，IDC等信息</li>
-<li>用64位表示的，储存空间小，并且易读</li>
-<li>每台机器可独立生成ID，无需中心节点，无单点故障风险</li>
-<li>生成ID高效并且速度快，如果用12位表示sequence，那么每毫秒将可以生成1024个ID</li>
-</ul>
-<p>在游戏应用中，我们可将内部位调整为如下表现形式：</p>
-<blockquote>
-<p>毫秒时间（37bits）+ serverId (20bits) + sequence (16bits)</p>
-</blockquote>
-<p>说明：</p>
-<ul>
-<li>37bits的毫秒时间可供我们使用约93年</li>
-<li>serverId最大可以表示为2^20(1048576)个服务器</li>
-<li>每毫秒最多可以生成2^16(65535)个ID</li>
-</ul>
-<p>###总结：</p>
-<p>在分布式应用或游戏服务器中，Snowflake作为全局唯一ID的生成算法具有生产ID迅速高效，无单点故障，ID带丰富的信息，并且可按时间排序等诸多特性，是可靠高效的方案。</p>
-<hr>
-<p>###附录：</p>
-<p>Twitter是用Scale实现该算法并开源的，其中Java版本如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * @author zhujuan</span><br><span class="line"> *         From: https://github.com/twitter/snowflake</span><br><span class="line"> *         An object that generates IDs.</span><br><span class="line"> *         This is broken into a separate class in case</span><br><span class="line"> *         we ever want to support multiple worker threads</span><br><span class="line"> *         per process</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> IdWorker &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> final Logger LOG = LoggerFactory.getLogger(IdWorker.<span class="keyword">class</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> workerId;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> datacenterId;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sequence = <span class="number">0L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> twepoch = <span class="number">1288834974657L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> workerIdBits = <span class="number">5L</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> datacenterIdBits = <span class="number">5L</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> maxWorkerId = -<span class="number">1L</span> ^ (-<span class="number">1L</span> &lt;&lt; workerIdBits);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> maxDatacenterId = -<span class="number">1L</span> ^ (-<span class="number">1L</span> &lt;&lt; datacenterIdBits);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sequenceBits = <span class="number">12L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> workerIdShift = sequenceBits;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> datacenterIdShift = sequenceBits + workerIdBits;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> timestampLeftShift = sequenceBits + workerIdBits + datacenterIdBits;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sequenceMask = -<span class="number">1L</span> ^ (-<span class="number">1L</span> &lt;&lt; sequenceBits);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> lastTimestamp = -<span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">IdWorker</span><span class="params">(<span class="keyword">long</span> workerId, <span class="keyword">long</span> datacenterId)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// sanity check for workerId</span></span><br><span class="line">        <span class="keyword">if</span> (workerId &gt; maxWorkerId || workerId &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(String.format(<span class="string">"worker Id can't be greater than %d or less than 0"</span>, maxWorkerId));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (datacenterId &gt; maxDatacenterId || datacenterId &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(String.format(<span class="string">"datacenter Id can't be greater than %d or less than 0"</span>, maxDatacenterId));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.workerId = workerId;</span><br><span class="line">        <span class="keyword">this</span>.datacenterId = datacenterId;</span><br><span class="line">        LOG.info(String.format(<span class="string">"worker starting. timestamp left shift %d, datacenter id bits %d, worker id bits %d, sequence bits %d, workerid %d"</span>, timestampLeftShift, datacenterIdBits, workerIdBits, sequenceBits, workerId));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> synchronized <span class="keyword">long</span> <span class="title">nextId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> timestamp = timeGen();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (timestamp &lt; lastTimestamp) &#123;</span><br><span class="line">            LOG.error(String.format(<span class="string">"clock is moving backwards.  Rejecting requests until %d."</span>, lastTimestamp));</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(String.format(<span class="string">"Clock moved backwards.  Refusing to generate id for %d milliseconds"</span>, lastTimestamp - timestamp));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (lastTimestamp == timestamp) &#123;</span><br><span class="line">            sequence = (sequence + <span class="number">1</span>) &amp; sequenceMask;</span><br><span class="line">            <span class="keyword">if</span> (sequence == <span class="number">0</span>) &#123;</span><br><span class="line">                timestamp = tilNextMillis(lastTimestamp);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            sequence = <span class="number">0L</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        lastTimestamp = timestamp;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ((timestamp - twepoch) &lt;&lt; timestampLeftShift) | (datacenterId &lt;&lt; datacenterIdShift) | (workerId &lt;&lt; workerIdShift) | sequence;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">long</span> <span class="title">tilNextMillis</span><span class="params">(<span class="keyword">long</span> lastTimestamp)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> timestamp = timeGen();</span><br><span class="line">        <span class="keyword">while</span> (timestamp &lt;= lastTimestamp) &#123;</span><br><span class="line">            timestamp = timeGen();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> timestamp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">long</span> <span class="title">timeGen</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> System.currentTimeMillis();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<p>常见的游戏架构和部署中，很多采用分服的一服一库的部署模式，而且运营过程中经常会有合服要求。</p>
-<blockquote>
-<p>所谓合服就是随着游戏单服活跃用户数不断的下降，为节省资源和提高用户活跃度，在运营过程中将两个或多个服务数据合并到一起的做法。</p>
-</bl]]>
-    </summary>
-    
-      <category term="distributed" scheme="http://bafeimao.github.io/gh-pages/tags/distributed/"/>
-    
-      <category term="game" scheme="http://bafeimao.github.io/gh-pages/tags/game/"/>
-    
-      <category term="unique-id" scheme="http://bafeimao.github.io/gh-pages/tags/unique-id/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[网络游戏中的数据交互]]></title>
-    <link href="http://bafeimao.github.io/gh-pages/2013/06/17/data-interactive-in-game/"/>
-    <id>http://bafeimao.github.io/gh-pages/2013/06/17/data-interactive-in-game/</id>
-    <published>2013-06-17T01:49:33.000Z</published>
-    <updated>2015-10-17T01:58:29.000Z</updated>
-    <content type="html"><![CDATA[<p>设计网络游戏，首先要面对的就是考虑如何实现客户端与服务端的数据交互。</p>
-<p>这大体会涉及到两个方面的内容：</p>
-<ol>
-<li>客户端与服务器之间的通讯协议，</li>
-<li>通讯双方使用的数据交换格式</li>
-</ol>
-<p>通讯协议常用的无外乎两种：1：TCP，2：HTTP</p>
-<blockquote>
-<p>在一些即时战斗类或战网类游戏中可能还会涉及到客户端之间使用P2P方式连接，以及使用UDP进行传输</p>
-</blockquote>
-<p>大体上，弱交互的游戏使用HTTP，强交互实时性较强的游戏使用TCP。</p>
-<p>但这依赖于具体的使用场景还可以进一步划分，比如：</p>
-<blockquote>
-<p>在一款实时战斗的手机游戏中，往往使用TCP进行连接，但是聊天功能由于在手机上使用不是很方便，所以聊天就变的弱交互了，因此聊天可以使用HTTP调用单独的聊天API。</p>
-</blockquote>
-<p><strong>对于HTTP，常用的数据交换格式是：JSON或XML</strong></p>
-<p>使用JSON/XML的优点是：</p>
-<ol>
-<li>使用方便</li>
-<li>内容自描述</li>
-</ol>
-<p>缺点是：</p>
-<ol>
-<li>传输数据量大了点</li>
-<li>Marshall和UnMarshall的时间长了一点</li>
-</ol>
-<blockquote>
-<p>但无所谓，因为他们应用的场景本就是弱交互的环境，因此劣势比起优势可以忽略。</p>
-</blockquote>
-<p><strong>但对于强交互游戏，数据交互格式就要好好选择了，特别地，在手机游戏中，如何最大限度的减少消息的大小是首要考虑的指标，这将会带来如下几个方面的收益：</strong></p>
-<ol>
-<li>节省用户流量，为用户省钱（土豪除外）</li>
-<li>省服务器带宽，为公司省钱</li>
-<li>提高了网络吞吐率（单台服务器网卡可以处理更多的消息）</li>
-</ol>
-<p>讲了这么多前奏，该轮到大名鼎鼎的<a href="http://code.google.com/p/protobuf/" target="_blank" rel="external">protobuf</a>闪亮登场了，它的优点有：</p>
-<ul>
-<li>名厂Google出品，有口皆碑，久经考验</li>
-<li>数据压缩比高，满足我们指标要求</li>
-<li>性能好，Google对性能的抠门程度不用我们担心</li>
-<li>支持消息协议的向前和向后兼容（消息协议升级时，既有系统不会受到协议变更的影响）</li>
-<li>多语言支持，如C++，Java，Python等（社区提供了非常多的对其他语言支持）</li>
-<li>代码自动生成</li>
-</ul>
-<p>如此多的特性正适合在游戏应用！！！</p>
-<p>####题外：</p>
-<p>使用protobuf还有有另外一个好处，它自带提供对RPC的支持，这方便了内部系统之间的远程调用，但是遗憾的是之前并没有提供RPC的实现，这需要我们自己实现。这一点不像它的对手Thrift提供的全套的RPC解决方案。</p>
-<blockquote>
-<p>自行实现基于Protobuf的RPC也不是很难的事，github上又很多基于Mina，Netty或ZeroMQ的实现，有兴趣可以自行去搜索。</p>
-</blockquote>
-<p>幸运的是，Google最近开源了基于HTTP/2和ProtoBuf的通用RPC框架的gRPC，</p>
-<blockquote>
-<p>请参见<a href="http://www.infoq.com/cn/news/2015/03/grpc-google-http2-protobuf" target="_blank" rel="external">这篇文章</a>中对gRPC的描述</p>
-<p>gRPC的代码托管在Github上：<a href="https://github.com/grpc/grpc" target="_blank" rel="external">https://github.com/grpc/grpc</a></p>
-</blockquote>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>设计网络游戏，首先要面对的就是考虑如何实现客户端与服务端的数据交互。</p>
-<p>这大体会涉及到两个方面的内容：</p>
-<ol>
-<li>客户端与服务器之间的通讯协议，</li>
-<li>通讯双方使用的数据交换格式</li>
-</ol>
-<p>通讯协议常用的无外乎两种：]]>
-    </summary>
-    
-      <category term="game" scheme="http://bafeimao.github.io/gh-pages/tags/game/"/>
-    
-      <category term="grpc" scheme="http://bafeimao.github.io/gh-pages/tags/grpc/"/>
-    
-      <category term="json" scheme="http://bafeimao.github.io/gh-pages/tags/json/"/>
-    
-      <category term="protobuf" scheme="http://bafeimao.github.io/gh-pages/tags/protobuf/"/>
-    
-      <category term="rpc" scheme="http://bafeimao.github.io/gh-pages/tags/rpc/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案]]></title>
-    <link href="http://bafeimao.github.io/gh-pages/2013/05/25/tomcat-oom-permgen-solution/"/>
-    <id>http://bafeimao.github.io/gh-pages/2013/05/25/tomcat-oom-permgen-solution/</id>
-    <published>2013-05-25T14:59:35.000Z</published>
-    <updated>2015-09-26T05:44:11.000Z</updated>
-    <content type="html"><![CDATA[<p>产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> CATALINA_OPTS = -XX:PermSize=<span class="number">128</span>m -XX:MaxPermSize=<span class="number">512</span>m</span><br></pre></td></tr></table></figure>
-<p>如果是堆栈溢出,则需要提高xms的值</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> CATALINA_OPTS = -Xms128m -Xmx1024m -XX:PermSize=<span class="number">128</span>m -XX:MaxPermSize=<span class="number">512</span>m</span><br></pre></td></tr></table></figure>
-<h3 id="参数解释:">参数解释:</h3><blockquote>
-<p>-xms128：表示JVM初始堆栈大小<br>-xmx1024：表示JVM堆栈大小最大可以达到1M内存<br>-XX:PermSize=128m：表示初始永久带内存大小<br>-XX:MaxPermSize=512m：表示永久带最大内存大小</p>
-</blockquote>
-<h3 id="为什么设置CATALINA_OPTS就会生效？">为什么设置CATALINA_OPTS就会生效？</h3><p>因为在tomcat启动时会使用环境变量：JAVA_OPTS，CATALINA_OPTS, DEBUG_OPTS指定的值，查看%CATALINA_HOME%/bin/catalina.sh文件可以看到如下的代码段：</p>
-<figure class="highlight mojolicious"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span><span class="perl"><span class="variable">%_EXECJAVA</span>% <span class="variable">%JAVA_OPTS</span>% <span class="variable">%CATALINA_OPTS</span>% <span class="variable">%DEBUG_OPTS</span>% -Djava.endorsed.dirs=<span class="string">"<span class="variable">%JAVA_ENDORSED_DIRS</span><span class="variable">%"</span> -classpath "</span><span class="variable">%CLASSPATH</span><span class="variable">%"</span> -Dcatalina.base=<span class="string">"<span class="variable">%CATALINA_BASE</span><span class="variable">%"</span> -Dcatalina.home="</span><span class="variable">%CATALINA_HOME</span><span class="variable">%"</span> -Djava.io.tmpdir=<span class="string">"<span class="variable">%CATALINA_TMPDIR</span><span class="variable">%"</span> <span class="variable">%MAINCLASS</span>% <span class="variable">%CMD_LINE_ARGS</span>% <span class="variable">%ACTION</span>%</span></span><span class="xml"></span></span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<p>产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span]]>
-    </summary>
-    
-      <category term="tomcat" scheme="http://bafeimao.github.io/gh-pages/tags/tomcat/"/>
-    
-      <category term="troubleshooting" scheme="http://bafeimao.github.io/gh-pages/tags/troubleshooting/"/>
-    
-      <category term="aaa" scheme="http://bafeimao.github.io/gh-pages/categories/aaa/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[在linux上搭建svn服务器]]></title>
-    <link href="http://bafeimao.github.io/gh-pages/2013/02/26/setup-svn-server-on-linux/"/>
-    <id>http://bafeimao.github.io/gh-pages/2013/02/26/setup-svn-server-on-linux/</id>
-    <published>2013-02-26T00:40:53.000Z</published>
-    <updated>2015-09-26T05:43:39.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="创建svn仓库根目录">创建svn仓库根目录</h3><p>在创建代码仓库之前，我们需要创建一个svn仓库根目录，以后所有的代码仓库都是在这个根目录下创建</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>mkdir ~<span class="regexp">/.svn</span></span><br></pre></td></tr></table></figure>
-<h3 id="创建仓库">创建仓库</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>svnadmin create ~<span class="regexp">/.svn/coconut</span></span><br></pre></td></tr></table></figure>
-<p>成功创建后，会在coconut目录下生成一些文件：</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>cd ~<span class="regexp">/.svn/coconut</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ ls -l</span><br><span class="line">total <span class="number">16</span></span><br><span class="line">-rw-r--r--   <span class="number">1</span> ktgu  staff  <span class="number">229</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> README.txt</span><br><span class="line">drwxr-xr-x   <span class="number">5</span> ktgu  staff  <span class="number">170</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> conf</span><br><span class="line">drwxr-sr-x  <span class="number">15</span> ktgu  staff  <span class="number">510</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> db</span><br><span class="line">-r--r--r--   <span class="number">1</span> ktgu  staff    <span class="number">2</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> format</span><br><span class="line">drwxr-xr-x  <span class="number">11</span> ktgu  staff  <span class="number">374</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> hooks</span><br><span class="line">drwxr-xr-x   <span class="number">4</span> ktgu  staff  <span class="number">136</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> locks</span><br></pre></td></tr></table></figure>
-<h3 id="设置访问策略">设置访问策略</h3><p>进入conf目录，编辑svnserve.conf文件（移除行首<code>#</code>并顶格）<br><figure class="highlight fix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">password-db </span>=<span class="string"> passwd</span></span><br></pre></td></tr></table></figure></p>
-<p>你也许需要配置匿名用户的访问权限（移除行首<code>#</code>并顶格）</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">anon-access = <span class="command">read</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>如果你需要任何人都可以提交更改，则将read改为<code>write</code>，如果不希望匿名用户可以访问，则将read改为<code>none</code>。建议将改行改为<code>none</code></p>
-</blockquote>
-<p>另外，移除下面两行前面的<code>#</code>并顶格，以便设置用户以及访问权限等</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="setting">password-db = <span class="value">passwd</span></span></span><br><span class="line"><span class="setting">authz-db = <span class="value">authz</span></span></span><br></pre></td></tr></table></figure>
-<p>现在，打开passwd文件，配置用户</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> ...</span><br><span class="line">[users]</span><br><span class="line"><span class="constant">dev1</span> = aaa</span><br><span class="line"><span class="constant">dev2</span> = aaa</span><br></pre></td></tr></table></figure>
-<p>上面的配置表示：添加了两个用户dev1，dev2，密码都是aaa。</p>
-<p>配置authz，在[groups]下定义用户组，多个用户之间用逗号隔开</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">[groups]</span></span><br><span class="line"><span class="setting">dev = <span class="value">dev1,dev2</span></span></span><br></pre></td></tr></table></figure>
-<p>然后可以对版本库设置不同的访问权限</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr_selector">[/]</span></span><br><span class="line"><span class="at_rule">@<span class="keyword">dev=rm</span></span></span><br></pre></td></tr></table></figure>
-<p>以上表示：让<code>dev</code>用户组对版本库的所有路径都拥有读写（<code>rw</code>）权限</p>
-<h3 id="启动svn服务器">启动svn服务器</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>svnserve -d -r ~<span class="regexp">/.svn/</span></span><br></pre></td></tr></table></figure>
-<p>没有提示表示成功（Linux中没有提示就是最好的提示）</p>
-<h3 id="停止svn服务器">停止svn服务器</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>killall svnserve</span><br></pre></td></tr></table></figure>
-<h3 id="测试正常运行">测试正常运行</h3><p>如果以下命令可以正常运行，说明配置成功</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>svn checkout <span class="symbol">svn:</span>/<span class="regexp">/127.0.0.1/coconut</span><span class="regexp">/ ~/coconut</span></span><br></pre></td></tr></table></figure>
-<p>以上命令首次运行会提示输入用户名和密码（使用在passwd中配置的用户名和密码即可）</p>
-<p>或者可以在运行<code>svn checkout</code>命令时指定用户名和密码</p>
-<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$svn</span> checkout svn://<span class="number">127.0</span>.<span class="number">0</span>.<span class="number">1</span>/coconut --username=dev1 --password=aaa ~/coconut</span><br></pre></td></tr></table></figure>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="创建svn仓库根目录">创建svn仓库根目录</h3><p>在创建代码仓库之前，我们需要创建一个svn仓库根目录，以后所有的代码仓库都是在这个根目录下创建</p>
-<figure class="highlight crystal"><table><tr><td c]]>
-    </summary>
-    
-      <category term="linux" scheme="http://bafeimao.github.io/gh-pages/tags/linux/"/>
-    
-      <category term="svn" scheme="http://bafeimao.github.io/gh-pages/tags/svn/"/>
+      <category term="git" scheme="http://bafeimao.github.io/gh-pages/tags/git/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[基于IPVS的IP负载均衡技术]]></title>
-    <link href="http://bafeimao.github.io/gh-pages/2012/07/25/ipvs-based-load-balance-in-detail/"/>
-    <id>http://bafeimao.github.io/gh-pages/2012/07/25/ipvs-based-load-balance-in-detail/</id>
-    <published>2012-07-25T15:58:46.000Z</published>
-    <updated>2015-09-26T00:39:12.000Z</updated>
+    <link href="http://bafeimao.github.io/gh-pages/2010/07/25/ipvs-based-load-balance-in-detail/"/>
+    <id>http://bafeimao.github.io/gh-pages/2010/07/25/ipvs-based-load-balance-in-detail/</id>
+    <published>2010-07-25T15:58:46.000Z</published>
+    <updated>2015-10-17T02:00:44.000Z</updated>
     <content type="html"><![CDATA[<p>随着互联网的高速发展，应用规模日益膨胀，越来越多的应用面临大流量，高并发的压力，因此大型互联网应用开始对构建高可用，高可扩展，不间断的服务提出了更高的要求。为应对大规模高并发的要求，分布式集群以及负载均衡等技术应运而生，本文主要讲解基于IP的负载均衡技术。</p>
 <blockquote>
 <p>IP负载均衡技术工作在IP层，并且在运行在操作系统内核中，相比于其他工作在应用层（如HTTP层）的负载均衡技术（如：HTTP重定向负载均衡，反向代理负载均衡）而言，它的分发效率是最高的。</p>
@@ -538,84 +544,78 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Git常用远程操作]]></title>
-    <link href="http://bafeimao.github.io/gh-pages/2012/01/03/how-to-use-git-remote-commands/"/>
-    <id>http://bafeimao.github.io/gh-pages/2012/01/03/how-to-use-git-remote-commands/</id>
-    <published>2012-01-03T08:29:29.000Z</published>
-    <updated>2015-10-17T01:58:55.000Z</updated>
-    <content type="html"><![CDATA[<h4 id="Git常用远程操作">Git常用远程操作</h4><p>在对Git远程操作命令理解之前，首先看下图，该图可以直观地帮助我们理解各操作命令执行后所影响的区域。</p>
-<blockquote>
-<p>本文假设你对git的常规概念如：工作区（workspace），索引区（index）,本地仓库（local repository）和远程仓库（remote repository）都已经有了初步的了解。</p>
+    <title><![CDATA[Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案]]></title>
+    <link href="http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/"/>
+    <id>http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/</id>
+    <published>2010-05-25T14:59:35.000Z</published>
+    <updated>2015-10-17T02:00:44.000Z</updated>
+    <content type="html"><![CDATA[<p>产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> CATALINA_OPTS = -XX:PermSize=<span class="number">128</span>m -XX:MaxPermSize=<span class="number">512</span>m</span><br></pre></td></tr></table></figure>
+<p>如果是堆栈溢出,则需要提高xms的值</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> CATALINA_OPTS = -Xms128m -Xmx1024m -XX:PermSize=<span class="number">128</span>m -XX:MaxPermSize=<span class="number">512</span>m</span><br></pre></td></tr></table></figure>
+<h3 id="参数解释:">参数解释:</h3><blockquote>
+<p>-xms128：表示JVM初始堆栈大小<br>-xmx1024：表示JVM堆栈大小最大可以达到1M内存<br>-XX:PermSize=128m：表示初始永久带内存大小<br>-XX:MaxPermSize=512m：表示永久带最大内存大小</p>
 </blockquote>
-<p><img src="http://image.beekka.com/blog/2014/bg2014061202.jpg" alt="Git"></p>
-<h3 id="git_clone">git clone</h3><p>该命令用于克隆一个远程仓库到本地文件。</p>
-<blockquote>
-<p>$ git clone <a href="https://github.com/bafeimao/pages1" target="_blank" rel="external">https://github.com/bafeimao/pages1</a><br>该命令会在本地自动创建文件夹<code>pages1</code></p>
-</blockquote>
-<p>也可以指定要克隆到的本地文件夹名</p>
-<blockquote>
-<p>$ git clone <a href="https://github.com/bafeimao/pages1" target="_blank" rel="external">https://github.com/bafeimao/pages1</a> blog</p>
-</blockquote>
-<p>可以提供多种协议访问方式，例如，github上提供如下三种常见的协议：</p>
-<blockquote>
-<p>$ git clone <a href="https://github.com/bafeimao/pages1" target="_blank" rel="external">https://github.com/bafeimao/pages1</a><br>$ git clone git@github.com:bafeimao/pages1.git</p>
-</blockquote>
-<h3 id="git_remote">git remote</h3><p>要想对远程仓库进行管理，首先要使用<code>remote add</code>命令添加一个远程仓库对应的名称（其他命令如：<code>git pull</code>,<code>git push</code>等操作都将依赖于该远程仓库名 ）</p>
-<p>添加一个远程仓库(需要指定一个名称和仓库的具体地址)</p>
-<blockquote>
-<p>$ git remote add origin git@github.com:bafeimao/pages1.git</p>
-</blockquote>
-<p> 查看当前已经添加过的所有远程仓库列表</p>
-<blockquote>
-<p>$ git remote<br>origin</p>
-</blockquote>
-<p>使用-v选项可以看到更具体的名称和远程仓库URL</p>
-<blockquote>
-<p>$ git remote -v<br>origin    git@github.com:bafeimao/coconut-projects.git (fetch)<br>origin    git@github.com:bafeimao/coconut-projects.git (push)</p>
-</blockquote>
-<h3 id="git_fetch">git fetch</h3><p>成功添加远程仓库后，一旦远程仓库有更新，我就可以使用<code>fetch</code>命令将远程更改取回到本地仓库， 注意：这里是将更改取到本地仓库（local repository）而非本地工作区(workspace)，详见参考图）</p>
-<blockquote>
-<p>$ git fetch origin</p>
-</blockquote>
-<p>默认取回所有分支的更改，可以指定只获取具体分支的更改</p>
-<blockquote>
-<p>$ git fetch origin dev</p>
-</blockquote>
-<h3 id="git_pull">git pull</h3><p>根据上图，也可以直接将远程的某个分支的更改取回到工作区（workspace）中的指定分支上，这就要用到<code>git pull</code>命令了，该命令的基本用法如下:</p>
-<p><code>$ git pull [&lt;remote-repo&gt; [&lt;remote-branch&gt;[:&lt;local-branch&gt;]]]</code></p>
-<p>将远程仓库master分支上的更改合并到本地工作区的dev分支</p>
-<blockquote>
-<p>$ git pull origin master:dev</p>
-<p>冒号后面的本地分支名可以省略，省略时表示合并到当前工作分支:<br>$ git pull origin master</p>
-</blockquote>
-<h3 id="git_push">git push</h3><p>如果需要将本地仓库的更改提交到远程，就需要使用<code>git push</code>命令，该命令的基本用法如下：</p>
-<p><code>$ git push [&lt;remote-repo&gt; [&lt;local-branch&gt;[:&lt;remote-branch&gt;]]]</code></p>
-<p>将本地dev分支推送到远程dev分支</p>
-<blockquote>
-<p>$ git push origin dev:dev</p>
-</blockquote>
-<p>另外可以设定当前工作分支（假设为dev）的upstream分支（即对应的远程分支），这样设定以后，在执行push时可以省略<code>本地分支名：远程分支名</code>，甚至远程仓库名称origin也可以省略</p>
-<blockquote>
-<p>$ git push –set-upstream origin dev</p>
-</blockquote>
-<p>此时可以省略分支名</p>
-<blockquote>
-<p>$ git push origin</p>
-</blockquote>
-<p>甚至连origin都可以省略</p>
-<blockquote>
-<p>$ git push</p>
-</blockquote>
-<p><strong>注意</strong>：如果指定的远程分支不存在，则会在远程自动创建 </p>
-<p>如果没有指定本地分支名则表示删除远程分支，下面两种方式均执行删除远程分支dev<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>git push origin <span class="symbol">:dev</span> </span><br><span class="line"><span class="variable">$ </span>git push origin --delete dev</span><br></pre></td></tr></table></figure></p>
-]]></content>
+<h3 id="为什么设置CATALINA_OPTS就会生效？">为什么设置CATALINA_OPTS就会生效？</h3><p>因为在tomcat启动时会使用环境变量：JAVA_OPTS，CATALINA_OPTS, DEBUG_OPTS指定的值，查看%CATALINA_HOME%/bin/catalina.sh文件可以看到如下的代码段：</p>
+<figure class="highlight mojolicious"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span><span class="perl"><span class="variable">%_EXECJAVA</span>% <span class="variable">%JAVA_OPTS</span>% <span class="variable">%CATALINA_OPTS</span>% <span class="variable">%DEBUG_OPTS</span>% -Djava.endorsed.dirs=<span class="string">"<span class="variable">%JAVA_ENDORSED_DIRS</span><span class="variable">%"</span> -classpath "</span><span class="variable">%CLASSPATH</span><span class="variable">%"</span> -Dcatalina.base=<span class="string">"<span class="variable">%CATALINA_BASE</span><span class="variable">%"</span> -Dcatalina.home="</span><span class="variable">%CATALINA_HOME</span><span class="variable">%"</span> -Djava.io.tmpdir=<span class="string">"<span class="variable">%CATALINA_TMPDIR</span><span class="variable">%"</span> <span class="variable">%MAINCLASS</span>% <span class="variable">%CMD_LINE_ARGS</span>% <span class="variable">%ACTION</span>%</span></span><span class="xml"></span></span><br></pre></td></tr></table></figure>]]></content>
     <summary type="html">
-    <![CDATA[<h4 id="Git常用远程操作">Git常用远程操作</h4><p>在对Git远程操作命令理解之前，首先看下图，该图可以直观地帮助我们理解各操作命令执行后所影响的区域。</p>
-<blockquote>
-<p>本文假设你对git的常规概念如：工作区（workspace），索引]]>
+    <![CDATA[<p>产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span]]>
     </summary>
     
-      <category term="git" scheme="http://bafeimao.github.io/gh-pages/tags/git/"/>
+      <category term="tomcat" scheme="http://bafeimao.github.io/gh-pages/tags/tomcat/"/>
+    
+      <category term="troubleshooting" scheme="http://bafeimao.github.io/gh-pages/tags/troubleshooting/"/>
+    
+      <category term="aaa" scheme="http://bafeimao.github.io/gh-pages/categories/aaa/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[在linux上搭建svn服务器]]></title>
+    <link href="http://bafeimao.github.io/gh-pages/2010/02/26/setup-svn-server-on-linux/"/>
+    <id>http://bafeimao.github.io/gh-pages/2010/02/26/setup-svn-server-on-linux/</id>
+    <published>2010-02-26T00:40:53.000Z</published>
+    <updated>2015-10-17T02:00:44.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="创建svn仓库根目录">创建svn仓库根目录</h3><p>在创建代码仓库之前，我们需要创建一个svn仓库根目录，以后所有的代码仓库都是在这个根目录下创建</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>mkdir ~<span class="regexp">/.svn</span></span><br></pre></td></tr></table></figure>
+<h3 id="创建仓库">创建仓库</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>svnadmin create ~<span class="regexp">/.svn/coconut</span></span><br></pre></td></tr></table></figure>
+<p>成功创建后，会在coconut目录下生成一些文件：</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>cd ~<span class="regexp">/.svn/coconut</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ ls -l</span><br><span class="line">total <span class="number">16</span></span><br><span class="line">-rw-r--r--   <span class="number">1</span> ktgu  staff  <span class="number">229</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> README.txt</span><br><span class="line">drwxr-xr-x   <span class="number">5</span> ktgu  staff  <span class="number">170</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> conf</span><br><span class="line">drwxr-sr-x  <span class="number">15</span> ktgu  staff  <span class="number">510</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> db</span><br><span class="line">-r--r--r--   <span class="number">1</span> ktgu  staff    <span class="number">2</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> format</span><br><span class="line">drwxr-xr-x  <span class="number">11</span> ktgu  staff  <span class="number">374</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> hooks</span><br><span class="line">drwxr-xr-x   <span class="number">4</span> ktgu  staff  <span class="number">136</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> locks</span><br></pre></td></tr></table></figure>
+<h3 id="设置访问策略">设置访问策略</h3><p>进入conf目录，编辑svnserve.conf文件（移除行首<code>#</code>并顶格）<br><figure class="highlight fix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">password-db </span>=<span class="string"> passwd</span></span><br></pre></td></tr></table></figure></p>
+<p>你也许需要配置匿名用户的访问权限（移除行首<code>#</code>并顶格）</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">anon-access = <span class="command">read</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果你需要任何人都可以提交更改，则将read改为<code>write</code>，如果不希望匿名用户可以访问，则将read改为<code>none</code>。建议将改行改为<code>none</code></p>
+</blockquote>
+<p>另外，移除下面两行前面的<code>#</code>并顶格，以便设置用户以及访问权限等</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="setting">password-db = <span class="value">passwd</span></span></span><br><span class="line"><span class="setting">authz-db = <span class="value">authz</span></span></span><br></pre></td></tr></table></figure>
+<p>现在，打开passwd文件，配置用户</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> ...</span><br><span class="line">[users]</span><br><span class="line"><span class="constant">dev1</span> = aaa</span><br><span class="line"><span class="constant">dev2</span> = aaa</span><br></pre></td></tr></table></figure>
+<p>上面的配置表示：添加了两个用户dev1，dev2，密码都是aaa。</p>
+<p>配置authz，在[groups]下定义用户组，多个用户之间用逗号隔开</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">[groups]</span></span><br><span class="line"><span class="setting">dev = <span class="value">dev1,dev2</span></span></span><br></pre></td></tr></table></figure>
+<p>然后可以对版本库设置不同的访问权限</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr_selector">[/]</span></span><br><span class="line"><span class="at_rule">@<span class="keyword">dev=rm</span></span></span><br></pre></td></tr></table></figure>
+<p>以上表示：让<code>dev</code>用户组对版本库的所有路径都拥有读写（<code>rw</code>）权限</p>
+<h3 id="启动svn服务器">启动svn服务器</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>svnserve -d -r ~<span class="regexp">/.svn/</span></span><br></pre></td></tr></table></figure>
+<p>没有提示表示成功（Linux中没有提示就是最好的提示）</p>
+<h3 id="停止svn服务器">停止svn服务器</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>killall svnserve</span><br></pre></td></tr></table></figure>
+<h3 id="测试正常运行">测试正常运行</h3><p>如果以下命令可以正常运行，说明配置成功</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>svn checkout <span class="symbol">svn:</span>/<span class="regexp">/127.0.0.1/coconut</span><span class="regexp">/ ~/coconut</span></span><br></pre></td></tr></table></figure>
+<p>以上命令首次运行会提示输入用户名和密码（使用在passwd中配置的用户名和密码即可）</p>
+<p>或者可以在运行<code>svn checkout</code>命令时指定用户名和密码</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$svn</span> checkout svn://<span class="number">127.0</span>.<span class="number">0</span>.<span class="number">1</span>/coconut --username=dev1 --password=aaa ~/coconut</span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="创建svn仓库根目录">创建svn仓库根目录</h3><p>在创建代码仓库之前，我们需要创建一个svn仓库根目录，以后所有的代码仓库都是在这个根目录下创建</p>
+<figure class="highlight crystal"><table><tr><td c]]>
+    </summary>
+    
+      <category term="linux" scheme="http://bafeimao.github.io/gh-pages/tags/linux/"/>
+    
+      <category term="svn" scheme="http://bafeimao.github.io/gh-pages/tags/svn/"/>
     
   </entry>
   

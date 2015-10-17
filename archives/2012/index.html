@@ -210,13 +210,13 @@
                 <div class="postShorten-header">
                     <h1 class="postShorten-title" itemprop="headline">
                         
-                                <a class="link-unstyled" href="/gh-pages/2012/07/25/ipvs-based-load-balance-in-detail/">基于IPVS的IP负载均衡技术</a>
+                                <a class="link-unstyled" href="/gh-pages/2012/11/17/data-interactive-in-game/">网络游戏中的数据交互</a>
                         
                     </h1>
                     <div class="postShorten-meta">
-    <time itemprop="datePublished" content="Wed Jul 25 2012 23:58:46 GMT+0800">
+    <time itemprop="datePublished" content="Sat Nov 17 2012 09:49:33 GMT+0800">
 	
-		    2012年07月25日
+		    2012年11月17日
     	
     </time>
     
@@ -225,13 +225,22 @@
                 <div class="postShorten-excerpt" itemprop="articleBody">
                     
                         <p>
-                            随着互联网的高速发展，应用规模日益膨胀，越来越多的应用面临大流量，高并发的压力，因此大型互联网应用开始对构建高可用，高可扩展，不间断的服务提出了更高的要求。为应对大规模高并发的要求，分布式集群以及负载均衡等技术应运而生，本文主要讲解基于IP的负载均衡技术。
+                            设计网络游戏，首先要面对的就是考虑如何实现客户端与服务端的数据交互。
+这大体会涉及到两个方面的内容：
 
-IP负载均衡技术工作在IP层，并且在运行在操作系统内核中，相比于其他工作在应用层（如HTTP层）的负载均衡技术（如：HTTP重定向负载均衡，<br>
+客户端与服务器之间的通讯协议，
+通讯双方使用的数据交换格式
+
+通讯协议常用的无外乎两种：1：TCP，2：HTTP
+
+在一些即时战斗类或战网类游戏中可能还会涉及到客户端之间使用P2P方式连接，以及使用UDP进行传输
+
+大体上，弱交互的游戏使用HTTP，强交互实时性较强的游戏使用TCP。
+但这依赖于<br>
                     
                     
                         
-                            <a href="/gh-pages/2012/07/25/ipvs-based-load-balance-in-detail/" class="postShorten-excerpt_link link ">阅读全文</a>
+                            <a href="/gh-pages/2012/11/17/data-interactive-in-game/" class="postShorten-excerpt_link link ">阅读全文</a>
                             
                         
                     
@@ -251,13 +260,13 @@ IP负载均衡技术工作在IP层，并且在运行在操作系统内核中，�
                 <div class="postShorten-header">
                     <h1 class="postShorten-title" itemprop="headline">
                         
-                                <a class="link-unstyled" href="/gh-pages/2012/01/03/how-to-use-git-remote-commands/">Git常用远程操作</a>
+                                <a class="link-unstyled" href="/gh-pages/2012/09/25/web-load-balance-technologies-in-detail/">常见的Web负载均衡技术详解</a>
                         
                     </h1>
                     <div class="postShorten-meta">
-    <time itemprop="datePublished" content="Tue Jan 03 2012 16:29:29 GMT+0800">
+    <time itemprop="datePublished" content="Tue Sep 25 2012 23:51:01 GMT+0800">
 	
-		    2012年01月03日
+		    2012年09月25日
     	
     </time>
     
@@ -266,18 +275,13 @@ IP负载均衡技术工作在IP层，并且在运行在操作系统内核中，�
                 <div class="postShorten-excerpt" itemprop="articleBody">
                     
                         <p>
-                            Git常用远程操作在对Git远程操作命令理解之前，首先看下图，该图可以直观地帮助我们理解各操作命令执行后所影响的区域。
-
-本文假设你对git的常规概念如：工作区（workspace），索引区（index）,本地仓库（local repository）和远程仓库（remote repository）都已经有了初步的了解。
-
-
-git clone该命令用于克隆一个远程仓库到本地文件。
-
-$ git c<br>
+                            1. 基于镜像站点的负载均衡最早的负载均衡技术可以追溯到古老的镜像站点技术，其本质是制作多个站点的拷贝（镜像），然后在网页上提供站点列表，供用户选择，从而达到分流负载的目的。该技术现在仍然被一些如下载站点使用。
+优缺点该方案最大的特点就是简单；服务端不需要特别的技术支持，只要克隆多个站点即可，制作镜像本质上是文件的同步，因为它更加适合用在静态网站上。
+2. 基于HTTP重定向的负载均衡什么是HTT<br>
                     
                     
                         
-                            <a href="/gh-pages/2012/01/03/how-to-use-git-remote-commands/" class="postShorten-excerpt_link link ">阅读全文</a>
+                            <a href="/gh-pages/2012/09/25/web-load-balance-technologies-in-detail/" class="postShorten-excerpt_link link ">阅读全文</a>
                             
                         
                     

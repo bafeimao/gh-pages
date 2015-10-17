@@ -210,11 +210,11 @@
                 <div class="postShorten-header">
                     <h1 class="postShorten-title" itemprop="headline">
                         
-                                <a class="link-unstyled" href="/gh-pages/2013/06/17/data-interactive-in-game/">网络游戏中的数据交互</a>
+                                <a class="link-unstyled" href="/gh-pages/2013/06/17/generate-unique-id-in-distributed-system/">游戏服务器中的ID生成策略</a>
                         
                     </h1>
                     <div class="postShorten-meta">
-    <time itemprop="datePublished" content="Mon Jun 17 2013 09:49:33 GMT+0800">
+    <time itemprop="datePublished" content="Mon Jun 17 2013 19:45:37 GMT+0800">
 	
 		    2013年06月17日
     	
@@ -225,22 +225,16 @@
                 <div class="postShorten-excerpt" itemprop="articleBody">
                     
                         <p>
-                            设计网络游戏，首先要面对的就是考虑如何实现客户端与服务端的数据交互。
-这大体会涉及到两个方面的内容：
+                            常见的游戏架构和部署中，很多采用分服的一服一库的部署模式，而且运营过程中经常会有合服要求。
 
-客户端与服务器之间的通讯协议，
-通讯双方使用的数据交换格式
+所谓合服就是随着游戏单服活跃用户数不断的下降，为节省资源和提高用户活跃度，在运营过程中将两个或多个服务数据合并到一起的做法。
 
-通讯协议常用的无外乎两种：1：TCP，2：HTTP
-
-在一些即时战斗类或战网类游戏中可能还会涉及到客户端之间使用P2P方式连接，以及使用UDP进行传输
-
-大体上，弱交互的游戏使用HTTP，强交互实时性较强的游戏使用TCP。
-但这依赖于<br>
+合服时经常碰到的一个最大的问题就是：相同表中的记录不能有ID重复的情况发生。如果有重复ID的情况，那么合服时就要写特定的脚本去处理重复ID的问题，这会比较麻烦。
+要解决不能有重复<br>
                     
                     
                         
-                            <a href="/gh-pages/2013/06/17/data-interactive-in-game/" class="postShorten-excerpt_link link ">阅读全文</a>
+                            <a href="/gh-pages/2013/06/17/generate-unique-id-in-distributed-system/" class="postShorten-excerpt_link link ">阅读全文</a>
                             
                         
                     
