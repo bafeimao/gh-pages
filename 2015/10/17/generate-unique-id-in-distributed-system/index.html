@@ -1,0 +1,529 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="知行合一">
+    <title>generate-unique-id-in-distributed-system - 知行合一</title>
+    <meta name="author" content="巴菲猫(29283212@qq.com)">
+    
+    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="/gh-pages/atom.xml">
+    
+    <meta name="description" content="常见的游戏架构和部署中，很多采用分服的一服一库的部署模式，而且运营过程中经常会有合服要求。
+
+所谓合服就是随着游戏单服活跃用户数不断的下降，为节省资源和提高用户活跃度，在运营过程中将两个或多个服务数据合并到一起的做法。
+
+合服时经常碰到的一个最大的问题就是：相同表中的记录不能有ID重复的情况发生。如果有重复ID的情况，那么合服时就要写特定的脚本去处理重复ID的问题，这会比较麻烦。
+要解决不能有重复">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="generate-unique-id-in-distributed-system">
+<meta property="og:url" content="http://bafeimao.github.io/gh-pages/2015/10/17/generate-unique-id-in-distributed-system/index.html">
+<meta property="og:site_name" content="知行合一">
+<meta property="og:description" content="常见的游戏架构和部署中，很多采用分服的一服一库的部署模式，而且运营过程中经常会有合服要求。
+
+所谓合服就是随着游戏单服活跃用户数不断的下降，为节省资源和提高用户活跃度，在运营过程中将两个或多个服务数据合并到一起的做法。
+
+合服时经常碰到的一个最大的问题就是：相同表中的记录不能有ID重复的情况发生。如果有重复ID的情况，那么合服时就要写特定的脚本去处理重复ID的问题，这会比较麻烦。
+要解决不能有重复">
+<meta property="og:updated_time" content="2015-10-17T01:53:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="generate-unique-id-in-distributed-system">
+<meta name="twitter:description" content="常见的游戏架构和部署中，很多采用分服的一服一库的部署模式，而且运营过程中经常会有合服要求。
+
+所谓合服就是随着游戏单服活跃用户数不断的下降，为节省资源和提高用户活跃度，在运营过程中将两个或多个服务数据合并到一起的做法。
+
+合服时经常碰到的一个最大的问题就是：相同表中的记录不能有ID重复的情况发生。如果有重复ID的情况，那么合服时就要写特定的脚本去处理重复ID的问题，这会比较麻烦。
+要解决不能有重复">
+    
+    
+    
+        <meta property="og:image" content="/gh-pages/assets/images/avatar.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/gh-pages/assets/css/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="/gh-pages/assets/css/jquery.fancybox.css" type="text/css">
+    <link rel="stylesheet" href="/gh-pages/assets/css/jquery.fancybox-thumbs.css" type="text/css">
+    <link rel="stylesheet" href="/gh-pages/assets/css/tranquilpeak.css" type="text/css">
+    <!--STYLES END-->
+    
+    
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+          var ba = document.createElement('script');
+          ba.type = 'text/javascript';
+          ba.async = true;
+          ba.src = "//hm.baidu.com/hm.js?" + '342c0dd625fe9025fac2f74d1f3a45c4';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(ba, s);
+        })();
+    </script>
+
+
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header" data-behavior="3">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/gh-pages/ ">知行合一</a>
+    </h1>
+    
+        <a class="header-right-picture" href="/#about">
+            <img class="header-picture" src="/gh-pages/assets/images/avatar.png"/>
+        </a>
+    
+</header>
+            <nav id="sidebar" data-behavior="3">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                
+                    <img class="sidebar-profile-picture" src="/gh-pages/assets/images/avatar.png"/>
+                
+            </a>
+            <span class="sidebar-profile-name">巴菲猫(29283212@qq.com)</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/gh-pages/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">首页</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/gh-pages/all-categories"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc">分类</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/gh-pages/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">标签</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/gh-pages/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">归档</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/gh-pages/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">搜索</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/gh-pages/#about"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc">关于</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/bafeimao" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="mailto:29283212@qq.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc">邮箱</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/gh-pages/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="3"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            generate-unique-id-in-distributed-system
+        </h1>
+    
+    <div class="post-meta">
+    <time itemprop="datePublished" content="Sat Oct 17 2015 09:45:37 GMT+0800">
+	
+		    2015年10月17日
+    	
+    </time>
+    
+</div>
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <p>常见的游戏架构和部署中，很多采用分服的一服一库的部署模式，而且运营过程中经常会有合服要求。</p>
+<blockquote>
+<p>所谓合服就是随着游戏单服活跃用户数不断的下降，为节省资源和提高用户活跃度，在运营过程中将两个或多个服务数据合并到一起的做法。</p>
+</blockquote>
+<p>合服时经常碰到的一个最大的问题就是：相同表中的记录不能有ID重复的情况发生。如果有重复ID的情况，那么合服时就要写特定的脚本去处理重复ID的问题，这会比较麻烦。</p>
+<p>要解决不能有重复ID的情况，最好的办法是让每台服务器上出生的ID都是全局唯一的。</p>
+<h4 id="1-_使用UUID">1. 使用UUID</h4><p>首先想到的是<a href="https://en.wikipedia.org/w/index.php?title=Universally_unique_identifier&amp;redirect=no" target="_blank" rel="external">UUID</a>，它天生就是全局唯一的并运用于分布式计算中，UUID是16字节128位长的数字，通常以36字节的字符串表示：</p>
+<blockquote>
+<p>UUID: 21e58ba8-5c7e-4524-ae8f-079faf987b3b</p>
+</blockquote>
+<p>由于它太长而且可读性差，因此不用这货。</p>
+<h4 id="2-_Flickr的Ticket_Server方案">2. Flickr的Ticket Server方案</h4><p>Flickr的实现方式比较简单巧妙，它是利用两台Ticket Server按指定的步长递增生成ID。将两台服务器的初始偏移值设置不一样，会让两台服务器交替生成ID而不会产生冲突，其配置如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">TicketServer1:</span><br><span class="line"><span class="keyword">auto</span>-increment-increment = <span class="number">2</span></span><br><span class="line"><span class="keyword">auto</span>-increment-offset = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">TicketServer2:</span><br><span class="line"><span class="keyword">auto</span>-increment-increment = <span class="number">2</span></span><br><span class="line"><span class="keyword">auto</span>-increment-offset = <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>这样，TicketServer1将一直生成”奇数ID”，TicketServer2生成“偶数ID”</p>
+<p>两台Ticket Server做负载均衡，使用Round-Robin策略轮询访问，避免了单点故障，如果两台不够也可以扩展至更多台。</p>
+<p>关于该技术方案的细节请见<a href="http://code.flickr.net/2010/02/08/ticket-servers-distributed-unique-primary-keys-on-the-cheap/" target="_blank" rel="external">官方博客原文(要翻墙)</a>，也可见<a href="http://blog.csdn.net/wangzhen199009/article/details/38761575" target="_blank" rel="external">这篇译文</a></p>
+<p><strong>该方案的缺点：</strong></p>
+<ol>
+<li><p>TicketServer会成为性能瓶颈，当负载较重时数据库写压力较大，对于Flickr这种读频繁写较少的应用来说也许够用，但是对于游戏服务器来说，会有短期内密集生成ID的需求，该方案似乎应付这样的需求会显得有点吃力。</p>
+</li>
+<li><p>生成的ID不带时间信息，IDC机房信息，或机器ID等信息</p>
+</li>
+</ol>
+<h4 id="3-_MongoDB的ObjectId方案">3. MongoDB的ObjectId方案</h4><p>ObjectId使用了12个字节来存储，每个字节用16进制字符串来表示，所以的表示形式是由24个字符组成，如：507f1f77bcf86cd799439011</p>
+<p>ObjectId组成部分有：</p>
+<ul>
+<li>4字节：UNIX时间戳</li>
+<li>3字节：表示运行MongoDB的机器</li>
+<li>2字节：表示生成此_id的进程</li>
+<li>3字节：由一个随机数开始的计数器生成的值</li>
+</ul>
+<p><strong>该方案的好处：</strong></p>
+<p>ObjectId是可按时间排序的并且带机器ID的，根据ObjectId可以反推得到时间戳和机器ID信息，而且比UUID短。</p>
+<p>但是，我们希望最好能够用长整形来表示ID，因为那样既短小不占空间又容易识别。</p>
+<h4 id="4-_Twitter的Snowflake算法">4. Twitter的Snowflake算法</h4><p>Snowflake是twitter为解决在分布式系统中高效生成全局ID所提出的解决方案，该算法使用Scale实现的并且已开源，地址在：<a href="https://github.com/twitter/snowflake" target="_blank" rel="external">https://github.com/twitter/snowflake</a></p>
+<p>其原理是用一个64位的长整形来储存ID，其内部位的表示如下：</p>
+<blockquote>
+<p>毫秒时间（41bits）+ datacenterId(5bits) + workerId(5bits) + sequence(12bits)</p>
+</blockquote>
+<p>该方案的优点明显：</p>
+<ul>
+<li>生成的ID能够按时间排序，并且可带机器ID，IDC等信息</li>
+<li>用64位表示的，储存空间小，并且易读</li>
+<li>每台机器可独立生成ID，无需中心节点，无单点故障风险</li>
+<li>生成ID高效并且速度快，如果用12位表示sequence，那么每毫秒将可以生成1024个ID</li>
+</ul>
+<p>在游戏应用中，我们可将内部位调整为如下表现形式：</p>
+<blockquote>
+<p>毫秒时间（37bits）+ serverId (20bits) + sequence (16bits)</p>
+</blockquote>
+<p>说明：</p>
+<ul>
+<li>37bits的毫秒时间可供我们使用约93年</li>
+<li>serverId最大可以表示为2^20(1048576)个服务器</li>
+<li>每毫秒最多可以生成2^16(65535)个ID</li>
+</ul>
+<p>###总结：</p>
+<p>在分布式应用或游戏服务器中，Snowflake作为全局唯一ID的生成算法具有生产ID迅速高效，无单点故障，ID带丰富的信息，并且可按时间排序等诸多特性，是可靠高效的方案。</p>
+<hr>
+<p>###附录：</p>
+<p>Twitter是用Scale实现该算法并开源的，其中Java版本如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * @author zhujuan</span><br><span class="line"> *         From: https://github.com/twitter/snowflake</span><br><span class="line"> *         An object that generates IDs.</span><br><span class="line"> *         This is broken into a separate class in case</span><br><span class="line"> *         we ever want to support multiple worker threads</span><br><span class="line"> *         per process</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> IdWorker &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> final Logger LOG = LoggerFactory.getLogger(IdWorker.<span class="keyword">class</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> workerId;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> datacenterId;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sequence = <span class="number">0L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> twepoch = <span class="number">1288834974657L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> workerIdBits = <span class="number">5L</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> datacenterIdBits = <span class="number">5L</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> maxWorkerId = -<span class="number">1L</span> ^ (-<span class="number">1L</span> &lt;&lt; workerIdBits);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> maxDatacenterId = -<span class="number">1L</span> ^ (-<span class="number">1L</span> &lt;&lt; datacenterIdBits);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sequenceBits = <span class="number">12L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> workerIdShift = sequenceBits;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> datacenterIdShift = sequenceBits + workerIdBits;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> timestampLeftShift = sequenceBits + workerIdBits + datacenterIdBits;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sequenceMask = -<span class="number">1L</span> ^ (-<span class="number">1L</span> &lt;&lt; sequenceBits);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> lastTimestamp = -<span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">IdWorker</span><span class="params">(<span class="keyword">long</span> workerId, <span class="keyword">long</span> datacenterId)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// sanity check for workerId</span></span><br><span class="line">        <span class="keyword">if</span> (workerId &gt; maxWorkerId || workerId &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(String.format(<span class="string">"worker Id can't be greater than %d or less than 0"</span>, maxWorkerId));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (datacenterId &gt; maxDatacenterId || datacenterId &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(String.format(<span class="string">"datacenter Id can't be greater than %d or less than 0"</span>, maxDatacenterId));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.workerId = workerId;</span><br><span class="line">        <span class="keyword">this</span>.datacenterId = datacenterId;</span><br><span class="line">        LOG.info(String.format(<span class="string">"worker starting. timestamp left shift %d, datacenter id bits %d, worker id bits %d, sequence bits %d, workerid %d"</span>, timestampLeftShift, datacenterIdBits, workerIdBits, sequenceBits, workerId));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> synchronized <span class="keyword">long</span> <span class="title">nextId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> timestamp = timeGen();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (timestamp &lt; lastTimestamp) &#123;</span><br><span class="line">            LOG.error(String.format(<span class="string">"clock is moving backwards.  Rejecting requests until %d."</span>, lastTimestamp));</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(String.format(<span class="string">"Clock moved backwards.  Refusing to generate id for %d milliseconds"</span>, lastTimestamp - timestamp));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (lastTimestamp == timestamp) &#123;</span><br><span class="line">            sequence = (sequence + <span class="number">1</span>) &amp; sequenceMask;</span><br><span class="line">            <span class="keyword">if</span> (sequence == <span class="number">0</span>) &#123;</span><br><span class="line">                timestamp = tilNextMillis(lastTimestamp);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            sequence = <span class="number">0L</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        lastTimestamp = timestamp;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ((timestamp - twepoch) &lt;&lt; timestampLeftShift) | (datacenterId &lt;&lt; datacenterIdShift) | (workerId &lt;&lt; workerIdShift) | sequence;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">long</span> <span class="title">tilNextMillis</span><span class="params">(<span class="keyword">long</span> lastTimestamp)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> timestamp = timeGen();</span><br><span class="line">        <span class="keyword">while</span> (timestamp &lt;= lastTimestamp) &#123;</span><br><span class="line">            timestamp = timeGen();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> timestamp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">long</span> <span class="title">timeGen</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> System.currentTimeMillis();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            
+                
+
+            
+        </div>
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2015/10/17/data-interactive-in-game/"  data-tooltip="data-interactive-in-game">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2015/09/25/web-load-balance-technologies-in-detail/" data-tooltip="常见的Web负载均衡技术详解">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.github.io/gh-pages/2015/10/17/generate-unique-id-in-distributed-system/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.github.io/gh-pages/2015/10/17/generate-unique-id-in-distributed-system/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.github.io/gh-pages/2015/10/17/generate-unique-id-in-distributed-system/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            <div class="ds-thread" data-thread-key="post-generate-unique-id-in-distributed-system" data-title="generate-unique-id-in-distributed-system" data-url="http://bafeimao.github.io/gh-pages/2015/10/17/generate-unique-id-in-distributed-system/"></div>
+
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2015 巴菲猫(29283212@qq.com). All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="3">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2015/10/17/data-interactive-in-game/"  data-tooltip="data-interactive-in-game">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2015/09/25/web-load-balance-technologies-in-detail/" data-tooltip="常见的Web负载均衡技术详解">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.github.io/gh-pages/2015/10/17/generate-unique-id-in-distributed-system/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.github.io/gh-pages/2015/10/17/generate-unique-id-in-distributed-system/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.github.io/gh-pages/2015/10/17/generate-unique-id-in-distributed-system/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="3">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://bafeimao.github.io/gh-pages/2015/10/17/generate-unique-id-in-distributed-system/">
+                <i class="fa fa-google-plus"></i><span class="">分享到Google+</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.github.io/gh-pages/2015/10/17/generate-unique-id-in-distributed-system/">
+                <i class="fa fa-facebook-official"></i><span>分享到Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.github.io/gh-pages/2015/10/17/generate-unique-id-in-distributed-system/">
+                <i class="fa fa-twitter"></i><span>分享到Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/gh-pages/assets/images/avatar.png"/>
+        
+            <h4 id="about-card-name">巴菲猫(29283212@qq.com)</h4>
+        
+            <h5 id="about-card-bio"><p>苹果越分越少，知识越分越多，欢迎大家一起交流</p>
+</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>29283212@qq.com</p>
+
+            </h5>
+        
+        
+    </div>
+</div>
+
+        <div id="cover" style="background-image:url('/gh-pages/assets/images/cover.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/gh-pages/assets/js/jquery.js" type="text/javascript"></script>
+<script src="/gh-pages/assets/js/jquery.fancybox.js" type="text/javascript"></script>
+<script src="/gh-pages/assets/js/jquery.fancybox-thumbs.js" type="text/javascript"></script>
+<script src="/gh-pages/assets/js/tranquilpeak.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name: 'bafeimao'};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+             || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+
+
+    <script type="text/javascript">
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+                (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+            e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','3h9NXFUsZJwPLpuP7Cyy','2.0.0');
+    </script>
+
+
+</html>
