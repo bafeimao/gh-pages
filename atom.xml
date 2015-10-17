@@ -4,7 +4,7 @@
   <subtitle><![CDATA[苹果越分越少，知识越分越多]]></subtitle>
   <link href="/gh-pages/atom.xml" rel="self"/>
   <link href="http://bafeimao.github.io/gh-pages/"/>
-  <updated>2015-10-17T01:53:03.000Z</updated>
+  <updated>2015-09-26T14:10:23.000Z</updated>
   <id>http://bafeimao.github.io/gh-pages/</id>
   
   <author>
@@ -13,157 +13,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title><![CDATA[data-interactive-in-game]]></title>
-    <link href="http://bafeimao.github.io/gh-pages/2015/10/17/data-interactive-in-game/"/>
-    <id>http://bafeimao.github.io/gh-pages/2015/10/17/data-interactive-in-game/</id>
-    <published>2015-10-17T01:49:33.000Z</published>
-    <updated>2015-10-17T01:53:03.000Z</updated>
-    <content type="html"><![CDATA[<p>设计网络游戏，首先要面对的就是考虑如何实现客户端与服务端的数据交互。</p>
-<p>这大体会涉及到两个方面的内容：</p>
-<ol>
-<li>客户端与服务器之间的通讯协议，</li>
-<li>通讯双方使用的数据交换格式</li>
-</ol>
-<p>通讯协议常用的无外乎两种：1：TCP，2：HTTP</p>
-<blockquote>
-<p>在一些即时战斗类或战网类游戏中可能还会涉及到客户端之间使用P2P方式连接，以及使用UDP进行传输</p>
-</blockquote>
-<p>大体上，弱交互的游戏使用HTTP，强交互实时性较强的游戏使用TCP。</p>
-<p>但这依赖于具体的使用场景还可以进一步划分，比如：</p>
-<blockquote>
-<p>在一款实时战斗的手机游戏中，往往使用TCP进行连接，但是聊天功能由于在手机上使用不是很方便，所以聊天就变的弱交互了，因此聊天可以使用HTTP调用单独的聊天API。</p>
-</blockquote>
-<p><strong>对于HTTP，常用的数据交换格式是：JSON或XML</strong></p>
-<p>使用JSON/XML的优点是：</p>
-<ol>
-<li>使用方便</li>
-<li>内容自描述</li>
-</ol>
-<p>缺点是：</p>
-<ol>
-<li>传输数据量大了点</li>
-<li>Marshall和UnMarshall的时间长了一点</li>
-</ol>
-<blockquote>
-<p>但无所谓，因为他们应用的场景本就是弱交互的环境，因此劣势比起优势可以忽略。</p>
-</blockquote>
-<p><strong>但对于强交互游戏，数据交互格式就要好好选择了，特别地，在手机游戏中，如何最大限度的减少消息的大小是首要考虑的指标，这将会带来如下几个方面的收益：</strong></p>
-<ol>
-<li>节省用户流量，为用户省钱（土豪除外）</li>
-<li>省服务器带宽，为公司省钱</li>
-<li>提高了网络吞吐率（单台服务器网卡可以处理更多的消息）</li>
-</ol>
-<p>讲了这么多前奏，该轮到大名鼎鼎的<a href="http://code.google.com/p/protobuf/" target="_blank" rel="external">protobuf</a>闪亮登场了，它的优点有：</p>
-<ul>
-<li>名厂Google出品，有口皆碑，久经考验</li>
-<li>数据压缩比高，满足我们指标要求</li>
-<li>性能好，Google对性能的抠门程度不用我们担心</li>
-<li>支持消息协议的向前和向后兼容（消息协议升级时，既有系统不会受到协议变更的影响）</li>
-<li>多语言支持，如C++，Java，Python等（社区提供了非常多的对其他语言支持）</li>
-<li>代码自动生成</li>
-</ul>
-<p>如此多的特性正适合在游戏应用！！！</p>
-<p>####题外：</p>
-<p>使用protobuf还有有另外一个好处，它自带提供对RPC的支持，这方便了内部系统之间的远程调用，但是遗憾的是之前并没有提供RPC的实现，这需要我们自己实现。这一点不像它的对手Thrift提供的全套的RPC解决方案。</p>
-<blockquote>
-<p>自行实现基于Protobuf的RPC也不是很难的事，github上又很多基于Mina，Netty或ZeroMQ的实现，有兴趣可以自行去搜索。</p>
-</blockquote>
-<p>幸运的是，Google最近开源了基于HTTP/2和ProtoBuf的通用RPC框架的gRPC，</p>
-<blockquote>
-<p>请参见<a href="http://www.infoq.com/cn/news/2015/03/grpc-google-http2-protobuf" target="_blank" rel="external">这篇文章</a>中对gRPC的描述</p>
-<p>gRPC的代码托管在Github上：<a href="https://github.com/grpc/grpc" target="_blank" rel="external">https://github.com/grpc/grpc</a></p>
-</blockquote>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>设计网络游戏，首先要面对的就是考虑如何实现客户端与服务端的数据交互。</p>
-<p>这大体会涉及到两个方面的内容：</p>
-<ol>
-<li>客户端与服务器之间的通讯协议，</li>
-<li>通讯双方使用的数据交换格式</li>
-</ol>
-<p>通讯协议常用的无外乎两种：]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[generate-unique-id-in-distributed-system]]></title>
-    <link href="http://bafeimao.github.io/gh-pages/2015/10/17/generate-unique-id-in-distributed-system/"/>
-    <id>http://bafeimao.github.io/gh-pages/2015/10/17/generate-unique-id-in-distributed-system/</id>
-    <published>2015-10-17T01:45:37.000Z</published>
-    <updated>2015-10-17T01:53:33.000Z</updated>
-    <content type="html"><![CDATA[<p>常见的游戏架构和部署中，很多采用分服的一服一库的部署模式，而且运营过程中经常会有合服要求。</p>
-<blockquote>
-<p>所谓合服就是随着游戏单服活跃用户数不断的下降，为节省资源和提高用户活跃度，在运营过程中将两个或多个服务数据合并到一起的做法。</p>
-</blockquote>
-<p>合服时经常碰到的一个最大的问题就是：相同表中的记录不能有ID重复的情况发生。如果有重复ID的情况，那么合服时就要写特定的脚本去处理重复ID的问题，这会比较麻烦。</p>
-<p>要解决不能有重复ID的情况，最好的办法是让每台服务器上出生的ID都是全局唯一的。</p>
-<h4 id="1-_使用UUID">1. 使用UUID</h4><p>首先想到的是<a href="https://en.wikipedia.org/w/index.php?title=Universally_unique_identifier&amp;redirect=no" target="_blank" rel="external">UUID</a>，它天生就是全局唯一的并运用于分布式计算中，UUID是16字节128位长的数字，通常以36字节的字符串表示：</p>
-<blockquote>
-<p>UUID: 21e58ba8-5c7e-4524-ae8f-079faf987b3b</p>
-</blockquote>
-<p>由于它太长而且可读性差，因此不用这货。</p>
-<h4 id="2-_Flickr的Ticket_Server方案">2. Flickr的Ticket Server方案</h4><p>Flickr的实现方式比较简单巧妙，它是利用两台Ticket Server按指定的步长递增生成ID。将两台服务器的初始偏移值设置不一样，会让两台服务器交替生成ID而不会产生冲突，其配置如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">TicketServer1:</span><br><span class="line"><span class="keyword">auto</span>-increment-increment = <span class="number">2</span></span><br><span class="line"><span class="keyword">auto</span>-increment-offset = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">TicketServer2:</span><br><span class="line"><span class="keyword">auto</span>-increment-increment = <span class="number">2</span></span><br><span class="line"><span class="keyword">auto</span>-increment-offset = <span class="number">2</span></span><br></pre></td></tr></table></figure>
-<p>这样，TicketServer1将一直生成”奇数ID”，TicketServer2生成“偶数ID”</p>
-<p>两台Ticket Server做负载均衡，使用Round-Robin策略轮询访问，避免了单点故障，如果两台不够也可以扩展至更多台。</p>
-<p>关于该技术方案的细节请见<a href="http://code.flickr.net/2010/02/08/ticket-servers-distributed-unique-primary-keys-on-the-cheap/" target="_blank" rel="external">官方博客原文(要翻墙)</a>，也可见<a href="http://blog.csdn.net/wangzhen199009/article/details/38761575" target="_blank" rel="external">这篇译文</a></p>
-<p><strong>该方案的缺点：</strong></p>
-<ol>
-<li><p>TicketServer会成为性能瓶颈，当负载较重时数据库写压力较大，对于Flickr这种读频繁写较少的应用来说也许够用，但是对于游戏服务器来说，会有短期内密集生成ID的需求，该方案似乎应付这样的需求会显得有点吃力。</p>
-</li>
-<li><p>生成的ID不带时间信息，IDC机房信息，或机器ID等信息</p>
-</li>
-</ol>
-<h4 id="3-_MongoDB的ObjectId方案">3. MongoDB的ObjectId方案</h4><p>ObjectId使用了12个字节来存储，每个字节用16进制字符串来表示，所以的表示形式是由24个字符组成，如：507f1f77bcf86cd799439011</p>
-<p>ObjectId组成部分有：</p>
-<ul>
-<li>4字节：UNIX时间戳</li>
-<li>3字节：表示运行MongoDB的机器</li>
-<li>2字节：表示生成此_id的进程</li>
-<li>3字节：由一个随机数开始的计数器生成的值</li>
-</ul>
-<p><strong>该方案的好处：</strong></p>
-<p>ObjectId是可按时间排序的并且带机器ID的，根据ObjectId可以反推得到时间戳和机器ID信息，而且比UUID短。</p>
-<p>但是，我们希望最好能够用长整形来表示ID，因为那样既短小不占空间又容易识别。</p>
-<h4 id="4-_Twitter的Snowflake算法">4. Twitter的Snowflake算法</h4><p>Snowflake是twitter为解决在分布式系统中高效生成全局ID所提出的解决方案，该算法使用Scale实现的并且已开源，地址在：<a href="https://github.com/twitter/snowflake" target="_blank" rel="external">https://github.com/twitter/snowflake</a></p>
-<p>其原理是用一个64位的长整形来储存ID，其内部位的表示如下：</p>
-<blockquote>
-<p>毫秒时间（41bits）+ datacenterId(5bits) + workerId(5bits) + sequence(12bits)</p>
-</blockquote>
-<p>该方案的优点明显：</p>
-<ul>
-<li>生成的ID能够按时间排序，并且可带机器ID，IDC等信息</li>
-<li>用64位表示的，储存空间小，并且易读</li>
-<li>每台机器可独立生成ID，无需中心节点，无单点故障风险</li>
-<li>生成ID高效并且速度快，如果用12位表示sequence，那么每毫秒将可以生成1024个ID</li>
-</ul>
-<p>在游戏应用中，我们可将内部位调整为如下表现形式：</p>
-<blockquote>
-<p>毫秒时间（37bits）+ serverId (20bits) + sequence (16bits)</p>
-</blockquote>
-<p>说明：</p>
-<ul>
-<li>37bits的毫秒时间可供我们使用约93年</li>
-<li>serverId最大可以表示为2^20(1048576)个服务器</li>
-<li>每毫秒最多可以生成2^16(65535)个ID</li>
-</ul>
-<p>###总结：</p>
-<p>在分布式应用或游戏服务器中，Snowflake作为全局唯一ID的生成算法具有生产ID迅速高效，无单点故障，ID带丰富的信息，并且可按时间排序等诸多特性，是可靠高效的方案。</p>
-<hr>
-<p>###附录：</p>
-<p>Twitter是用Scale实现该算法并开源的，其中Java版本如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * @author zhujuan</span><br><span class="line"> *         From: https://github.com/twitter/snowflake</span><br><span class="line"> *         An object that generates IDs.</span><br><span class="line"> *         This is broken into a separate class in case</span><br><span class="line"> *         we ever want to support multiple worker threads</span><br><span class="line"> *         per process</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> IdWorker &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> final Logger LOG = LoggerFactory.getLogger(IdWorker.<span class="keyword">class</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> workerId;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> datacenterId;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sequence = <span class="number">0L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> twepoch = <span class="number">1288834974657L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> workerIdBits = <span class="number">5L</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> datacenterIdBits = <span class="number">5L</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> maxWorkerId = -<span class="number">1L</span> ^ (-<span class="number">1L</span> &lt;&lt; workerIdBits);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> maxDatacenterId = -<span class="number">1L</span> ^ (-<span class="number">1L</span> &lt;&lt; datacenterIdBits);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sequenceBits = <span class="number">12L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> workerIdShift = sequenceBits;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> datacenterIdShift = sequenceBits + workerIdBits;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> timestampLeftShift = sequenceBits + workerIdBits + datacenterIdBits;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sequenceMask = -<span class="number">1L</span> ^ (-<span class="number">1L</span> &lt;&lt; sequenceBits);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> lastTimestamp = -<span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">IdWorker</span><span class="params">(<span class="keyword">long</span> workerId, <span class="keyword">long</span> datacenterId)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// sanity check for workerId</span></span><br><span class="line">        <span class="keyword">if</span> (workerId &gt; maxWorkerId || workerId &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(String.format(<span class="string">"worker Id can't be greater than %d or less than 0"</span>, maxWorkerId));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (datacenterId &gt; maxDatacenterId || datacenterId &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(String.format(<span class="string">"datacenter Id can't be greater than %d or less than 0"</span>, maxDatacenterId));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.workerId = workerId;</span><br><span class="line">        <span class="keyword">this</span>.datacenterId = datacenterId;</span><br><span class="line">        LOG.info(String.format(<span class="string">"worker starting. timestamp left shift %d, datacenter id bits %d, worker id bits %d, sequence bits %d, workerid %d"</span>, timestampLeftShift, datacenterIdBits, workerIdBits, sequenceBits, workerId));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> synchronized <span class="keyword">long</span> <span class="title">nextId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> timestamp = timeGen();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (timestamp &lt; lastTimestamp) &#123;</span><br><span class="line">            LOG.error(String.format(<span class="string">"clock is moving backwards.  Rejecting requests until %d."</span>, lastTimestamp));</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(String.format(<span class="string">"Clock moved backwards.  Refusing to generate id for %d milliseconds"</span>, lastTimestamp - timestamp));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (lastTimestamp == timestamp) &#123;</span><br><span class="line">            sequence = (sequence + <span class="number">1</span>) &amp; sequenceMask;</span><br><span class="line">            <span class="keyword">if</span> (sequence == <span class="number">0</span>) &#123;</span><br><span class="line">                timestamp = tilNextMillis(lastTimestamp);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            sequence = <span class="number">0L</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        lastTimestamp = timestamp;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ((timestamp - twepoch) &lt;&lt; timestampLeftShift) | (datacenterId &lt;&lt; datacenterIdShift) | (workerId &lt;&lt; workerIdShift) | sequence;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">long</span> <span class="title">tilNextMillis</span><span class="params">(<span class="keyword">long</span> lastTimestamp)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> timestamp = timeGen();</span><br><span class="line">        <span class="keyword">while</span> (timestamp &lt;= lastTimestamp) &#123;</span><br><span class="line">            timestamp = timeGen();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> timestamp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">long</span> <span class="title">timeGen</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> System.currentTimeMillis();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<p>常见的游戏架构和部署中，很多采用分服的一服一库的部署模式，而且运营过程中经常会有合服要求。</p>
-<blockquote>
-<p>所谓合服就是随着游戏单服活跃用户数不断的下降，为节省资源和提高用户活跃度，在运营过程中将两个或多个服务数据合并到一起的做法。</p>
-</bl]]>
-    </summary>
-    
-  </entry>
   
   <entry>
     <title><![CDATA[常见的Web负载均衡技术详解]]></title>
@@ -331,7 +180,7 @@
     <link href="http://bafeimao.github.io/gh-pages/2014/08/25/how-to-build-blog-on-github-by-hexo/"/>
     <id>http://bafeimao.github.io/gh-pages/2014/08/25/how-to-build-blog-on-github-by-hexo/</id>
     <published>2014-08-25T06:07:42.000Z</published>
-    <updated>2015-09-26T04:31:51.000Z</updated>
+    <updated>2015-10-17T01:58:30.000Z</updated>
     <content type="html"><![CDATA[<h3 id="初始化">初始化</h3><p>运行如下命令以完成初始化操作<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init ~<span class="regexp">/blog &amp;&amp; cd ~/</span>blog &amp;&amp; cnpm install</span><br></pre></td></tr></table></figure></p>
 <p>成功执行后查看文件夹下的内容如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">total <span class="number">24</span></span><br><span class="line">drwxr-xr-x   <span class="number">9</span> ktgu  staff   <span class="number">306</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> .</span><br><span class="line">drwxr-xr-x+ <span class="number">66</span> ktgu  staff  <span class="number">2244</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> ..</span><br><span class="line">-rw-r--r--   <span class="number">1</span> ktgu  staff    <span class="number">65</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> .gitignore</span><br><span class="line">-rw-r--r--   <span class="number">1</span> ktgu  staff  <span class="number">1477</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> _config.yml</span><br><span class="line">drwxr-xr-x  <span class="number">12</span> ktgu  staff   <span class="number">408</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">24</span> node_modules</span><br><span class="line">-rw-r--r--   <span class="number">1</span> ktgu  staff   <span class="number">442</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> package.json</span><br><span class="line">drwxr-xr-x   <span class="number">5</span> ktgu  staff   <span class="number">170</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> scaffolds</span><br><span class="line">drwxr-xr-x   <span class="number">3</span> ktgu  staff   <span class="number">102</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> source</span><br><span class="line">drwxr-xr-x   <span class="number">3</span> ktgu  staff   <span class="number">102</span>  <span class="number">7</span> <span class="number">28</span> <span class="number">13</span>:<span class="number">23</span> themes</span><br></pre></td></tr></table></figure></p>
 <h3 id="生成文件">生成文件</h3><p>Hexo生成文件速度非常快，使用如下命令即可生成文件<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo generate</span><br><span class="line">或者</span><br><span class="line"><span class="variable">$ </span>hexo g</span><br></pre></td></tr></table></figure></p>
@@ -356,6 +205,175 @@
     </summary>
     
       <category term="github" scheme="http://bafeimao.github.io/gh-pages/tags/github/"/>
+    
+      <category term="hexo" scheme="http://bafeimao.github.io/gh-pages/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[游戏服务器中的ID生成策略]]></title>
+    <link href="http://bafeimao.github.io/gh-pages/2014/01/17/generate-unique-id-in-distributed-system/"/>
+    <id>http://bafeimao.github.io/gh-pages/2014/01/17/generate-unique-id-in-distributed-system/</id>
+    <published>2014-01-17T11:45:37.000Z</published>
+    <updated>2015-10-17T01:58:31.000Z</updated>
+    <content type="html"><![CDATA[<p>常见的游戏架构和部署中，很多采用分服的一服一库的部署模式，而且运营过程中经常会有合服要求。</p>
+<blockquote>
+<p>所谓合服就是随着游戏单服活跃用户数不断的下降，为节省资源和提高用户活跃度，在运营过程中将两个或多个服务数据合并到一起的做法。</p>
+</blockquote>
+<p>合服时经常碰到的一个最大的问题就是：相同表中的记录不能有ID重复的情况发生。如果有重复ID的情况，那么合服时就要写特定的脚本去处理重复ID的问题，这会比较麻烦。</p>
+<p>要解决不能有重复ID的情况，最好的办法是让每台服务器上出生的ID都是全局唯一的。</p>
+<h4 id="1-_使用UUID">1. 使用UUID</h4><p>首先想到的是<a href="https://en.wikipedia.org/w/index.php?title=Universally_unique_identifier&amp;redirect=no" target="_blank" rel="external">UUID</a>，它天生就是全局唯一的并运用于分布式计算中，UUID是16字节128位长的数字，通常以36字节的字符串表示：</p>
+<blockquote>
+<p>UUID: 21e58ba8-5c7e-4524-ae8f-079faf987b3b</p>
+</blockquote>
+<p>由于它太长而且可读性差，因此不用这货。</p>
+<h4 id="2-_Flickr的Ticket_Server方案">2. Flickr的Ticket Server方案</h4><p>Flickr的实现方式比较简单巧妙，它是利用两台Ticket Server按指定的步长递增生成ID。将两台服务器的初始偏移值设置不一样，会让两台服务器交替生成ID而不会产生冲突，其配置如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">TicketServer1:</span><br><span class="line"><span class="keyword">auto</span>-increment-increment = <span class="number">2</span></span><br><span class="line"><span class="keyword">auto</span>-increment-offset = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">TicketServer2:</span><br><span class="line"><span class="keyword">auto</span>-increment-increment = <span class="number">2</span></span><br><span class="line"><span class="keyword">auto</span>-increment-offset = <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>这样，TicketServer1将一直生成”奇数ID”，TicketServer2生成“偶数ID”</p>
+<p>两台Ticket Server做负载均衡，使用Round-Robin策略轮询访问，避免了单点故障，如果两台不够也可以扩展至更多台。</p>
+<p>关于该技术方案的细节请见<a href="http://code.flickr.net/2010/02/08/ticket-servers-distributed-unique-primary-keys-on-the-cheap/" target="_blank" rel="external">官方博客原文(要翻墙)</a>，也可见<a href="http://blog.csdn.net/wangzhen199009/article/details/38761575" target="_blank" rel="external">这篇译文</a></p>
+<p><strong>该方案的缺点：</strong></p>
+<ol>
+<li><p>TicketServer会成为性能瓶颈，当负载较重时数据库写压力较大，对于Flickr这种读频繁写较少的应用来说也许够用，但是对于游戏服务器来说，会有短期内密集生成ID的需求，该方案似乎应付这样的需求会显得有点吃力。</p>
+</li>
+<li><p>生成的ID不带时间信息，IDC机房信息，或机器ID等信息</p>
+</li>
+</ol>
+<h4 id="3-_MongoDB的ObjectId方案">3. MongoDB的ObjectId方案</h4><p>ObjectId使用了12个字节来存储，每个字节用16进制字符串来表示，所以的表示形式是由24个字符组成，如：507f1f77bcf86cd799439011</p>
+<p>ObjectId组成部分有：</p>
+<ul>
+<li>4字节：UNIX时间戳</li>
+<li>3字节：表示运行MongoDB的机器</li>
+<li>2字节：表示生成此_id的进程</li>
+<li>3字节：由一个随机数开始的计数器生成的值</li>
+</ul>
+<p><strong>该方案的好处：</strong></p>
+<p>ObjectId是可按时间排序的并且带机器ID的，根据ObjectId可以反推得到时间戳和机器ID信息，而且比UUID短。</p>
+<p>但是，我们希望最好能够用长整形来表示ID，因为那样既短小不占空间又容易识别。</p>
+<h4 id="4-_Twitter的Snowflake算法">4. Twitter的Snowflake算法</h4><p>Snowflake是twitter为解决在分布式系统中高效生成全局ID所提出的解决方案，该算法使用Scale实现的并且已开源，地址在：<a href="https://github.com/twitter/snowflake" target="_blank" rel="external">https://github.com/twitter/snowflake</a></p>
+<p>其原理是用一个64位的长整形来储存ID，其内部位的表示如下：</p>
+<blockquote>
+<p>毫秒时间（41bits）+ datacenterId(5bits) + workerId(5bits) + sequence(12bits)</p>
+</blockquote>
+<p>该方案的优点明显：</p>
+<ul>
+<li>生成的ID能够按时间排序，并且可带机器ID，IDC等信息</li>
+<li>用64位表示的，储存空间小，并且易读</li>
+<li>每台机器可独立生成ID，无需中心节点，无单点故障风险</li>
+<li>生成ID高效并且速度快，如果用12位表示sequence，那么每毫秒将可以生成1024个ID</li>
+</ul>
+<p>在游戏应用中，我们可将内部位调整为如下表现形式：</p>
+<blockquote>
+<p>毫秒时间（37bits）+ serverId (20bits) + sequence (16bits)</p>
+</blockquote>
+<p>说明：</p>
+<ul>
+<li>37bits的毫秒时间可供我们使用约93年</li>
+<li>serverId最大可以表示为2^20(1048576)个服务器</li>
+<li>每毫秒最多可以生成2^16(65535)个ID</li>
+</ul>
+<p>###总结：</p>
+<p>在分布式应用或游戏服务器中，Snowflake作为全局唯一ID的生成算法具有生产ID迅速高效，无单点故障，ID带丰富的信息，并且可按时间排序等诸多特性，是可靠高效的方案。</p>
+<hr>
+<p>###附录：</p>
+<p>Twitter是用Scale实现该算法并开源的，其中Java版本如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * @author zhujuan</span><br><span class="line"> *         From: https://github.com/twitter/snowflake</span><br><span class="line"> *         An object that generates IDs.</span><br><span class="line"> *         This is broken into a separate class in case</span><br><span class="line"> *         we ever want to support multiple worker threads</span><br><span class="line"> *         per process</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> IdWorker &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> final Logger LOG = LoggerFactory.getLogger(IdWorker.<span class="keyword">class</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> workerId;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> datacenterId;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sequence = <span class="number">0L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> twepoch = <span class="number">1288834974657L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> workerIdBits = <span class="number">5L</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> datacenterIdBits = <span class="number">5L</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> maxWorkerId = -<span class="number">1L</span> ^ (-<span class="number">1L</span> &lt;&lt; workerIdBits);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> maxDatacenterId = -<span class="number">1L</span> ^ (-<span class="number">1L</span> &lt;&lt; datacenterIdBits);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sequenceBits = <span class="number">12L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> workerIdShift = sequenceBits;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> datacenterIdShift = sequenceBits + workerIdBits;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> timestampLeftShift = sequenceBits + workerIdBits + datacenterIdBits;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sequenceMask = -<span class="number">1L</span> ^ (-<span class="number">1L</span> &lt;&lt; sequenceBits);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> lastTimestamp = -<span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">IdWorker</span><span class="params">(<span class="keyword">long</span> workerId, <span class="keyword">long</span> datacenterId)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// sanity check for workerId</span></span><br><span class="line">        <span class="keyword">if</span> (workerId &gt; maxWorkerId || workerId &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(String.format(<span class="string">"worker Id can't be greater than %d or less than 0"</span>, maxWorkerId));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (datacenterId &gt; maxDatacenterId || datacenterId &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(String.format(<span class="string">"datacenter Id can't be greater than %d or less than 0"</span>, maxDatacenterId));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.workerId = workerId;</span><br><span class="line">        <span class="keyword">this</span>.datacenterId = datacenterId;</span><br><span class="line">        LOG.info(String.format(<span class="string">"worker starting. timestamp left shift %d, datacenter id bits %d, worker id bits %d, sequence bits %d, workerid %d"</span>, timestampLeftShift, datacenterIdBits, workerIdBits, sequenceBits, workerId));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> synchronized <span class="keyword">long</span> <span class="title">nextId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> timestamp = timeGen();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (timestamp &lt; lastTimestamp) &#123;</span><br><span class="line">            LOG.error(String.format(<span class="string">"clock is moving backwards.  Rejecting requests until %d."</span>, lastTimestamp));</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(String.format(<span class="string">"Clock moved backwards.  Refusing to generate id for %d milliseconds"</span>, lastTimestamp - timestamp));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (lastTimestamp == timestamp) &#123;</span><br><span class="line">            sequence = (sequence + <span class="number">1</span>) &amp; sequenceMask;</span><br><span class="line">            <span class="keyword">if</span> (sequence == <span class="number">0</span>) &#123;</span><br><span class="line">                timestamp = tilNextMillis(lastTimestamp);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            sequence = <span class="number">0L</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        lastTimestamp = timestamp;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ((timestamp - twepoch) &lt;&lt; timestampLeftShift) | (datacenterId &lt;&lt; datacenterIdShift) | (workerId &lt;&lt; workerIdShift) | sequence;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">long</span> <span class="title">tilNextMillis</span><span class="params">(<span class="keyword">long</span> lastTimestamp)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> timestamp = timeGen();</span><br><span class="line">        <span class="keyword">while</span> (timestamp &lt;= lastTimestamp) &#123;</span><br><span class="line">            timestamp = timeGen();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> timestamp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">long</span> <span class="title">timeGen</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> System.currentTimeMillis();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<p>常见的游戏架构和部署中，很多采用分服的一服一库的部署模式，而且运营过程中经常会有合服要求。</p>
+<blockquote>
+<p>所谓合服就是随着游戏单服活跃用户数不断的下降，为节省资源和提高用户活跃度，在运营过程中将两个或多个服务数据合并到一起的做法。</p>
+</bl]]>
+    </summary>
+    
+      <category term="distributed" scheme="http://bafeimao.github.io/gh-pages/tags/distributed/"/>
+    
+      <category term="game" scheme="http://bafeimao.github.io/gh-pages/tags/game/"/>
+    
+      <category term="unique-id" scheme="http://bafeimao.github.io/gh-pages/tags/unique-id/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[网络游戏中的数据交互]]></title>
+    <link href="http://bafeimao.github.io/gh-pages/2013/06/17/data-interactive-in-game/"/>
+    <id>http://bafeimao.github.io/gh-pages/2013/06/17/data-interactive-in-game/</id>
+    <published>2013-06-17T01:49:33.000Z</published>
+    <updated>2015-10-17T01:58:29.000Z</updated>
+    <content type="html"><![CDATA[<p>设计网络游戏，首先要面对的就是考虑如何实现客户端与服务端的数据交互。</p>
+<p>这大体会涉及到两个方面的内容：</p>
+<ol>
+<li>客户端与服务器之间的通讯协议，</li>
+<li>通讯双方使用的数据交换格式</li>
+</ol>
+<p>通讯协议常用的无外乎两种：1：TCP，2：HTTP</p>
+<blockquote>
+<p>在一些即时战斗类或战网类游戏中可能还会涉及到客户端之间使用P2P方式连接，以及使用UDP进行传输</p>
+</blockquote>
+<p>大体上，弱交互的游戏使用HTTP，强交互实时性较强的游戏使用TCP。</p>
+<p>但这依赖于具体的使用场景还可以进一步划分，比如：</p>
+<blockquote>
+<p>在一款实时战斗的手机游戏中，往往使用TCP进行连接，但是聊天功能由于在手机上使用不是很方便，所以聊天就变的弱交互了，因此聊天可以使用HTTP调用单独的聊天API。</p>
+</blockquote>
+<p><strong>对于HTTP，常用的数据交换格式是：JSON或XML</strong></p>
+<p>使用JSON/XML的优点是：</p>
+<ol>
+<li>使用方便</li>
+<li>内容自描述</li>
+</ol>
+<p>缺点是：</p>
+<ol>
+<li>传输数据量大了点</li>
+<li>Marshall和UnMarshall的时间长了一点</li>
+</ol>
+<blockquote>
+<p>但无所谓，因为他们应用的场景本就是弱交互的环境，因此劣势比起优势可以忽略。</p>
+</blockquote>
+<p><strong>但对于强交互游戏，数据交互格式就要好好选择了，特别地，在手机游戏中，如何最大限度的减少消息的大小是首要考虑的指标，这将会带来如下几个方面的收益：</strong></p>
+<ol>
+<li>节省用户流量，为用户省钱（土豪除外）</li>
+<li>省服务器带宽，为公司省钱</li>
+<li>提高了网络吞吐率（单台服务器网卡可以处理更多的消息）</li>
+</ol>
+<p>讲了这么多前奏，该轮到大名鼎鼎的<a href="http://code.google.com/p/protobuf/" target="_blank" rel="external">protobuf</a>闪亮登场了，它的优点有：</p>
+<ul>
+<li>名厂Google出品，有口皆碑，久经考验</li>
+<li>数据压缩比高，满足我们指标要求</li>
+<li>性能好，Google对性能的抠门程度不用我们担心</li>
+<li>支持消息协议的向前和向后兼容（消息协议升级时，既有系统不会受到协议变更的影响）</li>
+<li>多语言支持，如C++，Java，Python等（社区提供了非常多的对其他语言支持）</li>
+<li>代码自动生成</li>
+</ul>
+<p>如此多的特性正适合在游戏应用！！！</p>
+<p>####题外：</p>
+<p>使用protobuf还有有另外一个好处，它自带提供对RPC的支持，这方便了内部系统之间的远程调用，但是遗憾的是之前并没有提供RPC的实现，这需要我们自己实现。这一点不像它的对手Thrift提供的全套的RPC解决方案。</p>
+<blockquote>
+<p>自行实现基于Protobuf的RPC也不是很难的事，github上又很多基于Mina，Netty或ZeroMQ的实现，有兴趣可以自行去搜索。</p>
+</blockquote>
+<p>幸运的是，Google最近开源了基于HTTP/2和ProtoBuf的通用RPC框架的gRPC，</p>
+<blockquote>
+<p>请参见<a href="http://www.infoq.com/cn/news/2015/03/grpc-google-http2-protobuf" target="_blank" rel="external">这篇文章</a>中对gRPC的描述</p>
+<p>gRPC的代码托管在Github上：<a href="https://github.com/grpc/grpc" target="_blank" rel="external">https://github.com/grpc/grpc</a></p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>设计网络游戏，首先要面对的就是考虑如何实现客户端与服务端的数据交互。</p>
+<p>这大体会涉及到两个方面的内容：</p>
+<ol>
+<li>客户端与服务器之间的通讯协议，</li>
+<li>通讯双方使用的数据交换格式</li>
+</ol>
+<p>通讯协议常用的无外乎两种：]]>
+    </summary>
+    
+      <category term="game" scheme="http://bafeimao.github.io/gh-pages/tags/game/"/>
+    
+      <category term="grpc" scheme="http://bafeimao.github.io/gh-pages/tags/grpc/"/>
+    
+      <category term="json" scheme="http://bafeimao.github.io/gh-pages/tags/json/"/>
+    
+      <category term="protobuf" scheme="http://bafeimao.github.io/gh-pages/tags/protobuf/"/>
+    
+      <category term="rpc" scheme="http://bafeimao.github.io/gh-pages/tags/rpc/"/>
     
   </entry>
   
@@ -524,7 +542,7 @@
     <link href="http://bafeimao.github.io/gh-pages/2012/01/03/how-to-use-git-remote-commands/"/>
     <id>http://bafeimao.github.io/gh-pages/2012/01/03/how-to-use-git-remote-commands/</id>
     <published>2012-01-03T08:29:29.000Z</published>
-    <updated>2015-09-26T00:38:47.000Z</updated>
+    <updated>2015-10-17T01:58:55.000Z</updated>
     <content type="html"><![CDATA[<h4 id="Git常用远程操作">Git常用远程操作</h4><p>在对Git远程操作命令理解之前，首先看下图，该图可以直观地帮助我们理解各操作命令执行后所影响的区域。</p>
 <blockquote>
 <p>本文假设你对git的常规概念如：工作区（workspace），索引区（index）,本地仓库（local repository）和远程仓库（remote repository）都已经有了初步的了解。</p>
@@ -596,6 +614,8 @@
 <blockquote>
 <p>本文假设你对git的常规概念如：工作区（workspace），索引]]>
     </summary>
+    
+      <category term="git" scheme="http://bafeimao.github.io/gh-pages/tags/git/"/>
     
   </entry>
   

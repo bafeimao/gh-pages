@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="知行合一">
-    <title>generate-unique-id-in-distributed-system - 知行合一</title>
+    <title>游戏服务器中的ID生成策略 - 知行合一</title>
     <meta name="author" content="巴菲猫(29283212@qq.com)">
     
     
@@ -19,8 +19,8 @@
 合服时经常碰到的一个最大的问题就是：相同表中的记录不能有ID重复的情况发生。如果有重复ID的情况，那么合服时就要写特定的脚本去处理重复ID的问题，这会比较麻烦。
 要解决不能有重复">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="generate-unique-id-in-distributed-system">
-<meta property="og:url" content="http://bafeimao.github.io/gh-pages/2015/10/17/generate-unique-id-in-distributed-system/index.html">
+<meta property="og:title" content="游戏服务器中的ID生成策略">
+<meta property="og:url" content="http://bafeimao.github.io/gh-pages/2014/01/17/generate-unique-id-in-distributed-system/index.html">
 <meta property="og:site_name" content="知行合一">
 <meta property="og:description" content="常见的游戏架构和部署中，很多采用分服的一服一库的部署模式，而且运营过程中经常会有合服要求。
 
@@ -28,9 +28,9 @@
 
 合服时经常碰到的一个最大的问题就是：相同表中的记录不能有ID重复的情况发生。如果有重复ID的情况，那么合服时就要写特定的脚本去处理重复ID的问题，这会比较麻烦。
 要解决不能有重复">
-<meta property="og:updated_time" content="2015-10-17T01:53:33.000Z">
+<meta property="og:updated_time" content="2015-10-17T01:58:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="generate-unique-id-in-distributed-system">
+<meta name="twitter:title" content="游戏服务器中的ID生成策略">
 <meta name="twitter:description" content="常见的游戏架构和部署中，很多采用分服的一服一库的部署模式，而且运营过程中经常会有合服要求。
 
 所谓合服就是随着游戏单服活跃用户数不断的下降，为节省资源和提高用户活跃度，在运营过程中将两个或多个服务数据合并到一起的做法。
@@ -221,13 +221,13 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            generate-unique-id-in-distributed-system
+            游戏服务器中的ID生成策略
         </h1>
     
     <div class="post-meta">
-    <time itemprop="datePublished" content="Sat Oct 17 2015 09:45:37 GMT+0800">
+    <time itemprop="datePublished" content="Fri Jan 17 2014 19:45:37 GMT+0800">
 	
-		    2015年10月17日
+		    2014年01月17日
     	
     </time>
     
@@ -306,12 +306,19 @@
     </div>
     <div class="post-footer main-content-wrap">
         
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/gh-pages/tags/distributed/">distributed</a> <a class="tag tag--primary tag--small t-link" href="/gh-pages/tags/game/">game</a> <a class="tag tag--primary tag--small t-link" href="/gh-pages/tags/unique-id/">unique-id</a>
+
+            </div>
+        
         <div class="post-actions-wrap">
     <nav>
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2015/10/17/data-interactive-in-game/"  data-tooltip="data-interactive-in-game">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2014/08/25/how-to-build-blog-on-github-by-hexo/"  data-tooltip="使用Hexo在github上建立博客">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -319,7 +326,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2015/09/25/web-load-balance-technologies-in-detail/" data-tooltip="常见的Web负载均衡技术详解">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2013/06/17/data-interactive-in-game/" data-tooltip="网络游戏中的数据交互">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -334,17 +341,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.github.io/gh-pages/2015/10/17/generate-unique-id-in-distributed-system/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.github.io/gh-pages/2014/01/17/generate-unique-id-in-distributed-system/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.github.io/gh-pages/2015/10/17/generate-unique-id-in-distributed-system/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.github.io/gh-pages/2014/01/17/generate-unique-id-in-distributed-system/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.github.io/gh-pages/2015/10/17/generate-unique-id-in-distributed-system/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.github.io/gh-pages/2014/01/17/generate-unique-id-in-distributed-system/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -368,7 +375,7 @@
 
         
         
-            <div class="ds-thread" data-thread-key="post-generate-unique-id-in-distributed-system" data-title="generate-unique-id-in-distributed-system" data-url="http://bafeimao.github.io/gh-pages/2015/10/17/generate-unique-id-in-distributed-system/"></div>
+            <div class="ds-thread" data-thread-key="post-generate-unique-id-in-distributed-system" data-title="游戏服务器中的ID生成策略" data-url="http://bafeimao.github.io/gh-pages/2014/01/17/generate-unique-id-in-distributed-system/"></div>
 
         
     </div>
@@ -390,7 +397,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2015/10/17/data-interactive-in-game/"  data-tooltip="data-interactive-in-game">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2014/08/25/how-to-build-blog-on-github-by-hexo/"  data-tooltip="使用Hexo在github上建立博客">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -398,7 +405,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2015/09/25/web-load-balance-technologies-in-detail/" data-tooltip="常见的Web负载均衡技术详解">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2013/06/17/data-interactive-in-game/" data-tooltip="网络游戏中的数据交互">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -413,17 +420,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.github.io/gh-pages/2015/10/17/generate-unique-id-in-distributed-system/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.github.io/gh-pages/2014/01/17/generate-unique-id-in-distributed-system/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.github.io/gh-pages/2015/10/17/generate-unique-id-in-distributed-system/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.github.io/gh-pages/2014/01/17/generate-unique-id-in-distributed-system/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.github.io/gh-pages/2015/10/17/generate-unique-id-in-distributed-system/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.github.io/gh-pages/2014/01/17/generate-unique-id-in-distributed-system/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -449,17 +456,17 @@
                 <div id="share-options-bar" class="share-options-bar" data-behavior="3">
     <ul class="share-options">
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://bafeimao.github.io/gh-pages/2015/10/17/generate-unique-id-in-distributed-system/">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://bafeimao.github.io/gh-pages/2014/01/17/generate-unique-id-in-distributed-system/">
                 <i class="fa fa-google-plus"></i><span class="">分享到Google+</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.github.io/gh-pages/2015/10/17/generate-unique-id-in-distributed-system/">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.github.io/gh-pages/2014/01/17/generate-unique-id-in-distributed-system/">
                 <i class="fa fa-facebook-official"></i><span>分享到Facebook</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.github.io/gh-pages/2015/10/17/generate-unique-id-in-distributed-system/">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.github.io/gh-pages/2014/01/17/generate-unique-id-in-distributed-system/">
                 <i class="fa fa-twitter"></i><span>分享到Twitter</span>
             </a>
         </li>
