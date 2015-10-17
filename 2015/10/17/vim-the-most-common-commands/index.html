@@ -6,32 +6,26 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="知行合一">
-    <title>Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案 - 知行合一</title>
+    <title>VIM常用命令 - 知行合一</title>
     <meta name="author" content="巴菲猫(29283212@qq.com)">
     
     
         <link rel="alternative" type="application/atom+xml" title="RSS" href="/gh-pages/atom.xml">
     
-    <meta name="description" content="产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值
-1set CATALINA_OPTS = -XX:PermSize=128m -XX:MaxPermSize=512m
-如果是堆栈溢出,则需要提高xms的值
-1set CATALINA_OPTS = -Xms128m -Xmx1024m -XX:PermSize=128m">
+    <meta name="description" content="模式切换按下i, I, o, O, a, A, r, R从一般模式进入编辑模式，按ESC从编辑模式退出到一般模式
+删除操作dw    ：从光标开始删除到下一个单词的开头d2w   ：删除两个单词（到第三个单词的开头）de    :   从光标处开始删除到当前单词结尾d2e   :   从光标出开始删除到第2个单词结尾d$    :   从光标位置删除到行尾d0    :   删除行首到光标处内容d">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案">
-<meta property="og:url" content="http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/index.html">
+<meta property="og:title" content="VIM常用命令">
+<meta property="og:url" content="http://bafeimao.github.io/gh-pages/2015/10/17/vim-the-most-common-commands/index.html">
 <meta property="og:site_name" content="知行合一">
-<meta property="og:description" content="产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值
-1set CATALINA_OPTS = -XX:PermSize=128m -XX:MaxPermSize=512m
-如果是堆栈溢出,则需要提高xms的值
-1set CATALINA_OPTS = -Xms128m -Xmx1024m -XX:PermSize=128m">
+<meta property="og:description" content="模式切换按下i, I, o, O, a, A, r, R从一般模式进入编辑模式，按ESC从编辑模式退出到一般模式
+删除操作dw    ：从光标开始删除到下一个单词的开头d2w   ：删除两个单词（到第三个单词的开头）de    :   从光标处开始删除到当前单词结尾d2e   :   从光标出开始删除到第2个单词结尾d$    :   从光标位置删除到行尾d0    :   删除行首到光标处内容d">
 <meta property="og:image" content="http://i.creativecommons.org/l/by-nc-nd/3.0/cn/88x31.png"署名-非商业性使用-禁止演绎"">
 <meta property="og:updated_time" content="2015-10-17T03:54:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案">
-<meta name="twitter:description" content="产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值
-1set CATALINA_OPTS = -XX:PermSize=128m -XX:MaxPermSize=512m
-如果是堆栈溢出,则需要提高xms的值
-1set CATALINA_OPTS = -Xms128m -Xmx1024m -XX:PermSize=128m">
+<meta name="twitter:title" content="VIM常用命令">
+<meta name="twitter:description" content="模式切换按下i, I, o, O, a, A, r, R从一般模式进入编辑模式，按ESC从编辑模式退出到一般模式
+删除操作dw    ：从光标开始删除到下一个单词的开头d2w   ：删除两个单词（到第三个单词的开头）de    :   从光标处开始删除到当前单词结尾d2e   :   从光标出开始删除到第2个单词结尾d$    :   从光标位置删除到行尾d0    :   删除行首到光标处内容d">
     
     
     
@@ -216,37 +210,38 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案
+            VIM常用命令
         </h1>
     
     <div class="post-meta">
-    <time itemprop="datePublished" content="Tue May 25 2010 22:59:35 GMT+0800">
+    <time itemprop="datePublished" content="Sat Oct 17 2015 11:50:53 GMT+0800">
 	
-		    2010年05月25日
+		    2015年10月17日
     	
     </time>
-    
-        <span>in </span>
-        
-    <a class="category-link" href="/gh-pages/categories/aaa/">aaa</a>
-
-
     
 </div>
 </div>
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <p>产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> CATALINA_OPTS = -XX:PermSize=<span class="number">128</span>m -XX:MaxPermSize=<span class="number">512</span>m</span><br></pre></td></tr></table></figure>
-<p>如果是堆栈溢出,则需要提高xms的值</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> CATALINA_OPTS = -Xms128m -Xmx1024m -XX:PermSize=<span class="number">128</span>m -XX:MaxPermSize=<span class="number">512</span>m</span><br></pre></td></tr></table></figure>
-<h3 id="参数解释:">参数解释:</h3><blockquote>
-<p>-xms128：表示JVM初始堆栈大小<br>-xmx1024：表示JVM堆栈大小最大可以达到1M内存<br>-XX:PermSize=128m：表示初始永久带内存大小<br>-XX:MaxPermSize=512m：表示永久带最大内存大小</p>
-</blockquote>
-<h3 id="为什么设置CATALINA_OPTS就会生效？">为什么设置CATALINA_OPTS就会生效？</h3><p>因为在tomcat启动时会使用环境变量：JAVA_OPTS，CATALINA_OPTS, DEBUG_OPTS指定的值，查看%CATALINA_HOME%/bin/catalina.sh文件可以看到如下的代码段：</p>
-<figure class="highlight mojolicious"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span><span class="perl"><span class="variable">%_EXECJAVA</span>% <span class="variable">%JAVA_OPTS</span>% <span class="variable">%CATALINA_OPTS</span>% <span class="variable">%DEBUG_OPTS</span>% -Djava.endorsed.dirs=<span class="string">"<span class="variable">%JAVA_ENDORSED_DIRS</span><span class="variable">%"</span> -classpath "</span><span class="variable">%CLASSPATH</span><span class="variable">%"</span> -Dcatalina.base=<span class="string">"<span class="variable">%CATALINA_BASE</span><span class="variable">%"</span> -Dcatalina.home="</span><span class="variable">%CATALINA_HOME</span><span class="variable">%"</span> -Djava.io.tmpdir=<span class="string">"<span class="variable">%CATALINA_TMPDIR</span><span class="variable">%"</span> <span class="variable">%MAINCLASS</span>% <span class="variable">%CMD_LINE_ARGS</span>% <span class="variable">%ACTION</span>%</span></span><span class="xml"></span></span><br></pre></td></tr></table></figure>
-<hr>
+            <h3 id="模式切换">模式切换</h3><p>按下<code>i, I, o, O, a, A, r, R</code>从<code>一般模式</code>进入<code>编辑模式</code>，按<code>ESC</code>从<code>编辑模式</code>退出到<code>一般模式</code></p>
+<h3 id="删除操作">删除操作</h3><p><code>dw</code>    ：从光标开始删除到下一个单词的开头<br><code>d2w</code>   ：删除两个单词（到第三个单词的开头）<br><code>de</code>    :   从光标处开始删除到当前单词结尾<br><code>d2e</code>   :   从光标出开始删除到第2个单词结尾<br><code>d$</code>    :   从光标位置删除到行尾<br><code>d0</code>    :   删除行首到光标处内容<br><code>dd</code>    :   删除整行<br><code>2dd</code>   :   删除两行<br><code>d1G,dgg</code>   :   删除第一行到光标行（光标所在行也被删除）<br><code>dG</code>    :   删除光标所在行到最后一行的所有行<br><code>dj</code>    :   删除当前光标所在行以及下一行（<code>j</code>换成<code>k</code>表示删除上一行）<br><code>d2j</code>   :   删除当前行及随后的2行</p>
+<p><code>x</code>     :   向后删除一个字符，相当于DELETE)<br><code>X</code>     :   向前删除一个字符，相当于Backspace<br><code>nx，nX</code>     :   连续向后，向前删除n个字符</p>
+<h3 id="查找，替换和更改">查找，替换和更改</h3><p><code>r</code>     :   替换光标处的字符，然后键入要替换的字符（一次仅替换一个）<br><code>R</code>     :   连续替<br><code>ce</code>    :   从光标处删除到单词结尾，并进入到编辑模式（和x的区别在于x留在普通模式而不进入编辑模式）(语法格式：<code>c [number] motion</code>)<br><code>c5e</code>   :   删除光标后5个单词并进入到编辑模式<br><code>:n1,n2s/word1/word2/g</code> :   在第 n1 行到 n2 行之间寻找word1并替换成word2。<br><code>:1,$s/word1/word2/g</code>       ：   从第一行到最后一行搜索word1并替换成word2<br><code>:1,$s/word1/word2/gc</code>  :   同上，只是，替换是提示让用户确认</p>
+<p><code>/keyword</code>      :   从光标位置向下搜索关键字，如果检索结果有多个，按n可以继续往下搜索下一个，N动作相反<br><code>?keyword</code>      :   从光标位置向前搜索关键字，按n继续向前搜索下一个，N动作相反</p>
+<h3 id="移动光标">移动光标</h3><p><code>0</code>   :   行首<br><code>$</code>     :   行尾<br><code>w</code>     :   到下一个单词开头，<br><code>3w</code>    :   到下三个单词开头，</p>
+<p><code>e</code>     :   到下一个单词结尾<br><code>2e</code>    :   到下两个单词结尾</p>
+<p><code>hjkl</code>  :   ←↓↑→<br><code>30j</code>       :   向下移动30行<br><code>ctrl+f</code>    ：向下移动一页(forward)<br><code>ctrl+b</code>    :   向上移动一页(backward)<br><code>ctrl+d</code>    :   向下移动半页(down)<br><code>ctrl+u</code>    :   向上移动半页(up)<br><code>H,M,L</code>     ：移动到当前页的最顶行，中间行，最低行,最后一行<br><code>G</code>             :   移动到文档的最后一行，<br><code>10G</code>           :   移动到文档开始的第10行<br><code>gg,1G</code>     :   移动到文档的第一行<br><code>n&lt;Enter&gt;</code>  :   光标向下移动n行</p>
+<h3 id="复制与粘贴">复制与粘贴</h3><p><code>yy</code>    :   复制光标所在行<br><code>nyy</code>   :   复制光标所在行以及后续行（共n行）<br><code>y2j</code>   :   复制光标所在行以后向下的2行（共3行）<br><code>ye,yw,y0,y$,y2e,y3w,y2j,y1G,yG,ygg</code>        :       y的用法类似命令d的操作，后面可以接数字以及其他对动作范围的限定等等</p>
+<p><code>p</code>     :   粘贴行到当前光标所处行的下一行，<br><code>P</code>     :   粘贴到当前光标所处行的上一行</p>
+<p><code>J</code> :       将光标所在行与下一行合并</p>
+<h3 id="区块操作">区块操作</h3><p><code>ctrl+v</code>    :   确定好复制区块的起始位置，然后按下ctrl+v，然后移动光标，↑←↓→或hjkl选择多个字符或多行，然后可以对区块进行复制（y)或删除(d)</p>
+<h3 id="打开，保存与退出">打开，保存与退出</h3><p><code># vim file1 file2 file3</code>   :   一次打开多个文件<br><code>:n</code>    :   切换到下一个文件<br><code>:N</code>    :   切换到上一个文件<br><code>：files</code>    :   查看当前打开的文件列表</p>
+<p><code>:w</code>        :       存盘不退出<br><code>:w!</code>       :       强制存盘不退出（比如在修改只读文件的时候，这需要当前用户有写权限）</p>
+<p><code>:wq</code>       ：   存盘并退出<br><code>:q</code>        ：       退出<br><code>:q!</code>       ：       强制退出不存盘<br><code>ZZ</code>        ：       如果修改了就存盘退出，如果没修改就退出不存盘<br><code>:w</code>        ：       另存为<br><code>:r</code>        ：       读另外一个文件，附加到当前文件的末尾<br><code>1,5 w file2</code>   ：       将第1到5行存到file2文件中<br><code>:e!</code>   ：       恢复成文件的原始状态<br><code>:! &lt;command&gt;</code>  ：   暂时离开，并执行<command>,例如：:! ls</p>
+<h3 id="其他操作">其他操作</h3><p><code>u</code>     ：取消最后一个命令，<br><code>U</code>     ：取消整行上的所有操作<br><code>ctrl+r</code>    ：取消undo操作</p>
+<p><code>.</code> :   小数点，重复前面的动作<br><code>:set nu</code>     显示行号<br><code>:set nonu</code>     不显示行号</p>
 <blockquote>
 <p><strong>版权声明:</strong> 本博客所有文章未经特别说明，均采用“署名-非商业性使用-禁止演绎 3.0 中国大陆”授权，欢迎转载，转载时务请注明出处，请尊重作者劳动成果。<br><a href="http://creativecommons.org/licenses/by-nc-nd/3.0/cn/" target="_blank" rel="external"><img src="http://i.creativecommons.org/l/by-nc-nd/3.0/cn/88x31.png&quot;署名-非商业性使用-禁止演绎&quot;" alt="署名-非商业性使用-禁止演绎"></a></p>
 </blockquote>
@@ -262,7 +257,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">标签</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/gh-pages/tags/tomcat/">tomcat</a> <a class="tag tag--primary tag--small t-link" href="/gh-pages/tags/troubleshooting/">troubleshooting</a>
+    <a class="tag tag--primary tag--small t-link" href="/gh-pages/tags/vim/">vim</a>
 
             </div>
         
@@ -271,7 +266,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2010/07/25/ipvs-based-load-balance-in-detail/"  data-tooltip="基于IPVS的IP负载均衡技术">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -279,7 +274,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2010/02/26/setup-svn-server-on-linux/" data-tooltip="在linux上搭建svn服务器">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2014/08/25/how-to-build-blog-on-github-by-hexo/" data-tooltip="使用Hexo在github上建立博客">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -294,17 +289,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.github.io/gh-pages/2015/10/17/vim-the-most-common-commands/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.github.io/gh-pages/2015/10/17/vim-the-most-common-commands/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.github.io/gh-pages/2015/10/17/vim-the-most-common-commands/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -328,7 +323,7 @@
 
         
         
-            <div class="ds-thread" data-thread-key="post-tomcat-oom-permgen-solution" data-title="Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案" data-url="http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/"></div>
+            <div class="ds-thread" data-thread-key="post-vim-the-most-common-commands" data-title="VIM常用命令" data-url="http://bafeimao.github.io/gh-pages/2015/10/17/vim-the-most-common-commands/"></div>
 
         
     </div>
@@ -350,7 +345,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2010/07/25/ipvs-based-load-balance-in-detail/"  data-tooltip="基于IPVS的IP负载均衡技术">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -358,7 +353,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2010/02/26/setup-svn-server-on-linux/" data-tooltip="在linux上搭建svn服务器">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/gh-pages/2014/08/25/how-to-build-blog-on-github-by-hexo/" data-tooltip="使用Hexo在github上建立博客">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -373,17 +368,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.github.io/gh-pages/2015/10/17/vim-the-most-common-commands/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.github.io/gh-pages/2015/10/17/vim-the-most-common-commands/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.github.io/gh-pages/2015/10/17/vim-the-most-common-commands/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -409,17 +404,17 @@
                 <div id="share-options-bar" class="share-options-bar" data-behavior="3">
     <ul class="share-options">
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://bafeimao.github.io/gh-pages/2015/10/17/vim-the-most-common-commands/">
                 <i class="fa fa-google-plus"></i><span class="">分享到Google+</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.github.io/gh-pages/2015/10/17/vim-the-most-common-commands/">
                 <i class="fa fa-facebook-official"></i><span>分享到Facebook</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.github.io/gh-pages/2010/05/25/tomcat-oom-permgen-solution/">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.github.io/gh-pages/2015/10/17/vim-the-most-common-commands/">
                 <i class="fa fa-twitter"></i><span>分享到Twitter</span>
             </a>
         </li>
