@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title><![CDATA[巴菲猫学技术]]></title>
-  <subtitle><![CDATA[苹果越分越少，知识越分越多]]></subtitle>
+  <title><![CDATA[巴菲猫的技术博客]]></title>
+  <subtitle><![CDATA[苹果越分越少，知识越分越多！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.bafeimao.net/"/>
   <updated>2015-10-17T04:37:16.000Z</updated>
