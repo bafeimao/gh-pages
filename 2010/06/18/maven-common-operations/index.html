@@ -1,0 +1,517 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="巴菲猫的技术博客">
+    <title>Maven常用操作 - 巴菲猫的技术博客</title>
+    <meta name="author" content="巴菲猫(29283212@qq.com)">
+    
+    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="清理项目（删除target文件夹）
+1$ mvn clean
+ 清理后测试（默认被放到target/test-classes文件夹下面）
+1$ mvn clean test
+编译主代码（默认被放到target/classes文件夹下）
+1$ mvn clean compile
+打包代码，打包成功后，可以看到target文件下生成了的.jar文件
+1$ mvn clean package
+如果需要打">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Maven常用操作">
+<meta property="og:url" content="http://www.bafeimao.net/2010/06/18/maven-common-operations/index.html">
+<meta property="og:site_name" content="巴菲猫的技术博客">
+<meta property="og:description" content="清理项目（删除target文件夹）
+1$ mvn clean
+ 清理后测试（默认被放到target/test-classes文件夹下面）
+1$ mvn clean test
+编译主代码（默认被放到target/classes文件夹下）
+1$ mvn clean compile
+打包代码，打包成功后，可以看到target文件下生成了的.jar文件
+1$ mvn clean package
+如果需要打">
+<meta property="og:updated_time" content="2015-10-18T05:12:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Maven常用操作">
+<meta name="twitter:description" content="清理项目（删除target文件夹）
+1$ mvn clean
+ 清理后测试（默认被放到target/test-classes文件夹下面）
+1$ mvn clean test
+编译主代码（默认被放到target/classes文件夹下）
+1$ mvn clean compile
+打包代码，打包成功后，可以看到target文件下生成了的.jar文件
+1$ mvn clean package
+如果需要打">
+    
+    
+    
+        <meta property="og:image" content="/assets/images/avatar.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css" type="text/css">
+    <!--STYLES END-->
+    
+    
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+          var ba = document.createElement('script');
+          ba.type = 'text/javascript';
+          ba.async = true;
+          ba.src = "//hm.baidu.com/hm.js?" + '342c0dd625fe9025fac2f74d1f3a45c4';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(ba, s);
+        })();
+    </script>
+
+
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header" data-behavior="3">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">巴菲猫的技术博客</a>
+    </h1>
+    
+        <a class="header-right-picture" href="/#about">
+            <img class="header-picture" src="/assets/images/avatar.png"/>
+        </a>
+    
+</header>
+            <nav id="sidebar" data-behavior="3">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                
+                    <img class="sidebar-profile-picture" src="/assets/images/avatar.png"/>
+                
+            </a>
+            <span class="sidebar-profile-name">巴菲猫(29283212@qq.com)</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">首页</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-categories"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc">分类</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">标签</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">归档</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">搜索</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/#about"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc">关于</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/bafeimao" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="mailto:29283212@qq.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc">邮箱</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="3"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            Maven常用操作
+        </h1>
+    
+    <div class="post-meta">
+    <time itemprop="datePublished" content="Fri Jun 18 2010 13:09:39 GMT+0800">
+	
+		    2010年06月18日
+    	
+    </time>
+    
+</div>
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <p>清理项目（删除target文件夹）</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">mvn </span>clean</span><br></pre></td></tr></table></figure>
+<p> 清理后测试（默认被放到target/test-classes文件夹下面）</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">mvn </span>clean test</span><br></pre></td></tr></table></figure>
+<p>编译主代码（默认被放到target/classes文件夹下）</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">mvn </span>clean compile</span><br></pre></td></tr></table></figure>
+<p>打包代码，打包成功后，可以看到target文件下生成了的.jar文件</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mvn clean <span class="package"><span class="keyword">package</span></span></span><br></pre></td></tr></table></figure>
+<p>如果需要打包<strong>可执行的jar包</strong>，则需要利用shade插件，我们需要在插件中配置如下信息</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>maven-shade-plugin<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">version</span>&gt;</span>1.2.1<span class="tag">&lt;/<span class="title">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">phase</span>&gt;</span>package<span class="tag">&lt;/<span class="title">phase</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">goal</span>&gt;</span>shade<span class="tag">&lt;/<span class="title">goal</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="title">goals</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">transformers</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="title">transformer</span></span><br><span class="line">                            <span class="attribute">implementation</span>=<span class="value">"org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="title">mainClass</span>&gt;</span>net.bafeimao.potato.App<span class="tag">&lt;/<span class="title">mainClass</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="title">transformer</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="title">transformers</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="title">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">execution</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">executions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后再次执行&gt;mvn clean package，我们可以看到target文件夹下有两个文件<br>original-potato-core-1.0-SNAPSHOT.jar<br>potato-core-1.0-SNAPSHOT.jar （可执行的）</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ java -jar potato-core-<span class="number">1.0</span>-SNAPSHOT<span class="class">.jar</span></span><br><span class="line">Hello world</span><br></pre></td></tr></table></figure>
+<p>打包并将打包好的jar包发布到本地仓库</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">mvn </span>clean install</span><br></pre></td></tr></table></figure>
+<p>查看当前项目的依赖列表（使用eclipse的pom设计器可以看到图形化的显示结果，会更直观）</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mvn dependency:<span class="type">list</span></span><br></pre></td></tr></table></figure>
+<p>查看当前项目的依赖树</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">mvn </span>dependency:tree</span><br></pre></td></tr></table></figure>
+<p>项目依赖分析</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">mvn </span>dependency:analyze</span><br></pre></td></tr></table></figure>
+<p>将jar文件部署到仓库</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">mvn </span>clean deploy</span><br></pre></td></tr></table></figure>
+<p><strong>注意：如果要将部署项目到目的仓库需要在pom文件中配置</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">distributionManagement</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="title">repository</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="title">id</span>&gt;</span> nexus-releases<span class="tag">&lt;/<span class="title">id</span> &gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="title">name</span>&gt;</span> Local nexus releases repository<span class="tag">&lt;/<span class="title">name</span> &gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="title">url</span>&gt;</span> http://localhost/nexus/content/repositories/releases/ <span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;/<span class="title">repository</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="title">snapshotRepository</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="title">id</span>&gt;</span> nexus-snapshots<span class="tag">&lt;/<span class="title">id</span> &gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="title">name</span>&gt;</span> Local nexus snapshots repository<span class="tag">&lt;/<span class="title">name</span> &gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="title">url</span>&gt;</span> http://localhost/nexus/content/repositories/snapshots/ <span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;/<span class="title">snapshotRepository</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="title">distributionManagement</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>对外部或本地仓库的访问一般都需要配置权限，所以还需要在settings.xml文件中配置访问权限</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">servers</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">server</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">id</span>&gt;</span>nexus-releases<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">username</span>&gt;</span>admin<span class="tag">&lt;/<span class="title">username</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">password</span>&gt;</span>admin123<span class="tag">&lt;/<span class="title">password</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="title">server</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">server</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">id</span>&gt;</span>nexus-snapshots<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">username</span>&gt;</span>admin<span class="tag">&lt;/<span class="title">username</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">password</span>&gt;</span>admin123<span class="tag">&lt;/<span class="title">password</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="title">server</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="title">servers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>NOTE: </strong>上面的<code>&lt;server&gt;&lt;id&gt;</code>节点中的名称需要和<code>&lt;repository&gt;&lt;id&gt;</code>中定义的名称保持一致就可以了</p>
+
+            
+                
+
+            
+
+            <!-- Copyright info here by bafeimao -->
+            <blockquote>
+                <p><strong>版权声明:</strong> 本博客所有文章未经特别说明，均采用“署名-非商业性使用-禁止演绎 3.0 中国大陆”授权，欢迎转载，转载时务请注明出处，请尊重作者劳动成果。<br><a href="http://creativecommons.org/licenses/by-nc-nd/3.0/cn/" target="_blank" rel="external"><img src="http://i.creativecommons.org/l/by-nc-nd/2.5/cn/88x31.png" alt="署名-非商业性使用-禁止演绎"></a>
+                </p>
+            </blockquote>
+        </div>
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/maven/">maven</a> <a class="tag tag--primary tag--small t-link" href="/tags/nexus/">nexus</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2010/07/25/ipvs-based-load-balance-in-detail/"  data-tooltip="基于IPVS的IP负载均衡技术">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2010/05/25/tomcat-oom-permgen-solution/" data-tooltip="Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://www.bafeimao.net/2010/06/18/maven-common-operations/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://www.bafeimao.net/2010/06/18/maven-common-operations/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://www.bafeimao.net/2010/06/18/maven-common-operations/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            <div class="ds-thread" data-thread-key="post-maven-common-operations" data-title="Maven常用操作" data-url="http://www.bafeimao.net/2010/06/18/maven-common-operations/"></div>
+
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2015 巴菲猫(29283212@qq.com). All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="3">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2010/07/25/ipvs-based-load-balance-in-detail/"  data-tooltip="基于IPVS的IP负载均衡技术">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2010/05/25/tomcat-oom-permgen-solution/" data-tooltip="Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://www.bafeimao.net/2010/06/18/maven-common-operations/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://www.bafeimao.net/2010/06/18/maven-common-operations/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://www.bafeimao.net/2010/06/18/maven-common-operations/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="3">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://www.bafeimao.net/2010/06/18/maven-common-operations/">
+                <i class="fa fa-google-plus"></i><span class="">分享到Google+</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://www.bafeimao.net/2010/06/18/maven-common-operations/">
+                <i class="fa fa-facebook-official"></i><span>分享到Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://www.bafeimao.net/2010/06/18/maven-common-operations/">
+                <i class="fa fa-twitter"></i><span>分享到Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/avatar.png"/>
+        
+            <h4 id="about-card-name">巴菲猫(29283212@qq.com)</h4>
+        
+            <h5 id="about-card-bio"><p>苹果越分越少，知识越分越多，欢迎大家一起交流</p>
+</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>29283212@qq.com</p>
+
+            </h5>
+        
+        
+    </div>
+</div>
+
+        <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js" type="text/javascript"></script>
+<script src="/assets/js/tranquilpeak.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name: 'bafeimao'};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+             || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+
+
+    <script type="text/javascript">
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+                (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+            e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','3h9NXFUsZJwPLpuP7Cyy','2.0.0');
+    </script>
+
+
+</html>
