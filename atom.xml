@@ -4,7 +4,7 @@
   <subtitle><![CDATA[苹果越分越少，知识越分越多！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bafeimao.net/"/>
-  <updated>2015-10-31T10:34:12.000Z</updated>
+  <updated>2015-10-31T06:25:49.000Z</updated>
   <id>http://bafeimao.net/</id>
   
   <author>
@@ -13,83 +13,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title><![CDATA[CentOS下yum安装maven]]></title>
-    <link href="http://bafeimao.net/2015/10/31/install-maven-by-yum-on-centos/"/>
-    <id>http://bafeimao.net/2015/10/31/install-maven-by-yum-on-centos/</id>
-    <published>2015-10-31T10:28:49.000Z</published>
-    <updated>2015-10-31T10:34:12.000Z</updated>
-    <content type="html"><![CDATA[<p>在linux下安装maven，常见的方法是：下载压缩包，然后解压安装并设置环境变量等，比较繁琐，其实是可以使用yum快速安装的。</p>
-<p><strong>添加仓库</strong></p>
-<p>maven rpm包并不存在于yum主仓库，也不存在于EPEL库中，因此如果需要使用yum安装maven，必须先添加新的包含maven安装包的仓库地址</p>
-<blockquote>
-<p>wget <a href="http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo" target="_blank" rel="external">http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo</a> -O /etc/yum.repos.d/epel-apache-maven.repo</p>
-</blockquote>
-<p><strong>解释一下：</strong></p>
-<p><a href="http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo" target="_blank" rel="external">http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo</a> 的内容如下：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Place this file in your /etc/yum.repos.d/ directory</span></span><br><span class="line"><span class="title"></span><br><span class="line">[epel-apache-maven]</span></span><br><span class="line"><span class="setting">name=<span class="value">maven from apache foundation.</span></span></span><br><span class="line"><span class="setting">baseurl=<span class="value">http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-<span class="variable">$releasever</span>/<span class="variable">$basearch</span>/</span></span></span><br><span class="line"><span class="setting">enabled=<span class="value"><span class="number">1</span></span></span></span><br><span class="line"><span class="setting">skip_if_unavailable=<span class="value"><span class="number">1</span></span></span></span><br><span class="line"><span class="setting">gpgcheck=<span class="value"><span class="number">0</span></span></span></span><br><span class="line"><span class="title"></span><br><span class="line">[epel-apache-maven-source]</span></span><br><span class="line"><span class="setting">name=<span class="value">maven from apache foundation. - Source</span></span></span><br><span class="line"><span class="setting">baseurl=<span class="value">http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-<span class="variable">$releasever</span>/SRPMS</span></span></span><br><span class="line"><span class="setting">enabled=<span class="value"><span class="number">0</span></span></span></span><br><span class="line"><span class="setting">skip_if_unavailable=<span class="value"><span class="number">1</span></span></span></span><br><span class="line"><span class="setting">gpgcheck=<span class="value"><span class="number">0</span></span></span></span><br></pre></td></tr></table></figure>
-<p><strong>-O参数：</strong>表明将wget获取到的文本内容写到后面跟着的文件后面（因此，也可手动添加上述文件内容到/etc/yum.repos.d文件末尾）</p>
-<blockquote>
-<p>以上操作其实就是为yum添加一个新的repository地址</p>
-</blockquote>
-<p>现在就可以通过yum安装maven了，安装之前先搜索一下maven关键字</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum search maven</span></span><br><span class="line">apache-maven.noarch : Java <span class="keyword">project</span> management <span class="keyword">and</span> <span class="keyword">project</span> comprehension tool</span><br><span class="line"></span><br><span class="line"><span class="comment"># yum -y install apache-maven.noarch</span></span><br><span class="line"><span class="comment"># mvn --version</span></span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<p>在linux下安装maven，常见的方法是：下载压缩包，然后解压安装并设置环境变量等，比较繁琐，其实是可以使用yum快速安装的。</p>
-<p><strong>添加仓库</strong></p>
-<p>maven rpm包并不存在于yum主仓库，也不存在于EPEL库中，因此]]>
-    </summary>
-    
-      <category term="centos" scheme="http://bafeimao.net/tags/centos/"/>
-    
-      <category term="howto" scheme="http://bafeimao.net/tags/howto/"/>
-    
-      <category term="maven" scheme="http://bafeimao.net/tags/maven/"/>
-    
-      <category term="yum" scheme="http://bafeimao.net/tags/yum/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[使用nexus搭建maven本地仓库]]></title>
-    <link href="http://bafeimao.net/2015/10/31/setup-maven-local-repository-proxy/"/>
-    <id>http://bafeimao.net/2015/10/31/setup-maven-local-repository-proxy/</id>
-    <published>2015-10-31T10:14:43.000Z</published>
-    <updated>2015-10-31T10:15:18.000Z</updated>
-    <content type="html"><![CDATA[<h2 id="1-_nexus的安装与配置">1. nexus的安装与配置</h2><p>搭建maven本地仓库私服可以使用多个不同的软件，本文讲述使用nexus来搭建maven私服。</p>
-<p>官方下载页: <a href="http://www.sonatype.org/nexus/go" target="_blank" rel="external">http://www.sonatype.org/nexus/go</a></p>
-<p>安装方式有两种：</p>
-<ol>
-<li>独立服务器方式运行，nexus内置netty， </li>
-<li>下载.war文件，然后将其扔到web容器中运行（比如tomcat）</li>
-</ol>
-<p><strong><em>建议采用第二种方式，将nexus.war放到web容器中运行 </em></strong></p>
-<p>nexus默认工作目录为：${user.home}/sonatype-work/nexus，如需设为其他目录，请到%CATALINA_HOME%/webapps/nexus/WEB_INF/plexus.properties中设置nexus-work值</p>
-<p>一切准备好了之后，输入<a href="http://localhost:8080/nexus看是否正常显示" target="_blank" rel="external">http://localhost:8080/nexus看是否正常显示</a></p>
-<p>点击右上角login，默认账户：admin/admin123</p>
-<p>默认情况下，nexus已经内置创建好了各种我们需要的repositories，这基本上已经够用了。</p>
-<h2 id="2-_为maven设置本地仓库">2. 为maven设置本地仓库</h2><p>打开{user.home}/.m2/settings.xml文件，在<mirrors>节点中添加一个<mirror>节点并设置相关值，<mirrorof>设置为*，其目的告诉maven在查找依赖的时候先从这个镜像地址查找，找不到才到外部仓库查找。<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">&lt;mirror&gt;</span></span><br><span class="line">     <span class="variable">&lt;id&gt;</span>nexus<span class="variable">&lt;/id&gt;</span><span class="variable">&lt;url&gt;</span>http://localhost:8080/nexus/content/groups/public/<span class="variable">&lt;/url&gt;</span></span><br><span class="line">     <span class="variable">&lt;mirrorOf&gt;</span><span class="keyword">*</span><span class="variable">&lt;/mirrorOf&gt;</span></span><br><span class="line"><span class="variable">&lt;/mirror&gt;</span></span><br></pre></td></tr></table></figure></mirrorof></mirror></mirrors></p>
-<p><strong>需要注意的是：</strong></p>
-<p>即使我们这里配置了本地仓库作为外部所有仓库的镜像，但是此时maven仍然还会去连接central（中央仓库），如果想要彻底阻止maven访问远程central仓库，我们还需要做如下配置：</p>
-<p><strong>在<code>&lt;profiles&gt;</code>节点下添加一个<code>&lt;profile&gt;</code>节点，并且在<code>&lt;activeProfiles&gt;</code>中激活这个profile</strong></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">profile</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">repositories</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="title">repository</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="title">id</span>&gt;</span>central<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="title">url</span>&gt;</span>http://central<span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="title">releases</span>&gt;</span></span><br><span class="line">                              <span class="tag">&lt;<span class="title">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="title">enabled</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;/<span class="title">releases</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="title">snapshots</span>&gt;</span></span><br><span class="line">                              <span class="tag">&lt;<span class="title">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="title">enabled</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;/<span class="title">snapshots</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="title">repository</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;/<span class="title">repositories</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">pluginRepositories</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="title">pluginRepository</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="title">id</span>&gt;</span>central<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="title">url</span>&gt;</span>http://central<span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="title">releases</span>&gt;</span></span><br><span class="line">                              <span class="tag">&lt;<span class="title">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="title">enabled</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;/<span class="title">releases</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="title">snapshots</span>&gt;</span></span><br><span class="line">                              <span class="tag">&lt;<span class="title">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="title">enabled</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;/<span class="title">snapshots</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="title">pluginRepository</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;/<span class="title">pluginRepositories</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="title">profile</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="title">profiles</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="title">activeProfiles</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">activeProfile</span>&gt;</span>nexus<span class="tag">&lt;/<span class="title">activeProfile</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="title">activeProfiles</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>这样maven就可以访问本地仓库来替代访问外部仓库了。</p>
-<p>实际上，本地仓库就是外部仓库的一个代理，maven首先在本地仓库中查找依赖，如果找不到，则由代理去外部地址访问查找需要的依赖并将其缓存在本地，这样以后就不用每次都到外部仓库中去下载依赖文件。</p>
-<p><strong><em>题外：</em></strong> maven不如gradle好用，如果条件允许的话，在新的项目或新的环境中，考虑用gradle吧，hibernate和spring框架都早已转投入gradle的怀抱了</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h2 id="1-_nexus的安装与配置">1. nexus的安装与配置</h2><p>搭建maven本地仓库私服可以使用多个不同的软件，本文讲述使用nexus来搭建maven私服。</p>
-<p>官方下载页: <a href="http://www.sonatype.org]]>
-    </summary>
-    
-      <category term="gradle" scheme="http://bafeimao.net/tags/gradle/"/>
-    
-      <category term="maven" scheme="http://bafeimao.net/tags/maven/"/>
-    
-      <category term="nexus" scheme="http://bafeimao.net/tags/nexus/"/>
-    
-  </entry>
   
   <entry>
     <title><![CDATA[游戏服务器中的ID生成策略]]></title>
@@ -255,6 +178,83 @@
       <category term="rpc" scheme="http://bafeimao.net/tags/rpc/"/>
     
       <category term="thrift" scheme="http://bafeimao.net/tags/thrift/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[使用nexus搭建maven本地仓库]]></title>
+    <link href="http://bafeimao.net/2012/10/31/setup-maven-local-repository-proxy/"/>
+    <id>http://bafeimao.net/2012/10/31/setup-maven-local-repository-proxy/</id>
+    <published>2012-10-31T10:14:43.000Z</published>
+    <updated>2015-10-31T10:36:31.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="1-_nexus的安装与配置">1. nexus的安装与配置</h2><p>搭建maven本地仓库私服可以使用多个不同的软件，本文讲述使用nexus来搭建maven私服。</p>
+<p>官方下载页: <a href="http://www.sonatype.org/nexus/go" target="_blank" rel="external">http://www.sonatype.org/nexus/go</a></p>
+<p>安装方式有两种：</p>
+<ol>
+<li>独立服务器方式运行，nexus内置netty， </li>
+<li>下载.war文件，然后将其扔到web容器中运行（比如tomcat）</li>
+</ol>
+<p><strong><em>建议采用第二种方式，将nexus.war放到web容器中运行 </em></strong></p>
+<p>nexus默认工作目录为：${user.home}/sonatype-work/nexus，如需设为其他目录，请到%CATALINA_HOME%/webapps/nexus/WEB_INF/plexus.properties中设置nexus-work值</p>
+<p>一切准备好了之后，输入<a href="http://localhost:8080/nexus看是否正常显示" target="_blank" rel="external">http://localhost:8080/nexus看是否正常显示</a></p>
+<p>点击右上角login，默认账户：admin/admin123</p>
+<p>默认情况下，nexus已经内置创建好了各种我们需要的repositories，这基本上已经够用了。</p>
+<h2 id="2-_为maven设置本地仓库">2. 为maven设置本地仓库</h2><p>打开{user.home}/.m2/settings.xml文件，在<mirrors>节点中添加一个<mirror>节点并设置相关值，<mirrorof>设置为*，其目的告诉maven在查找依赖的时候先从这个镜像地址查找，找不到才到外部仓库查找。<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">&lt;mirror&gt;</span></span><br><span class="line">     <span class="variable">&lt;id&gt;</span>nexus<span class="variable">&lt;/id&gt;</span><span class="variable">&lt;url&gt;</span>http://localhost:8080/nexus/content/groups/public/<span class="variable">&lt;/url&gt;</span></span><br><span class="line">     <span class="variable">&lt;mirrorOf&gt;</span><span class="keyword">*</span><span class="variable">&lt;/mirrorOf&gt;</span></span><br><span class="line"><span class="variable">&lt;/mirror&gt;</span></span><br></pre></td></tr></table></figure></mirrorof></mirror></mirrors></p>
+<p><strong>需要注意的是：</strong></p>
+<p>即使我们这里配置了本地仓库作为外部所有仓库的镜像，但是此时maven仍然还会去连接central（中央仓库），如果想要彻底阻止maven访问远程central仓库，我们还需要做如下配置：</p>
+<p><strong>在<code>&lt;profiles&gt;</code>节点下添加一个<code>&lt;profile&gt;</code>节点，并且在<code>&lt;activeProfiles&gt;</code>中激活这个profile</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">profile</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">repositories</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="title">repository</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="title">id</span>&gt;</span>central<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="title">url</span>&gt;</span>http://central<span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="title">releases</span>&gt;</span></span><br><span class="line">                              <span class="tag">&lt;<span class="title">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="title">enabled</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;/<span class="title">releases</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="title">snapshots</span>&gt;</span></span><br><span class="line">                              <span class="tag">&lt;<span class="title">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="title">enabled</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;/<span class="title">snapshots</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="title">repository</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;/<span class="title">repositories</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">pluginRepositories</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="title">pluginRepository</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="title">id</span>&gt;</span>central<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="title">url</span>&gt;</span>http://central<span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="title">releases</span>&gt;</span></span><br><span class="line">                              <span class="tag">&lt;<span class="title">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="title">enabled</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;/<span class="title">releases</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="title">snapshots</span>&gt;</span></span><br><span class="line">                              <span class="tag">&lt;<span class="title">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="title">enabled</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;/<span class="title">snapshots</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="title">pluginRepository</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;/<span class="title">pluginRepositories</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="title">profile</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="title">profiles</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="title">activeProfiles</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">activeProfile</span>&gt;</span>nexus<span class="tag">&lt;/<span class="title">activeProfile</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="title">activeProfiles</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这样maven就可以访问本地仓库来替代访问外部仓库了。</p>
+<p>实际上，本地仓库就是外部仓库的一个代理，maven首先在本地仓库中查找依赖，如果找不到，则由代理去外部地址访问查找需要的依赖并将其缓存在本地，这样以后就不用每次都到外部仓库中去下载依赖文件。</p>
+<p><strong><em>题外：</em></strong> maven不如gradle好用，如果条件允许的话，在新的项目或新的环境中，考虑用gradle吧，hibernate和spring框架都早已转投入gradle的怀抱了</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="1-_nexus的安装与配置">1. nexus的安装与配置</h2><p>搭建maven本地仓库私服可以使用多个不同的软件，本文讲述使用nexus来搭建maven私服。</p>
+<p>官方下载页: <a href="http://www.sonatype.org]]>
+    </summary>
+    
+      <category term="gradle" scheme="http://bafeimao.net/tags/gradle/"/>
+    
+      <category term="maven" scheme="http://bafeimao.net/tags/maven/"/>
+    
+      <category term="nexus" scheme="http://bafeimao.net/tags/nexus/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[CentOS下yum安装maven]]></title>
+    <link href="http://bafeimao.net/2012/10/30/install-maven-by-yum-on-centos/"/>
+    <id>http://bafeimao.net/2012/10/30/install-maven-by-yum-on-centos/</id>
+    <published>2012-10-30T12:28:49.000Z</published>
+    <updated>2015-10-31T10:36:31.000Z</updated>
+    <content type="html"><![CDATA[<p>在linux下安装maven，常见的方法是：下载压缩包，然后解压安装并设置环境变量等，比较繁琐，其实是可以使用yum快速安装的。</p>
+<p><strong>添加仓库</strong></p>
+<p>maven rpm包并不存在于yum主仓库，也不存在于EPEL库中，因此如果需要使用yum安装maven，必须先添加新的包含maven安装包的仓库地址</p>
+<blockquote>
+<p>wget <a href="http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo" target="_blank" rel="external">http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo</a> -O /etc/yum.repos.d/epel-apache-maven.repo</p>
+</blockquote>
+<p><strong>解释一下：</strong></p>
+<p><a href="http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo" target="_blank" rel="external">http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo</a> 的内容如下：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Place this file in your /etc/yum.repos.d/ directory</span></span><br><span class="line"><span class="title"></span><br><span class="line">[epel-apache-maven]</span></span><br><span class="line"><span class="setting">name=<span class="value">maven from apache foundation.</span></span></span><br><span class="line"><span class="setting">baseurl=<span class="value">http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-<span class="variable">$releasever</span>/<span class="variable">$basearch</span>/</span></span></span><br><span class="line"><span class="setting">enabled=<span class="value"><span class="number">1</span></span></span></span><br><span class="line"><span class="setting">skip_if_unavailable=<span class="value"><span class="number">1</span></span></span></span><br><span class="line"><span class="setting">gpgcheck=<span class="value"><span class="number">0</span></span></span></span><br><span class="line"><span class="title"></span><br><span class="line">[epel-apache-maven-source]</span></span><br><span class="line"><span class="setting">name=<span class="value">maven from apache foundation. - Source</span></span></span><br><span class="line"><span class="setting">baseurl=<span class="value">http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-<span class="variable">$releasever</span>/SRPMS</span></span></span><br><span class="line"><span class="setting">enabled=<span class="value"><span class="number">0</span></span></span></span><br><span class="line"><span class="setting">skip_if_unavailable=<span class="value"><span class="number">1</span></span></span></span><br><span class="line"><span class="setting">gpgcheck=<span class="value"><span class="number">0</span></span></span></span><br></pre></td></tr></table></figure>
+<p><strong>-O参数：</strong>表明将wget获取到的文本内容写到后面跟着的文件后面（因此，也可手动添加上述文件内容到/etc/yum.repos.d文件末尾）</p>
+<blockquote>
+<p>以上操作其实就是为yum添加一个新的repository地址</p>
+</blockquote>
+<p>现在就可以通过yum安装maven了，安装之前先搜索一下maven关键字</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum search maven</span></span><br><span class="line">apache-maven.noarch : Java <span class="keyword">project</span> management <span class="keyword">and</span> <span class="keyword">project</span> comprehension tool</span><br><span class="line"></span><br><span class="line"><span class="comment"># yum -y install apache-maven.noarch</span></span><br><span class="line"><span class="comment"># mvn --version</span></span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<p>在linux下安装maven，常见的方法是：下载压缩包，然后解压安装并设置环境变量等，比较繁琐，其实是可以使用yum快速安装的。</p>
+<p><strong>添加仓库</strong></p>
+<p>maven rpm包并不存在于yum主仓库，也不存在于EPEL库中，因此]]>
+    </summary>
+    
+      <category term="centos" scheme="http://bafeimao.net/tags/centos/"/>
+    
+      <category term="howto" scheme="http://bafeimao.net/tags/howto/"/>
+    
+      <category term="maven" scheme="http://bafeimao.net/tags/maven/"/>
+    
+      <category term="yum" scheme="http://bafeimao.net/tags/yum/"/>
     
   </entry>
   
