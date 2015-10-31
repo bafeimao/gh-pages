@@ -6,37 +6,43 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="巴菲猫学技术">
-    <title>在linux上搭建svn服务器 - 巴菲猫学技术</title>
+    <title>使用nexus搭建maven本地仓库 - 巴菲猫学技术</title>
     <meta name="author" content="巴菲猫(29283212@qq.com)">
     
     
         <link rel="alternative" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta name="description" content="创建svn仓库根目录在创建代码仓库之前，我们需要创建一个svn仓库根目录，以后所有的代码仓库都是在这个根目录下创建
-1$ mkdir ~/.svn
-创建仓库1$ svnadmin create ~/.svn/coconut
-成功创建后，会在coconut目录下生成一些文件：
-1$ cd ~/.svn/coconut
-12345678$ ls -ltotal 16-rw-r--r--   1 ktg">
+    <meta name="description" content="1. nexus的安装与配置搭建maven本地仓库私服可以使用多个不同的软件，本文讲述使用nexus来搭建maven私服。
+官方下载页: http://www.sonatype.org/nexus/go
+安装方式有两种：
+
+独立服务器方式运行，nexus内置netty， 
+下载.war文件，然后将其扔到web容器中运行（比如tomcat）
+
+建议采用第二种方式，将nexus.war放到web容器中">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="在linux上搭建svn服务器">
-<meta property="og:url" content="http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/index.html">
+<meta property="og:title" content="使用nexus搭建maven本地仓库">
+<meta property="og:url" content="http://bafeimao.net/2015/10/31/setup-maven-local-repository-proxy/index.html">
 <meta property="og:site_name" content="巴菲猫学技术">
-<meta property="og:description" content="创建svn仓库根目录在创建代码仓库之前，我们需要创建一个svn仓库根目录，以后所有的代码仓库都是在这个根目录下创建
-1$ mkdir ~/.svn
-创建仓库1$ svnadmin create ~/.svn/coconut
-成功创建后，会在coconut目录下生成一些文件：
-1$ cd ~/.svn/coconut
-12345678$ ls -ltotal 16-rw-r--r--   1 ktg">
-<meta property="og:updated_time" content="2015-10-17T04:37:16.000Z">
+<meta property="og:description" content="1. nexus的安装与配置搭建maven本地仓库私服可以使用多个不同的软件，本文讲述使用nexus来搭建maven私服。
+官方下载页: http://www.sonatype.org/nexus/go
+安装方式有两种：
+
+独立服务器方式运行，nexus内置netty， 
+下载.war文件，然后将其扔到web容器中运行（比如tomcat）
+
+建议采用第二种方式，将nexus.war放到web容器中">
+<meta property="og:updated_time" content="2015-10-31T10:15:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在linux上搭建svn服务器">
-<meta name="twitter:description" content="创建svn仓库根目录在创建代码仓库之前，我们需要创建一个svn仓库根目录，以后所有的代码仓库都是在这个根目录下创建
-1$ mkdir ~/.svn
-创建仓库1$ svnadmin create ~/.svn/coconut
-成功创建后，会在coconut目录下生成一些文件：
-1$ cd ~/.svn/coconut
-12345678$ ls -ltotal 16-rw-r--r--   1 ktg">
+<meta name="twitter:title" content="使用nexus搭建maven本地仓库">
+<meta name="twitter:description" content="1. nexus的安装与配置搭建maven本地仓库私服可以使用多个不同的软件，本文讲述使用nexus来搭建maven私服。
+官方下载页: http://www.sonatype.org/nexus/go
+安装方式有两种：
+
+独立服务器方式运行，nexus内置netty， 
+下载.war文件，然后将其扔到web容器中运行（比如tomcat）
+
+建议采用第二种方式，将nexus.war放到web容器中">
     
     
     
@@ -223,13 +229,13 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            在linux上搭建svn服务器
+            使用nexus搭建maven本地仓库
         </h1>
     
     <div class="post-meta">
-    <time itemprop="datePublished" content="Fri Feb 26 2010 08:40:53 GMT+0800">
+    <time itemprop="datePublished" content="Sat Oct 31 2015 18:14:43 GMT+0800">
 	
-		    2010年02月26日
+		    2015年10月31日
     	
     </time>
     
@@ -238,36 +244,26 @@
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <h3 id="创建svn仓库根目录">创建svn仓库根目录</h3><p>在创建代码仓库之前，我们需要创建一个svn仓库根目录，以后所有的代码仓库都是在这个根目录下创建</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>mkdir ~<span class="regexp">/.svn</span></span><br></pre></td></tr></table></figure>
-<h3 id="创建仓库">创建仓库</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>svnadmin create ~<span class="regexp">/.svn/coconut</span></span><br></pre></td></tr></table></figure>
-<p>成功创建后，会在coconut目录下生成一些文件：</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>cd ~<span class="regexp">/.svn/coconut</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ ls -l</span><br><span class="line">total <span class="number">16</span></span><br><span class="line">-rw-r--r--   <span class="number">1</span> ktgu  staff  <span class="number">229</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> README.txt</span><br><span class="line">drwxr-xr-x   <span class="number">5</span> ktgu  staff  <span class="number">170</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> conf</span><br><span class="line">drwxr-sr-x  <span class="number">15</span> ktgu  staff  <span class="number">510</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> db</span><br><span class="line">-r--r--r--   <span class="number">1</span> ktgu  staff    <span class="number">2</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> format</span><br><span class="line">drwxr-xr-x  <span class="number">11</span> ktgu  staff  <span class="number">374</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> hooks</span><br><span class="line">drwxr-xr-x   <span class="number">4</span> ktgu  staff  <span class="number">136</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> locks</span><br></pre></td></tr></table></figure>
-<h3 id="设置访问策略">设置访问策略</h3><p>进入conf目录，编辑svnserve.conf文件（移除行首<code>#</code>并顶格）<br><figure class="highlight fix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">password-db </span>=<span class="string"> passwd</span></span><br></pre></td></tr></table></figure></p>
-<p>你也许需要配置匿名用户的访问权限（移除行首<code>#</code>并顶格）</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">anon-access = <span class="command">read</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>如果你需要任何人都可以提交更改，则将read改为<code>write</code>，如果不希望匿名用户可以访问，则将read改为<code>none</code>。建议将改行改为<code>none</code></p>
-</blockquote>
-<p>另外，移除下面两行前面的<code>#</code>并顶格，以便设置用户以及访问权限等</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="setting">password-db = <span class="value">passwd</span></span></span><br><span class="line"><span class="setting">authz-db = <span class="value">authz</span></span></span><br></pre></td></tr></table></figure>
-<p>现在，打开passwd文件，配置用户</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> ...</span><br><span class="line">[users]</span><br><span class="line"><span class="constant">dev1</span> = aaa</span><br><span class="line"><span class="constant">dev2</span> = aaa</span><br></pre></td></tr></table></figure>
-<p>上面的配置表示：添加了两个用户dev1，dev2，密码都是aaa。</p>
-<p>配置authz，在[groups]下定义用户组，多个用户之间用逗号隔开</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">[groups]</span></span><br><span class="line"><span class="setting">dev = <span class="value">dev1,dev2</span></span></span><br></pre></td></tr></table></figure>
-<p>然后可以对版本库设置不同的访问权限</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr_selector">[/]</span></span><br><span class="line"><span class="at_rule">@<span class="keyword">dev=rm</span></span></span><br></pre></td></tr></table></figure>
-<p>以上表示：让<code>dev</code>用户组对版本库的所有路径都拥有读写（<code>rw</code>）权限</p>
-<h3 id="启动svn服务器">启动svn服务器</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>svnserve -d -r ~<span class="regexp">/.svn/</span></span><br></pre></td></tr></table></figure>
-<p>没有提示表示成功（Linux中没有提示就是最好的提示）</p>
-<h3 id="停止svn服务器">停止svn服务器</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>killall svnserve</span><br></pre></td></tr></table></figure>
-<h3 id="测试正常运行">测试正常运行</h3><p>如果以下命令可以正常运行，说明配置成功</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>svn checkout <span class="symbol">svn:</span>/<span class="regexp">/127.0.0.1/coconut</span><span class="regexp">/ ~/coconut</span></span><br></pre></td></tr></table></figure>
-<p>以上命令首次运行会提示输入用户名和密码（使用在passwd中配置的用户名和密码即可）</p>
-<p>或者可以在运行<code>svn checkout</code>命令时指定用户名和密码</p>
-<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$svn</span> checkout svn://<span class="number">127.0</span>.<span class="number">0</span>.<span class="number">1</span>/coconut --username=dev1 --password=aaa ~/coconut</span><br></pre></td></tr></table></figure>
+            <h2 id="1-_nexus的安装与配置">1. nexus的安装与配置</h2><p>搭建maven本地仓库私服可以使用多个不同的软件，本文讲述使用nexus来搭建maven私服。</p>
+<p>官方下载页: <a href="http://www.sonatype.org/nexus/go" target="_blank" rel="external">http://www.sonatype.org/nexus/go</a></p>
+<p>安装方式有两种：</p>
+<ol>
+<li>独立服务器方式运行，nexus内置netty， </li>
+<li>下载.war文件，然后将其扔到web容器中运行（比如tomcat）</li>
+</ol>
+<p><strong><em>建议采用第二种方式，将nexus.war放到web容器中运行 </em></strong></p>
+<p>nexus默认工作目录为：${user.home}/sonatype-work/nexus，如需设为其他目录，请到%CATALINA_HOME%/webapps/nexus/WEB_INF/plexus.properties中设置nexus-work值</p>
+<p>一切准备好了之后，输入<a href="http://localhost:8080/nexus看是否正常显示" target="_blank" rel="external">http://localhost:8080/nexus看是否正常显示</a></p>
+<p>点击右上角login，默认账户：admin/admin123</p>
+<p>默认情况下，nexus已经内置创建好了各种我们需要的repositories，这基本上已经够用了。</p>
+<h2 id="2-_为maven设置本地仓库">2. 为maven设置本地仓库</h2><p>打开{user.home}/.m2/settings.xml文件，在<mirrors>节点中添加一个<mirror>节点并设置相关值，<mirrorof>设置为*，其目的告诉maven在查找依赖的时候先从这个镜像地址查找，找不到才到外部仓库查找。<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">&lt;mirror&gt;</span></span><br><span class="line">     <span class="variable">&lt;id&gt;</span>nexus<span class="variable">&lt;/id&gt;</span><span class="variable">&lt;url&gt;</span>http://localhost:8080/nexus/content/groups/public/<span class="variable">&lt;/url&gt;</span></span><br><span class="line">     <span class="variable">&lt;mirrorOf&gt;</span><span class="keyword">*</span><span class="variable">&lt;/mirrorOf&gt;</span></span><br><span class="line"><span class="variable">&lt;/mirror&gt;</span></span><br></pre></td></tr></table></figure></mirrorof></mirror></mirrors></p>
+<p><strong>需要注意的是：</strong></p>
+<p>即使我们这里配置了本地仓库作为外部所有仓库的镜像，但是此时maven仍然还会去连接central（中央仓库），如果想要彻底阻止maven访问远程central仓库，我们还需要做如下配置：</p>
+<p><strong>在<code>&lt;profiles&gt;</code>节点下添加一个<code>&lt;profile&gt;</code>节点，并且在<code>&lt;activeProfiles&gt;</code>中激活这个profile</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">profile</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">repositories</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="title">repository</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="title">id</span>&gt;</span>central<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="title">url</span>&gt;</span>http://central<span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="title">releases</span>&gt;</span></span><br><span class="line">                              <span class="tag">&lt;<span class="title">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="title">enabled</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;/<span class="title">releases</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="title">snapshots</span>&gt;</span></span><br><span class="line">                              <span class="tag">&lt;<span class="title">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="title">enabled</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;/<span class="title">snapshots</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="title">repository</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;/<span class="title">repositories</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">pluginRepositories</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="title">pluginRepository</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="title">id</span>&gt;</span>central<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="title">url</span>&gt;</span>http://central<span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="title">releases</span>&gt;</span></span><br><span class="line">                              <span class="tag">&lt;<span class="title">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="title">enabled</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;/<span class="title">releases</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;<span class="title">snapshots</span>&gt;</span></span><br><span class="line">                              <span class="tag">&lt;<span class="title">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="title">enabled</span>&gt;</span></span><br><span class="line">                         <span class="tag">&lt;/<span class="title">snapshots</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="title">pluginRepository</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;/<span class="title">pluginRepositories</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="title">profile</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="title">profiles</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="title">activeProfiles</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">activeProfile</span>&gt;</span>nexus<span class="tag">&lt;/<span class="title">activeProfile</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="title">activeProfiles</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这样maven就可以访问本地仓库来替代访问外部仓库了。</p>
+<p>实际上，本地仓库就是外部仓库的一个代理，maven首先在本地仓库中查找依赖，如果找不到，则由代理去外部地址访问查找需要的依赖并将其缓存在本地，这样以后就不用每次都到外部仓库中去下载依赖文件。</p>
+<p><strong><em>题外：</em></strong> maven不如gradle好用，如果条件允许的话，在新的项目或新的环境中，考虑用gradle吧，hibernate和spring框架都早已转投入gradle的怀抱了</p>
 
             
                 
@@ -289,7 +285,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">标签</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/linux/">linux</a> <a class="tag tag--primary tag--small t-link" href="/tags/svn/">svn</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/gradle/">gradle</a> <a class="tag tag--primary tag--small t-link" href="/tags/maven/">maven</a> <a class="tag tag--primary tag--small t-link" href="/tags/nexus/">nexus</a>
 
             </div>
         
@@ -298,7 +294,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2010/05/25/tomcat-oom-permgen-solution/"  data-tooltip="Tomcat发生OutOfMemoryError: PermGen space的解决方案">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/10/31/install-maven-by-yum-on-centos/"  data-tooltip="CentOS下yum安装maven">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -306,7 +302,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2009/04/16/xpath-in-detail/" data-tooltip="XPath详解">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2013/06/17/generate-unique-id-in-distributed-system/" data-tooltip="游戏服务器中的ID生成策略">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -321,17 +317,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.net/2015/10/31/setup-maven-local-repository-proxy/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.net/2015/10/31/setup-maven-local-repository-proxy/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.net/2015/10/31/setup-maven-local-repository-proxy/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -355,7 +351,7 @@
 
         
         
-            <div class="ds-thread" data-thread-key="post-setup-svn-server-on-linux" data-title="在linux上搭建svn服务器" data-url="http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/"></div>
+            <div class="ds-thread" data-thread-key="post-setup-maven-local-repository-proxy" data-title="使用nexus搭建maven本地仓库" data-url="http://bafeimao.net/2015/10/31/setup-maven-local-repository-proxy/"></div>
 
         
     </div>
@@ -377,7 +373,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2010/05/25/tomcat-oom-permgen-solution/"  data-tooltip="Tomcat发生OutOfMemoryError: PermGen space的解决方案">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/10/31/install-maven-by-yum-on-centos/"  data-tooltip="CentOS下yum安装maven">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -385,7 +381,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2009/04/16/xpath-in-detail/" data-tooltip="XPath详解">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2013/06/17/generate-unique-id-in-distributed-system/" data-tooltip="游戏服务器中的ID生成策略">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -400,17 +396,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.net/2015/10/31/setup-maven-local-repository-proxy/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.net/2015/10/31/setup-maven-local-repository-proxy/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.net/2015/10/31/setup-maven-local-repository-proxy/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -436,17 +432,17 @@
                 <div id="share-options-bar" class="share-options-bar" data-behavior="3">
     <ul class="share-options">
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://bafeimao.net/2015/10/31/setup-maven-local-repository-proxy/">
                 <i class="fa fa-google-plus"></i><span class="">分享到Google+</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.net/2015/10/31/setup-maven-local-repository-proxy/">
                 <i class="fa fa-facebook-official"></i><span>分享到Facebook</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.net/2015/10/31/setup-maven-local-repository-proxy/">
                 <i class="fa fa-twitter"></i><span>分享到Twitter</span>
             </a>
         </li>

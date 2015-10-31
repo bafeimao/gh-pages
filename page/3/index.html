@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="巴菲猫学技术">
-    <title>Tag : troubleshooting - 巴菲猫学技术</title>
+    <title>巴菲猫学技术</title>
     <meta name="author" content="巴菲猫(29283212@qq.com)">
     
     
@@ -15,7 +15,7 @@
     <meta name="description" content="巴菲猫技术博客">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="巴菲猫学技术">
-<meta property="og:url" content="http://bafeimao.net/tags/troubleshooting/index.html">
+<meta property="og:url" content="http://bafeimao.net/page/3/index.html">
 <meta property="og:site_name" content="巴菲猫学技术">
 <meta property="og:description" content="巴菲猫技术博客">
 <meta name="twitter:card" content="summary">
@@ -201,7 +201,6 @@
                         hasCoverMetaIn
                         ">
                 
-    
 <section class="postShorten-group main-content-wrap">
     
         
@@ -212,35 +211,29 @@
                 <div class="postShorten-header">
                     <h1 class="postShorten-title" itemprop="headline">
                         
-                                <a class="link-unstyled" href="/2010/05/25/tomcat-oom-permgen-solution/">Tomcat发生OutOfMemoryError: PermGen space的解决方案</a>
+                                <a class="link-unstyled" href="/2007/06/18/howto-config-mysql-replication/">如何配置mysql主从复制</a>
                         
                     </h1>
                     <div class="postShorten-meta">
-    <time itemprop="datePublished" content="Tue May 25 2010 22:59:35 GMT+0800">
+    <time itemprop="datePublished" content="Mon Jun 18 2007 13:19:24 GMT+0800">
 	
-		    2010年05月25日
+		    2007年06月18日
     	
     </time>
-    
-        <span>in </span>
-        
-    <a class="category-link" href="/categories/aaa/">aaa</a>
-
-
     
 </div>
                 </div>
                 <div class="postShorten-excerpt" itemprop="articleBody">
                     
                         <p>
-                            产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值
-1set CATALINA_OPTS = -XX:PermSize=128m -XX:MaxPermSize=512m
-如果是堆栈溢出,则需要提高xms的值
-1set CATALINA_OPTS = -Xms128m -Xmx1024m -XX:PermSize=128m <br>
+                            创建用于连接master的账户
+12mysql&gt; create user replica identified by 'replica';Query OK, 0 rows affected (0.00 sec)
+在master上，为replica用户添加足够的权限
+1mysql&gt;GRANT REPLICATION SLAVE, RELOAD, SUPER, CREATE USER ON<br>
                     
                     
                         
-                            <a href="/2010/05/25/tomcat-oom-permgen-solution/" class="postShorten-excerpt_link link ">阅读全文</a>
+                            <a href="/2007/06/18/howto-config-mysql-replication/" class="postShorten-excerpt_link link ">阅读全文</a>
                             
                         
                     
@@ -255,8 +248,17 @@
     <div class="pagination-bar">
     <ul class="pagination">
         
+        <li class="pagination-prev">
+            
+                <a class="btn btn--default btn--small" href="/page/2/">
+            
+                <i class="fa fa-angle-left text-base icon-mr"></i>
+                    <span>NEWER POSTS</span>
+            </a>
+        </li>
         
-        <li class="pagination-number">  1 / 1</li>
+        
+        <li class="pagination-number">  3 / 3</li>
     </ul>
 </div>
 

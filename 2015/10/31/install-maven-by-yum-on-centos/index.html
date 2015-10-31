@@ -6,37 +6,34 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="巴菲猫学技术">
-    <title>在linux上搭建svn服务器 - 巴菲猫学技术</title>
+    <title>CentOS下yum安装maven - 巴菲猫学技术</title>
     <meta name="author" content="巴菲猫(29283212@qq.com)">
     
     
         <link rel="alternative" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta name="description" content="创建svn仓库根目录在创建代码仓库之前，我们需要创建一个svn仓库根目录，以后所有的代码仓库都是在这个根目录下创建
-1$ mkdir ~/.svn
-创建仓库1$ svnadmin create ~/.svn/coconut
-成功创建后，会在coconut目录下生成一些文件：
-1$ cd ~/.svn/coconut
-12345678$ ls -ltotal 16-rw-r--r--   1 ktg">
+    <meta name="description" content="在linux下安装maven，常见的方法是：下载压缩包，然后解压安装并设置环境变量等，比较繁琐，其实是可以使用yum快速安装的。
+添加仓库
+maven rpm包并不存在于yum主仓库，也不存在于EPEL库中，因此如果需要使用yum安装maven，必须先添加新的包含maven安装包的仓库地址
+
+wget http://repos.fedorapeople.org/repos/dchen/apache">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="在linux上搭建svn服务器">
-<meta property="og:url" content="http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/index.html">
+<meta property="og:title" content="CentOS下yum安装maven">
+<meta property="og:url" content="http://bafeimao.net/2015/10/31/install-maven-by-yum-on-centos/index.html">
 <meta property="og:site_name" content="巴菲猫学技术">
-<meta property="og:description" content="创建svn仓库根目录在创建代码仓库之前，我们需要创建一个svn仓库根目录，以后所有的代码仓库都是在这个根目录下创建
-1$ mkdir ~/.svn
-创建仓库1$ svnadmin create ~/.svn/coconut
-成功创建后，会在coconut目录下生成一些文件：
-1$ cd ~/.svn/coconut
-12345678$ ls -ltotal 16-rw-r--r--   1 ktg">
-<meta property="og:updated_time" content="2015-10-17T04:37:16.000Z">
+<meta property="og:description" content="在linux下安装maven，常见的方法是：下载压缩包，然后解压安装并设置环境变量等，比较繁琐，其实是可以使用yum快速安装的。
+添加仓库
+maven rpm包并不存在于yum主仓库，也不存在于EPEL库中，因此如果需要使用yum安装maven，必须先添加新的包含maven安装包的仓库地址
+
+wget http://repos.fedorapeople.org/repos/dchen/apache">
+<meta property="og:updated_time" content="2015-10-31T10:34:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在linux上搭建svn服务器">
-<meta name="twitter:description" content="创建svn仓库根目录在创建代码仓库之前，我们需要创建一个svn仓库根目录，以后所有的代码仓库都是在这个根目录下创建
-1$ mkdir ~/.svn
-创建仓库1$ svnadmin create ~/.svn/coconut
-成功创建后，会在coconut目录下生成一些文件：
-1$ cd ~/.svn/coconut
-12345678$ ls -ltotal 16-rw-r--r--   1 ktg">
+<meta name="twitter:title" content="CentOS下yum安装maven">
+<meta name="twitter:description" content="在linux下安装maven，常见的方法是：下载压缩包，然后解压安装并设置环境变量等，比较繁琐，其实是可以使用yum快速安装的。
+添加仓库
+maven rpm包并不存在于yum主仓库，也不存在于EPEL库中，因此如果需要使用yum安装maven，必须先添加新的包含maven安装包的仓库地址
+
+wget http://repos.fedorapeople.org/repos/dchen/apache">
     
     
     
@@ -223,13 +220,13 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            在linux上搭建svn服务器
+            CentOS下yum安装maven
         </h1>
     
     <div class="post-meta">
-    <time itemprop="datePublished" content="Fri Feb 26 2010 08:40:53 GMT+0800">
+    <time itemprop="datePublished" content="Sat Oct 31 2015 18:28:49 GMT+0800">
 	
-		    2010年02月26日
+		    2015年10月31日
     	
     </time>
     
@@ -238,37 +235,21 @@
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <h3 id="创建svn仓库根目录">创建svn仓库根目录</h3><p>在创建代码仓库之前，我们需要创建一个svn仓库根目录，以后所有的代码仓库都是在这个根目录下创建</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>mkdir ~<span class="regexp">/.svn</span></span><br></pre></td></tr></table></figure>
-<h3 id="创建仓库">创建仓库</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>svnadmin create ~<span class="regexp">/.svn/coconut</span></span><br></pre></td></tr></table></figure>
-<p>成功创建后，会在coconut目录下生成一些文件：</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>cd ~<span class="regexp">/.svn/coconut</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ ls -l</span><br><span class="line">total <span class="number">16</span></span><br><span class="line">-rw-r--r--   <span class="number">1</span> ktgu  staff  <span class="number">229</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> README.txt</span><br><span class="line">drwxr-xr-x   <span class="number">5</span> ktgu  staff  <span class="number">170</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> conf</span><br><span class="line">drwxr-sr-x  <span class="number">15</span> ktgu  staff  <span class="number">510</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> db</span><br><span class="line">-r--r--r--   <span class="number">1</span> ktgu  staff    <span class="number">2</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> format</span><br><span class="line">drwxr-xr-x  <span class="number">11</span> ktgu  staff  <span class="number">374</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> hooks</span><br><span class="line">drwxr-xr-x   <span class="number">4</span> ktgu  staff  <span class="number">136</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> locks</span><br></pre></td></tr></table></figure>
-<h3 id="设置访问策略">设置访问策略</h3><p>进入conf目录，编辑svnserve.conf文件（移除行首<code>#</code>并顶格）<br><figure class="highlight fix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">password-db </span>=<span class="string"> passwd</span></span><br></pre></td></tr></table></figure></p>
-<p>你也许需要配置匿名用户的访问权限（移除行首<code>#</code>并顶格）</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">anon-access = <span class="command">read</span></span><br></pre></td></tr></table></figure>
+            <p>在linux下安装maven，常见的方法是：下载压缩包，然后解压安装并设置环境变量等，比较繁琐，其实是可以使用yum快速安装的。</p>
+<p><strong>添加仓库</strong></p>
+<p>maven rpm包并不存在于yum主仓库，也不存在于EPEL库中，因此如果需要使用yum安装maven，必须先添加新的包含maven安装包的仓库地址</p>
 <blockquote>
-<p>如果你需要任何人都可以提交更改，则将read改为<code>write</code>，如果不希望匿名用户可以访问，则将read改为<code>none</code>。建议将改行改为<code>none</code></p>
+<p>wget <a href="http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo" target="_blank" rel="external">http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo</a> -O /etc/yum.repos.d/epel-apache-maven.repo</p>
 </blockquote>
-<p>另外，移除下面两行前面的<code>#</code>并顶格，以便设置用户以及访问权限等</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="setting">password-db = <span class="value">passwd</span></span></span><br><span class="line"><span class="setting">authz-db = <span class="value">authz</span></span></span><br></pre></td></tr></table></figure>
-<p>现在，打开passwd文件，配置用户</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> ...</span><br><span class="line">[users]</span><br><span class="line"><span class="constant">dev1</span> = aaa</span><br><span class="line"><span class="constant">dev2</span> = aaa</span><br></pre></td></tr></table></figure>
-<p>上面的配置表示：添加了两个用户dev1，dev2，密码都是aaa。</p>
-<p>配置authz，在[groups]下定义用户组，多个用户之间用逗号隔开</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">[groups]</span></span><br><span class="line"><span class="setting">dev = <span class="value">dev1,dev2</span></span></span><br></pre></td></tr></table></figure>
-<p>然后可以对版本库设置不同的访问权限</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr_selector">[/]</span></span><br><span class="line"><span class="at_rule">@<span class="keyword">dev=rm</span></span></span><br></pre></td></tr></table></figure>
-<p>以上表示：让<code>dev</code>用户组对版本库的所有路径都拥有读写（<code>rw</code>）权限</p>
-<h3 id="启动svn服务器">启动svn服务器</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>svnserve -d -r ~<span class="regexp">/.svn/</span></span><br></pre></td></tr></table></figure>
-<p>没有提示表示成功（Linux中没有提示就是最好的提示）</p>
-<h3 id="停止svn服务器">停止svn服务器</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>killall svnserve</span><br></pre></td></tr></table></figure>
-<h3 id="测试正常运行">测试正常运行</h3><p>如果以下命令可以正常运行，说明配置成功</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>svn checkout <span class="symbol">svn:</span>/<span class="regexp">/127.0.0.1/coconut</span><span class="regexp">/ ~/coconut</span></span><br></pre></td></tr></table></figure>
-<p>以上命令首次运行会提示输入用户名和密码（使用在passwd中配置的用户名和密码即可）</p>
-<p>或者可以在运行<code>svn checkout</code>命令时指定用户名和密码</p>
-<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$svn</span> checkout svn://<span class="number">127.0</span>.<span class="number">0</span>.<span class="number">1</span>/coconut --username=dev1 --password=aaa ~/coconut</span><br></pre></td></tr></table></figure>
-
+<p><strong>解释一下：</strong></p>
+<p><a href="http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo" target="_blank" rel="external">http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo</a> 的内容如下：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Place this file in your /etc/yum.repos.d/ directory</span></span><br><span class="line"><span class="title"></span><br><span class="line">[epel-apache-maven]</span></span><br><span class="line"><span class="setting">name=<span class="value">maven from apache foundation.</span></span></span><br><span class="line"><span class="setting">baseurl=<span class="value">http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-<span class="variable">$releasever</span>/<span class="variable">$basearch</span>/</span></span></span><br><span class="line"><span class="setting">enabled=<span class="value"><span class="number">1</span></span></span></span><br><span class="line"><span class="setting">skip_if_unavailable=<span class="value"><span class="number">1</span></span></span></span><br><span class="line"><span class="setting">gpgcheck=<span class="value"><span class="number">0</span></span></span></span><br><span class="line"><span class="title"></span><br><span class="line">[epel-apache-maven-source]</span></span><br><span class="line"><span class="setting">name=<span class="value">maven from apache foundation. - Source</span></span></span><br><span class="line"><span class="setting">baseurl=<span class="value">http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-<span class="variable">$releasever</span>/SRPMS</span></span></span><br><span class="line"><span class="setting">enabled=<span class="value"><span class="number">0</span></span></span></span><br><span class="line"><span class="setting">skip_if_unavailable=<span class="value"><span class="number">1</span></span></span></span><br><span class="line"><span class="setting">gpgcheck=<span class="value"><span class="number">0</span></span></span></span><br></pre></td></tr></table></figure>
+<p><strong>-O参数：</strong>表明将wget获取到的文本内容写到后面跟着的文件后面（因此，也可手动添加上述文件内容到/etc/yum.repos.d文件末尾）</p>
+<blockquote>
+<p>以上操作其实就是为yum添加一个新的repository地址</p>
+</blockquote>
+<p>现在就可以通过yum安装maven了，安装之前先搜索一下maven关键字</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum search maven</span></span><br><span class="line">apache-maven.noarch : Java <span class="keyword">project</span> management <span class="keyword">and</span> <span class="keyword">project</span> comprehension tool</span><br><span class="line"></span><br><span class="line"><span class="comment"># yum -y install apache-maven.noarch</span></span><br><span class="line"><span class="comment"># mvn --version</span></span><br></pre></td></tr></table></figure>
             
                 
 
@@ -289,7 +270,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">标签</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/linux/">linux</a> <a class="tag tag--primary tag--small t-link" href="/tags/svn/">svn</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/centos/">centos</a> <a class="tag tag--primary tag--small t-link" href="/tags/howto/">howto</a> <a class="tag tag--primary tag--small t-link" href="/tags/maven/">maven</a> <a class="tag tag--primary tag--small t-link" href="/tags/yum/">yum</a>
 
             </div>
         
@@ -298,7 +279,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2010/05/25/tomcat-oom-permgen-solution/"  data-tooltip="Tomcat发生OutOfMemoryError: PermGen space的解决方案">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -306,7 +287,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2009/04/16/xpath-in-detail/" data-tooltip="XPath详解">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/10/31/setup-maven-local-repository-proxy/" data-tooltip="使用nexus搭建maven本地仓库">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -321,17 +302,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.net/2015/10/31/install-maven-by-yum-on-centos/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.net/2015/10/31/install-maven-by-yum-on-centos/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.net/2015/10/31/install-maven-by-yum-on-centos/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -355,7 +336,7 @@
 
         
         
-            <div class="ds-thread" data-thread-key="post-setup-svn-server-on-linux" data-title="在linux上搭建svn服务器" data-url="http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/"></div>
+            <div class="ds-thread" data-thread-key="post-install-maven-by-yum-on-centos" data-title="CentOS下yum安装maven" data-url="http://bafeimao.net/2015/10/31/install-maven-by-yum-on-centos/"></div>
 
         
     </div>
@@ -377,7 +358,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2010/05/25/tomcat-oom-permgen-solution/"  data-tooltip="Tomcat发生OutOfMemoryError: PermGen space的解决方案">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -385,7 +366,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2009/04/16/xpath-in-detail/" data-tooltip="XPath详解">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/10/31/setup-maven-local-repository-proxy/" data-tooltip="使用nexus搭建maven本地仓库">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -400,17 +381,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.net/2015/10/31/install-maven-by-yum-on-centos/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.net/2015/10/31/install-maven-by-yum-on-centos/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.net/2015/10/31/install-maven-by-yum-on-centos/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -436,17 +417,17 @@
                 <div id="share-options-bar" class="share-options-bar" data-behavior="3">
     <ul class="share-options">
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://bafeimao.net/2015/10/31/install-maven-by-yum-on-centos/">
                 <i class="fa fa-google-plus"></i><span class="">分享到Google+</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.net/2015/10/31/install-maven-by-yum-on-centos/">
                 <i class="fa fa-facebook-official"></i><span>分享到Facebook</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.net/2015/10/31/install-maven-by-yum-on-centos/">
                 <i class="fa fa-twitter"></i><span>分享到Twitter</span>
             </a>
         </li>

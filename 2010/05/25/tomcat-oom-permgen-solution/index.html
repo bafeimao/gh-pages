@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="巴菲猫学技术">
-    <title>Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案 - 巴菲猫学技术</title>
+    <title>Tomcat发生OutOfMemoryError: PermGen space的解决方案 - 巴菲猫学技术</title>
     <meta name="author" content="巴菲猫(29283212@qq.com)">
     
     
@@ -17,16 +17,16 @@
 如果是堆栈溢出,则需要提高xms的值
 1set CATALINA_OPTS = -Xms128m -Xmx1024m -XX:PermSize=128m">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案">
+<meta property="og:title" content="Tomcat发生OutOfMemoryError: PermGen space的解决方案">
 <meta property="og:url" content="http://bafeimao.net/2010/05/25/tomcat-oom-permgen-solution/index.html">
 <meta property="og:site_name" content="巴菲猫学技术">
 <meta property="og:description" content="产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值
 1set CATALINA_OPTS = -XX:PermSize=128m -XX:MaxPermSize=512m
 如果是堆栈溢出,则需要提高xms的值
 1set CATALINA_OPTS = -Xms128m -Xmx1024m -XX:PermSize=128m">
-<meta property="og:updated_time" content="2015-10-18T06:10:15.000Z">
+<meta property="og:updated_time" content="2015-10-31T09:30:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案">
+<meta name="twitter:title" content="Tomcat发生OutOfMemoryError: PermGen space的解决方案">
 <meta name="twitter:description" content="产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值
 1set CATALINA_OPTS = -XX:PermSize=128m -XX:MaxPermSize=512m
 如果是堆栈溢出,则需要提高xms的值
@@ -217,7 +217,7 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案
+            Tomcat发生OutOfMemoryError: PermGen space的解决方案
         </h1>
     
     <div class="post-meta">
@@ -334,7 +334,7 @@
 
         
         
-            <div class="ds-thread" data-thread-key="post-tomcat-oom-permgen-solution" data-title="Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案" data-url="http://bafeimao.net/2010/05/25/tomcat-oom-permgen-solution/"></div>
+            <div class="ds-thread" data-thread-key="post-tomcat-oom-permgen-solution" data-title="Tomcat发生OutOfMemoryError: PermGen space的解决方案" data-url="http://bafeimao.net/2010/05/25/tomcat-oom-permgen-solution/"></div>
 
         
     </div>
