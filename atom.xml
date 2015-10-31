@@ -103,7 +103,7 @@
     <link href="http://bafeimao.net/2012/11/17/data-interactive-in-game/"/>
     <id>http://bafeimao.net/2012/11/17/data-interactive-in-game/</id>
     <published>2012-11-17T01:49:33.000Z</published>
-    <updated>2015-10-31T06:30:09.000Z</updated>
+    <updated>2015-10-31T08:14:36.000Z</updated>
     <content type="html"><![CDATA[<p>设计网络游戏，首先要面对的就是考虑如何实现客户端与服务端的数据交互。</p>
 <p>这大体会涉及到两个方面的内容：</p>
 <ol>
@@ -149,16 +149,13 @@
 <li>代码自动生成</li>
 </ul>
 <p>如此多的特性正适合在游戏应用！！！</p>
-<p>####题外：</p>
-<p>使用protobuf还有有另外一个好处，它自带提供对RPC的支持，这方便了内部系统之间的远程调用，但是遗憾的是之前并没有提供RPC的实现，这需要我们自己实现。这一点不像它的对手Thrift提供的全套的RPC解决方案。</p>
+<h4 id="题外：">题外：</h4><p>使用protobuf还有有另外一个好处，它自带提供对RPC的支持，这方便了内部系统之间的远程调用，但是遗憾的是之前并没有提供RPC的实现，这需要我们自己实现。这一点不像它的对手Thrift提供的全套的RPC解决方案。</p>
 <blockquote>
 <p>自行实现基于Protobuf的RPC也不是很难的事，github上又很多基于Mina，Netty或ZeroMQ的实现，有兴趣可以自行去搜索。</p>
 </blockquote>
 <p>幸运的是，Google最近开源了基于HTTP/2和ProtoBuf的通用RPC框架的gRPC，</p>
-<blockquote>
 <p>请参见<a href="http://www.infoq.com/cn/news/2015/03/grpc-google-http2-protobuf" target="_blank" rel="external">这篇文章</a>中对gRPC的描述</p>
 <p>gRPC的代码托管在Github上：<a href="https://github.com/grpc/grpc" target="_blank" rel="external">https://github.com/grpc/grpc</a></p>
-</blockquote>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>设计网络游戏，首先要面对的就是考虑如何实现客户端与服务端的数据交互。</p>
@@ -189,7 +186,7 @@
     <link href="http://bafeimao.net/2012/10/17/vim-the-most-common-commands/"/>
     <id>http://bafeimao.net/2012/10/17/vim-the-most-common-commands/</id>
     <published>2012-10-17T03:50:53.000Z</published>
-    <updated>2015-10-17T03:57:39.000Z</updated>
+    <updated>2015-10-31T08:13:29.000Z</updated>
     <content type="html"><![CDATA[<h3 id="模式切换">模式切换</h3><p>按下<code>i, I, o, O, a, A, r, R</code>从<code>一般模式</code>进入<code>编辑模式</code>，按<code>ESC</code>从<code>编辑模式</code>退出到<code>一般模式</code></p>
 <h3 id="删除操作">删除操作</h3><p><code>dw</code>    ：从光标开始删除到下一个单词的开头<br><code>d2w</code>   ：删除两个单词（到第三个单词的开头）<br><code>de</code>    :   从光标处开始删除到当前单词结尾<br><code>d2e</code>   :   从光标出开始删除到第2个单词结尾<br><code>d$</code>    :   从光标位置删除到行尾<br><code>d0</code>    :   删除行首到光标处内容<br><code>dd</code>    :   删除整行<br><code>2dd</code>   :   删除两行<br><code>d1G,dgg</code>   :   删除第一行到光标行（光标所在行也被删除）<br><code>dG</code>    :   删除光标所在行到最后一行的所有行<br><code>dj</code>    :   删除当前光标所在行以及下一行（<code>j</code>换成<code>k</code>表示删除上一行）<br><code>d2j</code>   :   删除当前行及随后的2行</p>
 <p><code>x</code>     :   向后删除一个字符，相当于DELETE)<br><code>X</code>     :   向前删除一个字符，相当于Backspace<br><code>nx，nX</code>     :   连续向后，向前删除n个字符</p>
@@ -207,9 +204,6 @@
 <p><code>:wq</code>       ：   存盘并退出<br><code>:q</code>        ：       退出<br><code>:q!</code>       ：       强制退出不存盘<br><code>ZZ</code>        ：       如果修改了就存盘退出，如果没修改就退出不存盘<br><code>:w</code>        ：       另存为<br><code>:r</code>        ：       读另外一个文件，附加到当前文件的末尾<br><code>1,5 w file2</code>   ：       将第1到5行存到file2文件中<br><code>:e!</code>   ：       恢复成文件的原始状态<br><code>:! &lt;command&gt;</code>  ：   暂时离开，并执行<command>,例如：:! ls</p>
 <h3 id="其他操作">其他操作</h3><p><code>u</code>     ：取消最后一个命令，<br><code>U</code>     ：取消整行上的所有操作<br><code>ctrl+r</code>    ：取消undo操作</p>
 <p><code>.</code> :   小数点，重复前面的动作<br><code>:set nu</code>     显示行号<br><code>:set nonu</code>     不显示行号</p>
-<blockquote>
-<p><strong>版权声明:</strong> 本博客所有文章未经特别说明，均采用“署名-非商业性使用-禁止演绎 2.5 中国大陆”授权，欢迎转载，转载时务请注明出处，请尊重作者劳动成果。<br><a href="http://creativecommons.org/licenses/by-nc-nd/3.0/cn/" target="_blank" rel="external"><img src="http://i.creativecommons.org/l/by-nc-nd/2.5/cn/88x31.png&quot;署名-非商业性使用-禁止演绎&quot;" alt="署名-非商业性使用-禁止演绎"></a></p>
-</blockquote>
 ]]></content>
     <summary type="html">
     <![CDATA[<h3 id="模式切换">模式切换</h3><p>按下<code>i, I, o, O, a, A, r, R</code>从<code>一般模式</code>进入<code>编辑模式</code>，按<code>ESC</code>从<code>编辑模式</code>退出到<]]>

@@ -40,7 +40,7 @@
 
 大体上，弱交互的游戏使用HTTP，强交互实时性较强的游戏使用TCP。
 但这依赖于">
-<meta property="og:updated_time" content="2015-10-31T06:30:09.000Z">
+<meta property="og:updated_time" content="2015-10-31T08:14:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络游戏中的数据交互">
 <meta name="twitter:description" content="设计网络游戏，首先要面对的就是考虑如何实现客户端与服务端的数据交互。
@@ -301,16 +301,13 @@
 <li>代码自动生成</li>
 </ul>
 <p>如此多的特性正适合在游戏应用！！！</p>
-<p>####题外：</p>
-<p>使用protobuf还有有另外一个好处，它自带提供对RPC的支持，这方便了内部系统之间的远程调用，但是遗憾的是之前并没有提供RPC的实现，这需要我们自己实现。这一点不像它的对手Thrift提供的全套的RPC解决方案。</p>
+<h4 id="题外：">题外：</h4><p>使用protobuf还有有另外一个好处，它自带提供对RPC的支持，这方便了内部系统之间的远程调用，但是遗憾的是之前并没有提供RPC的实现，这需要我们自己实现。这一点不像它的对手Thrift提供的全套的RPC解决方案。</p>
 <blockquote>
 <p>自行实现基于Protobuf的RPC也不是很难的事，github上又很多基于Mina，Netty或ZeroMQ的实现，有兴趣可以自行去搜索。</p>
 </blockquote>
 <p>幸运的是，Google最近开源了基于HTTP/2和ProtoBuf的通用RPC框架的gRPC，</p>
-<blockquote>
 <p>请参见<a href="http://www.infoq.com/cn/news/2015/03/grpc-google-http2-protobuf" target="_blank" rel="external">这篇文章</a>中对gRPC的描述</p>
 <p>gRPC的代码托管在Github上：<a href="https://github.com/grpc/grpc" target="_blank" rel="external">https://github.com/grpc/grpc</a></p>
-</blockquote>
 
             
                 
