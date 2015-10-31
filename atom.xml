@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title><![CDATA[巴菲猫的技术博客]]></title>
+  <title><![CDATA[巴菲猫学技术]]></title>
   <subtitle><![CDATA[苹果越分越少，知识越分越多！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
-  <link href="http://www.bafeimao.net/"/>
+  <link href="http://bafeimao.net/"/>
   <updated>2015-10-17T23:58:54.000Z</updated>
-  <id>http://www.bafeimao.net/</id>
+  <id>http://bafeimao.net/</id>
   
   <author>
     <name><![CDATA[巴菲猫(29283212@qq.com)]]></name>
@@ -16,8 +16,8 @@
   
   <entry>
     <title><![CDATA[游戏服务器中的ID生成策略]]></title>
-    <link href="http://www.bafeimao.net/2013/06/17/generate-unique-id-in-distributed-system/"/>
-    <id>http://www.bafeimao.net/2013/06/17/generate-unique-id-in-distributed-system/</id>
+    <link href="http://bafeimao.net/2013/06/17/generate-unique-id-in-distributed-system/"/>
+    <id>http://bafeimao.net/2013/06/17/generate-unique-id-in-distributed-system/</id>
     <published>2013-06-17T11:45:37.000Z</published>
     <updated>2015-10-17T23:58:54.000Z</updated>
     <content type="html"><![CDATA[<p>常见的游戏架构和部署中，很多采用分服的一服一库的部署模式，而且运营过程中经常会有合服要求。</p>
@@ -88,22 +88,22 @@
 </bl]]>
     </summary>
     
-      <category term="distributed" scheme="http://www.bafeimao.net/tags/distributed/"/>
+      <category term="distributed" scheme="http://bafeimao.net/tags/distributed/"/>
     
-      <category term="game" scheme="http://www.bafeimao.net/tags/game/"/>
+      <category term="game" scheme="http://bafeimao.net/tags/game/"/>
     
-      <category term="mongodb" scheme="http://www.bafeimao.net/tags/mongodb/"/>
+      <category term="mongodb" scheme="http://bafeimao.net/tags/mongodb/"/>
     
-      <category term="redis" scheme="http://www.bafeimao.net/tags/redis/"/>
+      <category term="redis" scheme="http://bafeimao.net/tags/redis/"/>
     
-      <category term="uuid" scheme="http://www.bafeimao.net/tags/uuid/"/>
+      <category term="uuid" scheme="http://bafeimao.net/tags/uuid/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[网络游戏中的数据交互]]></title>
-    <link href="http://www.bafeimao.net/2012/11/17/data-interactive-in-game/"/>
-    <id>http://www.bafeimao.net/2012/11/17/data-interactive-in-game/</id>
+    <link href="http://bafeimao.net/2012/11/17/data-interactive-in-game/"/>
+    <id>http://bafeimao.net/2012/11/17/data-interactive-in-game/</id>
     <published>2012-11-17T01:49:33.000Z</published>
     <updated>2015-10-17T04:37:16.000Z</updated>
     <content type="html"><![CDATA[<p>设计网络游戏，首先要面对的就是考虑如何实现客户端与服务端的数据交互。</p>
@@ -172,24 +172,24 @@
 <p>通讯协议常用的无外乎两种：]]>
     </summary>
     
-      <category term="game" scheme="http://www.bafeimao.net/tags/game/"/>
+      <category term="game" scheme="http://bafeimao.net/tags/game/"/>
     
-      <category term="grpc" scheme="http://www.bafeimao.net/tags/grpc/"/>
+      <category term="grpc" scheme="http://bafeimao.net/tags/grpc/"/>
     
-      <category term="json" scheme="http://www.bafeimao.net/tags/json/"/>
+      <category term="json" scheme="http://bafeimao.net/tags/json/"/>
     
-      <category term="protobuf" scheme="http://www.bafeimao.net/tags/protobuf/"/>
+      <category term="protobuf" scheme="http://bafeimao.net/tags/protobuf/"/>
     
-      <category term="rpc" scheme="http://www.bafeimao.net/tags/rpc/"/>
+      <category term="rpc" scheme="http://bafeimao.net/tags/rpc/"/>
     
-      <category term="thrift" scheme="http://www.bafeimao.net/tags/thrift/"/>
+      <category term="thrift" scheme="http://bafeimao.net/tags/thrift/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[VIM常用命令]]></title>
-    <link href="http://www.bafeimao.net/2012/10/17/vim-the-most-common-commands/"/>
-    <id>http://www.bafeimao.net/2012/10/17/vim-the-most-common-commands/</id>
+    <link href="http://bafeimao.net/2012/10/17/vim-the-most-common-commands/"/>
+    <id>http://bafeimao.net/2012/10/17/vim-the-most-common-commands/</id>
     <published>2012-10-17T03:50:53.000Z</published>
     <updated>2015-10-17T03:57:39.000Z</updated>
     <content type="html"><![CDATA[<h3 id="模式切换">模式切换</h3><p>按下<code>i, I, o, O, a, A, r, R</code>从<code>一般模式</code>进入<code>编辑模式</code>，按<code>ESC</code>从<code>编辑模式</code>退出到<code>一般模式</code></p>
@@ -217,14 +217,14 @@
     <![CDATA[<h3 id="模式切换">模式切换</h3><p>按下<code>i, I, o, O, a, A, r, R</code>从<code>一般模式</code>进入<code>编辑模式</code>，按<code>ESC</code>从<code>编辑模式</code>退出到<]]>
     </summary>
     
-      <category term="vim" scheme="http://www.bafeimao.net/tags/vim/"/>
+      <category term="vim" scheme="http://bafeimao.net/tags/vim/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[常见的Web负载均衡技术详解]]></title>
-    <link href="http://www.bafeimao.net/2012/09/25/web-load-balance-technologies-in-detail/"/>
-    <id>http://www.bafeimao.net/2012/09/25/web-load-balance-technologies-in-detail/</id>
+    <link href="http://bafeimao.net/2012/09/25/web-load-balance-technologies-in-detail/"/>
+    <id>http://bafeimao.net/2012/09/25/web-load-balance-technologies-in-detail/</id>
     <published>2012-09-25T15:51:01.000Z</published>
     <updated>2015-10-17T04:37:16.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-_基于镜像站点的负载均衡">1. 基于镜像站点的负载均衡</h3><p>最早的负载均衡技术可以追溯到古老的镜像站点技术，其本质是制作多个站点的拷贝（镜像），然后在网页上提供站点列表，供用户选择，从而达到分流负载的目的。该技术现在仍然被一些如下载站点使用。</p>
@@ -326,22 +326,22 @@
     <![CDATA[<h3 id="1-_基于镜像站点的负载均衡">1. 基于镜像站点的负载均衡</h3><p>最早的负载均衡技术可以追溯到古老的镜像站点技术，其本质是制作多个站点的拷贝（镜像），然后在网页上提供站点列表，供用户选择，从而达到分流负载的目的。该技术现在仍然被一些如下载站点使用。</p]]>
     </summary>
     
-      <category term="dns" scheme="http://www.bafeimao.net/tags/dns/"/>
+      <category term="dns" scheme="http://bafeimao.net/tags/dns/"/>
     
-      <category term="ipvs" scheme="http://www.bafeimao.net/tags/ipvs/"/>
+      <category term="ipvs" scheme="http://bafeimao.net/tags/ipvs/"/>
     
-      <category term="load balance" scheme="http://www.bafeimao.net/tags/load-balance/"/>
+      <category term="load balance" scheme="http://bafeimao.net/tags/load-balance/"/>
     
-      <category term="lvs" scheme="http://www.bafeimao.net/tags/lvs/"/>
+      <category term="lvs" scheme="http://bafeimao.net/tags/lvs/"/>
     
-      <category term="web" scheme="http://www.bafeimao.net/tags/web/"/>
+      <category term="web" scheme="http://bafeimao.net/tags/web/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[如何为Git添加忽略]]></title>
-    <link href="http://www.bafeimao.net/2011/10/18/howto-add-ignores-for-git/"/>
-    <id>http://www.bafeimao.net/2011/10/18/howto-add-ignores-for-git/</id>
+    <link href="http://bafeimao.net/2011/10/18/howto-add-ignores-for-git/"/>
+    <id>http://bafeimao.net/2011/10/18/howto-add-ignores-for-git/</id>
     <published>2011-10-18T05:33:11.000Z</published>
     <updated>2015-10-18T05:35:35.000Z</updated>
     <content type="html"><![CDATA[<p>添加.gitignore文件</p>
@@ -362,16 +362,16 @@
 <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">]]>
     </summary>
     
-      <category term="git" scheme="http://www.bafeimao.net/tags/git/"/>
+      <category term="git" scheme="http://bafeimao.net/tags/git/"/>
     
-      <category term="howto" scheme="http://www.bafeimao.net/tags/howto/"/>
+      <category term="howto" scheme="http://bafeimao.net/tags/howto/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[如何将mave项目部署到本地仓库]]></title>
-    <link href="http://www.bafeimao.net/2011/10/18/howto-deploy-project-to-local-repo-in-maven/"/>
-    <id>http://www.bafeimao.net/2011/10/18/howto-deploy-project-to-local-repo-in-maven/</id>
+    <link href="http://bafeimao.net/2011/10/18/howto-deploy-project-to-local-repo-in-maven/"/>
+    <id>http://bafeimao.net/2011/10/18/howto-deploy-project-to-local-repo-in-maven/</id>
     <published>2011-10-18T05:26:50.000Z</published>
     <updated>2015-10-18T05:35:53.000Z</updated>
     <content type="html"><![CDATA[<p>在pom.xml文件中添加以下配置节点</p>
@@ -386,18 +386,18 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line]]>
     </summary>
     
-      <category term="howto" scheme="http://www.bafeimao.net/tags/howto/"/>
+      <category term="howto" scheme="http://bafeimao.net/tags/howto/"/>
     
-      <category term="maven" scheme="http://www.bafeimao.net/tags/maven/"/>
+      <category term="maven" scheme="http://bafeimao.net/tags/maven/"/>
     
-      <category term="nexus" scheme="http://www.bafeimao.net/tags/nexus/"/>
+      <category term="nexus" scheme="http://bafeimao.net/tags/nexus/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[配置SSH无密码登陆]]></title>
-    <link href="http://www.bafeimao.net/2011/09/25/ssh-login-without-password-configuration/"/>
-    <id>http://www.bafeimao.net/2011/09/25/ssh-login-without-password-configuration/</id>
+    <link href="http://bafeimao.net/2011/09/25/ssh-login-without-password-configuration/"/>
+    <id>http://bafeimao.net/2011/09/25/ssh-login-without-password-configuration/</id>
     <published>2011-09-25T15:19:08.000Z</published>
     <updated>2015-10-17T04:37:16.000Z</updated>
     <content type="html"><![CDATA[<p>SSH(Secure Shell)是建立在应用层和传输层基础上的安全协议，利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题，他提供两种方式的验证：</p>
@@ -433,16 +433,16 @@
 <bloc]]>
     </summary>
     
-      <category term="linux" scheme="http://www.bafeimao.net/tags/linux/"/>
+      <category term="linux" scheme="http://bafeimao.net/tags/linux/"/>
     
-      <category term="ssh" scheme="http://www.bafeimao.net/tags/ssh/"/>
+      <category term="ssh" scheme="http://bafeimao.net/tags/ssh/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[如何快速切换多个JDK版本]]></title>
-    <link href="http://www.bafeimao.net/2011/04/18/howto-switch-jdk-version-quickly/"/>
-    <id>http://www.bafeimao.net/2011/04/18/howto-switch-jdk-version-quickly/</id>
+    <link href="http://bafeimao.net/2011/04/18/howto-switch-jdk-version-quickly/"/>
+    <id>http://bafeimao.net/2011/04/18/howto-switch-jdk-version-quickly/</id>
     <published>2011-04-18T05:16:01.000Z</published>
     <updated>2015-10-18T05:37:43.000Z</updated>
     <content type="html"><![CDATA[<p>很多时候，我们的开发机上往往安装着多个JDK版本（有的用于开发，有的用于尝鲜），并在需要的时候在多个不同版本之间切换，如果每次用到时都去手动修改JAVA_HOME环境变量确实麻烦，其实这些操作都可以写到开机脚本中，以后切换JDK版本只需执行一条命令即可（以下以mac系统为例，其他linux系统同理）</p>
@@ -461,18 +461,18 @@
     <![CDATA[<p>很多时候，我们的开发机上往往安装着多个JDK版本（有的用于开发，有的用于尝鲜），并在需要的时候在多个不同版本之间切换，如果每次用到时都去手动修改JAVA_HOME环境变量确实麻烦，其实这些操作都可以写到开机脚本中，以后切换JDK版本只需执行一条命令即可（以下以mac系统为例]]>
     </summary>
     
-      <category term="java" scheme="http://www.bafeimao.net/tags/java/"/>
+      <category term="java" scheme="http://bafeimao.net/tags/java/"/>
     
-      <category term="jdk" scheme="http://www.bafeimao.net/tags/jdk/"/>
+      <category term="jdk" scheme="http://bafeimao.net/tags/jdk/"/>
     
-      <category term="mac" scheme="http://www.bafeimao.net/tags/mac/"/>
+      <category term="mac" scheme="http://bafeimao.net/tags/mac/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Git常用远程操作]]></title>
-    <link href="http://www.bafeimao.net/2011/01/03/how-to-use-git-remote-commands/"/>
-    <id>http://www.bafeimao.net/2011/01/03/how-to-use-git-remote-commands/</id>
+    <link href="http://bafeimao.net/2011/01/03/how-to-use-git-remote-commands/"/>
+    <id>http://bafeimao.net/2011/01/03/how-to-use-git-remote-commands/</id>
     <published>2011-01-03T08:29:29.000Z</published>
     <updated>2015-10-17T02:00:44.000Z</updated>
     <content type="html"><![CDATA[<h4 id="Git常用远程操作">Git常用远程操作</h4><p>在对Git远程操作命令理解之前，首先看下图，该图可以直观地帮助我们理解各操作命令执行后所影响的区域。</p>
@@ -547,14 +547,14 @@
 <p>本文假设你对git的常规概念如：工作区（workspace），索引]]>
     </summary>
     
-      <category term="git" scheme="http://www.bafeimao.net/tags/git/"/>
+      <category term="git" scheme="http://bafeimao.net/tags/git/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[使用Hexo在github上建立博客]]></title>
-    <link href="http://www.bafeimao.net/2010/08/25/how-to-build-blog-on-github-by-hexo/"/>
-    <id>http://www.bafeimao.net/2010/08/25/how-to-build-blog-on-github-by-hexo/</id>
+    <link href="http://bafeimao.net/2010/08/25/how-to-build-blog-on-github-by-hexo/"/>
+    <id>http://bafeimao.net/2010/08/25/how-to-build-blog-on-github-by-hexo/</id>
     <published>2010-08-25T06:07:42.000Z</published>
     <updated>2015-10-18T05:38:58.000Z</updated>
     <content type="html"><![CDATA[<h3 id="初始化">初始化</h3><p>运行如下命令以完成初始化操作</p>
@@ -586,16 +586,16 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</spa]]>
     </summary>
     
-      <category term="github" scheme="http://www.bafeimao.net/tags/github/"/>
+      <category term="github" scheme="http://bafeimao.net/tags/github/"/>
     
-      <category term="hexo" scheme="http://www.bafeimao.net/tags/hexo/"/>
+      <category term="hexo" scheme="http://bafeimao.net/tags/hexo/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[基于IPVS的IP负载均衡技术]]></title>
-    <link href="http://www.bafeimao.net/2010/07/25/ipvs-based-load-balance-in-detail/"/>
-    <id>http://www.bafeimao.net/2010/07/25/ipvs-based-load-balance-in-detail/</id>
+    <link href="http://bafeimao.net/2010/07/25/ipvs-based-load-balance-in-detail/"/>
+    <id>http://bafeimao.net/2010/07/25/ipvs-based-load-balance-in-detail/</id>
     <published>2010-07-25T15:58:46.000Z</published>
     <updated>2015-10-17T04:37:16.000Z</updated>
     <content type="html"><![CDATA[<p>随着互联网的高速发展，应用规模日益膨胀，越来越多的应用面临大流量，高并发的压力，因此大型互联网应用开始对构建高可用，高可扩展，不间断的服务提出了更高的要求。为应对大规模高并发的要求，分布式集群以及负载均衡等技术应运而生，本文主要讲解基于IP的负载均衡技术。</p>
@@ -668,18 +668,18 @@
 <blo]]>
     </summary>
     
-      <category term="ipvs" scheme="http://www.bafeimao.net/tags/ipvs/"/>
+      <category term="ipvs" scheme="http://bafeimao.net/tags/ipvs/"/>
     
-      <category term="linux" scheme="http://www.bafeimao.net/tags/linux/"/>
+      <category term="linux" scheme="http://bafeimao.net/tags/linux/"/>
     
-      <category term="load balance" scheme="http://www.bafeimao.net/tags/load-balance/"/>
+      <category term="load balance" scheme="http://bafeimao.net/tags/load-balance/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Maven常用操作]]></title>
-    <link href="http://www.bafeimao.net/2010/06/18/maven-common-operations/"/>
-    <id>http://www.bafeimao.net/2010/06/18/maven-common-operations/</id>
+    <link href="http://bafeimao.net/2010/06/18/maven-common-operations/"/>
+    <id>http://bafeimao.net/2010/06/18/maven-common-operations/</id>
     <published>2010-06-18T05:09:39.000Z</published>
     <updated>2015-10-18T05:12:10.000Z</updated>
     <content type="html"><![CDATA[<p>清理项目（删除target文件夹）</p>
@@ -715,16 +715,16 @@
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td c]]>
     </summary>
     
-      <category term="maven" scheme="http://www.bafeimao.net/tags/maven/"/>
+      <category term="maven" scheme="http://bafeimao.net/tags/maven/"/>
     
-      <category term="nexus" scheme="http://www.bafeimao.net/tags/nexus/"/>
+      <category term="nexus" scheme="http://bafeimao.net/tags/nexus/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Tomcat发生java.lang.OutOfMemoryError: PermGen space的解决方案]]></title>
-    <link href="http://www.bafeimao.net/2010/05/25/tomcat-oom-permgen-solution/"/>
-    <id>http://www.bafeimao.net/2010/05/25/tomcat-oom-permgen-solution/</id>
+    <link href="http://bafeimao.net/2010/05/25/tomcat-oom-permgen-solution/"/>
+    <id>http://bafeimao.net/2010/05/25/tomcat-oom-permgen-solution/</id>
     <published>2010-05-25T14:59:35.000Z</published>
     <updated>2015-10-18T06:10:15.000Z</updated>
     <content type="html"><![CDATA[<p>产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值</p>
@@ -742,20 +742,20 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span]]>
     </summary>
     
-      <category term="howto" scheme="http://www.bafeimao.net/tags/howto/"/>
+      <category term="howto" scheme="http://bafeimao.net/tags/howto/"/>
     
-      <category term="tomcat" scheme="http://www.bafeimao.net/tags/tomcat/"/>
+      <category term="tomcat" scheme="http://bafeimao.net/tags/tomcat/"/>
     
-      <category term="troubleshooting" scheme="http://www.bafeimao.net/tags/troubleshooting/"/>
+      <category term="troubleshooting" scheme="http://bafeimao.net/tags/troubleshooting/"/>
     
-      <category term="aaa" scheme="http://www.bafeimao.net/categories/aaa/"/>
+      <category term="aaa" scheme="http://bafeimao.net/categories/aaa/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[在linux上搭建svn服务器]]></title>
-    <link href="http://www.bafeimao.net/2010/02/26/setup-svn-server-on-linux/"/>
-    <id>http://www.bafeimao.net/2010/02/26/setup-svn-server-on-linux/</id>
+    <link href="http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/"/>
+    <id>http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/</id>
     <published>2010-02-26T00:40:53.000Z</published>
     <updated>2015-10-17T04:37:16.000Z</updated>
     <content type="html"><![CDATA[<h3 id="创建svn仓库根目录">创建svn仓库根目录</h3><p>在创建代码仓库之前，我们需要创建一个svn仓库根目录，以后所有的代码仓库都是在这个根目录下创建</p>
@@ -794,16 +794,16 @@
 <figure class="highlight crystal"><table><tr><td c]]>
     </summary>
     
-      <category term="linux" scheme="http://www.bafeimao.net/tags/linux/"/>
+      <category term="linux" scheme="http://bafeimao.net/tags/linux/"/>
     
-      <category term="svn" scheme="http://www.bafeimao.net/tags/svn/"/>
+      <category term="svn" scheme="http://bafeimao.net/tags/svn/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[如何启动多个MySQL实例]]></title>
-    <link href="http://www.bafeimao.net/2008/04/18/howto-config-multi-mysql-instances/"/>
-    <id>http://www.bafeimao.net/2008/04/18/howto-config-multi-mysql-instances/</id>
+    <link href="http://bafeimao.net/2008/04/18/howto-config-multi-mysql-instances/"/>
+    <id>http://bafeimao.net/2008/04/18/howto-config-multi-mysql-instances/</id>
     <published>2008-04-18T11:23:15.000Z</published>
     <updated>2015-10-18T05:24:25.000Z</updated>
     <content type="html"><![CDATA[<p>首先，要在/etc/my.cnf文件中追加[mysqld_multi]的相关配置（这可以通过执行mysqld_multi –example获取配置文件内容模板）</p>
@@ -840,16 +840,16 @@
 <figure class="highlight applescript"><table><tr><td]]>
     </summary>
     
-      <category term="howto" scheme="http://www.bafeimao.net/tags/howto/"/>
+      <category term="howto" scheme="http://bafeimao.net/tags/howto/"/>
     
-      <category term="mysql" scheme="http://www.bafeimao.net/tags/mysql/"/>
+      <category term="mysql" scheme="http://bafeimao.net/tags/mysql/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[如何手动为MyEclipse添加对Spring和Hibernate框架的支持]]></title>
-    <link href="http://www.bafeimao.net/2008/04/18/howto-support-spring-hibernate-natures-in-myeclipse-in-manual/"/>
-    <id>http://www.bafeimao.net/2008/04/18/howto-support-spring-hibernate-natures-in-myeclipse-in-manual/</id>
+    <link href="http://bafeimao.net/2008/04/18/howto-support-spring-hibernate-natures-in-myeclipse-in-manual/"/>
+    <id>http://bafeimao.net/2008/04/18/howto-support-spring-hibernate-natures-in-myeclipse-in-manual/</id>
     <published>2008-04-18T05:04:31.000Z</published>
     <updated>2015-10-18T05:12:06.000Z</updated>
     <content type="html"><![CDATA[<p>打开.project项目文件，找到<natures>节点</natures></p>
@@ -864,18 +864,18 @@
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span]]>
     </summary>
     
-      <category term="hibernate" scheme="http://www.bafeimao.net/tags/hibernate/"/>
+      <category term="hibernate" scheme="http://bafeimao.net/tags/hibernate/"/>
     
-      <category term="myeclipse" scheme="http://www.bafeimao.net/tags/myeclipse/"/>
+      <category term="myeclipse" scheme="http://bafeimao.net/tags/myeclipse/"/>
     
-      <category term="spring" scheme="http://www.bafeimao.net/tags/spring/"/>
+      <category term="spring" scheme="http://bafeimao.net/tags/spring/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[如何配置mysql主从复制]]></title>
-    <link href="http://www.bafeimao.net/2007/06/18/howto-config-mysql-replication/"/>
-    <id>http://www.bafeimao.net/2007/06/18/howto-config-mysql-replication/</id>
+    <link href="http://bafeimao.net/2007/06/18/howto-config-mysql-replication/"/>
+    <id>http://bafeimao.net/2007/06/18/howto-config-mysql-replication/</id>
     <published>2007-06-18T05:19:24.000Z</published>
     <updated>2015-10-18T06:10:11.000Z</updated>
     <content type="html"><![CDATA[<p>创建用于连接master的账户</p>
@@ -902,9 +902,9 @@
 <figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">]]>
     </summary>
     
-      <category term="mysql" scheme="http://www.bafeimao.net/tags/mysql/"/>
+      <category term="mysql" scheme="http://bafeimao.net/tags/mysql/"/>
     
-      <category term="replication" scheme="http://www.bafeimao.net/tags/replication/"/>
+      <category term="replication" scheme="http://bafeimao.net/tags/replication/"/>
     
   </entry>
   
