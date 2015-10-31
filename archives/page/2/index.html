@@ -210,6 +210,52 @@
                 <div class="postShorten-header">
                     <h1 class="postShorten-title" itemprop="headline">
                         
+                                <a class="link-unstyled" href="/2011/01/03/how-to-use-git-remote-commands/">Git常用远程操作</a>
+                        
+                    </h1>
+                    <div class="postShorten-meta">
+    <time itemprop="datePublished" content="Mon Jan 03 2011 16:29:29 GMT+0800">
+	
+		    2011年01月03日
+    	
+    </time>
+    
+</div>
+                </div>
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    
+                        <p>
+                            Git常用远程操作在对Git远程操作命令理解之前，首先看下图，该图可以直观地帮助我们理解各操作命令执行后所影响的区域。
+
+本文假设你对git的常规概念如：工作区（workspace），索引区（index）,本地仓库（local repository）和远程仓库（remote repository）都已经有了初步的了解。
+
+
+git clone该命令用于克隆一个远程仓库到本地文件。
+
+$ git c<br>
+                    
+                    
+                        
+                            <a href="/2011/01/03/how-to-use-git-remote-commands/" class="postShorten-excerpt_link link ">阅读全文</a>
+                            
+                        
+                    
+                    
+                        </p>
+                    
+                </div>
+            </div>
+            
+        </article>
+    
+        
+        
+                <article class="postShorten" itemscope itemType="http://schema.org/BlogPosting">
+        
+            <div class="postShorten-wrap">
+                <div class="postShorten-header">
+                    <h1 class="postShorten-title" itemprop="headline">
+                        
                                 <a class="link-unstyled" href="/2010/08/25/how-to-build-blog-on-github-by-hexo/">使用Hexo在github上建立博客</a>
                         
                     </h1>
@@ -233,47 +279,6 @@
                     
                         
                             <a href="/2010/08/25/how-to-build-blog-on-github-by-hexo/" class="postShorten-excerpt_link link ">阅读全文</a>
-                            
-                        
-                    
-                    
-                        </p>
-                    
-                </div>
-            </div>
-            
-        </article>
-    
-        
-        
-                <article class="postShorten" itemscope itemType="http://schema.org/BlogPosting">
-        
-            <div class="postShorten-wrap">
-                <div class="postShorten-header">
-                    <h1 class="postShorten-title" itemprop="headline">
-                        
-                                <a class="link-unstyled" href="/2010/07/25/ipvs-based-load-balance-in-detail/">基于IPVS的IP负载均衡技术</a>
-                        
-                    </h1>
-                    <div class="postShorten-meta">
-    <time itemprop="datePublished" content="Sun Jul 25 2010 23:58:46 GMT+0800">
-	
-		    2010年07月25日
-    	
-    </time>
-    
-</div>
-                </div>
-                <div class="postShorten-excerpt" itemprop="articleBody">
-                    
-                        <p>
-                            随着互联网的高速发展，应用规模日益膨胀，越来越多的应用面临大流量，高并发的压力，因此大型互联网应用开始对构建高可用，高可扩展，不间断的服务提出了更高的要求。为应对大规模高并发的要求，分布式集群以及负载均衡等技术应运而生，本文主要讲解基于IP的负载均衡技术。
-
-IP负载均衡技术工作在IP层，并且在运行在操作系统内核中，相比于其他工作在应用层（如HTTP层）的负载均衡技术（如：HTTP重定向负载均衡，<br>
-                    
-                    
-                        
-                            <a href="/2010/07/25/ipvs-based-load-balance-in-detail/" class="postShorten-excerpt_link link ">阅读全文</a>
                             
                         
                     
@@ -531,7 +536,8 @@ IP负载均衡技术工作在IP层，并且在运行在操作系统内核中，�
                         <p>
                             创建用于连接master的账户
 12mysql&gt; create user replica identified by 'replica';Query OK, 0 rows affected (0.00 sec)
-在master上，为replica用户添加足够的权限1mysql&gt;GRANT REPLICATION SLAVE, RELOAD, SUPER, CREATE USER ON <br>
+在master上，为replica用户添加足够的权限
+1mysql&gt;GRANT REPLICATION SLAVE, RELOAD, SUPER, CREATE USER ON<br>
                     
                     
                         

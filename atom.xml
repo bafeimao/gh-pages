@@ -4,7 +4,7 @@
   <subtitle><![CDATA[苹果越分越少，知识越分越多！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bafeimao.net/"/>
-  <updated>2015-10-17T23:58:54.000Z</updated>
+  <updated>2015-10-31T06:29:39.000Z</updated>
   <id>http://bafeimao.net/</id>
   
   <author>
@@ -15,11 +15,61 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[IP负载均衡 - VS/NAT模式原理详解]]></title>
+    <link href="http://bafeimao.net/2015/10/31/vs-nat-principle-in-detail/"/>
+    <id>http://bafeimao.net/2015/10/31/vs-nat-principle-in-detail/</id>
+    <published>2015-10-31T06:21:25.000Z</published>
+    <updated>2015-10-31T06:29:39.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="工作原理">工作原理</h3><p> VS/NAT（Virtual Server via Network Address Translation）的意思是“网络地址转换”，其原理是：调度器（也称之为：负载均衡器，Director等）收到来自客户端的“请求报文”后，根据指定的调度算法，将请求报文转发（负载分发）给隐藏在调度器后面的一组“真实服务器”（以下称RS）中的某台服务器去处理，当真实服务器处理完成后，又将报文发给Director，Director再一次修改IP数据包内种中的源地址和源端口，然后将响应报文发回给客户端，至此，完成整个负载分发过程。</p>
+<p>很多硬件负载均衡设备就是基于NAT原理的。</p>
+<h3 id="基本要求">基本要求</h3><ul>
+<li>Director至少需要绑定两个IP（DIP和VIP），其中VIP是作为集群中对外服务的唯一接口；DIP用于连接内部RS服务器组，使调度器和RS服务器组连接在内部LAN中</li>
+<li>调度器需要配置成可以转发IP数据报（设置ip_forward=1）</li>
+<li>RS必须设置默认网关为DIP，以便响应报文能够发回到Director</li>
+<li>RS和Director必须在同一个子网中，否则RS不能正确将响应报文发送到Director</li>
+<li>如果Client和调度器位于同一网段，那么就不能使用VS/NAT模式，此时可配置成VS/DR模式。（请思考为什么？）</li>
+</ul>
+<h3 id="报文转发的详细处理流程">报文转发的详细处理流程</h3><ul>
+<li>来自客户端的请求报文发送到调度器（通过VIP）</li>
+<li>调度器网卡根据数据帧首部MAC地址发现是发给自己的，因此收下该数据帧并将其发给上层网卡驱动程序，网卡驱动去掉帧首部得到IP数据包内容并将其传给IP层处理。</li>
+<li>IPVS模块通过调度算法（或从连接映射hash表中找到映射，如果之前已经映射过的话），得到一台真实服务器（Real Server / RS），假设为RS1。</li>
+<li>修改IP数据报首部的“目标IP地址”和“目标端口”为RS1的IP和端口，然后将该数据包直接又发回给本机ARP模块处理</li>
+<li>ARP模块为IP地址找到对应的mac地址（这里是RS1网卡所对应的MAC地址，关于ARP如何做地址映射可参考<a href="http://baike.baidu.com/view/111783.htm" target="_blank" rel="external">W.Richard Stevens</a>编写的《<a href="http://book.douban.com/subject/1088054/" target="_blank" rel="external">TCP/IP详解-卷一</a>》）</li>
+<li>网卡驱动重新封装数据帧，并直接将数据帧发送到位于同一网络的RS1机器的网络接口卡</li>
+<li>RS1收到从调度器发来的数据帧，发现目标mac地址是自己，同时IP数据包内容中的目标地址也是本主机地址，所以就会处理该报文并交由响应端口对应的应用程序去处理</li>
+<li>当RS处理完成后，会设置响应报文中的“目标IP地址=CIP(CIP表示客户端IP), 源IP地址=RIP”，源端口=RS1的对应端口”</li>
+<li>RS搜索本机路由表，发现CIP并不是一个直接相连的主机也不是位于同一共享网络中，因此使用默认路由(DIP)进行路由转发，此时响应报文被发送到DIP（即调度器的IP）。</li>
+<li>调度器收到来自RS的响应报文，再次修改源IP地址为VIP以及源端口为调度器的端口，然后将报文重新发回给客户端</li>
+</ul>
+<p>至此，对报文的完整流程处理结束!!!</p>
+<blockquote>
+<p>NOTE: 调度器不但会修改“目标IP”还会修改“目标端口”，因此该模式支持端口映射（其他模式不支持）</p>
+</blockquote>
+<h3 id="存在的问题及解决方案">存在的问题及解决方案</h3><h4 id="存在的问题">存在的问题</h4><p>在VS/NAT工作模式中，请求报文和响应报文都要经过Director，因此Director将会成为整个集群的瓶颈，因此集群的吞吐量将受制于Director的处理速度以及Director服务器的出口带宽，由于IPVS工作在内核，处理速度非常高，因此调度器的主要瓶颈来自于调度器的网卡带宽上。</p>
+<h4 id="解决方案">解决方案</h4><p><strong>方案1：</strong>为应付流量增长，可以升级Director服务器的网卡为千兆网卡或万兆网卡，同时Director与RS连接的交换机也要换成千兆或万兆的。除此以外，还要考虑Director服务器的总线带宽，看操作系统以及服务器的硬件配置能否应付处理的了那么大的流量。</p>
+<p><strong>方案2：</strong>结合DNS-RR（DNS轮询策略）。将大的VS/NAT集群按照某种策略（如按地域或业务模块）划分成多个小的集群，结合DNS-RR组成两级负载均衡调度方式，由此每个小集群中的Director则只分担了部分流量。</p>
+<p><strong>方案3：</strong>考虑到多数应用请求报文小而响应报文大的这种<strong>非对称性</strong>特点，我们可以将VS/NAT模式换成VS/DR模式，这将会极大的提升调度器的吞吐率。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="工作原理">工作原理</h3><p> VS/NAT（Virtual Server via Network Address Translation）的意思是“网络地址转换”，其原理是：调度器（也称之为：负载均衡器，Director等）收到来自客户端的“请求报文”后，]]>
+    </summary>
+    
+      <category term="ipvs" scheme="http://bafeimao.net/tags/ipvs/"/>
+    
+      <category term="linux" scheme="http://bafeimao.net/tags/linux/"/>
+    
+      <category term="load balancer" scheme="http://bafeimao.net/tags/load-balancer/"/>
+    
+      <category term="lvs" scheme="http://bafeimao.net/tags/lvs/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[游戏服务器中的ID生成策略]]></title>
     <link href="http://bafeimao.net/2013/06/17/generate-unique-id-in-distributed-system/"/>
     <id>http://bafeimao.net/2013/06/17/generate-unique-id-in-distributed-system/</id>
     <published>2013-06-17T11:45:37.000Z</published>
-    <updated>2015-10-17T23:58:54.000Z</updated>
+    <updated>2015-10-31T06:25:49.000Z</updated>
     <content type="html"><![CDATA[<p>常见的游戏架构和部署中，很多采用分服的一服一库的部署模式，而且运营过程中经常会有合服要求。</p>
 <blockquote>
 <p>所谓合服就是随着游戏单服活跃用户数不断的下降，为节省资源和提高用户活跃度，在运营过程中将两个或多个服务数据合并到一起的做法。</p>
@@ -96,8 +146,6 @@
     
       <category term="redis" scheme="http://bafeimao.net/tags/redis/"/>
     
-      <category term="uuid" scheme="http://bafeimao.net/tags/uuid/"/>
-    
   </entry>
   
   <entry>
@@ -105,7 +153,7 @@
     <link href="http://bafeimao.net/2012/11/17/data-interactive-in-game/"/>
     <id>http://bafeimao.net/2012/11/17/data-interactive-in-game/</id>
     <published>2012-11-17T01:49:33.000Z</published>
-    <updated>2015-10-17T04:37:16.000Z</updated>
+    <updated>2015-10-31T06:30:09.000Z</updated>
     <content type="html"><![CDATA[<p>设计网络游戏，首先要面对的就是考虑如何实现客户端与服务端的数据交互。</p>
 <p>这大体会涉及到两个方面的内容：</p>
 <ol>
@@ -343,7 +391,7 @@
     <link href="http://bafeimao.net/2012/08/31/lvs-nat-config-in-detail/"/>
     <id>http://bafeimao.net/2012/08/31/lvs-nat-config-in-detail/</id>
     <published>2012-08-31T05:25:59.000Z</published>
-    <updated>2015-10-31T05:40:17.000Z</updated>
+    <updated>2015-10-31T06:25:47.000Z</updated>
     <content type="html"><![CDATA[<p>本文记录LVA/NAT模式的配置过程，先对接下来出现的名词做必要的解释</p>
 <ul>
 <li>Director（负载均衡器）</li>
@@ -386,7 +434,7 @@
     
       <category term="linux" scheme="http://bafeimao.net/tags/linux/"/>
     
-      <category term="load-balancer" scheme="http://bafeimao.net/tags/load-balancer/"/>
+      <category term="load balancer" scheme="http://bafeimao.net/tags/load-balancer/"/>
     
       <category term="lvs" scheme="http://bafeimao.net/tags/lvs/"/>
     
@@ -647,90 +695,6 @@
   </entry>
   
   <entry>
-    <title><![CDATA[基于IPVS的IP负载均衡技术]]></title>
-    <link href="http://bafeimao.net/2010/07/25/ipvs-based-load-balance-in-detail/"/>
-    <id>http://bafeimao.net/2010/07/25/ipvs-based-load-balance-in-detail/</id>
-    <published>2010-07-25T15:58:46.000Z</published>
-    <updated>2015-10-17T04:37:16.000Z</updated>
-    <content type="html"><![CDATA[<p>随着互联网的高速发展，应用规模日益膨胀，越来越多的应用面临大流量，高并发的压力，因此大型互联网应用开始对构建高可用，高可扩展，不间断的服务提出了更高的要求。为应对大规模高并发的要求，分布式集群以及负载均衡等技术应运而生，本文主要讲解基于IP的负载均衡技术。</p>
-<blockquote>
-<p>IP负载均衡技术工作在IP层，并且在运行在操作系统内核中，相比于其他工作在应用层（如HTTP层）的负载均衡技术（如：HTTP重定向负载均衡，反向代理负载均衡）而言，它的分发效率是最高的。</p>
-</blockquote>
-<p>先说明几个重要的名词解释：</p>
-<blockquote>
-<ul>
-<li>Director（调度器，又叫负载均衡器/负载分发设备/负载分流设备）</li>
-<li>RS（真实服务器，隐藏在Director后面的一组提供服务的机器）</li>
-<li>DIP（调度服务器的IP）</li>
-<li>VIP（虚拟IP，该IP用户调度器，用于集群对外提供服务的IP）</li>
-<li>RIP（真实服务器的IP）</li>
-<li>CIP（客户端IP）</li>
-</ul>
-</blockquote>
-<p>IP负载均衡主要包括以下几种工作模式：</p>
-<h2 id="VS/NAT模式">VS/NAT模式</h2><p>VS/NAT（Virtual Server via Network Address Translation）的意思是“网络地址转换”，其原理是：调度器（也称之为：负载均衡器，Director等）收到来自客户端的“请求报文”后，根据指定的调度算法，将请求报文转发（负载分发）给隐藏在调度器后面的一组“真实服务器”（以下称RS）中的某台服务器去处理，当真实服务器处理完成后，又将报文发给调度器，调度器再一次修改IP数据包内种中的源地址和源端口，然后将响应报文发回给客户端，至此，完成整个负载分发过程。</p>
-<p>IPVS模块是linux内核自带的，它工作在内核IP层，根据制定的调度算法和工作模式（NAT,DR，TUN)对负载进行分发，同时linux还提供ipvsadm管理工具，方便我们对IPVS进行配置。IPVS还内置提供了多种调度策略，并且内部还维护着一个“客户端连接-&gt;真实服务器”的Hash映射表，该hash表的作用是将客户端的后续报文都转发到同一台机器进行处理。</p>
-<p>很多硬件负载均衡设备就是采用NAT原理的。</p>
-<h3 id="基本要求">基本要求</h3><ul>
-<li>调度器（Director）至少需要绑定两个IP（DIP和VIP），其中VIP是作为集群中对外服务的唯一接口；DIP用于连接内部RS服务器组，使调度器和RS服务器组连接在内部LAN中</li>
-<li>调度器需要配置成可以转发IP数据报（设置ip_forward=1）</li>
-<li>RS必须设置默认网关为DIP，以便响应报文能够发回到Director</li>
-<li>RS和Director必须在同一个子网中，否则RS不能正确将“响应报文”发送到Director</li>
-<li>如果client和调度器位于同一网段，那么就不能使用VS/NAT模式，此时可配置成VS/DR模式。（请思考为什么？）</li>
-</ul>
-<h3 id="报文转发的详细处理流程">报文转发的详细处理流程</h3><ul>
-<li>来自客户端的请求报文发送到调度器（通过VIP）</li>
-<li>调度器网卡根据数据帧首部MAC地址发现是发给自己的，因此收下该数据帧并将其发给上层网卡驱动程序，网卡驱动去掉帧首部得到IP数据包内容并将其传给IP层处理。</li>
-<li>IPVS模块通过调度算法（或从连接映射hash表中找到映射，如果之前已经映射过的话），得到一台真实服务器（Real Server / RS），假设为RS1。</li>
-<li>修改IP数据报首部的“目标IP地址”和“目标端口”为RS1的IP和端口，然后将该数据包直接又发回给本机ARP模块处理</li>
-<li>ARP模块为IP地址找到对应的mac地址（这里是RS1网卡所对应的MAC地址，关于ARP如何做地址映射可《参考TCP/IP详解-卷一》）</li>
-<li>网卡驱动重新封装数据帧，并直接将数据帧发送到位于同一网络的RS1机器的网络接口卡</li>
-<li>RS1收到从调度器发来的数据帧，发现目标mac地址是自己，同时IP数据包内容中的目标地址也是本主机地址，所以就会处理该报文并交由响应端口对应的应用程序去处理</li>
-<li>当RS处理完成后，会设置响应报文中的“目标IP地址=CIP(CIP表示客户端IP), 源IP地址=RIP”，源端口=RS1的对应端口”</li>
-<li>RS搜索本机路由表，发现CIP并不是一个直接相连的主机也不是位于同一共享网络中，因此使用默认路由(DIP)进行路由转发，此时响应报文被发送到DIP（即调度器的IP）。</li>
-<li>调度器收到来自RS的响应报文，再次修改源IP地址为VIP以及源端口为调度器的端口，然后将报文重新发回给客户端</li>
-</ul>
-<p>至此，对报文的完整流程处理结束，报文被发回客户端</p>
-<h3 id="存在的问题">存在的问题</h3><p>请求报文和响应报文都要经过调度器，因此调度器将会成为整个集群的瓶颈，这主要来自于：</p>
-<ul>
-<li>调度器对报文处理的速度</li>
-<li>调度器网卡出口带宽两方面，响应报文往往比请求报文要大的多，当这些响应报文都要经过调度器时，调度器网卡出口带宽将会是个瓶颈</li>
-</ul>
-<p>由于IPVS工作在内核，处理速度非常高，因此调度器的主要瓶颈来自于调度器的网卡带宽上。</p>
-<h3 id="解决方案">解决方案</h3><ul>
-<li>为应付不断增长的流量，可以升级调度器的网卡为千兆网卡或万兆网卡，同时调度器与RS服务器组连接的交换机也要换成千兆或万兆的。除此以外，还要考虑调度器总线带宽，看操作系统和硬件配置能否应付处理的了那么大的流量。</li>
-<li>结合DNS-RR。将大的VS/NAT集群根据某种策略（如地域或其他）划分成多个小得集群，然后和DNS轮询混合使用</li>
-<li>考虑到多数应用请求报文小而响应报文大的这种非对称性特点，我们可以将VS/NAT模式换成VS/DR模式，这将会极大的提升调度器的吞吐率</li>
-</ul>
-<h3 id="补充说明：">补充说明：</h3><blockquote>
-<p>调度器不但会修改“目标IP”还会修改“目标端口”，因此该模式支持端口映射（其他模式不支持）</p>
-</blockquote>
-<h2 id="VS/DR模式">VS/DR模式</h2><p>VS/DR（直接路由）模式是对NAT模式的一种改进，该模式充分考虑到多数互联网服务的“非对称特性”（即请求报文小，响应报文大）特点，让Director仅接受请求报文，并且不修改数据包的情况下，直接将报文转发给RS处理（链路层数据帧目标地址发生了变化而已,IP数据报内容原封不动），当目标服务器处理完成后，直接将“响应报文”发送给Client，而不用在发给Director，因此，使用该模式调度器的吞吐率会得到了极大的提升。</p>
-<p>和NAT模式的一个显著的区别在于：在NAT模式下，需要在RS上设置网关为VIP，但在DR模式下，需要将VIP映射到RS服务器的本地“环回接口（loopback/lo interface)”上，这是因为DR模式Direcotor并没有对请求报文内容进行任何修改，仅仅只是转发报文给RS，如果没有在RS上映射VIP地址，当RS收到Director转发的报文时发现“目标IP地址=VIP”并不是本机，所以就会简单的丢弃掉该报文，这不是我们期望的，如果希望RS能够接受报文，最简单办法就是将VIP映射到本地“环回接口”上。这样Director就能够正确的处理从Director转发过来的报文了。（为什么不能将VIP映射到本地网卡上呢？请思考！）</p>
-<h3 id="基本要求-1">基本要求</h3><ul>
-<li>与RS必须在同一个网络里，因为Director是直接修改数据帧的“目标mac地址”为RS的mac地址，因此，如果RS和Director不在一个直接相连的网络里（需要通过路由器路由）的话，RS将收不到该数据帧。</li>
-<li>DR模式不要求Director开启路由转发</li>
-<li>DR模式一定不能将网关设置到DIP，因为这将导致报文又发回到Director，这不是期望的结果</li>
-<li>在RS上需要将VIP绑定到lo接口上<br><code>$ ifconfig lo:0 inet VIP netmask 255.255.255.255</code> ）</li>
-</ul>
-<hr>
-<h3 id="FAQ:">FAQ:</h3><p>A：为什么当Client和负载均衡器位于同一子网中时不可使用NAT模式？</p>
-<h2 id="A：在DR模式下，为什么不能在RS上将VIP映射到本地网卡上，而是映射到环回接口呢？">A：在DR模式下，为什么不能在RS上将VIP映射到本地网卡上，而是映射到环回接口呢？</h2><p>Q: 因为lo接口是一个non-arp网络设备，它不会响应ARP请求，而其他接口会响应ARP请求。我们知道Director上的VIP是必须要对外的，整个集群的前端应该只有Director来接受“目标IP地址=VIP”的请求，如果在RS上将VIP映射到能够响应ARP请求的网络设备接口上，那么就会出现Director和RS都告诉ARP请求端它们各自的mac地址，这时就会造成混乱，请求报文可能不会发送到Director上而是直接被RS接收到了。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>随着互联网的高速发展，应用规模日益膨胀，越来越多的应用面临大流量，高并发的压力，因此大型互联网应用开始对构建高可用，高可扩展，不间断的服务提出了更高的要求。为应对大规模高并发的要求，分布式集群以及负载均衡等技术应运而生，本文主要讲解基于IP的负载均衡技术。</p>
-<blo]]>
-    </summary>
-    
-      <category term="ipvs" scheme="http://bafeimao.net/tags/ipvs/"/>
-    
-      <category term="linux" scheme="http://bafeimao.net/tags/linux/"/>
-    
-      <category term="load balance" scheme="http://bafeimao.net/tags/load-balance/"/>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[Maven常用操作]]></title>
     <link href="http://bafeimao.net/2010/06/18/maven-common-operations/"/>
     <id>http://bafeimao.net/2010/06/18/maven-common-operations/</id>
@@ -931,14 +895,17 @@
     <link href="http://bafeimao.net/2007/06/18/howto-config-mysql-replication/"/>
     <id>http://bafeimao.net/2007/06/18/howto-config-mysql-replication/</id>
     <published>2007-06-18T05:19:24.000Z</published>
-    <updated>2015-10-18T06:10:11.000Z</updated>
+    <updated>2015-10-31T06:25:50.000Z</updated>
     <content type="html"><![CDATA[<p>创建用于连接master的账户</p>
 <figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create user replica identified <span class="keyword">by</span> <span class="string">'replica'</span>;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
-<p>在master上，为replica用户添加足够的权限<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;GRANT REPLICATION SLAVE, RELOAD, SUPER, <span class="keyword">CREATE</span> USER <span class="keyword">ON</span> *.* <span class="keyword">TO</span> <span class="string">'replica'</span>@<span class="string">'%'</span> <span class="keyword">with</span> GRANT OPTION;</span><br></pre></td></tr></table></figure></p>
-<p>配置Master服务器，修改/etc/my.cnf<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bin-<span class="command">log</span>=mysql-bin <span class="comment">#slave会基于此log-bin来做replication</span></span><br><span class="line">server-<span class="property">id</span>=<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>在master上，为replica用户添加足够的权限</p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;GRANT REPLICATION SLAVE, RELOAD, SUPER, <span class="keyword">CREATE</span> USER <span class="keyword">ON</span> *.* <span class="keyword">TO</span> <span class="string">'replica'</span>@<span class="string">'%'</span> <span class="keyword">with</span> GRANT OPTION;</span><br></pre></td></tr></table></figure>
+<p>配置Master服务器，修改/etc/my.cnf</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bin-<span class="command">log</span>=mysql-bin <span class="comment">#slave会基于此log-bin来做replication</span></span><br><span class="line">server-<span class="property">id</span>=<span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p>重启Master服务器，使配置生效</p>
 <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;service mysqld <span class="built_in">stop</span></span><br><span class="line">&gt;service mysqld <span class="built_in">start</span></span><br></pre></td></tr></table></figure>
-<p>在master上，查看master当前状态<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="header">mysql&gt; show master status;</span><br><span class="line">+-------------------+----------+--------------+------------------+</span></span><br><span class="line"><span class="header">| File              | Position | Binlog_Do_DB | Binlog_Ignore_DB |</span><br><span class="line">+-------------------+----------+--------------+------------------+</span></span><br><span class="line"><span class="header">| master-bin.000001 |      324 |              |                  |</span><br><span class="line">+-------------------+----------+--------------+------------------+</span></span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<p>在master上，查看master当前状态</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="header">mysql&gt; show master status;</span><br><span class="line">+-------------------+----------+--------------+------------------+</span></span><br><span class="line"><span class="header">| File              | Position | Binlog_Do_DB | Binlog_Ignore_DB |</span><br><span class="line">+-------------------+----------+--------------+------------------+</span></span><br><span class="line"><span class="header">| master-bin.000001 |      324 |              |                  |</span><br><span class="line">+-------------------+----------+--------------+------------------+</span></span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
 <p>修改所有slave服务器上的my.cnf（修改后要重启mysql以使修改生效）</p>
 <figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">server-id = <span class="number">2</span></span><br><span class="line">relay-<span class="built_in">log</span> = slave-relay-bin</span><br><span class="line">relay-<span class="built_in">log</span>-<span class="built_in">index</span> = slave-relay-bin.<span class="built_in">index</span></span><br></pre></td></tr></table></figure>
 <p>在slave上，连接master</p>

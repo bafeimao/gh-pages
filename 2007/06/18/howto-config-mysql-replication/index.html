@@ -14,20 +14,23 @@
     
     <meta name="description" content="创建用于连接master的账户
 12mysql&amp;gt; create user replica identified by &apos;replica&apos;;Query OK, 0 rows affected (0.00 sec)
-在master上，为replica用户添加足够的权限1mysql&amp;gt;GRANT REPLICATION SLAVE, RELOAD, SUPER, CREATE USER ON">
+在master上，为replica用户添加足够的权限
+1mysql&amp;gt;GRANT REPLICATION SLAVE, RELOAD, SUPER, CREATE USER ON">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="如何配置mysql主从复制">
 <meta property="og:url" content="http://bafeimao.net/2007/06/18/howto-config-mysql-replication/index.html">
 <meta property="og:site_name" content="巴菲猫学技术">
 <meta property="og:description" content="创建用于连接master的账户
 12mysql&amp;gt; create user replica identified by &apos;replica&apos;;Query OK, 0 rows affected (0.00 sec)
-在master上，为replica用户添加足够的权限1mysql&amp;gt;GRANT REPLICATION SLAVE, RELOAD, SUPER, CREATE USER ON">
-<meta property="og:updated_time" content="2015-10-18T06:10:11.000Z">
+在master上，为replica用户添加足够的权限
+1mysql&amp;gt;GRANT REPLICATION SLAVE, RELOAD, SUPER, CREATE USER ON">
+<meta property="og:updated_time" content="2015-10-31T06:25:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何配置mysql主从复制">
 <meta name="twitter:description" content="创建用于连接master的账户
 12mysql&amp;gt; create user replica identified by &apos;replica&apos;;Query OK, 0 rows affected (0.00 sec)
-在master上，为replica用户添加足够的权限1mysql&amp;gt;GRANT REPLICATION SLAVE, RELOAD, SUPER, CREATE USER ON">
+在master上，为replica用户添加足够的权限
+1mysql&amp;gt;GRANT REPLICATION SLAVE, RELOAD, SUPER, CREATE USER ON">
     
     
     
@@ -229,11 +232,14 @@
         <div class="main-content-wrap">
             <p>创建用于连接master的账户</p>
 <figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create user replica identified <span class="keyword">by</span> <span class="string">'replica'</span>;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
-<p>在master上，为replica用户添加足够的权限<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;GRANT REPLICATION SLAVE, RELOAD, SUPER, <span class="keyword">CREATE</span> USER <span class="keyword">ON</span> *.* <span class="keyword">TO</span> <span class="string">'replica'</span>@<span class="string">'%'</span> <span class="keyword">with</span> GRANT OPTION;</span><br></pre></td></tr></table></figure></p>
-<p>配置Master服务器，修改/etc/my.cnf<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bin-<span class="command">log</span>=mysql-bin <span class="comment">#slave会基于此log-bin来做replication</span></span><br><span class="line">server-<span class="property">id</span>=<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>在master上，为replica用户添加足够的权限</p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;GRANT REPLICATION SLAVE, RELOAD, SUPER, <span class="keyword">CREATE</span> USER <span class="keyword">ON</span> *.* <span class="keyword">TO</span> <span class="string">'replica'</span>@<span class="string">'%'</span> <span class="keyword">with</span> GRANT OPTION;</span><br></pre></td></tr></table></figure>
+<p>配置Master服务器，修改/etc/my.cnf</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bin-<span class="command">log</span>=mysql-bin <span class="comment">#slave会基于此log-bin来做replication</span></span><br><span class="line">server-<span class="property">id</span>=<span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p>重启Master服务器，使配置生效</p>
 <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;service mysqld <span class="built_in">stop</span></span><br><span class="line">&gt;service mysqld <span class="built_in">start</span></span><br></pre></td></tr></table></figure>
-<p>在master上，查看master当前状态<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="header">mysql&gt; show master status;</span><br><span class="line">+-------------------+----------+--------------+------------------+</span></span><br><span class="line"><span class="header">| File              | Position | Binlog_Do_DB | Binlog_Ignore_DB |</span><br><span class="line">+-------------------+----------+--------------+------------------+</span></span><br><span class="line"><span class="header">| master-bin.000001 |      324 |              |                  |</span><br><span class="line">+-------------------+----------+--------------+------------------+</span></span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<p>在master上，查看master当前状态</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="header">mysql&gt; show master status;</span><br><span class="line">+-------------------+----------+--------------+------------------+</span></span><br><span class="line"><span class="header">| File              | Position | Binlog_Do_DB | Binlog_Ignore_DB |</span><br><span class="line">+-------------------+----------+--------------+------------------+</span></span><br><span class="line"><span class="header">| master-bin.000001 |      324 |              |                  |</span><br><span class="line">+-------------------+----------+--------------+------------------+</span></span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
 <p>修改所有slave服务器上的my.cnf（修改后要重启mysql以使修改生效）</p>
 <figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">server-id = <span class="number">2</span></span><br><span class="line">relay-<span class="built_in">log</span> = slave-relay-bin</span><br><span class="line">relay-<span class="built_in">log</span>-<span class="built_in">index</span> = slave-relay-bin.<span class="built_in">index</span></span><br></pre></td></tr></table></figure>
 <p>在slave上，连接master</p>
