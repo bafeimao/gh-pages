@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="巴菲猫学技术">
-    <title>IP负载均衡 - VS/NAT模式原理详解 - 巴菲猫学技术</title>
+    <title>IP负载均衡 - VS/NAT原理详解 - 巴菲猫学技术</title>
     <meta name="author" content="巴菲猫(29283212@qq.com)">
     
     
@@ -14,13 +14,13 @@
     
     <meta name="description" content="工作原理 VS/NAT（Virtual Server via Network Address Translation）的意思是“网络地址转换”，其原理是：调度器（也称之为：负载均衡器，Director等）收到来自客户端的“请求报文”后，根据指定的调度算法，将请求报文转发（负载分发）给隐藏在调度器后面的一组“真实服务器”（以下称RS）中的某台服务器去处理，当真实服务器处理完成后，又将报文发给Dire">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="IP负载均衡 - VS/NAT模式原理详解">
+<meta property="og:title" content="IP负载均衡 - VS/NAT原理详解">
 <meta property="og:url" content="http://bafeimao.net/2008/08/19/vs-nat-principle-in-detail/index.html">
 <meta property="og:site_name" content="巴菲猫学技术">
 <meta property="og:description" content="工作原理 VS/NAT（Virtual Server via Network Address Translation）的意思是“网络地址转换”，其原理是：调度器（也称之为：负载均衡器，Director等）收到来自客户端的“请求报文”后，根据指定的调度算法，将请求报文转发（负载分发）给隐藏在调度器后面的一组“真实服务器”（以下称RS）中的某台服务器去处理，当真实服务器处理完成后，又将报文发给Dire">
-<meta property="og:updated_time" content="2015-10-31T06:36:23.000Z">
+<meta property="og:updated_time" content="2015-10-31T08:06:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IP负载均衡 - VS/NAT模式原理详解">
+<meta name="twitter:title" content="IP负载均衡 - VS/NAT原理详解">
 <meta name="twitter:description" content="工作原理 VS/NAT（Virtual Server via Network Address Translation）的意思是“网络地址转换”，其原理是：调度器（也称之为：负载均衡器，Director等）收到来自客户端的“请求报文”后，根据指定的调度算法，将请求报文转发（负载分发）给隐藏在调度器后面的一组“真实服务器”（以下称RS）中的某台服务器去处理，当真实服务器处理完成后，又将报文发给Dire">
     
     
@@ -208,7 +208,7 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            IP负载均衡 - VS/NAT模式原理详解
+            IP负载均衡 - VS/NAT原理详解
         </h1>
     
     <div class="post-meta">
@@ -279,7 +279,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2008/08/31/vs-nat-config-in-detail/"  data-tooltip="IP负载均衡 - LVS/NAT模式配置详解">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2008/08/31/vs-nat-config-in-detail/"  data-tooltip="IP负载均衡 - LVS/NAT配置详解">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -336,7 +336,7 @@
 
         
         
-            <div class="ds-thread" data-thread-key="post-vs-nat-principle-in-detail" data-title="IP负载均衡 - VS/NAT模式原理详解" data-url="http://bafeimao.net/2008/08/19/vs-nat-principle-in-detail/"></div>
+            <div class="ds-thread" data-thread-key="post-vs-nat-principle-in-detail" data-title="IP负载均衡 - VS/NAT原理详解" data-url="http://bafeimao.net/2008/08/19/vs-nat-principle-in-detail/"></div>
 
         
     </div>
@@ -358,7 +358,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2008/08/31/vs-nat-config-in-detail/"  data-tooltip="IP负载均衡 - LVS/NAT模式配置详解">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2008/08/31/vs-nat-config-in-detail/"  data-tooltip="IP负载均衡 - LVS/NAT配置详解">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>

@@ -715,11 +715,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[IP负载均衡 - LVS/NAT模式配置详解]]></title>
+    <title><![CDATA[IP负载均衡 - LVS/NAT配置详解]]></title>
     <link href="http://bafeimao.net/2008/08/31/vs-nat-config-in-detail/"/>
     <id>http://bafeimao.net/2008/08/31/vs-nat-config-in-detail/</id>
     <published>2008-08-31T05:25:59.000Z</published>
-    <updated>2015-10-31T06:36:21.000Z</updated>
+    <updated>2015-10-31T08:06:55.000Z</updated>
     <content type="html"><![CDATA[<p>本文记录LVA/NAT模式的配置过程，先对接下来出现的名词做必要的解释</p>
 <ul>
 <li>Director（负载均衡器）</li>
@@ -769,11 +769,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[IP负载均衡 - VS/NAT模式原理详解]]></title>
+    <title><![CDATA[IP负载均衡 - VS/NAT原理详解]]></title>
     <link href="http://bafeimao.net/2008/08/19/vs-nat-principle-in-detail/"/>
     <id>http://bafeimao.net/2008/08/19/vs-nat-principle-in-detail/</id>
     <published>2008-08-19T08:21:25.000Z</published>
-    <updated>2015-10-31T06:36:23.000Z</updated>
+    <updated>2015-10-31T08:06:58.000Z</updated>
     <content type="html"><![CDATA[<h3 id="工作原理">工作原理</h3><p> VS/NAT（Virtual Server via Network Address Translation）的意思是“网络地址转换”，其原理是：调度器（也称之为：负载均衡器，Director等）收到来自客户端的“请求报文”后，根据指定的调度算法，将请求报文转发（负载分发）给隐藏在调度器后面的一组“真实服务器”（以下称RS）中的某台服务器去处理，当真实服务器处理完成后，又将报文发给Director，Director再一次修改IP数据包内种中的源地址和源端口，然后将响应报文发回给客户端，至此，完成整个负载分发过程。</p>
 <p>很多硬件负载均衡设备就是基于NAT原理的。</p>
 <h3 id="基本要求">基本要求</h3><ul>
