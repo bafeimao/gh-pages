@@ -4,7 +4,7 @@
   <subtitle><![CDATA[苹果越分越少，知识越分越多！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bafeimao.net/"/>
-  <updated>2015-10-31T06:29:39.000Z</updated>
+  <updated>2015-10-31T06:25:49.000Z</updated>
   <id>http://bafeimao.net/</id>
   
   <author>
@@ -13,56 +13,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title><![CDATA[IP负载均衡 - VS/NAT模式原理详解]]></title>
-    <link href="http://bafeimao.net/2015/10/31/vs-nat-principle-in-detail/"/>
-    <id>http://bafeimao.net/2015/10/31/vs-nat-principle-in-detail/</id>
-    <published>2015-10-31T06:21:25.000Z</published>
-    <updated>2015-10-31T06:29:39.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="工作原理">工作原理</h3><p> VS/NAT（Virtual Server via Network Address Translation）的意思是“网络地址转换”，其原理是：调度器（也称之为：负载均衡器，Director等）收到来自客户端的“请求报文”后，根据指定的调度算法，将请求报文转发（负载分发）给隐藏在调度器后面的一组“真实服务器”（以下称RS）中的某台服务器去处理，当真实服务器处理完成后，又将报文发给Director，Director再一次修改IP数据包内种中的源地址和源端口，然后将响应报文发回给客户端，至此，完成整个负载分发过程。</p>
-<p>很多硬件负载均衡设备就是基于NAT原理的。</p>
-<h3 id="基本要求">基本要求</h3><ul>
-<li>Director至少需要绑定两个IP（DIP和VIP），其中VIP是作为集群中对外服务的唯一接口；DIP用于连接内部RS服务器组，使调度器和RS服务器组连接在内部LAN中</li>
-<li>调度器需要配置成可以转发IP数据报（设置ip_forward=1）</li>
-<li>RS必须设置默认网关为DIP，以便响应报文能够发回到Director</li>
-<li>RS和Director必须在同一个子网中，否则RS不能正确将响应报文发送到Director</li>
-<li>如果Client和调度器位于同一网段，那么就不能使用VS/NAT模式，此时可配置成VS/DR模式。（请思考为什么？）</li>
-</ul>
-<h3 id="报文转发的详细处理流程">报文转发的详细处理流程</h3><ul>
-<li>来自客户端的请求报文发送到调度器（通过VIP）</li>
-<li>调度器网卡根据数据帧首部MAC地址发现是发给自己的，因此收下该数据帧并将其发给上层网卡驱动程序，网卡驱动去掉帧首部得到IP数据包内容并将其传给IP层处理。</li>
-<li>IPVS模块通过调度算法（或从连接映射hash表中找到映射，如果之前已经映射过的话），得到一台真实服务器（Real Server / RS），假设为RS1。</li>
-<li>修改IP数据报首部的“目标IP地址”和“目标端口”为RS1的IP和端口，然后将该数据包直接又发回给本机ARP模块处理</li>
-<li>ARP模块为IP地址找到对应的mac地址（这里是RS1网卡所对应的MAC地址，关于ARP如何做地址映射可参考<a href="http://baike.baidu.com/view/111783.htm" target="_blank" rel="external">W.Richard Stevens</a>编写的《<a href="http://book.douban.com/subject/1088054/" target="_blank" rel="external">TCP/IP详解-卷一</a>》）</li>
-<li>网卡驱动重新封装数据帧，并直接将数据帧发送到位于同一网络的RS1机器的网络接口卡</li>
-<li>RS1收到从调度器发来的数据帧，发现目标mac地址是自己，同时IP数据包内容中的目标地址也是本主机地址，所以就会处理该报文并交由响应端口对应的应用程序去处理</li>
-<li>当RS处理完成后，会设置响应报文中的“目标IP地址=CIP(CIP表示客户端IP), 源IP地址=RIP”，源端口=RS1的对应端口”</li>
-<li>RS搜索本机路由表，发现CIP并不是一个直接相连的主机也不是位于同一共享网络中，因此使用默认路由(DIP)进行路由转发，此时响应报文被发送到DIP（即调度器的IP）。</li>
-<li>调度器收到来自RS的响应报文，再次修改源IP地址为VIP以及源端口为调度器的端口，然后将报文重新发回给客户端</li>
-</ul>
-<p>至此，对报文的完整流程处理结束!!!</p>
-<blockquote>
-<p>NOTE: 调度器不但会修改“目标IP”还会修改“目标端口”，因此该模式支持端口映射（其他模式不支持）</p>
-</blockquote>
-<h3 id="存在的问题及解决方案">存在的问题及解决方案</h3><h4 id="存在的问题">存在的问题</h4><p>在VS/NAT工作模式中，请求报文和响应报文都要经过Director，因此Director将会成为整个集群的瓶颈，因此集群的吞吐量将受制于Director的处理速度以及Director服务器的出口带宽，由于IPVS工作在内核，处理速度非常高，因此调度器的主要瓶颈来自于调度器的网卡带宽上。</p>
-<h4 id="解决方案">解决方案</h4><p><strong>方案1：</strong>为应付流量增长，可以升级Director服务器的网卡为千兆网卡或万兆网卡，同时Director与RS连接的交换机也要换成千兆或万兆的。除此以外，还要考虑Director服务器的总线带宽，看操作系统以及服务器的硬件配置能否应付处理的了那么大的流量。</p>
-<p><strong>方案2：</strong>结合DNS-RR（DNS轮询策略）。将大的VS/NAT集群按照某种策略（如按地域或业务模块）划分成多个小的集群，结合DNS-RR组成两级负载均衡调度方式，由此每个小集群中的Director则只分担了部分流量。</p>
-<p><strong>方案3：</strong>考虑到多数应用请求报文小而响应报文大的这种<strong>非对称性</strong>特点，我们可以将VS/NAT模式换成VS/DR模式，这将会极大的提升调度器的吞吐率。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="工作原理">工作原理</h3><p> VS/NAT（Virtual Server via Network Address Translation）的意思是“网络地址转换”，其原理是：调度器（也称之为：负载均衡器，Director等）收到来自客户端的“请求报文”后，]]>
-    </summary>
-    
-      <category term="ipvs" scheme="http://bafeimao.net/tags/ipvs/"/>
-    
-      <category term="linux" scheme="http://bafeimao.net/tags/linux/"/>
-    
-      <category term="load balancer" scheme="http://bafeimao.net/tags/load-balancer/"/>
-    
-      <category term="lvs" scheme="http://bafeimao.net/tags/lvs/"/>
-    
-  </entry>
   
   <entry>
     <title><![CDATA[游戏服务器中的ID生成策略]]></title>
@@ -383,60 +333,6 @@
       <category term="lvs" scheme="http://bafeimao.net/tags/lvs/"/>
     
       <category term="web" scheme="http://bafeimao.net/tags/web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[IP负载均衡 - LVS/NAT模式配置详解]]></title>
-    <link href="http://bafeimao.net/2012/08/31/lvs-nat-config-in-detail/"/>
-    <id>http://bafeimao.net/2012/08/31/lvs-nat-config-in-detail/</id>
-    <published>2012-08-31T05:25:59.000Z</published>
-    <updated>2015-10-31T06:25:47.000Z</updated>
-    <content type="html"><![CDATA[<p>本文记录LVA/NAT模式的配置过程，先对接下来出现的名词做必要的解释</p>
-<ul>
-<li>Director（负载均衡器）</li>
-<li>RS（Real Server，真实服务器）</li>
-<li>VIP（Virtual IP，虚拟IP，该IP用在负载均衡器上用以对外提供服务）</li>
-<li>DIP（Director的内网IP）</li>
-</ul>
-<h2 id="1-_Director服务器配置">1. Director服务器配置</h2><p>在NAT模式下，Director需要能够转发报文给RS，因此首先要开启IP路由转发功能，缺省情况是默认关闭的。</p>
-<h4 id="开启路由转发功能">开启路由转发功能</h4><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment"># 开启IP路由转发，以便Director能将IP报文转发给对应的RS</span></span><br><span class="line">&gt; `$ echo <span class="number">1</span> &gt; /<span class="keyword">proc</span>/sys/net/ipv4/ip_forward`</span><br></pre></td></tr></table></figure>
-<p>或者打开相关配置文件进行如下设置</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>vim /etc/sysctl.conf</span><br><span class="line"><span class="comment"># 设置：net.ipv4.ip_forward = 1</span></span><br><span class="line"><span class="variable">$ </span>sysctl -p</span><br></pre></td></tr></table></figure>
-<h4 id="绑定VIP到当前网卡">绑定VIP到当前网卡</h4><p>VIP作为对外服务的IP，要将其绑定到Director的网卡上（下面是使用了别名）</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ifconfig eth0:<span class="number">1</span> <span class="number">10.0</span><span class="number">.0</span><span class="number">.1</span> broadcast <span class="number">10.255</span><span class="number">.255</span><span class="number">.255</span> netmask <span class="number">255.0</span><span class="number">.0</span><span class="number">.0</span> up</span><br></pre></td></tr></table></figure>
-<h4 id="设置Director，并且添加RS">设置Director，并且添加RS</h4><p>Linux内核为我们提供了用于管理ipvs模块的工具<code>ipvsadm</code>，下面利用该工具来对Director进行相关设置，包括：添加RS以及设置调度算法等。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ipvsadm -C</span><br><span class="line">$ ipvsadm -A -t <span class="number">10.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">80</span> -s rr</span><br><span class="line">$ ipvsadm -a -t <span class="number">10.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">80</span> -r <span class="number">172.16</span><span class="number">.115</span><span class="number">.103</span>:<span class="number">80</span> -m</span><br><span class="line">$ ipvsadm -a -t <span class="number">10.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">80</span> -r <span class="number">172.16</span><span class="number">.115</span><span class="number">.104</span>:<span class="number">80</span> -m</span><br></pre></td></tr></table></figure>
-<h4 id="检查IPVS模块配置信息">检查IPVS模块配置信息</h4><p>完成配置，现在可以使用命令查看ipvs模块配置信息</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ ipvsadm -ln</span><br><span class="line"></span><br><span class="line">IP Virtual Server version <span class="number">1.2</span><span class="number">.1</span> (size=<span class="number">4096</span>)</span><br><span class="line">Prot LocalAddress:Port Scheduler Flags</span><br><span class="line">  -&gt; RemoteAddress:Port           Forward Weight ActiveConn InActConn</span><br><span class="line">TCP  <span class="number">10.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">80</span> rr</span><br><span class="line">  -&gt; <span class="number">172.16</span><span class="number">.115</span><span class="number">.103</span>:<span class="number">80</span>            Masq    <span class="number">1</span>      <span class="number">0</span>          <span class="number">1</span>         </span><br><span class="line">  -&gt; <span class="number">172.16</span><span class="number">.115</span><span class="number">.104</span>:<span class="number">80</span>            Masq    <span class="number">1</span>      <span class="number">0</span>          <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>至此，完成了对Director的配置！</p>
-<h3 id="2-_RS服务器配置">2. RS服务器配置</h3><h4 id="设置默认网关为DIP">设置默认网关为DIP</h4><p>由于在NAT模式下，RS处理报文完成后，需要将响应报文回发给Director，因此，最简单的办法就是在RS的路由表中添加一个新的默认路由为：DIP，除此以外，RS不用做任何其他配置。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ route del <span class="keyword">default</span></span><br><span class="line">$ route add <span class="keyword">default</span> gw <span class="number">172.16</span><span class="number">.115</span><span class="number">.101</span></span><br></pre></td></tr></table></figure>
-<p>然后，检查刚刚添加的默认路由是否在路由表中</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>route</span><br></pre></td></tr></table></figure>
-<h4 id="确认VS/NAT是否正常工作">确认VS/NAT是否正常工作</h4><p>在每台RS上都进行如下配置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装Apache web服务器</span></span><br><span class="line">$ yum -y install httpd.x86_64</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动apache服务器</span></span><br><span class="line">$ service httpd start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建index.html,并设置简单的内容,其中：RS1上的index.html内容设置为'web1',RS2上设置为'web2'</span></span><br><span class="line">$ vim /var/www/html/index.html </span><br><span class="line"></span><br><span class="line"><span class="comment"># 为了测试方便，关闭RS上的防火墙</span></span><br><span class="line">$ service iptables stop</span><br></pre></td></tr></table></figure>
-<p>在Client上确认IPVS是否正常的转发请求到相应的RS,多次执行curl请求VIP</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ curl <span class="number">10.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">web1</span><br><span class="line">$ curl <span class="number">10.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">web2</span><br><span class="line">$ curl <span class="number">10.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">web1</span><br></pre></td></tr></table></figure>
-<p>从上述命令输出可以看出，交替输出web1和web2字符串，说明Director已经正常工作，并且执行的是轮询策略RR。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>本文记录LVA/NAT模式的配置过程，先对接下来出现的名词做必要的解释</p>
-<ul>
-<li>Director（负载均衡器）</li>
-<li>RS（Real Server，真实服务器）</li>
-<li>VIP（Virtual IP，虚拟IP，该IP用在负载均衡器上用]]>
-    </summary>
-    
-      <category term="howto" scheme="http://bafeimao.net/tags/howto/"/>
-    
-      <category term="ipvs" scheme="http://bafeimao.net/tags/ipvs/"/>
-    
-      <category term="linux" scheme="http://bafeimao.net/tags/linux/"/>
-    
-      <category term="load balancer" scheme="http://bafeimao.net/tags/load-balancer/"/>
-    
-      <category term="lvs" scheme="http://bafeimao.net/tags/lvs/"/>
     
   </entry>
   
@@ -815,6 +711,110 @@
       <category term="linux" scheme="http://bafeimao.net/tags/linux/"/>
     
       <category term="svn" scheme="http://bafeimao.net/tags/svn/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[IP负载均衡 - LVS/NAT模式配置详解]]></title>
+    <link href="http://bafeimao.net/2008/08/31/vs-nat-config-in-detail/"/>
+    <id>http://bafeimao.net/2008/08/31/vs-nat-config-in-detail/</id>
+    <published>2008-08-31T05:25:59.000Z</published>
+    <updated>2015-10-31T06:36:21.000Z</updated>
+    <content type="html"><![CDATA[<p>本文记录LVA/NAT模式的配置过程，先对接下来出现的名词做必要的解释</p>
+<ul>
+<li>Director（负载均衡器）</li>
+<li>RS（Real Server，真实服务器）</li>
+<li>VIP（Virtual IP，虚拟IP，该IP用在负载均衡器上用以对外提供服务）</li>
+<li>DIP（Director的内网IP）</li>
+</ul>
+<h2 id="1-_Director服务器配置">1. Director服务器配置</h2><p>在NAT模式下，Director需要能够转发报文给RS，因此首先要开启IP路由转发功能，缺省情况是默认关闭的。</p>
+<h4 id="开启路由转发功能">开启路由转发功能</h4><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment"># 开启IP路由转发，以便Director能将IP报文转发给对应的RS</span></span><br><span class="line">&gt; `$ echo <span class="number">1</span> &gt; /<span class="keyword">proc</span>/sys/net/ipv4/ip_forward`</span><br></pre></td></tr></table></figure>
+<p>或者打开相关配置文件进行如下设置</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>vim /etc/sysctl.conf</span><br><span class="line"><span class="comment"># 设置：net.ipv4.ip_forward = 1</span></span><br><span class="line"><span class="variable">$ </span>sysctl -p</span><br></pre></td></tr></table></figure>
+<h4 id="绑定VIP到当前网卡">绑定VIP到当前网卡</h4><p>VIP作为对外服务的IP，要将其绑定到Director的网卡上（下面是使用了别名）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ifconfig eth0:<span class="number">1</span> <span class="number">10.0</span><span class="number">.0</span><span class="number">.1</span> broadcast <span class="number">10.255</span><span class="number">.255</span><span class="number">.255</span> netmask <span class="number">255.0</span><span class="number">.0</span><span class="number">.0</span> up</span><br></pre></td></tr></table></figure>
+<h4 id="设置Director，并且添加RS">设置Director，并且添加RS</h4><p>Linux内核为我们提供了用于管理ipvs模块的工具<code>ipvsadm</code>，下面利用该工具来对Director进行相关设置，包括：添加RS以及设置调度算法等。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ipvsadm -C</span><br><span class="line">$ ipvsadm -A -t <span class="number">10.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">80</span> -s rr</span><br><span class="line">$ ipvsadm -a -t <span class="number">10.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">80</span> -r <span class="number">172.16</span><span class="number">.115</span><span class="number">.103</span>:<span class="number">80</span> -m</span><br><span class="line">$ ipvsadm -a -t <span class="number">10.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">80</span> -r <span class="number">172.16</span><span class="number">.115</span><span class="number">.104</span>:<span class="number">80</span> -m</span><br></pre></td></tr></table></figure>
+<h4 id="检查IPVS模块配置信息">检查IPVS模块配置信息</h4><p>完成配置，现在可以使用命令查看ipvs模块配置信息</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ ipvsadm -ln</span><br><span class="line"></span><br><span class="line">IP Virtual Server version <span class="number">1.2</span><span class="number">.1</span> (size=<span class="number">4096</span>)</span><br><span class="line">Prot LocalAddress:Port Scheduler Flags</span><br><span class="line">  -&gt; RemoteAddress:Port           Forward Weight ActiveConn InActConn</span><br><span class="line">TCP  <span class="number">10.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">80</span> rr</span><br><span class="line">  -&gt; <span class="number">172.16</span><span class="number">.115</span><span class="number">.103</span>:<span class="number">80</span>            Masq    <span class="number">1</span>      <span class="number">0</span>          <span class="number">1</span>         </span><br><span class="line">  -&gt; <span class="number">172.16</span><span class="number">.115</span><span class="number">.104</span>:<span class="number">80</span>            Masq    <span class="number">1</span>      <span class="number">0</span>          <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>至此，完成了对Director的配置！</p>
+<h3 id="2-_RS服务器配置">2. RS服务器配置</h3><h4 id="设置默认网关为DIP">设置默认网关为DIP</h4><p>由于在NAT模式下，RS处理报文完成后，需要将响应报文回发给Director，因此，最简单的办法就是在RS的路由表中添加一个新的默认路由为：DIP，除此以外，RS不用做任何其他配置。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ route del <span class="keyword">default</span></span><br><span class="line">$ route add <span class="keyword">default</span> gw <span class="number">172.16</span><span class="number">.115</span><span class="number">.101</span></span><br></pre></td></tr></table></figure>
+<p>然后，检查刚刚添加的默认路由是否在路由表中</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>route</span><br></pre></td></tr></table></figure>
+<h4 id="确认VS/NAT是否正常工作">确认VS/NAT是否正常工作</h4><p>在每台RS上都进行如下配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装Apache web服务器</span></span><br><span class="line">$ yum -y install httpd.x86_64</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动apache服务器</span></span><br><span class="line">$ service httpd start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建index.html,并设置简单的内容,其中：RS1上的index.html内容设置为'web1',RS2上设置为'web2'</span></span><br><span class="line">$ vim /var/www/html/index.html </span><br><span class="line"></span><br><span class="line"><span class="comment"># 为了测试方便，关闭RS上的防火墙</span></span><br><span class="line">$ service iptables stop</span><br></pre></td></tr></table></figure>
+<p>在Client上确认IPVS是否正常的转发请求到相应的RS,多次执行curl请求VIP</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ curl <span class="number">10.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">web1</span><br><span class="line">$ curl <span class="number">10.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">web2</span><br><span class="line">$ curl <span class="number">10.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">web1</span><br></pre></td></tr></table></figure>
+<p>从上述命令输出可以看出，交替输出web1和web2字符串，说明Director已经正常工作，并且执行的是轮询策略RR。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>本文记录LVA/NAT模式的配置过程，先对接下来出现的名词做必要的解释</p>
+<ul>
+<li>Director（负载均衡器）</li>
+<li>RS（Real Server，真实服务器）</li>
+<li>VIP（Virtual IP，虚拟IP，该IP用在负载均衡器上用]]>
+    </summary>
+    
+      <category term="howto" scheme="http://bafeimao.net/tags/howto/"/>
+    
+      <category term="ipvs" scheme="http://bafeimao.net/tags/ipvs/"/>
+    
+      <category term="linux" scheme="http://bafeimao.net/tags/linux/"/>
+    
+      <category term="load balancer" scheme="http://bafeimao.net/tags/load-balancer/"/>
+    
+      <category term="lvs" scheme="http://bafeimao.net/tags/lvs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[IP负载均衡 - VS/NAT模式原理详解]]></title>
+    <link href="http://bafeimao.net/2008/08/19/vs-nat-principle-in-detail/"/>
+    <id>http://bafeimao.net/2008/08/19/vs-nat-principle-in-detail/</id>
+    <published>2008-08-19T08:21:25.000Z</published>
+    <updated>2015-10-31T06:36:23.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="工作原理">工作原理</h3><p> VS/NAT（Virtual Server via Network Address Translation）的意思是“网络地址转换”，其原理是：调度器（也称之为：负载均衡器，Director等）收到来自客户端的“请求报文”后，根据指定的调度算法，将请求报文转发（负载分发）给隐藏在调度器后面的一组“真实服务器”（以下称RS）中的某台服务器去处理，当真实服务器处理完成后，又将报文发给Director，Director再一次修改IP数据包内种中的源地址和源端口，然后将响应报文发回给客户端，至此，完成整个负载分发过程。</p>
+<p>很多硬件负载均衡设备就是基于NAT原理的。</p>
+<h3 id="基本要求">基本要求</h3><ul>
+<li>Director至少需要绑定两个IP（DIP和VIP），其中VIP是作为集群中对外服务的唯一接口；DIP用于连接内部RS服务器组，使调度器和RS服务器组连接在内部LAN中</li>
+<li>调度器需要配置成可以转发IP数据报（设置ip_forward=1）</li>
+<li>RS必须设置默认网关为DIP，以便响应报文能够发回到Director</li>
+<li>RS和Director必须在同一个子网中，否则RS不能正确将响应报文发送到Director</li>
+<li>如果Client和调度器位于同一网段，那么就不能使用VS/NAT模式，此时可配置成VS/DR模式。（请思考为什么？）</li>
+</ul>
+<h3 id="报文转发的详细处理流程">报文转发的详细处理流程</h3><ul>
+<li>来自客户端的请求报文发送到调度器（通过VIP）</li>
+<li>调度器网卡根据数据帧首部MAC地址发现是发给自己的，因此收下该数据帧并将其发给上层网卡驱动程序，网卡驱动去掉帧首部得到IP数据包内容并将其传给IP层处理。</li>
+<li>IPVS模块通过调度算法（或从连接映射hash表中找到映射，如果之前已经映射过的话），得到一台真实服务器（Real Server / RS），假设为RS1。</li>
+<li>修改IP数据报首部的“目标IP地址”和“目标端口”为RS1的IP和端口，然后将该数据包直接又发回给本机ARP模块处理</li>
+<li>ARP模块为IP地址找到对应的mac地址（这里是RS1网卡所对应的MAC地址，关于ARP如何做地址映射可参考<a href="http://baike.baidu.com/view/111783.htm" target="_blank" rel="external">W.Richard Stevens</a>编写的《<a href="http://book.douban.com/subject/1088054/" target="_blank" rel="external">TCP/IP详解-卷一</a>》）</li>
+<li>网卡驱动重新封装数据帧，并直接将数据帧发送到位于同一网络的RS1机器的网络接口卡</li>
+<li>RS1收到从调度器发来的数据帧，发现目标mac地址是自己，同时IP数据包内容中的目标地址也是本主机地址，所以就会处理该报文并交由响应端口对应的应用程序去处理</li>
+<li>当RS处理完成后，会设置响应报文中的“目标IP地址=CIP(CIP表示客户端IP), 源IP地址=RIP”，源端口=RS1的对应端口”</li>
+<li>RS搜索本机路由表，发现CIP并不是一个直接相连的主机也不是位于同一共享网络中，因此使用默认路由(DIP)进行路由转发，此时响应报文被发送到DIP（即调度器的IP）。</li>
+<li>调度器收到来自RS的响应报文，再次修改源IP地址为VIP以及源端口为调度器的端口，然后将报文重新发回给客户端</li>
+</ul>
+<p>至此，对报文的完整流程处理结束!!!</p>
+<blockquote>
+<p>NOTE: 调度器不但会修改“目标IP”还会修改“目标端口”，因此该模式支持端口映射（其他模式不支持）</p>
+</blockquote>
+<h3 id="存在的问题及解决方案">存在的问题及解决方案</h3><h4 id="存在的问题">存在的问题</h4><p>在VS/NAT工作模式中，请求报文和响应报文都要经过Director，因此Director将会成为整个集群的瓶颈，因此集群的吞吐量将受制于Director的处理速度以及Director服务器的出口带宽，由于IPVS工作在内核，处理速度非常高，因此调度器的主要瓶颈来自于调度器的网卡带宽上。</p>
+<h4 id="解决方案">解决方案</h4><p><strong>方案1：</strong>为应付流量增长，可以升级Director服务器的网卡为千兆网卡或万兆网卡，同时Director与RS连接的交换机也要换成千兆或万兆的。除此以外，还要考虑Director服务器的总线带宽，看操作系统以及服务器的硬件配置能否应付处理的了那么大的流量。</p>
+<p><strong>方案2：</strong>结合DNS-RR（DNS轮询策略）。将大的VS/NAT集群按照某种策略（如按地域或业务模块）划分成多个小的集群，结合DNS-RR组成两级负载均衡调度方式，由此每个小集群中的Director则只分担了部分流量。</p>
+<p><strong>方案3：</strong>考虑到多数应用请求报文小而响应报文大的这种<strong>非对称性</strong>特点，我们可以将VS/NAT模式换成VS/DR模式，这将会极大的提升调度器的吞吐率。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="工作原理">工作原理</h3><p> VS/NAT（Virtual Server via Network Address Translation）的意思是“网络地址转换”，其原理是：调度器（也称之为：负载均衡器，Director等）收到来自客户端的“请求报文”后，]]>
+    </summary>
+    
+      <category term="ipvs" scheme="http://bafeimao.net/tags/ipvs/"/>
+    
+      <category term="linux" scheme="http://bafeimao.net/tags/linux/"/>
+    
+      <category term="load balancer" scheme="http://bafeimao.net/tags/load-balancer/"/>
+    
+      <category term="lvs" scheme="http://bafeimao.net/tags/lvs/"/>
     
   </entry>
   

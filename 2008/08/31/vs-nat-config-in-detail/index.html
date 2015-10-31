@@ -22,7 +22,7 @@ DIP（Director的内网IP）
 1. Director服务器配置在NAT模式下，Director需要能够转发报文给RS，因此首先要开启IP路由转发功能，缺省情况">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="IP负载均衡 - LVS/NAT模式配置详解">
-<meta property="og:url" content="http://bafeimao.net/2012/08/31/lvs-nat-config-in-detail/index.html">
+<meta property="og:url" content="http://bafeimao.net/2008/08/31/vs-nat-config-in-detail/index.html">
 <meta property="og:site_name" content="巴菲猫学技术">
 <meta property="og:description" content="本文记录LVA/NAT模式的配置过程，先对接下来出现的名词做必要的解释
 
@@ -32,7 +32,7 @@ VIP（Virtual IP，虚拟IP，该IP用在负载均衡器上用以对外提供服
 DIP（Director的内网IP）
 
 1. Director服务器配置在NAT模式下，Director需要能够转发报文给RS，因此首先要开启IP路由转发功能，缺省情况">
-<meta property="og:updated_time" content="2015-10-31T06:25:47.000Z">
+<meta property="og:updated_time" content="2015-10-31T06:36:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IP负载均衡 - LVS/NAT模式配置详解">
 <meta name="twitter:description" content="本文记录LVA/NAT模式的配置过程，先对接下来出现的名词做必要的解释
@@ -231,9 +231,9 @@ DIP（Director的内网IP）
         </h1>
     
     <div class="post-meta">
-    <time itemprop="datePublished" content="Fri Aug 31 2012 13:25:59 GMT+0800">
+    <time itemprop="datePublished" content="Sun Aug 31 2008 13:25:59 GMT+0800">
 	
-		    2012年08月31日
+		    2008年08月31日
     	
     </time>
     
@@ -296,7 +296,7 @@ DIP（Director的内网IP）
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2012/09/25/web-load-balance-technologies-in-detail/"  data-tooltip="常见的Web负载均衡技术详解">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2010/02/26/setup-svn-server-on-linux/"  data-tooltip="在linux上搭建svn服务器">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -304,7 +304,7 @@ DIP（Director的内网IP）
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2011/10/18/howto-add-ignores-for-git/" data-tooltip="如何为Git添加忽略">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2008/08/19/vs-nat-principle-in-detail/" data-tooltip="IP负载均衡 - VS/NAT模式原理详解">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -319,17 +319,17 @@ DIP（Director的内网IP）
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.net/2012/08/31/lvs-nat-config-in-detail/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.net/2008/08/31/vs-nat-config-in-detail/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.net/2012/08/31/lvs-nat-config-in-detail/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.net/2008/08/31/vs-nat-config-in-detail/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.net/2012/08/31/lvs-nat-config-in-detail/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.net/2008/08/31/vs-nat-config-in-detail/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -353,7 +353,7 @@ DIP（Director的内网IP）
 
         
         
-            <div class="ds-thread" data-thread-key="post-lvs-nat-config-in-detail" data-title="IP负载均衡 - LVS/NAT模式配置详解" data-url="http://bafeimao.net/2012/08/31/lvs-nat-config-in-detail/"></div>
+            <div class="ds-thread" data-thread-key="post-vs-nat-config-in-detail" data-title="IP负载均衡 - LVS/NAT模式配置详解" data-url="http://bafeimao.net/2008/08/31/vs-nat-config-in-detail/"></div>
 
         
     </div>
@@ -375,7 +375,7 @@ DIP（Director的内网IP）
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2012/09/25/web-load-balance-technologies-in-detail/"  data-tooltip="常见的Web负载均衡技术详解">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2010/02/26/setup-svn-server-on-linux/"  data-tooltip="在linux上搭建svn服务器">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -383,7 +383,7 @@ DIP（Director的内网IP）
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2011/10/18/howto-add-ignores-for-git/" data-tooltip="如何为Git添加忽略">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2008/08/19/vs-nat-principle-in-detail/" data-tooltip="IP负载均衡 - VS/NAT模式原理详解">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -398,17 +398,17 @@ DIP（Director的内网IP）
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.net/2012/08/31/lvs-nat-config-in-detail/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.net/2008/08/31/vs-nat-config-in-detail/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.net/2012/08/31/lvs-nat-config-in-detail/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.net/2008/08/31/vs-nat-config-in-detail/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.net/2012/08/31/lvs-nat-config-in-detail/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.net/2008/08/31/vs-nat-config-in-detail/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -434,17 +434,17 @@ DIP（Director的内网IP）
                 <div id="share-options-bar" class="share-options-bar" data-behavior="3">
     <ul class="share-options">
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://bafeimao.net/2012/08/31/lvs-nat-config-in-detail/">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://bafeimao.net/2008/08/31/vs-nat-config-in-detail/">
                 <i class="fa fa-google-plus"></i><span class="">分享到Google+</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.net/2012/08/31/lvs-nat-config-in-detail/">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.net/2008/08/31/vs-nat-config-in-detail/">
                 <i class="fa fa-facebook-official"></i><span>分享到Facebook</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.net/2012/08/31/lvs-nat-config-in-detail/">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.net/2008/08/31/vs-nat-config-in-detail/">
                 <i class="fa fa-twitter"></i><span>分享到Twitter</span>
             </a>
         </li>
