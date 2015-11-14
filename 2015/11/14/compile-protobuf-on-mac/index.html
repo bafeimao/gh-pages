@@ -6,25 +6,28 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="巴菲猫学技术">
-    <title>如何将mave项目部署到本地仓库 - 巴菲猫学技术</title>
+    <title>编译Protobuf(On Mac) - 巴菲猫学技术</title>
     <meta name="author" content="巴菲猫(29283212@qq.com)">
     
     
         <link rel="alternative" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta name="description" content="在pom.xml文件中添加以下配置节点
-1234567891011121314151617&amp;lt;distributionManagement&amp;gt;    &amp;lt;repository&amp;gt;        &amp;lt;id&amp;gt;nexus-releases&amp;lt;/id&amp;gt;        &amp;lt;name&amp;gt;Local nexus releases repository&amp;lt;/name">
+    <meta name="description" content="Protobuf推出3.0 beta版本了，相比2.0版提供了更多的语言支持，和更丰富的功能，2.0版只支持C++, JAVA, Python，3.0增加了对：Go, JavaNano, Ruby, and C#,等语言的支持，还会有更多的语言被支持。
+想要使用最新版的protobuf，需要我们自行编译protoc，首先将最新代码下载到本地
+1$ git clone https://github.">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="如何将mave项目部署到本地仓库">
-<meta property="og:url" content="http://bafeimao.net/2011/10/18/howto-deploy-project-to-local-repo-in-maven/index.html">
+<meta property="og:title" content="编译Protobuf(On Mac)">
+<meta property="og:url" content="http://bafeimao.net/2015/11/14/compile-protobuf-on-mac/index.html">
 <meta property="og:site_name" content="巴菲猫学技术">
-<meta property="og:description" content="在pom.xml文件中添加以下配置节点
-1234567891011121314151617&amp;lt;distributionManagement&amp;gt;    &amp;lt;repository&amp;gt;        &amp;lt;id&amp;gt;nexus-releases&amp;lt;/id&amp;gt;        &amp;lt;name&amp;gt;Local nexus releases repository&amp;lt;/name">
-<meta property="og:updated_time" content="2015-10-18T05:35:53.000Z">
+<meta property="og:description" content="Protobuf推出3.0 beta版本了，相比2.0版提供了更多的语言支持，和更丰富的功能，2.0版只支持C++, JAVA, Python，3.0增加了对：Go, JavaNano, Ruby, and C#,等语言的支持，还会有更多的语言被支持。
+想要使用最新版的protobuf，需要我们自行编译protoc，首先将最新代码下载到本地
+1$ git clone https://github.">
+<meta property="og:updated_time" content="2015-11-14T15:15:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何将mave项目部署到本地仓库">
-<meta name="twitter:description" content="在pom.xml文件中添加以下配置节点
-1234567891011121314151617&amp;lt;distributionManagement&amp;gt;    &amp;lt;repository&amp;gt;        &amp;lt;id&amp;gt;nexus-releases&amp;lt;/id&amp;gt;        &amp;lt;name&amp;gt;Local nexus releases repository&amp;lt;/name">
+<meta name="twitter:title" content="编译Protobuf(On Mac)">
+<meta name="twitter:description" content="Protobuf推出3.0 beta版本了，相比2.0版提供了更多的语言支持，和更丰富的功能，2.0版只支持C++, JAVA, Python，3.0增加了对：Go, JavaNano, Ruby, and C#,等语言的支持，还会有更多的语言被支持。
+想要使用最新版的protobuf，需要我们自行编译protoc，首先将最新代码下载到本地
+1$ git clone https://github.">
     
     
     
@@ -211,13 +214,13 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            如何将mave项目部署到本地仓库
+            编译Protobuf(On Mac)
         </h1>
     
     <div class="post-meta">
-    <time itemprop="datePublished" content="Tue Oct 18 2011 13:26:50 GMT+0800">
+    <time itemprop="datePublished" content="Sat Nov 14 2015 23:14:37 GMT+0800">
 	
-		    2011年10月18日
+		    2015年11月14日
     	
     </time>
     
@@ -226,13 +229,35 @@
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <p>在pom.xml文件中添加以下配置节点</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">distributionManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">repository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">id</span>&gt;</span>nexus-releases<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">name</span>&gt;</span>Local nexus releases repository<span class="tag">&lt;/<span class="title">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">url</span>&gt;</span></span><br><span class="line">            http://localhost/nexus/content/repositories/releases/ </span><br><span class="line">        <span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">repository</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="title">snapshotRepository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">id</span>&gt;</span>nexus-snapshots<span class="tag">&lt;/<span class="title">id</span> &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">name</span>&gt;</span>Local nexus snapshots repository<span class="tag">&lt;/<span class="title">name</span>&gt;</span>       </span><br><span class="line">        <span class="tag">&lt;<span class="title">url</span>&gt;</span></span><br><span class="line">            http://localhost/nexus/content/repositories/snapshots/</span><br><span class="line">        <span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">snapshotRepository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">distributionManagement</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>说明：上面的配置文件中指定的是将打包文件部署到本地的一个仓库，对外部或本地仓库的访问一般都需要配置权限，所以还需要在settings.xml文件中配置访问权限</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">servers</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">server</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">id</span>&gt;</span>nexus-releases<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">username</span>&gt;</span>admin<span class="tag">&lt;/<span class="title">username</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">password</span>&gt;</span>admin123<span class="tag">&lt;/<span class="title">password</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="title">server</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">server</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">id</span>&gt;</span>nexus-snapshots<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">username</span>&gt;</span>admin<span class="tag">&lt;/<span class="title">username</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">password</span>&gt;</span>admin123<span class="tag">&lt;/<span class="title">password</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="title">server</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">servers</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>注意：</strong> 上面的<code>&lt;server&gt;</code>/<code>&lt;id&gt;</code>节点中的名称和<code>&lt;repository&gt;</code>的<code>&lt;id&gt;</code>中的名称要保持一致</p>
-<p>执行部署</p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># mvn deploy</span></span><br></pre></td></tr></table></figure>
+            <p>Protobuf推出3.0 beta版本了，相比2.0版提供了更多的语言支持，和更丰富的功能，2.0版只支持C++, JAVA, Python，3.0增加了对：Go, JavaNano, Ruby, and C#,等语言的支持，还会有更多的语言被支持。</p>
+<p>想要使用最新版的protobuf，需要我们自行编译protoc，首先将最新代码下载到本地</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>git clone <span class="symbol">https:</span>/<span class="regexp">/github.com/google</span><span class="regexp">/protobuf</span></span><br></pre></td></tr></table></figure>
+<p>然后根据官方文档编译就可以了，主要执行以下几步：</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>./autogen.sh</span><br></pre></td></tr></table></figure>
+<p>执行autogen.sh的时候，会自动下载：<a href="https://googlemock.googlecode.com/files/gmock-1.7.0.zip" target="_blank" rel="external">https://googlemock.googlecode.com/files/gmock-1.7.0.zip</a> 这个文件，如果你不能翻墙，则<code>autogen.sh</code>命令将会由于超时而执行失败，权宜之计是自己下载gmock-1.7.0.zip这个文件将其丢到protobuf源代码目录下，然后编辑autogen.sh文件，找到<code>curl $curlopts -O https://googlemock.googlecode.com/files/gmock-1.7.0.zip</code>这一行，将其注释后再运行<code>./autogen.sh</code>即可。</p>
+<p>执行autogen.sh过程可能会出现很多错误，这大多是缺少相关依赖程序造成的，依赖的程序主要由：autoconf, automake, libtool。安装过程中可能出现的错误信息有：</p>
+<blockquote>
+<p>Failed to connect to googlemock.googlecode.com port 443: Operation timed out</p>
+</blockquote>
+<p>是因为googlecode.com被墙了，需要翻墙！</p>
+<blockquote>
+<p>./autogen.sh: line 43: autoreconf: command not found</p>
+</blockquote>
+<p>是因为autoconf没有安装，执行：<code>brew install autoconf</code>进行安装</p>
+<blockquote>
+<p>Can’t exec “aclocal”: No such file or directory at /usr/local/Cellar/autoconf/2.69/share/autoconf/Autom4te/FileUtils.pm line 326.</p>
+</blockquote>
+<p>这是因为autoconf依赖的automake没有安装，执行：<code>brew install automake</code></p>
+<blockquote>
+<p>Can’t exec “glibtoolize”: No such file or directory at /usr/local/Cellar/autoconf/2.69/share/autoconf/Autom4te/FileUtils.pm line 345, <gen10> line 6.<br>autoreconf: failed to run glibtoolize: No such file or directory<br>autoreconf: glibtoolize is needed because this package uses Libtool</gen10></p>
+</blockquote>
+<p>这是因为autoconf依赖的libtool没有安装，执行：<code>brew install libtool</code></p>
+<p>如果相关依赖都已全部安装，则依次执行如下命令：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ./configure</span><br><span class="line">$ make</span><br><span class="line">$ make<span class="instruction"> check</span><br><span class="line"></span>$ make install</span><br></pre></td></tr></table></figure>
+<p>一切都顺利后，查看protoc版本与安装位置</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>protoc --version</span><br><span class="line">libprotoc <span class="number">3.0</span>.<span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$ </span><span class="keyword">type</span> protoc</span><br><span class="line">protoc is hashed (<span class="regexp">/usr/local</span><span class="regexp">/bin/protoc</span>)</span><br></pre></td></tr></table></figure>
+<p>Congrats!!!</p>
+
             
                 
 
@@ -253,7 +278,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">标签</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/howto/">howto</a> <a class="tag tag--primary tag--small t-link" href="/tags/maven/">maven</a> <a class="tag tag--primary tag--small t-link" href="/tags/nexus/">nexus</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/protobuf/">protobuf</a>
 
             </div>
         
@@ -262,7 +287,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2011/10/18/howto-add-ignores-for-git/"  data-tooltip="如何为Git添加忽略">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -270,7 +295,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2011/09/25/ssh-login-without-password-configuration/" data-tooltip="配置SSH无密码登陆">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2013/06/17/generate-unique-id-in-distributed-system/" data-tooltip="游戏服务器中的ID生成策略">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -285,17 +310,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.net/2011/10/18/howto-deploy-project-to-local-repo-in-maven/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.net/2015/11/14/compile-protobuf-on-mac/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.net/2011/10/18/howto-deploy-project-to-local-repo-in-maven/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.net/2015/11/14/compile-protobuf-on-mac/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.net/2011/10/18/howto-deploy-project-to-local-repo-in-maven/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.net/2015/11/14/compile-protobuf-on-mac/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -319,7 +344,7 @@
 
         
         
-            <div class="ds-thread" data-thread-key="post-howto-deploy-project-to-local-repo-in-maven" data-title="如何将mave项目部署到本地仓库" data-url="http://bafeimao.net/2011/10/18/howto-deploy-project-to-local-repo-in-maven/"></div>
+            <div class="ds-thread" data-thread-key="post-compile-protobuf-on-mac" data-title="编译Protobuf(On Mac)" data-url="http://bafeimao.net/2015/11/14/compile-protobuf-on-mac/"></div>
 
         
     </div>
@@ -341,7 +366,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2011/10/18/howto-add-ignores-for-git/"  data-tooltip="如何为Git添加忽略">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -349,7 +374,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2011/09/25/ssh-login-without-password-configuration/" data-tooltip="配置SSH无密码登陆">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2013/06/17/generate-unique-id-in-distributed-system/" data-tooltip="游戏服务器中的ID生成策略">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -364,17 +389,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.net/2011/10/18/howto-deploy-project-to-local-repo-in-maven/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://bafeimao.net/2015/11/14/compile-protobuf-on-mac/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.net/2011/10/18/howto-deploy-project-to-local-repo-in-maven/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.net/2015/11/14/compile-protobuf-on-mac/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.net/2011/10/18/howto-deploy-project-to-local-repo-in-maven/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.net/2015/11/14/compile-protobuf-on-mac/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -400,17 +425,17 @@
                 <div id="share-options-bar" class="share-options-bar" data-behavior="3">
     <ul class="share-options">
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://bafeimao.net/2011/10/18/howto-deploy-project-to-local-repo-in-maven/">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://bafeimao.net/2015/11/14/compile-protobuf-on-mac/">
                 <i class="fa fa-google-plus"></i><span class="">分享到Google+</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.net/2011/10/18/howto-deploy-project-to-local-repo-in-maven/">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://bafeimao.net/2015/11/14/compile-protobuf-on-mac/">
                 <i class="fa fa-facebook-official"></i><span>分享到Facebook</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.net/2011/10/18/howto-deploy-project-to-local-repo-in-maven/">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://bafeimao.net/2015/11/14/compile-protobuf-on-mac/">
                 <i class="fa fa-twitter"></i><span>分享到Twitter</span>
             </a>
         </li>

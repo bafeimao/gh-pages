@@ -4,7 +4,7 @@
   <subtitle><![CDATA[苹果越分越少，知识越分越多！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://bafeimao.net/"/>
-  <updated>2015-10-31T06:25:49.000Z</updated>
+  <updated>2015-11-14T15:15:20.000Z</updated>
   <id>http://bafeimao.net/</id>
   
   <author>
@@ -13,6 +13,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[编译Protobuf(On Mac)]]></title>
+    <link href="http://bafeimao.net/2015/11/14/compile-protobuf-on-mac/"/>
+    <id>http://bafeimao.net/2015/11/14/compile-protobuf-on-mac/</id>
+    <published>2015-11-14T15:14:37.000Z</published>
+    <updated>2015-11-14T15:15:20.000Z</updated>
+    <content type="html"><![CDATA[<p>Protobuf推出3.0 beta版本了，相比2.0版提供了更多的语言支持，和更丰富的功能，2.0版只支持C++, JAVA, Python，3.0增加了对：Go, JavaNano, Ruby, and C#,等语言的支持，还会有更多的语言被支持。</p>
+<p>想要使用最新版的protobuf，需要我们自行编译protoc，首先将最新代码下载到本地</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>git clone <span class="symbol">https:</span>/<span class="regexp">/github.com/google</span><span class="regexp">/protobuf</span></span><br></pre></td></tr></table></figure>
+<p>然后根据官方文档编译就可以了，主要执行以下几步：</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>./autogen.sh</span><br></pre></td></tr></table></figure>
+<p>执行autogen.sh的时候，会自动下载：<a href="https://googlemock.googlecode.com/files/gmock-1.7.0.zip" target="_blank" rel="external">https://googlemock.googlecode.com/files/gmock-1.7.0.zip</a> 这个文件，如果你不能翻墙，则<code>autogen.sh</code>命令将会由于超时而执行失败，权宜之计是自己下载gmock-1.7.0.zip这个文件将其丢到protobuf源代码目录下，然后编辑autogen.sh文件，找到<code>curl $curlopts -O https://googlemock.googlecode.com/files/gmock-1.7.0.zip</code>这一行，将其注释后再运行<code>./autogen.sh</code>即可。</p>
+<p>执行autogen.sh过程可能会出现很多错误，这大多是缺少相关依赖程序造成的，依赖的程序主要由：autoconf, automake, libtool。安装过程中可能出现的错误信息有：</p>
+<blockquote>
+<p>Failed to connect to googlemock.googlecode.com port 443: Operation timed out</p>
+</blockquote>
+<p>是因为googlecode.com被墙了，需要翻墙！</p>
+<blockquote>
+<p>./autogen.sh: line 43: autoreconf: command not found</p>
+</blockquote>
+<p>是因为autoconf没有安装，执行：<code>brew install autoconf</code>进行安装</p>
+<blockquote>
+<p>Can’t exec “aclocal”: No such file or directory at /usr/local/Cellar/autoconf/2.69/share/autoconf/Autom4te/FileUtils.pm line 326.</p>
+</blockquote>
+<p>这是因为autoconf依赖的automake没有安装，执行：<code>brew install automake</code></p>
+<blockquote>
+<p>Can’t exec “glibtoolize”: No such file or directory at /usr/local/Cellar/autoconf/2.69/share/autoconf/Autom4te/FileUtils.pm line 345, <gen10> line 6.<br>autoreconf: failed to run glibtoolize: No such file or directory<br>autoreconf: glibtoolize is needed because this package uses Libtool</gen10></p>
+</blockquote>
+<p>这是因为autoconf依赖的libtool没有安装，执行：<code>brew install libtool</code></p>
+<p>如果相关依赖都已全部安装，则依次执行如下命令：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ./configure</span><br><span class="line">$ make</span><br><span class="line">$ make<span class="instruction"> check</span><br><span class="line"></span>$ make install</span><br></pre></td></tr></table></figure>
+<p>一切都顺利后，查看protoc版本与安装位置</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>protoc --version</span><br><span class="line">libprotoc <span class="number">3.0</span>.<span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$ </span><span class="keyword">type</span> protoc</span><br><span class="line">protoc is hashed (<span class="regexp">/usr/local</span><span class="regexp">/bin/protoc</span>)</span><br></pre></td></tr></table></figure>
+<p>Congrats!!!</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Protobuf推出3.0 beta版本了，相比2.0版提供了更多的语言支持，和更丰富的功能，2.0版只支持C++, JAVA, Python，3.0增加了对：Go, JavaNano, Ruby, and C#,等语言的支持，还会有更多的语言被支持。</p>
+<p>想要使]]>
+    </summary>
+    
+      <category term="protobuf" scheme="http://bafeimao.net/tags/protobuf/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[游戏服务器中的ID生成策略]]></title>
@@ -95,6 +139,32 @@
       <category term="mongodb" scheme="http://bafeimao.net/tags/mongodb/"/>
     
       <category term="redis" scheme="http://bafeimao.net/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[如何将mave项目部署到本地仓库]]></title>
+    <link href="http://bafeimao.net/2012/11/18/howto-deploy-project-to-local-repo-in-maven/"/>
+    <id>http://bafeimao.net/2012/11/18/howto-deploy-project-to-local-repo-in-maven/</id>
+    <published>2012-11-18T05:26:50.000Z</published>
+    <updated>2015-10-31T10:39:32.000Z</updated>
+    <content type="html"><![CDATA[<p>在pom.xml文件中添加以下配置节点</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">distributionManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">repository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">id</span>&gt;</span>nexus-releases<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">name</span>&gt;</span>Local nexus releases repository<span class="tag">&lt;/<span class="title">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">url</span>&gt;</span></span><br><span class="line">            http://localhost/nexus/content/repositories/releases/ </span><br><span class="line">        <span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">repository</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="title">snapshotRepository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">id</span>&gt;</span>nexus-snapshots<span class="tag">&lt;/<span class="title">id</span> &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">name</span>&gt;</span>Local nexus snapshots repository<span class="tag">&lt;/<span class="title">name</span>&gt;</span>       </span><br><span class="line">        <span class="tag">&lt;<span class="title">url</span>&gt;</span></span><br><span class="line">            http://localhost/nexus/content/repositories/snapshots/</span><br><span class="line">        <span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">snapshotRepository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">distributionManagement</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>说明：上面的配置文件中指定的是将打包文件部署到本地的一个仓库，对外部或本地仓库的访问一般都需要配置权限，所以还需要在settings.xml文件中配置访问权限</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">servers</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">server</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">id</span>&gt;</span>nexus-releases<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">username</span>&gt;</span>admin<span class="tag">&lt;/<span class="title">username</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">password</span>&gt;</span>admin123<span class="tag">&lt;/<span class="title">password</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="title">server</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">server</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">id</span>&gt;</span>nexus-snapshots<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">username</span>&gt;</span>admin<span class="tag">&lt;/<span class="title">username</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">password</span>&gt;</span>admin123<span class="tag">&lt;/<span class="title">password</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="title">server</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">servers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong> 上面的<code>&lt;server&gt;</code>/<code>&lt;id&gt;</code>节点中的名称和<code>&lt;repository&gt;</code>的<code>&lt;id&gt;</code>中的名称要保持一致</p>
+<p>执行部署</p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># mvn deploy</span></span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<p>在pom.xml文件中添加以下配置节点</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line]]>
+    </summary>
+    
+      <category term="howto" scheme="http://bafeimao.net/tags/howto/"/>
+    
+      <category term="maven" scheme="http://bafeimao.net/tags/maven/"/>
+    
+      <category term="nexus" scheme="http://bafeimao.net/tags/nexus/"/>
     
   </entry>
   
@@ -431,32 +501,6 @@
       <category term="git" scheme="http://bafeimao.net/tags/git/"/>
     
       <category term="howto" scheme="http://bafeimao.net/tags/howto/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[如何将mave项目部署到本地仓库]]></title>
-    <link href="http://bafeimao.net/2011/10/18/howto-deploy-project-to-local-repo-in-maven/"/>
-    <id>http://bafeimao.net/2011/10/18/howto-deploy-project-to-local-repo-in-maven/</id>
-    <published>2011-10-18T05:26:50.000Z</published>
-    <updated>2015-10-18T05:35:53.000Z</updated>
-    <content type="html"><![CDATA[<p>在pom.xml文件中添加以下配置节点</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">distributionManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">repository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">id</span>&gt;</span>nexus-releases<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">name</span>&gt;</span>Local nexus releases repository<span class="tag">&lt;/<span class="title">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">url</span>&gt;</span></span><br><span class="line">            http://localhost/nexus/content/repositories/releases/ </span><br><span class="line">        <span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">repository</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="title">snapshotRepository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">id</span>&gt;</span>nexus-snapshots<span class="tag">&lt;/<span class="title">id</span> &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">name</span>&gt;</span>Local nexus snapshots repository<span class="tag">&lt;/<span class="title">name</span>&gt;</span>       </span><br><span class="line">        <span class="tag">&lt;<span class="title">url</span>&gt;</span></span><br><span class="line">            http://localhost/nexus/content/repositories/snapshots/</span><br><span class="line">        <span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">snapshotRepository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">distributionManagement</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>说明：上面的配置文件中指定的是将打包文件部署到本地的一个仓库，对外部或本地仓库的访问一般都需要配置权限，所以还需要在settings.xml文件中配置访问权限</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">servers</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">server</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">id</span>&gt;</span>nexus-releases<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">username</span>&gt;</span>admin<span class="tag">&lt;/<span class="title">username</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">password</span>&gt;</span>admin123<span class="tag">&lt;/<span class="title">password</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="title">server</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">server</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">id</span>&gt;</span>nexus-snapshots<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">username</span>&gt;</span>admin<span class="tag">&lt;/<span class="title">username</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">password</span>&gt;</span>admin123<span class="tag">&lt;/<span class="title">password</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="title">server</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">servers</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>注意：</strong> 上面的<code>&lt;server&gt;</code>/<code>&lt;id&gt;</code>节点中的名称和<code>&lt;repository&gt;</code>的<code>&lt;id&gt;</code>中的名称要保持一致</p>
-<p>执行部署</p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># mvn deploy</span></span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<p>在pom.xml文件中添加以下配置节点</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line]]>
-    </summary>
-    
-      <category term="howto" scheme="http://bafeimao.net/tags/howto/"/>
-    
-      <category term="maven" scheme="http://bafeimao.net/tags/maven/"/>
-    
-      <category term="nexus" scheme="http://bafeimao.net/tags/nexus/"/>
     
   </entry>
   
@@ -1351,32 +1395,6 @@
       <category term="howto" scheme="http://bafeimao.net/tags/howto/"/>
     
       <category term="mysql" scheme="http://bafeimao.net/tags/mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[如何手动为MyEclipse添加对Spring和Hibernate框架的支持]]></title>
-    <link href="http://bafeimao.net/2008/04/18/howto-support-spring-hibernate-natures-in-myeclipse-in-manual/"/>
-    <id>http://bafeimao.net/2008/04/18/howto-support-spring-hibernate-natures-in-myeclipse-in-manual/</id>
-    <published>2008-04-18T05:04:31.000Z</published>
-    <updated>2015-10-18T05:12:06.000Z</updated>
-    <content type="html"><![CDATA[<p>打开.project项目文件，找到<natures>节点</natures></p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;natures&gt;</span><br><span class="line">          &lt;!-- 支持hibernate --&gt;</span><br><span class="line">          &lt;nature&gt;com<span class="class">.genuitec</span><span class="class">.eclipse</span><span class="class">.hibernate</span><span class="class">.hibernatenature</span>&lt;/nature&gt;</span><br><span class="line">          &lt;!-- 支持Spring Framework --&gt;</span><br><span class="line">          &lt;nature&gt;com<span class="class">.genuitec</span><span class="class">.eclipse</span><span class="class">.springframework</span><span class="class">.springnature</span>&lt;/nature&gt;</span><br><span class="line">          &lt;nature&gt;com<span class="class">.genuitec</span><span class="class">.eclipse</span><span class="class">.ast</span><span class="class">.deploy</span><span class="class">.core</span><span class="class">.deploymentnature</span>&lt;/nature&gt;</span><br><span class="line">          &lt;nature&gt;org<span class="class">.maven</span><span class="class">.ide</span><span class="class">.eclipse</span><span class="class">.maven2Nature</span>&lt;/nature&gt;</span><br><span class="line">          &lt;nature&gt;com<span class="class">.genuitec</span><span class="class">.eclipse</span><span class="class">.j2eedt</span><span class="class">.core</span><span class="class">.webnature</span>&lt;/nature&gt;</span><br><span class="line">          &lt;nature&gt;org<span class="class">.eclipse</span><span class="class">.jdt</span><span class="class">.core</span><span class="class">.javanature</span>&lt;/nature&gt;</span><br><span class="line">          &lt;nature&gt;org<span class="class">.eclipse</span><span class="class">.wst</span><span class="class">.jsdt</span><span class="class">.core</span><span class="class">.jsNature</span>&lt;/nature&gt;</span><br><span class="line">&lt;/natures&gt;</span><br></pre></td></tr></table></figure>
-<p>同时在<buildspec>节点下添加了两个<buildcommand>节点</buildcommand></buildspec></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">buildSpec</span>&gt;</span></span><br><span class="line">     ...</span><br><span class="line">     <span class="tag">&lt;<span class="title">buildCommand</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">name</span>&gt;</span>com.genuitec.eclipse.springframework.springbuilder<span class="tag">&lt;/<span class="title">name</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">arguments</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;/<span class="title">arguments</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="title">buildCommand</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">buildCommand</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">name</span>&gt;</span>com.genuitec.eclipse.hibernate.HibernateBuilder<span class="tag">&lt;/<span class="title">name</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">arguments</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;/<span class="title">arguments</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="title">buildCommand</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">buildSpec</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>说明：</strong> </p>
-<p>以上操作都可以在myclipse IDE中通过界面操作，手动操作的意图只是想了解myeclipse在背后都为我们做了些什么</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>打开.project项目文件，找到<natures>节点</natures></p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span]]>
-    </summary>
-    
-      <category term="hibernate" scheme="http://bafeimao.net/tags/hibernate/"/>
-    
-      <category term="myeclipse" scheme="http://bafeimao.net/tags/myeclipse/"/>
-    
-      <category term="spring" scheme="http://bafeimao.net/tags/spring/"/>
     
   </entry>
   
