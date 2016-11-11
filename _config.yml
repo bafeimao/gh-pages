@@ -5,14 +5,14 @@
 # Site
 title: 知行合一
 subtitle: 苹果越分越少，知识越分越多
-description: 巴菲猫的博客
-author: 巴菲猫(29283212@qq.com)
+description: codedog的博客
+author: codedog(codedog9527@qq.com)
 language: zh-cn
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://bafeimao.github.io/gh-pages/
+url: http://gukt.github.io/gh-pages/
 root: /gh-pages/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -69,7 +69,7 @@ theme: tranquilpeak
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:bafeimao/gh-pages.git
+  repo: git@github.com:gukt/gh-pages.git
   branch: gh-pages  
 
 feed:
