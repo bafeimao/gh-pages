@@ -6,44 +6,25 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="codedog">
-    <title>Git常用远程操作 - codedog</title>
+    <title>如何手动为MyEclipse添加对Spring和Hibernate框架的支持 - codedog</title>
     <meta name="author" content="codedog(29283212@qq.com)">
     
     
         <link rel="alternative" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta name="description" content="Git常用远程操作在对Git远程操作命令理解之前，首先看下图，该图可以直观地帮助我们理解各操作命令执行后所影响的区域。
-
-本文假设你对git的常规概念如：工作区（workspace），索引区（index）,本地仓库（local repository）和远程仓库（remote repository）都已经有了初步的了解。
-
-
-git clone该命令用于克隆一个远程仓库到本地文件。
-
-$ git c">
+    <meta name="description" content="打开.project项目文件，找到节点
+1234567891011&amp;lt;natures&amp;gt;          &amp;lt;!-- 支持hibernate --&amp;gt;          &amp;lt;nature&amp;gt;com.genuitec.eclipse.hibernate.hibernatenature&amp;lt;/nature&amp;gt;          &amp;lt;!-- 支持Spring Fram">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Git常用远程操作">
-<meta property="og:url" content="http://codedog.io/2011/01/03/how-to-use-git-remote-commands/index.html">
+<meta property="og:title" content="如何手动为MyEclipse添加对Spring和Hibernate框架的支持">
+<meta property="og:url" content="http://codedog.io/2008/04/18/how-to-support-spring-hibernate-natures-in-myeclipse-in-manual/index.html">
 <meta property="og:site_name" content="codedog">
-<meta property="og:description" content="Git常用远程操作在对Git远程操作命令理解之前，首先看下图，该图可以直观地帮助我们理解各操作命令执行后所影响的区域。
-
-本文假设你对git的常规概念如：工作区（workspace），索引区（index）,本地仓库（local repository）和远程仓库（remote repository）都已经有了初步的了解。
-
-
-git clone该命令用于克隆一个远程仓库到本地文件。
-
-$ git c">
-<meta property="og:image" content="http://image.beekka.com/blog/2014/bg2014061202.jpg">
-<meta property="og:updated_time" content="2015-10-17T02:00:44.000Z">
+<meta property="og:description" content="打开.project项目文件，找到节点
+1234567891011&amp;lt;natures&amp;gt;          &amp;lt;!-- 支持hibernate --&amp;gt;          &amp;lt;nature&amp;gt;com.genuitec.eclipse.hibernate.hibernatenature&amp;lt;/nature&amp;gt;          &amp;lt;!-- 支持Spring Fram">
+<meta property="og:updated_time" content="2015-10-18T05:12:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git常用远程操作">
-<meta name="twitter:description" content="Git常用远程操作在对Git远程操作命令理解之前，首先看下图，该图可以直观地帮助我们理解各操作命令执行后所影响的区域。
-
-本文假设你对git的常规概念如：工作区（workspace），索引区（index）,本地仓库（local repository）和远程仓库（remote repository）都已经有了初步的了解。
-
-
-git clone该命令用于克隆一个远程仓库到本地文件。
-
-$ git c">
+<meta name="twitter:title" content="如何手动为MyEclipse添加对Spring和Hibernate框架的支持">
+<meta name="twitter:description" content="打开.project项目文件，找到节点
+1234567891011&amp;lt;natures&amp;gt;          &amp;lt;!-- 支持hibernate --&amp;gt;          &amp;lt;nature&amp;gt;com.genuitec.eclipse.hibernate.hibernatenature&amp;lt;/nature&amp;gt;          &amp;lt;!-- 支持Spring Fram">
     
     
     
@@ -230,13 +211,13 @@ $ git c">
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            Git常用远程操作
+            如何手动为MyEclipse添加对Spring和Hibernate框架的支持
         </h1>
     
     <div class="post-meta">
-    <time itemprop="datePublished" content="Mon Jan 03 2011 16:29:29 GMT+0800">
+    <time itemprop="datePublished" content="Fri Apr 18 2008 13:04:31 GMT+0800">
 	
-		    2011年01月03日
+		    2008年04月18日
     	
     </time>
     
@@ -245,71 +226,12 @@ $ git c">
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <h4 id="Git常用远程操作">Git常用远程操作</h4><p>在对Git远程操作命令理解之前，首先看下图，该图可以直观地帮助我们理解各操作命令执行后所影响的区域。</p>
-<blockquote>
-<p>本文假设你对git的常规概念如：工作区（workspace），索引区（index）,本地仓库（local repository）和远程仓库（remote repository）都已经有了初步的了解。</p>
-</blockquote>
-<p><img src="http://image.beekka.com/blog/2014/bg2014061202.jpg" alt="Git"></p>
-<h3 id="git_clone">git clone</h3><p>该命令用于克隆一个远程仓库到本地文件。</p>
-<blockquote>
-<p>$ git clone <a href="https://github.com/bafeimao/pages1" target="_blank" rel="external">https://github.com/bafeimao/pages1</a><br>该命令会在本地自动创建文件夹<code>pages1</code></p>
-</blockquote>
-<p>也可以指定要克隆到的本地文件夹名</p>
-<blockquote>
-<p>$ git clone <a href="https://github.com/bafeimao/pages1" target="_blank" rel="external">https://github.com/bafeimao/pages1</a> blog</p>
-</blockquote>
-<p>可以提供多种协议访问方式，例如，github上提供如下三种常见的协议：</p>
-<blockquote>
-<p>$ git clone <a href="https://github.com/bafeimao/pages1" target="_blank" rel="external">https://github.com/bafeimao/pages1</a><br>$ git clone git@github.com:bafeimao/pages1.git</p>
-</blockquote>
-<h3 id="git_remote">git remote</h3><p>要想对远程仓库进行管理，首先要使用<code>remote add</code>命令添加一个远程仓库对应的名称（其他命令如：<code>git pull</code>,<code>git push</code>等操作都将依赖于该远程仓库名 ）</p>
-<p>添加一个远程仓库(需要指定一个名称和仓库的具体地址)</p>
-<blockquote>
-<p>$ git remote add origin git@github.com:bafeimao/pages1.git</p>
-</blockquote>
-<p> 查看当前已经添加过的所有远程仓库列表</p>
-<blockquote>
-<p>$ git remote<br>origin</p>
-</blockquote>
-<p>使用-v选项可以看到更具体的名称和远程仓库URL</p>
-<blockquote>
-<p>$ git remote -v<br>origin    git@github.com:bafeimao/coconut-projects.git (fetch)<br>origin    git@github.com:bafeimao/coconut-projects.git (push)</p>
-</blockquote>
-<h3 id="git_fetch">git fetch</h3><p>成功添加远程仓库后，一旦远程仓库有更新，我就可以使用<code>fetch</code>命令将远程更改取回到本地仓库， 注意：这里是将更改取到本地仓库（local repository）而非本地工作区(workspace)，详见参考图）</p>
-<blockquote>
-<p>$ git fetch origin</p>
-</blockquote>
-<p>默认取回所有分支的更改，可以指定只获取具体分支的更改</p>
-<blockquote>
-<p>$ git fetch origin dev</p>
-</blockquote>
-<h3 id="git_pull">git pull</h3><p>根据上图，也可以直接将远程的某个分支的更改取回到工作区（workspace）中的指定分支上，这就要用到<code>git pull</code>命令了，该命令的基本用法如下:</p>
-<p><code>$ git pull [&lt;remote-repo&gt; [&lt;remote-branch&gt;[:&lt;local-branch&gt;]]]</code></p>
-<p>将远程仓库master分支上的更改合并到本地工作区的dev分支</p>
-<blockquote>
-<p>$ git pull origin master:dev</p>
-<p>冒号后面的本地分支名可以省略，省略时表示合并到当前工作分支:<br>$ git pull origin master</p>
-</blockquote>
-<h3 id="git_push">git push</h3><p>如果需要将本地仓库的更改提交到远程，就需要使用<code>git push</code>命令，该命令的基本用法如下：</p>
-<p><code>$ git push [&lt;remote-repo&gt; [&lt;local-branch&gt;[:&lt;remote-branch&gt;]]]</code></p>
-<p>将本地dev分支推送到远程dev分支</p>
-<blockquote>
-<p>$ git push origin dev:dev</p>
-</blockquote>
-<p>另外可以设定当前工作分支（假设为dev）的upstream分支（即对应的远程分支），这样设定以后，在执行push时可以省略<code>本地分支名：远程分支名</code>，甚至远程仓库名称origin也可以省略</p>
-<blockquote>
-<p>$ git push –set-upstream origin dev</p>
-</blockquote>
-<p>此时可以省略分支名</p>
-<blockquote>
-<p>$ git push origin</p>
-</blockquote>
-<p>甚至连origin都可以省略</p>
-<blockquote>
-<p>$ git push</p>
-</blockquote>
-<p><strong>注意</strong>：如果指定的远程分支不存在，则会在远程自动创建 </p>
-<p>如果没有指定本地分支名则表示删除远程分支，下面两种方式均执行删除远程分支dev<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>git push origin <span class="symbol">:dev</span> </span><br><span class="line"><span class="variable">$ </span>git push origin --delete dev</span><br></pre></td></tr></table></figure></p>
+            <p>打开.project项目文件，找到<natures>节点</natures></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;natures&gt;</span><br><span class="line">          &lt;!-- 支持hibernate --&gt;</span><br><span class="line">          &lt;nature&gt;com<span class="class">.genuitec</span><span class="class">.eclipse</span><span class="class">.hibernate</span><span class="class">.hibernatenature</span>&lt;/nature&gt;</span><br><span class="line">          &lt;!-- 支持Spring Framework --&gt;</span><br><span class="line">          &lt;nature&gt;com<span class="class">.genuitec</span><span class="class">.eclipse</span><span class="class">.springframework</span><span class="class">.springnature</span>&lt;/nature&gt;</span><br><span class="line">          &lt;nature&gt;com<span class="class">.genuitec</span><span class="class">.eclipse</span><span class="class">.ast</span><span class="class">.deploy</span><span class="class">.core</span><span class="class">.deploymentnature</span>&lt;/nature&gt;</span><br><span class="line">          &lt;nature&gt;org<span class="class">.maven</span><span class="class">.ide</span><span class="class">.eclipse</span><span class="class">.maven2Nature</span>&lt;/nature&gt;</span><br><span class="line">          &lt;nature&gt;com<span class="class">.genuitec</span><span class="class">.eclipse</span><span class="class">.j2eedt</span><span class="class">.core</span><span class="class">.webnature</span>&lt;/nature&gt;</span><br><span class="line">          &lt;nature&gt;org<span class="class">.eclipse</span><span class="class">.jdt</span><span class="class">.core</span><span class="class">.javanature</span>&lt;/nature&gt;</span><br><span class="line">          &lt;nature&gt;org<span class="class">.eclipse</span><span class="class">.wst</span><span class="class">.jsdt</span><span class="class">.core</span><span class="class">.jsNature</span>&lt;/nature&gt;</span><br><span class="line">&lt;/natures&gt;</span><br></pre></td></tr></table></figure>
+<p>同时在<buildspec>节点下添加了两个<buildcommand>节点</buildcommand></buildspec></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">buildSpec</span>&gt;</span></span><br><span class="line">     ...</span><br><span class="line">     <span class="tag">&lt;<span class="title">buildCommand</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">name</span>&gt;</span>com.genuitec.eclipse.springframework.springbuilder<span class="tag">&lt;/<span class="title">name</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">arguments</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;/<span class="title">arguments</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="title">buildCommand</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">buildCommand</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">name</span>&gt;</span>com.genuitec.eclipse.hibernate.HibernateBuilder<span class="tag">&lt;/<span class="title">name</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">arguments</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;/<span class="title">arguments</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="title">buildCommand</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">buildSpec</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>说明：</strong> </p>
+<p>以上操作都可以在myclipse IDE中通过界面操作，手动操作的意图只是想了解myeclipse在背后都为我们做了些什么</p>
 
             
                 
@@ -331,7 +253,7 @@ $ git c">
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">标签</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/git/">git</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/hibernate/">hibernate</a> <a class="tag tag--primary tag--small t-link" href="/tags/myeclipse/">myeclipse</a> <a class="tag tag--primary tag--small t-link" href="/tags/spring/">spring</a>
 
             </div>
         
@@ -340,7 +262,7 @@ $ git c">
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2011/09/25/how-to-config-ssh-login-without-password/"  data-tooltip="配置SSH无密码登陆">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2008/04/18/how-to-config-multi-mysql-instances/"  data-tooltip="如何启动多个MySQL实例">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -348,7 +270,7 @@ $ git c">
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2010/08/25/how-to-build-blog-on-github-by-hexo/" data-tooltip="使用Hexo在github上建立博客">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -363,17 +285,17 @@ $ git c">
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://codedog.io/2011/01/03/how-to-use-git-remote-commands/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://codedog.io/2008/04/18/how-to-support-spring-hibernate-natures-in-myeclipse-in-manual/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://codedog.io/2011/01/03/how-to-use-git-remote-commands/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://codedog.io/2008/04/18/how-to-support-spring-hibernate-natures-in-myeclipse-in-manual/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://codedog.io/2011/01/03/how-to-use-git-remote-commands/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://codedog.io/2008/04/18/how-to-support-spring-hibernate-natures-in-myeclipse-in-manual/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -397,7 +319,7 @@ $ git c">
 
         
         
-            <div class="ds-thread" data-thread-key="post-how-to-use-git-remote-commands" data-title="Git常用远程操作" data-url="http://codedog.io/2011/01/03/how-to-use-git-remote-commands/"></div>
+            <div class="ds-thread" data-thread-key="post-how-to-support-spring-hibernate-natures-in-myeclipse-in-manual" data-title="如何手动为MyEclipse添加对Spring和Hibernate框架的支持" data-url="http://codedog.io/2008/04/18/how-to-support-spring-hibernate-natures-in-myeclipse-in-manual/"></div>
 
         
     </div>
@@ -419,7 +341,7 @@ $ git c">
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2011/09/25/how-to-config-ssh-login-without-password/"  data-tooltip="配置SSH无密码登陆">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2008/04/18/how-to-config-multi-mysql-instances/"  data-tooltip="如何启动多个MySQL实例">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -427,7 +349,7 @@ $ git c">
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2010/08/25/how-to-build-blog-on-github-by-hexo/" data-tooltip="使用Hexo在github上建立博客">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -442,17 +364,17 @@ $ git c">
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://codedog.io/2011/01/03/how-to-use-git-remote-commands/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://codedog.io/2008/04/18/how-to-support-spring-hibernate-natures-in-myeclipse-in-manual/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://codedog.io/2011/01/03/how-to-use-git-remote-commands/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://codedog.io/2008/04/18/how-to-support-spring-hibernate-natures-in-myeclipse-in-manual/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://codedog.io/2011/01/03/how-to-use-git-remote-commands/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://codedog.io/2008/04/18/how-to-support-spring-hibernate-natures-in-myeclipse-in-manual/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -478,17 +400,17 @@ $ git c">
                 <div id="share-options-bar" class="share-options-bar" data-behavior="3">
     <ul class="share-options">
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://codedog.io/2011/01/03/how-to-use-git-remote-commands/">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://codedog.io/2008/04/18/how-to-support-spring-hibernate-natures-in-myeclipse-in-manual/">
                 <i class="fa fa-google-plus"></i><span class="">分享到Google+</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://codedog.io/2011/01/03/how-to-use-git-remote-commands/">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://codedog.io/2008/04/18/how-to-support-spring-hibernate-natures-in-myeclipse-in-manual/">
                 <i class="fa fa-facebook-official"></i><span>分享到Facebook</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://codedog.io/2011/01/03/how-to-use-git-remote-commands/">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://codedog.io/2008/04/18/how-to-support-spring-hibernate-natures-in-myeclipse-in-manual/">
                 <i class="fa fa-twitter"></i><span>分享到Twitter</span>
             </a>
         </li>

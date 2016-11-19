@@ -4,7 +4,7 @@
   <subtitle><![CDATA[苹果越分越少，知识越分越多！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://codedog.io/"/>
-  <updated>2015-11-14T15:15:20.000Z</updated>
+  <updated>2015-10-31T06:25:49.000Z</updated>
   <id>http://codedog.io/</id>
   
   <author>
@@ -13,50 +13,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title><![CDATA[编译Protobuf(On Mac)]]></title>
-    <link href="http://codedog.io/2015/11/14/compile-protobuf-on-mac/"/>
-    <id>http://codedog.io/2015/11/14/compile-protobuf-on-mac/</id>
-    <published>2015-11-14T15:14:37.000Z</published>
-    <updated>2015-11-14T15:15:20.000Z</updated>
-    <content type="html"><![CDATA[<p>Protobuf推出3.0 beta版本了，相比2.0版提供了更多的语言支持，和更丰富的功能，2.0版只支持C++, JAVA, Python，3.0增加了对：Go, JavaNano, Ruby, and C#,等语言的支持，还会有更多的语言被支持。</p>
-<p>想要使用最新版的protobuf，需要我们自行编译protoc，首先将最新代码下载到本地</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>git clone <span class="symbol">https:</span>/<span class="regexp">/github.com/google</span><span class="regexp">/protobuf</span></span><br></pre></td></tr></table></figure>
-<p>然后根据官方文档编译就可以了，主要执行以下几步：</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>./autogen.sh</span><br></pre></td></tr></table></figure>
-<p>执行autogen.sh的时候，会自动下载：<a href="https://googlemock.googlecode.com/files/gmock-1.7.0.zip" target="_blank" rel="external">https://googlemock.googlecode.com/files/gmock-1.7.0.zip</a> 这个文件，如果你不能翻墙，则<code>autogen.sh</code>命令将会由于超时而执行失败，权宜之计是自己下载gmock-1.7.0.zip这个文件将其丢到protobuf源代码目录下，然后编辑autogen.sh文件，找到<code>curl $curlopts -O https://googlemock.googlecode.com/files/gmock-1.7.0.zip</code>这一行，将其注释后再运行<code>./autogen.sh</code>即可。</p>
-<p>执行autogen.sh过程可能会出现很多错误，这大多是缺少相关依赖程序造成的，依赖的程序主要由：autoconf, automake, libtool。安装过程中可能出现的错误信息有：</p>
-<blockquote>
-<p>Failed to connect to googlemock.googlecode.com port 443: Operation timed out</p>
-</blockquote>
-<p>是因为googlecode.com被墙了，需要翻墙！</p>
-<blockquote>
-<p>./autogen.sh: line 43: autoreconf: command not found</p>
-</blockquote>
-<p>是因为autoconf没有安装，执行：<code>brew install autoconf</code>进行安装</p>
-<blockquote>
-<p>Can’t exec “aclocal”: No such file or directory at /usr/local/Cellar/autoconf/2.69/share/autoconf/Autom4te/FileUtils.pm line 326.</p>
-</blockquote>
-<p>这是因为autoconf依赖的automake没有安装，执行：<code>brew install automake</code></p>
-<blockquote>
-<p>Can’t exec “glibtoolize”: No such file or directory at /usr/local/Cellar/autoconf/2.69/share/autoconf/Autom4te/FileUtils.pm line 345, <gen10> line 6.<br>autoreconf: failed to run glibtoolize: No such file or directory<br>autoreconf: glibtoolize is needed because this package uses Libtool</gen10></p>
-</blockquote>
-<p>这是因为autoconf依赖的libtool没有安装，执行：<code>brew install libtool</code></p>
-<p>如果相关依赖都已全部安装，则依次执行如下命令：</p>
-<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ./configure</span><br><span class="line">$ make</span><br><span class="line">$ make<span class="instruction"> check</span><br><span class="line"></span>$ make install</span><br></pre></td></tr></table></figure>
-<p>一切都顺利后，查看protoc版本与安装位置</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>protoc --version</span><br><span class="line">libprotoc <span class="number">3.0</span>.<span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$ </span><span class="keyword">type</span> protoc</span><br><span class="line">protoc is hashed (<span class="regexp">/usr/local</span><span class="regexp">/bin/protoc</span>)</span><br></pre></td></tr></table></figure>
-<p>Congrats!!!</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Protobuf推出3.0 beta版本了，相比2.0版提供了更多的语言支持，和更丰富的功能，2.0版只支持C++, JAVA, Python，3.0增加了对：Go, JavaNano, Ruby, and C#,等语言的支持，还会有更多的语言被支持。</p>
-<p>想要使]]>
-    </summary>
-    
-      <category term="protobuf" scheme="http://codedog.io/tags/protobuf/"/>
-    
-  </entry>
   
   <entry>
     <title><![CDATA[游戏服务器中的ID生成策略]]></title>
@@ -144,8 +100,8 @@
   
   <entry>
     <title><![CDATA[如何将mave项目部署到本地仓库]]></title>
-    <link href="http://codedog.io/2012/11/18/howto-deploy-project-to-local-repo-in-maven/"/>
-    <id>http://codedog.io/2012/11/18/howto-deploy-project-to-local-repo-in-maven/</id>
+    <link href="http://codedog.io/2012/11/18/how-to-deploy-project-to-local-repo-in-maven/"/>
+    <id>http://codedog.io/2012/11/18/how-to-deploy-project-to-local-repo-in-maven/</id>
     <published>2012-11-18T05:26:50.000Z</published>
     <updated>2015-10-31T10:39:32.000Z</updated>
     <content type="html"><![CDATA[<p>在pom.xml文件中添加以下配置节点</p>
@@ -253,8 +209,8 @@
   
   <entry>
     <title><![CDATA[使用nexus搭建maven本地仓库]]></title>
-    <link href="http://codedog.io/2012/10/31/setup-maven-local-repository-proxy/"/>
-    <id>http://codedog.io/2012/10/31/setup-maven-local-repository-proxy/</id>
+    <link href="http://codedog.io/2012/10/31/how-to-setup-maven-local-repository-proxy/"/>
+    <id>http://codedog.io/2012/10/31/how-to-setup-maven-local-repository-proxy/</id>
     <published>2012-10-31T10:14:43.000Z</published>
     <updated>2015-10-31T10:36:31.000Z</updated>
     <content type="html"><![CDATA[<h2 id="1-_nexus的安装与配置">1. nexus的安装与配置</h2><p>搭建maven本地仓库私服可以使用多个不同的软件，本文讲述使用nexus来搭建maven私服。</p>
@@ -292,43 +248,6 @@
   </entry>
   
   <entry>
-    <title><![CDATA[CentOS下yum安装maven]]></title>
-    <link href="http://codedog.io/2012/10/30/install-maven-by-yum-on-centos/"/>
-    <id>http://codedog.io/2012/10/30/install-maven-by-yum-on-centos/</id>
-    <published>2012-10-30T12:28:49.000Z</published>
-    <updated>2015-10-31T10:36:31.000Z</updated>
-    <content type="html"><![CDATA[<p>在linux下安装maven，常见的方法是：下载压缩包，然后解压安装并设置环境变量等，比较繁琐，其实是可以使用yum快速安装的。</p>
-<p><strong>添加仓库</strong></p>
-<p>maven rpm包并不存在于yum主仓库，也不存在于EPEL库中，因此如果需要使用yum安装maven，必须先添加新的包含maven安装包的仓库地址</p>
-<blockquote>
-<p>wget <a href="http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo" target="_blank" rel="external">http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo</a> -O /etc/yum.repos.d/epel-apache-maven.repo</p>
-</blockquote>
-<p><strong>解释一下：</strong></p>
-<p><a href="http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo" target="_blank" rel="external">http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo</a> 的内容如下：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Place this file in your /etc/yum.repos.d/ directory</span></span><br><span class="line"><span class="title"></span><br><span class="line">[epel-apache-maven]</span></span><br><span class="line"><span class="setting">name=<span class="value">maven from apache foundation.</span></span></span><br><span class="line"><span class="setting">baseurl=<span class="value">http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-<span class="variable">$releasever</span>/<span class="variable">$basearch</span>/</span></span></span><br><span class="line"><span class="setting">enabled=<span class="value"><span class="number">1</span></span></span></span><br><span class="line"><span class="setting">skip_if_unavailable=<span class="value"><span class="number">1</span></span></span></span><br><span class="line"><span class="setting">gpgcheck=<span class="value"><span class="number">0</span></span></span></span><br><span class="line"><span class="title"></span><br><span class="line">[epel-apache-maven-source]</span></span><br><span class="line"><span class="setting">name=<span class="value">maven from apache foundation. - Source</span></span></span><br><span class="line"><span class="setting">baseurl=<span class="value">http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-<span class="variable">$releasever</span>/SRPMS</span></span></span><br><span class="line"><span class="setting">enabled=<span class="value"><span class="number">0</span></span></span></span><br><span class="line"><span class="setting">skip_if_unavailable=<span class="value"><span class="number">1</span></span></span></span><br><span class="line"><span class="setting">gpgcheck=<span class="value"><span class="number">0</span></span></span></span><br></pre></td></tr></table></figure>
-<p><strong>-O参数：</strong>表明将wget获取到的文本内容写到后面跟着的文件后面（因此，也可手动添加上述文件内容到/etc/yum.repos.d文件末尾）</p>
-<blockquote>
-<p>以上操作其实就是为yum添加一个新的repository地址</p>
-</blockquote>
-<p>现在就可以通过yum安装maven了，安装之前先搜索一下maven关键字</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum search maven</span></span><br><span class="line">apache-maven.noarch : Java <span class="keyword">project</span> management <span class="keyword">and</span> <span class="keyword">project</span> comprehension tool</span><br><span class="line"></span><br><span class="line"><span class="comment"># yum -y install apache-maven.noarch</span></span><br><span class="line"><span class="comment"># mvn --version</span></span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<p>在linux下安装maven，常见的方法是：下载压缩包，然后解压安装并设置环境变量等，比较繁琐，其实是可以使用yum快速安装的。</p>
-<p><strong>添加仓库</strong></p>
-<p>maven rpm包并不存在于yum主仓库，也不存在于EPEL库中，因此]]>
-    </summary>
-    
-      <category term="centos" scheme="http://codedog.io/tags/centos/"/>
-    
-      <category term="howto" scheme="http://codedog.io/tags/howto/"/>
-    
-      <category term="maven" scheme="http://codedog.io/tags/maven/"/>
-    
-      <category term="yum" scheme="http://codedog.io/tags/yum/"/>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[VIM常用命令]]></title>
     <link href="http://codedog.io/2012/10/17/vim-the-most-common-commands/"/>
     <id>http://codedog.io/2012/10/17/vim-the-most-common-commands/</id>
@@ -361,155 +280,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[常见的Web负载均衡技术详解]]></title>
-    <link href="http://codedog.io/2012/09/25/web-load-balance-technologies-in-detail/"/>
-    <id>http://codedog.io/2012/09/25/web-load-balance-technologies-in-detail/</id>
-    <published>2012-09-25T15:51:01.000Z</published>
-    <updated>2015-10-31T08:10:19.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="1-_基于镜像站点的负载均衡">1. 基于镜像站点的负载均衡</h3><p>最早的负载均衡技术可以追溯到古老的镜像站点技术，其本质是制作多个站点的拷贝（镜像），然后在网页上提供站点列表，供用户选择，从而达到分流负载的目的。该技术现在仍然被一些如下载站点使用。</p>
-<h4 id="优缺点">优缺点</h4><p>该方案最大的特点就是简单；服务端不需要特别的技术支持，只要克隆多个站点即可，制作镜像本质上是文件的同步，因为它更加适合用在静态网站上。</p>
-<h3 id="2-_基于HTTP重定向的负载均衡">2. 基于HTTP重定向的负载均衡</h3><h4 id="什么是HTTP重定向">什么是HTTP重定向</h4><blockquote>
-<p>HTTP重定向是HTTP代理（如浏览器）与Web服务器共同实现的。服务器通过返回302状态码，以及在HTTP响应的Header中添加Location=url，HTTP代理收到该重定向响应后重新请求location指示的地址，这样就完成了一次HTTP重定向</p>
-</blockquote>
-<p>HTTP重定向的机制可以用来做负载均衡，具体的调度算法由服务器实现，可以根据地域就近原则，或简单的轮询（Round Robin）或其他调度算法，从而达到将负载分发到多个后端服务器的目的。</p>
-<p>HTTP重定向类似于“镜像站点负载均衡”，其最大的不同是：镜像站点是让用户选择的，而HTTP重定向的路由调度是由Web服务端的代码逻辑实现的。</p>
-<h4 id="优点">优点</h4><ul>
-<li>实现简单，由一小段代码即可实现完成简单的调度分发</li>
-<li>调度灵活自由，因为调度算法是自己实现的</li>
-</ul>
-<h4 id="存在的问题">存在的问题</h4><ul>
-<li>伸缩性不好，集群中增减主机往往需要修改代码（或服务器列表配置文件），这可能会导致重新部署（虽然这也可以通过代码来解决）</li>
-<li>如果重定向后的页面被客户端收藏，此后的请求就一直由那台机器提供服务，这将导致之前制定的负载分发策略失效，也不能实现“故障转移”。</li>
-<li>集群的最大吞吐量受到负载均衡器性能的制约</li>
-<li>对搜索引擎不友好，搜索引擎对HTTP重定向经常判定为作弊</li>
-<li>请求需要两个往返才可以完成，因此效率不高。</li>
-</ul>
-<h3 id="3-_基于DNS轮询的负载均衡">3. 基于DNS轮询的负载均衡</h3><p>DNS服务器可以针对某个域名添加多个A纪录，比如A1，A2，A3，当客户端每次访问DNS服务器让其解析域名对应的IP地址时，DNS服务器会依次从事先添加的A记录中返回，从而达到负载依次被分发到A1，A2，A3地址所对应的服务器进行处理，该策略最大的优点也是简单，但它同样也存在一些问题。</p>
-<h4 id="存在的问题-1">存在的问题</h4><ul>
-<li><p><strong>浪费公网IP地址</strong><br>每个A记录对应的IP地址都是要事先准备好的，而且必须是外网地址，我们知道，在互联网上，IPv4地址已经相当紧张</p>
-</li>
-<li><p><strong>并不一定能实现预期的均等</strong><br>因为HTTP代理（比如浏览器或各种代理服务器）会缓存DNS的解析结果，在DNS缓存没有失效之前，客户端都不会再请求DNS服务器。</p>
-</li>
-<li><p><strong>不能感知Web服务器的健康状况</strong><br>DNS服务器只是机械地轮流解析，它才不管某台机器负载已经很重，甚至某台机器已经挂掉了，它仍然会将负载分流到这些已经坏了的机器，导致无法提供服务的情况。</p>
-</li>
-<li><p><strong>难以实现故障转移</strong><br>如果发现之前添加到DNS服务器中的某台机器发生了故障，这个时候最理想的期望是立即从DNS服务器的A纪录中拿掉这台发生故障的主机记录，但是这往往很难实现，这是因为：</p>
-</li>
-</ul>
-<ol>
-<li><p>由于客户端DNS解析缓存的存在，在TTL没有过期之前，客户端仍然会一直请求故障机</p>
-</li>
-<li><p>鉴于上门所说的，DNS不能及时感知Web服务器的健康状况，一旦机器故障，我们能做的只是人工去修改DNS映射，但是这种更新往往又不能立即生效，因此会造成较长时间的不能提供服务。</p>
-</li>
-</ol>
-<ul>
-<li><strong>灵活性不够</strong><br>基于DNS的负载分发工作在DNS层面，而像HTTP重定向是基于HTTP应用层的，因此对于前者来说，如果需要提供更多的调度策略往往比较难，而对于后者，可以基于更多的场景来实现更丰富的调度逻辑，比如：基于地域，基于IP，基于不同的URL模式等。</li>
-</ul>
-<p>实际上，该方案可用于小型网站的负载分发，而在大型网站往往只是部分采用，大型网站往往采用“层级负载均衡方案”，即先配置使用DNS轮询，完成域名对多个IP的解析，添加的A记录对应于多个对外服务的负载均衡器，请求达到每个负载均衡器后，再由负载均衡器对请求进行再调度。</p>
-<h3 id="4-_基于IP的负载均衡">4. 基于IP的负载均衡</h3><p>IP负载均技术是工作在四层（网络层）的使用最广的负载均衡技术，它是在操作系统的内核进程中对请求进行转发的，因此相比其他负载均衡技术（如反向代理负载均衡）它的效率更高。</p>
-<p>该技术提供三种模式：</p>
-<h4 id="VS/NAT（网络地址转换）">VS/NAT（网络地址转换）</h4><h5 id="处理流程">处理流程</h5><ul>
-<li>负载均衡器收到来自客户端的请求报文</li>
-<li>通过调度算法得到一台真实服务器</li>
-<li>修改请求报文中的“目标IP地址”和“目标端口”为刚刚得到的真实机器的IP和端口</li>
-<li>将该请求报文转发给真实服务器去处理</li>
-<li>真实服务器处理完后，将响应报文发给负载均衡器</li>
-<li>负载均衡器将响应报文中的“源IP地址”和“源端口”再次改为VIP（提供对外服务的虚拟IP）</li>
-<li>将响应报文发回客户端</li>
-</ul>
-<h5 id="优缺点-1">优缺点</h5><ul>
-<li>负载均衡器需要对请求报文修改一次，然后还要对响应报文再一次修改</li>
-<li>响应报文必须再次经过负载均衡器，因此负载均衡器负担加重</li>
-<li>响应报文往往比请求报文大很多，如果响应报文如果也经过负载均衡器，那么负载均衡器的网卡带宽将会是一个瓶颈</li>
-</ul>
-<h4 id="VS/DR（直接服务器路由）">VS/DR（直接服务器路由）</h4><p>VS/DR是使用最广的一种模式，它的处理流程比VS/NAT简单高效</p>
-<h5 id="处理流程-1">处理流程</h5><ul>
-<li>负载均衡器收到客户端请求</li>
-<li>通过调度算法得到一台真实服务器</li>
-<li>负载均衡器<strong>对请求不做任何修改</strong>，将其直接转发给真实服务器</li>
-<li>真实服务器处理完成后<strong>不用将响应报文发回到负载均衡器</strong>，而是直接发回客户端</li>
-</ul>
-<h5 id="优点-1">优点</h5><ul>
-<li>调度效率高，负载均衡器不用修改请求报文</li>
-<li>响应报文不用发回负载均衡器，因此大大提高了负载均衡器的吞吐率</li>
-<li>集群吞吐率只取决于负载军器的入口带宽以及集群的出口带宽</li>
-</ul>
-<h4 id="VS/TUN（IP隧道）">VS/TUN（IP隧道）</h4><p>该模式应用的不多，所以不做详细介绍，具体请参加<a href="http://www.linuxvirtualserver.org/zh/lvs3.html#4" target="_blank" rel="external">这里</a></p>
-<blockquote>
-<p>最常用的是VS/DR模式，它最高效而且配置简单，关于”IP负载均衡技术”的详细介绍，请参考<a href="http://www.linuxvirtualserver.org/zh/index.html" target="_blank" rel="external">官方文档</a></p>
-</blockquote>
-<h3 id="5-_基于反向代理的负载均衡">5. 基于反向代理的负载均衡</h3><p>反向代理服务器是挡在真实服务器前面的服务器，用以隐藏后端的真实服务器，缓存部分请求内容，当然了，也可以作为负载均衡器使用</p>
-<p>它的核心工作是转发HTTP请求（区别于HTTP重定向是‘转移’而非’转发’）。反向代理服务器可以配置各种灵活的规则实现对请求的转移。</p>
-<h4 id="优点-2">优点</h4><ul>
-<li><p>有些反向代理服务器可以监控后端服务器组的多方面状态，这使得我们能够更加精细化的控制负载调度。</p>
-<blockquote>
-<p>比如Varnish，使用它作为负载均衡器，可以监控后端服务器的很多方面，比如:系统负载，响应时间，是否可用，TCP连接，流量等性能参数。</p>
-</blockquote>
-</li>
-<li><p>它工作在应用层的，因此相比于IP负载均衡技术而言，它可以提供更加完善的基于HTTP内容的调度策略，比如：</p>
-<ul>
-<li>根据IP地址进行黑白名单过滤</li>
-<li>可以实现地址重定向（如：/foo/bar指向到foo?id=bar）</li>
-<li>根据HTTP头中的User-Agent对搜索引擎爬虫的访问进行控制</li>
-</ul>
-</li>
-</ul>
-<h4 id="存在的问题-2">存在的问题</h4><ul>
-<li>和基于IP负载均衡技术相比，效率不高</li>
-<li>所有HTTP请求都要经过反向代理服务器，因此它容易成为集群新的瓶颈，当成为瓶颈后，增加再多的分流节点也无济于事。</li>
-</ul>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="1-_基于镜像站点的负载均衡">1. 基于镜像站点的负载均衡</h3><p>最早的负载均衡技术可以追溯到古老的镜像站点技术，其本质是制作多个站点的拷贝（镜像），然后在网页上提供站点列表，供用户选择，从而达到分流负载的目的。该技术现在仍然被一些如下载站点使用。</p]]>
-    </summary>
-    
-      <category term="dns" scheme="http://codedog.io/tags/dns/"/>
-    
-      <category term="ipvs" scheme="http://codedog.io/tags/ipvs/"/>
-    
-      <category term="load balance" scheme="http://codedog.io/tags/load-balance/"/>
-    
-      <category term="lvs" scheme="http://codedog.io/tags/lvs/"/>
-    
-      <category term="web" scheme="http://codedog.io/tags/web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[如何为Git添加忽略]]></title>
-    <link href="http://codedog.io/2011/10/18/howto-add-ignores-for-git/"/>
-    <id>http://codedog.io/2011/10/18/howto-add-ignores-for-git/</id>
-    <published>2011-10-18T05:33:11.000Z</published>
-    <updated>2015-10-18T05:35:35.000Z</updated>
-    <content type="html"><![CDATA[<p>添加.gitignore文件</p>
-<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># echo <span class="string">'.idea'</span> &gt;&gt; .gitignore</span></span><br><span class="line"><span class="preprocessor"># echo <span class="string">'.gradle'</span> &gt;&gt; .gitignore</span></span><br></pre></td></tr></table></figure>
-<p>添加.gitignore文件到git的索引区(Index)</p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># git add .gitignore</span></span><br></pre></td></tr></table></figure>
-<p>从index中删除之前添加的文件夹或文件</p>
-<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># git rm --cached -r .idea</span><br><span class="line"># git rm --cached -r .gradle</span><br><span class="line"></span><br><span class="line"><span class="label">NOTE: </span>该命令只会从Index中删除.idea和gradle目录，工作区不受影响</span><br></pre></td></tr></table></figure>
-<p>提交更改<br><figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># git commit -m <span class="symbol">'ignore</span> .idea <span class="keyword">and</span> .gradle folders'</span><br></pre></td></tr></table></figure></p>
-<p>如果要提交到远程仓库</p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># git push</span></span><br></pre></td></tr></table></figure>
-<p><strong>备注：</strong></p>
-<p>[1] Intellij IDEA有很好用的gitignore插件，可以快速无误的帮我们添加各种需要忽略的内容到.gitignore文件中</p>
-<p>[2] 还有一个<a href="https://www.gitignore.io/" target="_blank" rel="external">在线生成</a>.gitignore的工具，贼棒！</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>添加.gitignore文件</p>
-<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">]]>
-    </summary>
-    
-      <category term="git" scheme="http://codedog.io/tags/git/"/>
-    
-      <category term="howto" scheme="http://codedog.io/tags/howto/"/>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[配置SSH无密码登陆]]></title>
-    <link href="http://codedog.io/2011/09/25/ssh-login-without-password-configuration/"/>
-    <id>http://codedog.io/2011/09/25/ssh-login-without-password-configuration/</id>
+    <link href="http://codedog.io/2011/09/25/how-to-config-ssh-login-without-password/"/>
+    <id>http://codedog.io/2011/09/25/how-to-config-ssh-login-without-password/</id>
     <published>2011-09-25T15:19:08.000Z</published>
-    <updated>2015-10-17T04:37:16.000Z</updated>
+    <updated>2016-11-19T06:45:17.000Z</updated>
     <content type="html"><![CDATA[<p>SSH(Secure Shell)是建立在应用层和传输层基础上的安全协议，利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题，他提供两种方式的验证：</p>
 <ol>
 <li>基于口令的安全验证</li>
@@ -532,7 +307,7 @@
 <p><code>ssh-copy-id</code>命令用于拷贝公钥到远程主机的<code>.ssh/authorized_keys</code>文件中，过程中会提示输入一次密码。</p>
 <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-<span class="keyword">copy</span>-<span class="property">id</span> hadoop@vm2</span><br><span class="line">The authenticity <span class="keyword">of</span> host 'vm2 (<span class="number">172.16</span><span class="number">.115</span><span class="number">.102</span>)' can't be established.</span><br><span class="line">RSA key fingerprint <span class="keyword">is</span> <span class="number">9</span>c:<span class="number">43</span>:<span class="number">77</span>:<span class="number">79</span>:<span class="number">08</span>:<span class="number">1</span>e:<span class="number">23</span>:ec:<span class="number">3</span>b:<span class="number">3</span>b:ad:d0:a1:<span class="number">63</span>:<span class="number">0</span>c:e0.</span><br><span class="line">Are you sure you want <span class="keyword">to</span> <span class="keyword">continue</span> connecting (yes/no)? yes</span><br><span class="line">Warning: Permanently added 'vm2,<span class="number">172.16</span><span class="number">.115</span><span class="number">.102</span>' (RSA) <span class="keyword">to</span> <span class="keyword">the</span> <span class="type">list</span> <span class="keyword">of</span> known hosts.</span><br><span class="line">hadoop@vm2's password: </span><br><span class="line">Now <span class="keyword">try</span> logging <span class="keyword">into</span> <span class="keyword">the</span> machine, <span class="keyword">with</span> <span class="string">"ssh 'hadoop@vm2'"</span>, <span class="keyword">and</span> check <span class="keyword">in</span>:</span><br><span class="line"></span><br><span class="line">  .ssh/authorized_keys</span><br><span class="line"></span><br><span class="line"><span class="keyword">to</span> make sure we haven't added extra keys <span class="keyword">that</span> you weren't expecting.</span><br></pre></td></tr></table></figure>
 <h3 id="验证无密码登陆">验证无密码登陆</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>ssh hadoop<span class="variable">@vm2</span></span><br><span class="line">[此处没有提示输入密码]</span><br></pre></td></tr></table></figure>
-<p>##@see also:<br><a href="http://linuxconfig.org/passwordless-ssh" target="_blank" rel="external">http://linuxconfig.org/passwordless-ssh</a><a href="https://en.wikipedia.org/wiki/Ssh-agent" target="_blank" rel="external">enter link description here</a></p>
+<h2 id="Reference:">Reference:</h2><p>[1] <a href="http://linuxconfig.org/passwordless-ssh" target="_blank" rel="external">http://linuxconfig.org/passwordless-ssh</a><a href="https://en.wikipedia.org/wiki/Ssh-agent" target="_blank" rel="external">enter link description here</a></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>SSH(Secure Shell)是建立在应用层和传输层基础上的安全协议，利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题，他提供两种方式的验证：</p>
@@ -546,36 +321,6 @@
       <category term="linux" scheme="http://codedog.io/tags/linux/"/>
     
       <category term="ssh" scheme="http://codedog.io/tags/ssh/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[如何快速切换多个JDK版本]]></title>
-    <link href="http://codedog.io/2011/04/18/howto-switch-jdk-version-quickly/"/>
-    <id>http://codedog.io/2011/04/18/howto-switch-jdk-version-quickly/</id>
-    <published>2011-04-18T05:16:01.000Z</published>
-    <updated>2015-10-18T05:37:43.000Z</updated>
-    <content type="html"><![CDATA[<p>很多时候，我们的开发机上往往安装着多个JDK版本（有的用于开发，有的用于尝鲜），并在需要的时候在多个不同版本之间切换，如果每次用到时都去手动修改JAVA_HOME环境变量确实麻烦，其实这些操作都可以写到开机脚本中，以后切换JDK版本只需执行一条命令即可（以下以mac系统为例，其他linux系统同理）</p>
-<blockquote>
-<p>如果没有安装多个版本，实践以下步骤前，请先到Oracle官网下载相关版本并安装</p>
-<p>[1] <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="external">最新版下载页</a></p>
-<p>[2] <a href="http://www.oracle.com/technetwork/java/javase/archive-139210.html" target="_blank" rel="external">归档的旧版本下载页</a></p>
-</blockquote>
-<p>打开配置文件<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># vim ~/.bash_profile</span></span><br></pre></td></tr></table></figure></p>
-<p>添加如下配置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#配置各种版本的JAVA_HOME</span></span><br><span class="line"><span class="built_in">export</span> JAVA_6_HOME=/Library/Java/Home</span><br><span class="line"><span class="built_in">export</span> JAVA_7_HOME=/Library/Java/JavaVirtualMachines/jdk1.<span class="number">7.0</span>_80.jdk/Contents/Home</span><br><span class="line"><span class="built_in">export</span> JAVA_8_HOME=/Library/Java/JavaVirtualMachines/jdk1.<span class="number">8.0</span>_51.jdk/Contents/Home</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置默认JAVA_HOME为JDK7</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=<span class="variable">$JAVA_7_HOME</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置别名命令，用于快速切换JAVA版本</span></span><br><span class="line"><span class="built_in">alias</span> jdk6=<span class="string">'export JAVA_HOME=$JAVA_6_HOME'</span></span><br><span class="line"><span class="built_in">alias</span> jdk7=<span class="string">'export JAVA_HOME=$JAVA_7_HOME'</span></span><br><span class="line"><span class="built_in">alias</span> jdk8=<span class="string">'export JAVA_HOME=$JAVA_8_HOME'</span></span><br></pre></td></tr></table></figure>
-<p>让配置生效<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># source ~/.bash_profile</span></span><br></pre></td></tr></table></figure></p>
-<p>验证是否工作</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">检查当前使用的JDK版本</span><br><span class="line"><span class="preprocessor"># java -version</span></span><br><span class="line">java version <span class="string">"1.7.0_80-ea"</span></span><br><span class="line"></span><br><span class="line">切换其他版本</span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># jdk6 &amp;&amp; java -version</span></span><br><span class="line">Java(TM) <span class="function">SE Runtime <span class="title">Environment</span> <span class="params">(build <span class="number">1.6</span><span class="number">.0</span>_65-b14-<span class="number">466.1</span>-<span class="number">11</span>M4716)</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># jdk7 &amp;&amp; java -version</span></span><br><span class="line"><span class="title">Java</span><span class="params">(TM)</span> SE Runtime <span class="title">Environment</span> <span class="params">(build <span class="number">1.7</span><span class="number">.0</span>_80-ea-b05)</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># jdk8 &amp;&amp; java -version</span></span><br><span class="line"><span class="title">Java</span><span class="params">(TM)</span> SE Runtime <span class="title">Environment</span> <span class="params">(build <span class="number">1.8</span><span class="number">.0</span>_51-b16)</span></span></span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<p>很多时候，我们的开发机上往往安装着多个JDK版本（有的用于开发，有的用于尝鲜），并在需要的时候在多个不同版本之间切换，如果每次用到时都去手动修改JAVA_HOME环境变量确实麻烦，其实这些操作都可以写到开机脚本中，以后切换JDK版本只需执行一条命令即可（以下以mac系统为例]]>
-    </summary>
-    
-      <category term="java" scheme="http://codedog.io/tags/java/"/>
-    
-      <category term="jdk" scheme="http://codedog.io/tags/jdk/"/>
-    
-      <category term="mac" scheme="http://codedog.io/tags/mac/"/>
     
   </entry>
   
@@ -703,94 +448,19 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Maven常用操作]]></title>
-    <link href="http://codedog.io/2010/06/18/maven-common-operations/"/>
-    <id>http://codedog.io/2010/06/18/maven-common-operations/</id>
-    <published>2010-06-18T05:09:39.000Z</published>
-    <updated>2015-10-18T05:12:10.000Z</updated>
-    <content type="html"><![CDATA[<p>清理项目（删除target文件夹）</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">mvn </span>clean</span><br></pre></td></tr></table></figure>
-<p> 清理后测试（默认被放到target/test-classes文件夹下面）</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">mvn </span>clean test</span><br></pre></td></tr></table></figure>
-<p>编译主代码（默认被放到target/classes文件夹下）</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">mvn </span>clean compile</span><br></pre></td></tr></table></figure>
-<p>打包代码，打包成功后，可以看到target文件下生成了的.jar文件</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mvn clean <span class="package"><span class="keyword">package</span></span></span><br></pre></td></tr></table></figure>
-<p>如果需要打包<strong>可执行的jar包</strong>，则需要利用shade插件，我们需要在插件中配置如下信息</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>maven-shade-plugin<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">version</span>&gt;</span>1.2.1<span class="tag">&lt;/<span class="title">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">phase</span>&gt;</span>package<span class="tag">&lt;/<span class="title">phase</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">goal</span>&gt;</span>shade<span class="tag">&lt;/<span class="title">goal</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="title">goals</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">transformers</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="title">transformer</span></span><br><span class="line">                            <span class="attribute">implementation</span>=<span class="value">"org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="title">mainClass</span>&gt;</span>net.bafeimao.potato.App<span class="tag">&lt;/<span class="title">mainClass</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="title">transformer</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="title">transformers</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="title">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">execution</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">executions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>然后再次执行&gt;mvn clean package，我们可以看到target文件夹下有两个文件<br>original-potato-core-1.0-SNAPSHOT.jar<br>potato-core-1.0-SNAPSHOT.jar （可执行的）</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ java -jar potato-core-<span class="number">1.0</span>-SNAPSHOT<span class="class">.jar</span></span><br><span class="line">Hello world</span><br></pre></td></tr></table></figure>
-<p>打包并将打包好的jar包发布到本地仓库</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">mvn </span>clean install</span><br></pre></td></tr></table></figure>
-<p>查看当前项目的依赖列表（使用eclipse的pom设计器可以看到图形化的显示结果，会更直观）</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mvn dependency:<span class="type">list</span></span><br></pre></td></tr></table></figure>
-<p>查看当前项目的依赖树</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">mvn </span>dependency:tree</span><br></pre></td></tr></table></figure>
-<p>项目依赖分析</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">mvn </span>dependency:analyze</span><br></pre></td></tr></table></figure>
-<p>将jar文件部署到仓库</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">mvn </span>clean deploy</span><br></pre></td></tr></table></figure>
-<p><strong>注意：如果要将部署项目到目的仓库需要在pom文件中配置</strong></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">distributionManagement</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="title">repository</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="title">id</span>&gt;</span> nexus-releases<span class="tag">&lt;/<span class="title">id</span> &gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="title">name</span>&gt;</span> Local nexus releases repository<span class="tag">&lt;/<span class="title">name</span> &gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="title">url</span>&gt;</span> http://localhost/nexus/content/repositories/releases/ <span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;/<span class="title">repository</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="title">snapshotRepository</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="title">id</span>&gt;</span> nexus-snapshots<span class="tag">&lt;/<span class="title">id</span> &gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="title">name</span>&gt;</span> Local nexus snapshots repository<span class="tag">&lt;/<span class="title">name</span> &gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="title">url</span>&gt;</span> http://localhost/nexus/content/repositories/snapshots/ <span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;/<span class="title">snapshotRepository</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="title">distributionManagement</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>对外部或本地仓库的访问一般都需要配置权限，所以还需要在settings.xml文件中配置访问权限</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">servers</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">server</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">id</span>&gt;</span>nexus-releases<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">username</span>&gt;</span>admin<span class="tag">&lt;/<span class="title">username</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">password</span>&gt;</span>admin123<span class="tag">&lt;/<span class="title">password</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="title">server</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">server</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">id</span>&gt;</span>nexus-snapshots<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">username</span>&gt;</span>admin<span class="tag">&lt;/<span class="title">username</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">password</span>&gt;</span>admin123<span class="tag">&lt;/<span class="title">password</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="title">server</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="title">servers</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>NOTE: </strong>上面的<code>&lt;server&gt;&lt;id&gt;</code>节点中的名称需要和<code>&lt;repository&gt;&lt;id&gt;</code>中定义的名称保持一致就可以了</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>清理项目（删除target文件夹）</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td c]]>
-    </summary>
-    
-      <category term="maven" scheme="http://codedog.io/tags/maven/"/>
-    
-      <category term="nexus" scheme="http://codedog.io/tags/nexus/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Tomcat发生OutOfMemoryError: PermGen space的解决方案]]></title>
-    <link href="http://codedog.io/2010/05/25/tomcat-oom-permgen-solution/"/>
-    <id>http://codedog.io/2010/05/25/tomcat-oom-permgen-solution/</id>
-    <published>2010-05-25T14:59:35.000Z</published>
-    <updated>2015-10-31T09:30:57.000Z</updated>
-    <content type="html"><![CDATA[<p>产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> CATALINA_OPTS = -XX:PermSize=<span class="number">128</span>m -XX:MaxPermSize=<span class="number">512</span>m</span><br></pre></td></tr></table></figure>
-<p>如果是堆栈溢出,则需要提高xms的值</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> CATALINA_OPTS = -Xms128m -Xmx1024m -XX:PermSize=<span class="number">128</span>m -XX:MaxPermSize=<span class="number">512</span>m</span><br></pre></td></tr></table></figure>
-<h3 id="参数解释:">参数解释:</h3><blockquote>
-<p>-xms128：表示JVM初始堆栈大小<br>-xmx1024：表示JVM堆栈大小最大可以达到1M内存<br>-XX:PermSize=128m：表示初始永久带内存大小<br>-XX:MaxPermSize=512m：表示永久带最大内存大小</p>
-</blockquote>
-<h3 id="为什么设置CATALINA_OPTS就会生效？">为什么设置CATALINA_OPTS就会生效？</h3><p>因为在tomcat启动时会使用环境变量：JAVA_OPTS，CATALINA_OPTS, DEBUG_OPTS指定的值，查看%CATALINA_HOME%/bin/catalina.sh文件可以看到如下的代码段：</p>
-<figure class="highlight mojolicious"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span><span class="perl"><span class="variable">%_EXECJAVA</span>% <span class="variable">%JAVA_OPTS</span>% <span class="variable">%CATALINA_OPTS</span>% <span class="variable">%DEBUG_OPTS</span>% -Djava.endorsed.dirs=<span class="string">"<span class="variable">%JAVA_ENDORSED_DIRS</span><span class="variable">%"</span> -classpath "</span><span class="variable">%CLASSPATH</span><span class="variable">%"</span> -Dcatalina.base=<span class="string">"<span class="variable">%CATALINA_BASE</span><span class="variable">%"</span> -Dcatalina.home="</span><span class="variable">%CATALINA_HOME</span><span class="variable">%"</span> -Djava.io.tmpdir=<span class="string">"<span class="variable">%CATALINA_TMPDIR</span><span class="variable">%"</span> <span class="variable">%MAINCLASS</span>% <span class="variable">%CMD_LINE_ARGS</span>% <span class="variable">%ACTION</span>%</span></span><span class="xml"></span></span><br></pre></td></tr></table></figure>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span]]>
-    </summary>
-    
-      <category term="howto" scheme="http://codedog.io/tags/howto/"/>
-    
-      <category term="tomcat" scheme="http://codedog.io/tags/tomcat/"/>
-    
-      <category term="troubleshooting" scheme="http://codedog.io/tags/troubleshooting/"/>
-    
-      <category term="aaa" scheme="http://codedog.io/categories/aaa/"/>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[在linux上搭建svn服务器]]></title>
-    <link href="http://codedog.io/2010/02/26/setup-svn-server-on-linux/"/>
-    <id>http://codedog.io/2010/02/26/setup-svn-server-on-linux/</id>
+    <link href="http://codedog.io/2010/02/26/how-to-setup-svn-server-on-linux/"/>
+    <id>http://codedog.io/2010/02/26/how-to-setup-svn-server-on-linux/</id>
     <published>2010-02-26T00:40:53.000Z</published>
-    <updated>2015-10-17T04:37:16.000Z</updated>
+    <updated>2016-11-19T06:44:38.000Z</updated>
     <content type="html"><![CDATA[<h3 id="创建svn仓库根目录">创建svn仓库根目录</h3><p>在创建代码仓库之前，我们需要创建一个svn仓库根目录，以后所有的代码仓库都是在这个根目录下创建</p>
 <figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>mkdir ~<span class="regexp">/.svn</span></span><br></pre></td></tr></table></figure>
 <h3 id="创建仓库">创建仓库</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>svnadmin create ~<span class="regexp">/.svn/coconut</span></span><br></pre></td></tr></table></figure>
 <p>成功创建后，会在coconut目录下生成一些文件：</p>
 <figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>cd ~<span class="regexp">/.svn/coconut</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ ls -l</span><br><span class="line">total <span class="number">16</span></span><br><span class="line">-rw-r--r--   <span class="number">1</span> ktgu  staff  <span class="number">229</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> README.txt</span><br><span class="line">drwxr-xr-x   <span class="number">5</span> ktgu  staff  <span class="number">170</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> conf</span><br><span class="line">drwxr-sr-x  <span class="number">15</span> ktgu  staff  <span class="number">510</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> db</span><br><span class="line">-r--r--r--   <span class="number">1</span> ktgu  staff    <span class="number">2</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> format</span><br><span class="line">drwxr-xr-x  <span class="number">11</span> ktgu  staff  <span class="number">374</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> hooks</span><br><span class="line">drwxr-xr-x   <span class="number">4</span> ktgu  staff  <span class="number">136</span>  <span class="number">7</span> <span class="number">31</span> <span class="number">17</span>:<span class="number">28</span> locks</span><br></pre></td></tr></table></figure>
-<h3 id="设置访问策略">设置访问策略</h3><p>进入conf目录，编辑svnserve.conf文件（移除行首<code>#</code>并顶格）<br><figure class="highlight fix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">password-db </span>=<span class="string"> passwd</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="设置访问策略">设置访问策略</h3><p>进入conf目录，编辑svnserve.conf文件（移除行首<code>#</code>并顶格）</p>
+<figure class="highlight fix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">password-db </span>=<span class="string"> passwd</span></span><br></pre></td></tr></table></figure>
 <p>你也许需要配置匿名用户的访问权限（移除行首<code>#</code>并顶格）</p>
 <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">anon-access = <span class="command">read</span></span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -807,7 +477,7 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr_selector">[/]</span></span><br><span class="line"><span class="at_rule">@<span class="keyword">dev=rm</span></span></span><br></pre></td></tr></table></figure>
 <p>以上表示：让<code>dev</code>用户组对版本库的所有路径都拥有读写（<code>rw</code>）权限</p>
 <h3 id="启动svn服务器">启动svn服务器</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>svnserve -d -r ~<span class="regexp">/.svn/</span></span><br></pre></td></tr></table></figure>
-<p>没有提示表示成功（Linux中没有提示就是最好的提示）</p>
+<p>没有提示即表示成功（linux中没有提示就是最好的提示）</p>
 <h3 id="停止svn服务器">停止svn服务器</h3><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>killall svnserve</span><br></pre></td></tr></table></figure>
 <h3 id="测试正常运行">测试正常运行</h3><p>如果以下命令可以正常运行，说明配置成功</p>
 <figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>svn checkout <span class="symbol">svn:</span>/<span class="regexp">/127.0.0.1/coconut</span><span class="regexp">/ ~/coconut</span></span><br></pre></td></tr></table></figure>
@@ -1249,11 +919,125 @@
   </entry>
   
   <entry>
-    <title><![CDATA[IP负载均衡 - LVS/NAT配置详解]]></title>
-    <link href="http://codedog.io/2008/08/31/vs-nat-config-in-detail/"/>
-    <id>http://codedog.io/2008/08/31/vs-nat-config-in-detail/</id>
-    <published>2008-08-31T05:25:59.000Z</published>
-    <updated>2015-10-31T08:06:55.000Z</updated>
+    <title><![CDATA[负载均衡(3) - 常见Web负载均衡技术]]></title>
+    <link href="http://codedog.io/2008/08/25/lb-common-solutions/"/>
+    <id>http://codedog.io/2008/08/25/lb-common-solutions/</id>
+    <published>2008-08-25T14:12:25.000Z</published>
+    <updated>2016-11-19T06:54:25.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="1-_基于镜像站点的负载均衡">1. 基于镜像站点的负载均衡</h3><p>最早的负载均衡技术可以追溯到古老的镜像站点技术，其本质是制作多个站点的拷贝（镜像），然后在网页上提供站点列表，供用户选择，从而达到分流负载的目的。该技术现在仍然被一些如下载站点使用。</p>
+<h4 id="优缺点">优缺点</h4><p>该方案最大的特点就是简单；服务端不需要特别的技术支持，只要克隆多个站点即可，制作镜像本质上是文件的同步，因为它更加适合用在静态网站上。</p>
+<h3 id="2-_基于HTTP重定向的负载均衡">2. 基于HTTP重定向的负载均衡</h3><h4 id="什么是HTTP重定向">什么是HTTP重定向</h4><blockquote>
+<p>HTTP重定向是HTTP代理（如浏览器）与Web服务器共同实现的。服务器通过返回302状态码，以及在HTTP响应的Header中添加Location=url，HTTP代理收到该重定向响应后重新请求location指示的地址，这样就完成了一次HTTP重定向</p>
+</blockquote>
+<p>HTTP重定向的机制可以用来做负载均衡，具体的调度算法由服务器实现，可以根据地域就近原则，或简单的轮询（Round Robin）或其他调度算法，从而达到将负载分发到多个后端服务器的目的。</p>
+<p>HTTP重定向类似于“镜像站点负载均衡”，其最大的不同是：镜像站点是让用户选择的，而HTTP重定向的路由调度是由Web服务端的代码逻辑实现的。</p>
+<h4 id="优点">优点</h4><ul>
+<li>实现简单，由一小段代码即可实现完成简单的调度分发</li>
+<li>调度灵活自由，因为调度算法是自己实现的</li>
+</ul>
+<h4 id="存在的问题">存在的问题</h4><ul>
+<li>伸缩性不好，集群中增减主机往往需要修改代码（或服务器列表配置文件），这可能会导致重新部署（虽然这也可以通过代码来解决）</li>
+<li>如果重定向后的页面被客户端收藏，此后的请求就一直由那台机器提供服务，这将导致之前制定的负载分发策略失效，也不能实现“故障转移”。</li>
+<li>集群的最大吞吐量受到负载均衡器性能的制约</li>
+<li>对搜索引擎不友好，搜索引擎对HTTP重定向经常判定为作弊</li>
+<li>请求需要两个往返才可以完成，因此效率不高。</li>
+</ul>
+<h3 id="3-_基于DNS轮询的负载均衡">3. 基于DNS轮询的负载均衡</h3><p>DNS服务器可以针对某个域名添加多个A纪录，比如A1，A2，A3，当客户端每次访问DNS服务器让其解析域名对应的IP地址时，DNS服务器会依次从事先添加的A记录中返回，从而达到负载依次被分发到A1，A2，A3地址所对应的服务器进行处理，该策略最大的优点也是简单，但它同样也存在一些问题。</p>
+<h4 id="存在的问题-1">存在的问题</h4><ul>
+<li><p><strong>浪费公网IP地址</strong><br>每个A记录对应的IP地址都是要事先准备好的，而且必须是外网地址，我们知道，在互联网上，IPv4地址已经相当紧张</p>
+</li>
+<li><p><strong>并不一定能实现预期的均等</strong><br>因为HTTP代理（比如浏览器或各种代理服务器）会缓存DNS的解析结果，在DNS缓存没有失效之前，客户端都不会再请求DNS服务器。</p>
+</li>
+<li><p><strong>不能感知Web服务器的健康状况</strong><br>DNS服务器只是机械地轮流解析，它才不管某台机器负载已经很重，甚至某台机器已经挂掉了，它仍然会将负载分流到这些已经坏了的机器，导致无法提供服务的情况。</p>
+</li>
+<li><p><strong>难以实现故障转移</strong><br>如果发现之前添加到DNS服务器中的某台机器发生了故障，这个时候最理想的期望是立即从DNS服务器的A纪录中拿掉这台发生故障的主机记录，但是这往往很难实现，这是因为：</p>
+</li>
+</ul>
+<ol>
+<li><p>由于客户端DNS解析缓存的存在，在TTL没有过期之前，客户端仍然会一直请求故障机</p>
+</li>
+<li><p>鉴于上门所说的，DNS不能及时感知Web服务器的健康状况，一旦机器故障，我们能做的只是人工去修改DNS映射，但是这种更新往往又不能立即生效，因此会造成较长时间的不能提供服务。</p>
+</li>
+</ol>
+<ul>
+<li><strong>灵活性不够</strong><br>基于DNS的负载分发工作在DNS层面，而像HTTP重定向是基于HTTP应用层的，因此对于前者来说，如果需要提供更多的调度策略往往比较难，而对于后者，可以基于更多的场景来实现更丰富的调度逻辑，比如：基于地域，基于IP，基于不同的URL模式等。</li>
+</ul>
+<p>实际上，该方案可用于小型网站的负载分发，而在大型网站往往只是部分采用，大型网站往往采用“层级负载均衡方案”，即先配置使用DNS轮询，完成域名对多个IP的解析，添加的A记录对应于多个对外服务的负载均衡器，请求达到每个负载均衡器后，再由负载均衡器对请求进行再调度。</p>
+<h3 id="4-_基于IP的负载均衡">4. 基于IP的负载均衡</h3><p>IP负载均技术是工作在四层（网络层）的使用最广的负载均衡技术，它是在操作系统的内核进程中对请求进行转发的，因此相比其他负载均衡技术（如反向代理负载均衡）它的效率更高。</p>
+<p>该技术提供三种模式：</p>
+<h4 id="VS/NAT（网络地址转换）">VS/NAT（网络地址转换）</h4><h5 id="处理流程">处理流程</h5><ul>
+<li>负载均衡器收到来自客户端的请求报文</li>
+<li>通过调度算法得到一台真实服务器</li>
+<li>修改请求报文中的“目标IP地址”和“目标端口”为刚刚得到的真实机器的IP和端口</li>
+<li>将该请求报文转发给真实服务器去处理</li>
+<li>真实服务器处理完后，将响应报文发给负载均衡器</li>
+<li>负载均衡器将响应报文中的“源IP地址”和“源端口”再次改为VIP（提供对外服务的虚拟IP）</li>
+<li>将响应报文发回客户端</li>
+</ul>
+<h5 id="优缺点-1">优缺点</h5><ul>
+<li>负载均衡器需要对请求报文修改一次，然后还要对响应报文再一次修改</li>
+<li>响应报文必须再次经过负载均衡器，因此负载均衡器负担加重</li>
+<li>响应报文往往比请求报文大很多，如果响应报文如果也经过负载均衡器，那么负载均衡器的网卡带宽将会是一个瓶颈</li>
+</ul>
+<h4 id="VS/DR（直接服务器路由）">VS/DR（直接服务器路由）</h4><p>VS/DR是使用最广的一种模式，它的处理流程比VS/NAT简单高效</p>
+<h5 id="处理流程-1">处理流程</h5><ul>
+<li>负载均衡器收到客户端请求</li>
+<li>通过调度算法得到一台真实服务器</li>
+<li>负载均衡器<strong>对请求不做任何修改</strong>，将其直接转发给真实服务器</li>
+<li>真实服务器处理完成后<strong>不用将响应报文发回到负载均衡器</strong>，而是直接发回客户端</li>
+</ul>
+<h5 id="优点-1">优点</h5><ul>
+<li>调度效率高，负载均衡器不用修改请求报文</li>
+<li>响应报文不用发回负载均衡器，因此大大提高了负载均衡器的吞吐率</li>
+<li>集群吞吐率只取决于负载军器的入口带宽以及集群的出口带宽</li>
+</ul>
+<h4 id="VS/TUN（IP隧道）">VS/TUN（IP隧道）</h4><p>该模式应用的不多，所以不做详细介绍，具体请参加<a href="http://www.linuxvirtualserver.org/zh/lvs3.html#4" target="_blank" rel="external">这里</a></p>
+<blockquote>
+<p>最常用的是VS/DR模式，它最高效而且配置简单，关于”IP负载均衡技术”的详细介绍，请参考<a href="http://www.linuxvirtualserver.org/zh/index.html" target="_blank" rel="external">官方文档</a></p>
+</blockquote>
+<h3 id="5-_基于反向代理的负载均衡">5. 基于反向代理的负载均衡</h3><p>反向代理服务器是挡在真实服务器前面的服务器，用以隐藏后端的真实服务器，缓存部分请求内容，当然了，也可以作为负载均衡器使用</p>
+<p>它的核心工作是转发HTTP请求（区别于HTTP重定向是‘转移’而非’转发’）。反向代理服务器可以配置各种灵活的规则实现对请求的转移。</p>
+<h4 id="优点-2">优点</h4><ul>
+<li><p>有些反向代理服务器可以监控后端服务器组的多方面状态，这使得我们能够更加精细化的控制负载调度。</p>
+<blockquote>
+<p>比如Varnish，使用它作为负载均衡器，可以监控后端服务器的很多方面，比如:系统负载，响应时间，是否可用，TCP连接，流量等性能参数。</p>
+</blockquote>
+</li>
+<li><p>它工作在应用层的，因此相比于IP负载均衡技术而言，它可以提供更加完善的基于HTTP内容的调度策略，比如：</p>
+<ul>
+<li>根据IP地址进行黑白名单过滤</li>
+<li>可以实现地址重定向（如：/foo/bar指向到foo?id=bar）</li>
+<li>根据HTTP头中的User-Agent对搜索引擎爬虫的访问进行控制</li>
+</ul>
+</li>
+</ul>
+<h4 id="存在的问题-2">存在的问题</h4><ul>
+<li>和基于IP负载均衡技术相比，效率不高</li>
+<li>所有HTTP请求都要经过反向代理服务器，因此它容易成为集群新的瓶颈，当成为瓶颈后，增加再多的分流节点也无济于事。</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="1-_基于镜像站点的负载均衡">1. 基于镜像站点的负载均衡</h3><p>最早的负载均衡技术可以追溯到古老的镜像站点技术，其本质是制作多个站点的拷贝（镜像），然后在网页上提供站点列表，供用户选择，从而达到分流负载的目的。该技术现在仍然被一些如下载站点使用。</p]]>
+    </summary>
+    
+      <category term="dns" scheme="http://codedog.io/tags/dns/"/>
+    
+      <category term="ipvs" scheme="http://codedog.io/tags/ipvs/"/>
+    
+      <category term="load balance" scheme="http://codedog.io/tags/load-balance/"/>
+    
+      <category term="lvs" scheme="http://codedog.io/tags/lvs/"/>
+    
+      <category term="web" scheme="http://codedog.io/tags/web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[负载均衡(2) - LVS/NAT配置]]></title>
+    <link href="http://codedog.io/2008/08/22/lb-lvs-nat-config/"/>
+    <id>http://codedog.io/2008/08/22/lb-lvs-nat-config/</id>
+    <published>2008-08-22T02:15:25.000Z</published>
+    <updated>2016-11-19T06:55:34.000Z</updated>
     <content type="html"><![CDATA[<p>本文记录LVA/NAT模式的配置过程，先对接下来出现的名词做必要的解释</p>
 <ul>
 <li>Director（负载均衡器）</li>
@@ -1303,11 +1087,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[IP负载均衡 - VS/NAT原理详解]]></title>
-    <link href="http://codedog.io/2008/08/19/vs-nat-principle-in-detail/"/>
-    <id>http://codedog.io/2008/08/19/vs-nat-principle-in-detail/</id>
+    <title><![CDATA[负载均衡(1) - LVS/NAT原理]]></title>
+    <link href="http://codedog.io/2008/08/19/lb-lvs-nat-theory/"/>
+    <id>http://codedog.io/2008/08/19/lb-lvs-nat-theory/</id>
     <published>2008-08-19T08:21:25.000Z</published>
-    <updated>2015-10-31T08:06:58.000Z</updated>
+    <updated>2016-11-19T06:49:00.000Z</updated>
     <content type="html"><![CDATA[<h3 id="工作原理">工作原理</h3><p> VS/NAT（Virtual Server via Network Address Translation）的意思是“网络地址转换”，其原理是：调度器（也称之为：负载均衡器，Director等）收到来自客户端的“请求报文”后，根据指定的调度算法，将请求报文转发（负载分发）给隐藏在调度器后面的一组“真实服务器”（以下称RS）中的某台服务器去处理，当真实服务器处理完成后，又将报文发给Director，Director再一次修改IP数据包内种中的源地址和源端口，然后将响应报文发回给客户端，至此，完成整个负载分发过程。</p>
 <p>很多硬件负载均衡设备就是基于NAT原理的。</p>
 <h3 id="基本要求">基本要求</h3><ul>
@@ -1354,10 +1138,10 @@
   
   <entry>
     <title><![CDATA[如何启动多个MySQL实例]]></title>
-    <link href="http://codedog.io/2008/04/18/howto-config-multi-mysql-instances/"/>
-    <id>http://codedog.io/2008/04/18/howto-config-multi-mysql-instances/</id>
+    <link href="http://codedog.io/2008/04/18/how-to-config-multi-mysql-instances/"/>
+    <id>http://codedog.io/2008/04/18/how-to-config-multi-mysql-instances/</id>
     <published>2008-04-18T11:23:15.000Z</published>
-    <updated>2015-10-18T05:24:25.000Z</updated>
+    <updated>2016-11-19T06:40:16.000Z</updated>
     <content type="html"><![CDATA[<p>首先，要在/etc/my.cnf文件中追加[mysqld_multi]的相关配置（这可以通过执行mysqld_multi –example获取配置文件内容模板）</p>
 <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld_multi <span class="comment">--example</span></span><br></pre></td></tr></table></figure>
 <p>将下面文件内容追加到/etc/my.cnf文件末尾</p>
@@ -1366,15 +1150,19 @@
 <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost etc]<span class="comment"># mysqld_multi report</span></span><br><span class="line">Reporting MySQL servers</span><br><span class="line">MySQL server <span class="keyword">from</span> group: mysqld1 <span class="keyword">is</span> <span class="keyword">not</span> <span class="property">running</span></span><br><span class="line">MySQL server <span class="keyword">from</span> group: mysqld2 <span class="keyword">is</span> <span class="keyword">not</span> <span class="property">running</span></span><br><span class="line">MySQL server <span class="keyword">from</span> group: mysqld3 <span class="keyword">is</span> <span class="keyword">not</span> <span class="property">running</span></span><br></pre></td></tr></table></figure>
 <p>三个实例都还没有启动过，下面开始启动MySQL实例</p>
 <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="constant">@localhost</span> etc]<span class="preprocessor"># mysqld_multi start 1</span></span><br></pre></td></tr></table></figure>
-<p>检查运行状态<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost etc]<span class="comment"># mysqld_multi report</span></span><br><span class="line">Reporting MySQL servers</span><br><span class="line">MySQL server <span class="keyword">from</span> group: mysqld1 <span class="keyword">is</span> <span class="keyword">not</span> <span class="property">running</span></span><br><span class="line">MySQL server <span class="keyword">from</span> group: mysqld2 <span class="keyword">is</span> <span class="keyword">not</span> <span class="property">running</span></span><br><span class="line">MySQL server <span class="keyword">from</span> group: mysqld3 <span class="keyword">is</span> <span class="keyword">not</span> <span class="property">running</span></span><br></pre></td></tr></table></figure></p>
+<p>检查运行状态</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost etc]<span class="comment"># mysqld_multi report</span></span><br><span class="line">Reporting MySQL servers</span><br><span class="line">MySQL server <span class="keyword">from</span> group: mysqld1 <span class="keyword">is</span> <span class="keyword">not</span> <span class="property">running</span></span><br><span class="line">MySQL server <span class="keyword">from</span> group: mysqld2 <span class="keyword">is</span> <span class="keyword">not</span> <span class="property">running</span></span><br><span class="line">MySQL server <span class="keyword">from</span> group: mysqld3 <span class="keyword">is</span> <span class="keyword">not</span> <span class="property">running</span></span><br></pre></td></tr></table></figure>
 <p>发现mysqld1仍没有启动成功，怎么回事？</p>
-<p>查看mysqld日志，发现端口号被占用了<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">cat</span> /<span class="keyword">var</span>/<span class="keyword">log</span>/.mysqld.<span class="literal">log</span></span><br><span class="line">...</span><br><span class="line">150519 16:50:08 [<span class="keyword">ERROR</span>] Can't start server: Bind <span class="keyword">on</span> TCP/IP port: Address already <span class="keyword">in</span> <span class="keyword">use</span></span><br><span class="line">150519 16:50:08 [<span class="keyword">ERROR</span>] <span class="keyword">Do</span> you already have another mysqld server running <span class="keyword">on</span> port: 3306 ?</span><br><span class="line">150519 16:50:08 [<span class="keyword">ERROR</span>] Aborting</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
-<p>这是因为本机上mysqld默认实例正在启动中<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost etc]<span class="comment"># service mysqld status</span></span><br><span class="line">mysqld (pid  <span class="number">4535</span>) <span class="keyword">is</span> <span class="property">running</span>...</span><br></pre></td></tr></table></figure></p>
+<p>查看mysqld日志，发现端口号被占用了</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">cat</span> /<span class="keyword">var</span>/<span class="keyword">log</span>/.mysqld.<span class="literal">log</span></span><br><span class="line">...</span><br><span class="line">150519 16:50:08 [<span class="keyword">ERROR</span>] Can't start server: Bind <span class="keyword">on</span> TCP/IP port: Address already <span class="keyword">in</span> <span class="keyword">use</span></span><br><span class="line">150519 16:50:08 [<span class="keyword">ERROR</span>] <span class="keyword">Do</span> you already have another mysqld server running <span class="keyword">on</span> port: 3306 ?</span><br><span class="line">150519 16:50:08 [<span class="keyword">ERROR</span>] Aborting</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>这是因为本机上mysqld默认实例正在启动中</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost etc]<span class="comment"># service mysqld status</span></span><br><span class="line">mysqld (pid  <span class="number">4535</span>) <span class="keyword">is</span> <span class="property">running</span>...</span><br></pre></td></tr></table></figure>
 <p>我们要将mysqld服务停掉</p>
 <figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">[root@localhost etc]</span># service mysqld stop</span><br><span class="line">Stopping mysqld:                                           <span class="string">[  OK  ]</span></span><br></pre></td></tr></table></figure>
 <p>再次启动mysqld1,并检查是否成功</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost etc]# mysqld_multi <span class="operator"><span class="keyword">start</span> <span class="number">1</span> &amp;&amp; mysqld_multi report</span><br><span class="line">Reporting MySQL servers</span><br><span class="line">MySQL <span class="keyword">server</span> <span class="keyword">from</span> <span class="keyword">group</span>: mysqld1 <span class="keyword">is</span> <span class="keyword">not</span> running</span><br><span class="line">MySQL <span class="keyword">server</span> <span class="keyword">from</span> <span class="keyword">group</span>: mysqld2 <span class="keyword">is</span> <span class="keyword">not</span> running</span><br><span class="line">MySQL <span class="keyword">server</span> <span class="keyword">from</span> <span class="keyword">group</span>: mysqld3 <span class="keyword">is</span> <span class="keyword">not</span> running</span></span><br></pre></td></tr></table></figure>
-<p><strong>Damn it !!!</strong> 仍然没有成功，再次检查日志（/var/log/mysqld.log)<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/usr/libexec/mysqld: <span class="keyword">Table</span> 'mysql.<span class="keyword">plugin</span>' doesn't exist</span><br><span class="line">150519 17:03:27 [<span class="keyword">ERROR</span>] Can't <span class="keyword">open</span> the mysql.<span class="keyword">plugin</span> <span class="keyword">table</span>. Please <span class="keyword">run</span> mysql_upgrade to create it.</span><br></pre></td></tr></table></figure></p>
+<p><strong>Damn it !!!</strong> 仍然没有成功，再次检查日志（/var/log/mysqld.log)</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/usr/libexec/mysqld: <span class="keyword">Table</span> 'mysql.<span class="keyword">plugin</span>' doesn't exist</span><br><span class="line">150519 17:03:27 [<span class="keyword">ERROR</span>] Can't <span class="keyword">open</span> the mysql.<span class="keyword">plugin</span> <span class="keyword">table</span>. Please <span class="keyword">run</span> mysql_upgrade to create it.</span><br></pre></td></tr></table></figure>
 <p>这是因为datadir下还没有安装默认数据库（注：datadir指定的目录会在首次执行mysqld_mult start 1时自动创建并且添加了如下几个文件）<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="variable">@localhost</span> <span class="class"><span class="keyword">lib</span>]<span class="comment"># ls /var/lib/mysql1</span></span></span><br><span class="line">ibdata1  ib_logfile0  ib_logfile1</span><br></pre></td></tr></table></figure></p>
 <p>在datadir下安装数据库</p>
 <figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="variable">@localhost</span> mysql1]<span class="comment"># mysql_install_db --datadir=/var/lib/mysql1</span></span><br><span class="line">Installing MySQL <span class="keyword">system</span> tables...</span><br><span class="line">OK</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
@@ -1382,11 +1170,13 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost mysql1]# mysqld_multi <span class="operator"><span class="keyword">start</span> <span class="number">1</span></span><br><span class="line">[root@localhost mysql1]# mysqld_multi report</span><br><span class="line">Reporting MySQL servers</span><br><span class="line">MySQL <span class="keyword">server</span> <span class="keyword">from</span> <span class="keyword">group</span>: mysqld1 <span class="keyword">is</span> running</span><br><span class="line">MySQL <span class="keyword">server</span> <span class="keyword">from</span> <span class="keyword">group</span>: mysqld2 <span class="keyword">is</span> <span class="keyword">not</span> running</span><br><span class="line">MySQL <span class="keyword">server</span> <span class="keyword">from</span> <span class="keyword">group</span>: mysqld3 <span class="keyword">is</span> <span class="keyword">not</span> running</span></span><br></pre></td></tr></table></figure>
 <p>同样的步骤，将mysqld2,mysql3配置好,然后一并启动三个实例</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost mysql1]# mysqld_multi <span class="operator"><span class="keyword">start</span> <span class="number">1</span>-<span class="number">3</span></span><br><span class="line">[root@localhost mysql1]# mysqld_multi report</span><br><span class="line">Reporting MySQL servers</span><br><span class="line">MySQL <span class="keyword">server</span> <span class="keyword">from</span> <span class="keyword">group</span>: mysqld1 <span class="keyword">is</span> running</span><br><span class="line">MySQL <span class="keyword">server</span> <span class="keyword">from</span> <span class="keyword">group</span>: mysqld2 <span class="keyword">is</span> running</span><br><span class="line">MySQL <span class="keyword">server</span> <span class="keyword">from</span> <span class="keyword">group</span>: mysqld3 <span class="keyword">is</span> running</span></span><br></pre></td></tr></table></figure>
-<p>到/var/run/mysqld下瞧瞧，发现有三个pid文件，它们分别对应三个mysqld进程<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost mysql1]# <span class="keyword">ls</span> /<span class="keyword">var</span>/<span class="keyword">run</span>/mysqld</span><br><span class="line">mysqld1.pid  mysqld2.pid  mysqld3.pid</span><br></pre></td></tr></table></figure></p>
+<p>到/var/run/mysqld下瞧瞧，发现有三个pid文件，它们分别对应三个mysqld进程</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost mysql1]# <span class="keyword">ls</span> /<span class="keyword">var</span>/<span class="keyword">run</span>/mysqld</span><br><span class="line">mysqld1.pid  mysqld2.pid  mysqld3.pid</span><br></pre></td></tr></table></figure>
 <p>通过指定的socket连接mysqld实例<br><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="constant">@localhost</span> mysql1]<span class="preprocessor"># mysql -S /var/lib/mysql1/mysql.sock</span></span><br></pre></td></tr></table></figure></p>
-<p>显示pid信息<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="header">mysql&gt; show variables like '%pid%';</span><br><span class="line">+---------------+-----------------------------+</span></span><br><span class="line"><span class="header">| Variable_name | Value                       |</span><br><span class="line">+---------------+-----------------------------+</span></span><br><span class="line"><span class="header">| pid_file      | /var/run/mysqld/mysqld1.pid |</span><br><span class="line">+---------------+-----------------------------+</span></span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
-<p>显示port<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="header">mysql&gt; show variables like 'port%';</span><br><span class="line">+---------------+-------+</span></span><br><span class="line"><span class="header">| Variable_name | Value |</span><br><span class="line">+---------------+-------+</span></span><br><span class="line"><span class="header">| port          | 3306  |</span><br><span class="line">+---------------+-------+</span></span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
-]]></content>
+<p>显示pid信息</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="header">mysql&gt; show variables like '%pid%';</span><br><span class="line">+---------------+-----------------------------+</span></span><br><span class="line"><span class="header">| Variable_name | Value                       |</span><br><span class="line">+---------------+-----------------------------+</span></span><br><span class="line"><span class="header">| pid_file      | /var/run/mysqld/mysqld1.pid |</span><br><span class="line">+---------------+-----------------------------+</span></span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>显示port</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="header">mysql&gt; show variables like 'port%';</span><br><span class="line">+---------------+-------+</span></span><br><span class="line"><span class="header">| Variable_name | Value |</span><br><span class="line">+---------------+-------+</span></span><br><span class="line"><span class="header">| port          | 3306  |</span><br><span class="line">+---------------+-------+</span></span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>]]></content>
     <summary type="html">
     <![CDATA[<p>首先，要在/etc/my.cnf文件中追加[mysqld_multi]的相关配置（这可以通过执行mysqld_multi –example获取配置文件内容模板）</p>
 <figure class="highlight applescript"><table><tr><td]]>
@@ -1395,6 +1185,32 @@
       <category term="howto" scheme="http://codedog.io/tags/howto/"/>
     
       <category term="mysql" scheme="http://codedog.io/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[如何手动为MyEclipse添加对Spring和Hibernate框架的支持]]></title>
+    <link href="http://codedog.io/2008/04/18/how-to-support-spring-hibernate-natures-in-myeclipse-in-manual/"/>
+    <id>http://codedog.io/2008/04/18/how-to-support-spring-hibernate-natures-in-myeclipse-in-manual/</id>
+    <published>2008-04-18T05:04:31.000Z</published>
+    <updated>2015-10-18T05:12:06.000Z</updated>
+    <content type="html"><![CDATA[<p>打开.project项目文件，找到<natures>节点</natures></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;natures&gt;</span><br><span class="line">          &lt;!-- 支持hibernate --&gt;</span><br><span class="line">          &lt;nature&gt;com<span class="class">.genuitec</span><span class="class">.eclipse</span><span class="class">.hibernate</span><span class="class">.hibernatenature</span>&lt;/nature&gt;</span><br><span class="line">          &lt;!-- 支持Spring Framework --&gt;</span><br><span class="line">          &lt;nature&gt;com<span class="class">.genuitec</span><span class="class">.eclipse</span><span class="class">.springframework</span><span class="class">.springnature</span>&lt;/nature&gt;</span><br><span class="line">          &lt;nature&gt;com<span class="class">.genuitec</span><span class="class">.eclipse</span><span class="class">.ast</span><span class="class">.deploy</span><span class="class">.core</span><span class="class">.deploymentnature</span>&lt;/nature&gt;</span><br><span class="line">          &lt;nature&gt;org<span class="class">.maven</span><span class="class">.ide</span><span class="class">.eclipse</span><span class="class">.maven2Nature</span>&lt;/nature&gt;</span><br><span class="line">          &lt;nature&gt;com<span class="class">.genuitec</span><span class="class">.eclipse</span><span class="class">.j2eedt</span><span class="class">.core</span><span class="class">.webnature</span>&lt;/nature&gt;</span><br><span class="line">          &lt;nature&gt;org<span class="class">.eclipse</span><span class="class">.jdt</span><span class="class">.core</span><span class="class">.javanature</span>&lt;/nature&gt;</span><br><span class="line">          &lt;nature&gt;org<span class="class">.eclipse</span><span class="class">.wst</span><span class="class">.jsdt</span><span class="class">.core</span><span class="class">.jsNature</span>&lt;/nature&gt;</span><br><span class="line">&lt;/natures&gt;</span><br></pre></td></tr></table></figure>
+<p>同时在<buildspec>节点下添加了两个<buildcommand>节点</buildcommand></buildspec></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">buildSpec</span>&gt;</span></span><br><span class="line">     ...</span><br><span class="line">     <span class="tag">&lt;<span class="title">buildCommand</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">name</span>&gt;</span>com.genuitec.eclipse.springframework.springbuilder<span class="tag">&lt;/<span class="title">name</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">arguments</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;/<span class="title">arguments</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="title">buildCommand</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">buildCommand</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">name</span>&gt;</span>com.genuitec.eclipse.hibernate.HibernateBuilder<span class="tag">&lt;/<span class="title">name</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;<span class="title">arguments</span>&gt;</span></span><br><span class="line">               <span class="tag">&lt;/<span class="title">arguments</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="title">buildCommand</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">buildSpec</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>说明：</strong> </p>
+<p>以上操作都可以在myclipse IDE中通过界面操作，手动操作的意图只是想了解myeclipse在背后都为我们做了些什么</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>打开.project项目文件，找到<natures>节点</natures></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span]]>
+    </summary>
+    
+      <category term="hibernate" scheme="http://codedog.io/tags/hibernate/"/>
+    
+      <category term="myeclipse" scheme="http://codedog.io/tags/myeclipse/"/>
+    
+      <category term="spring" scheme="http://codedog.io/tags/spring/"/>
     
   </entry>
   

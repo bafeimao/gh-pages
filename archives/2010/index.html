@@ -254,102 +254,7 @@
                 <div class="postShorten-header">
                     <h1 class="postShorten-title" itemprop="headline">
                         
-                                <a class="link-unstyled" href="/2010/06/18/maven-common-operations/">Maven常用操作</a>
-                        
-                    </h1>
-                    <div class="postShorten-meta">
-    <time itemprop="datePublished" content="Fri Jun 18 2010 13:09:39 GMT+0800">
-	
-		    2010年06月18日
-    	
-    </time>
-    
-</div>
-                </div>
-                <div class="postShorten-excerpt" itemprop="articleBody">
-                    
-                        <p>
-                            清理项目（删除target文件夹）
-1$ mvn clean
- 清理后测试（默认被放到target/test-classes文件夹下面）
-1$ mvn clean test
-编译主代码（默认被放到target/classes文件夹下）
-1$ mvn clean compile
-打包代码，打包成功后，可以看到target文件下生成了的.jar文件
-1$ mvn clean package
-如果需要打<br>
-                    
-                    
-                        
-                            <a href="/2010/06/18/maven-common-operations/" class="postShorten-excerpt_link link ">阅读全文</a>
-                            
-                        
-                    
-                    
-                        </p>
-                    
-                </div>
-            </div>
-            
-        </article>
-    
-        
-        
-                <article class="postShorten" itemscope itemType="http://schema.org/BlogPosting">
-        
-            <div class="postShorten-wrap">
-                <div class="postShorten-header">
-                    <h1 class="postShorten-title" itemprop="headline">
-                        
-                                <a class="link-unstyled" href="/2010/05/25/tomcat-oom-permgen-solution/">Tomcat发生OutOfMemoryError: PermGen space的解决方案</a>
-                        
-                    </h1>
-                    <div class="postShorten-meta">
-    <time itemprop="datePublished" content="Tue May 25 2010 22:59:35 GMT+0800">
-	
-		    2010年05月25日
-    	
-    </time>
-    
-        <span>in </span>
-        
-    <a class="category-link" href="/categories/aaa/">aaa</a>
-
-
-    
-</div>
-                </div>
-                <div class="postShorten-excerpt" itemprop="articleBody">
-                    
-                        <p>
-                            产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值
-1set CATALINA_OPTS = -XX:PermSize=128m -XX:MaxPermSize=512m
-如果是堆栈溢出,则需要提高xms的值
-1set CATALINA_OPTS = -Xms128m -Xmx1024m -XX:PermSize=128m <br>
-                    
-                    
-                        
-                            <a href="/2010/05/25/tomcat-oom-permgen-solution/" class="postShorten-excerpt_link link ">阅读全文</a>
-                            
-                        
-                    
-                    
-                        </p>
-                    
-                </div>
-            </div>
-            
-        </article>
-    
-        
-        
-                <article class="postShorten" itemscope itemType="http://schema.org/BlogPosting">
-        
-            <div class="postShorten-wrap">
-                <div class="postShorten-header">
-                    <h1 class="postShorten-title" itemprop="headline">
-                        
-                                <a class="link-unstyled" href="/2010/02/26/setup-svn-server-on-linux/">在linux上搭建svn服务器</a>
+                                <a class="link-unstyled" href="/2010/02/26/how-to-setup-svn-server-on-linux/">在linux上搭建svn服务器</a>
                         
                     </h1>
                     <div class="postShorten-meta">
@@ -373,7 +278,7 @@
                     
                     
                         
-                            <a href="/2010/02/26/setup-svn-server-on-linux/" class="postShorten-excerpt_link link ">阅读全文</a>
+                            <a href="/2010/02/26/how-to-setup-svn-server-on-linux/" class="postShorten-excerpt_link link ">阅读全文</a>
                             
                         
                     

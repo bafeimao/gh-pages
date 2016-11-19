@@ -1,0 +1,514 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="codedog">
+    <title>如何启动多个MySQL实例 - codedog</title>
+    <meta name="author" content="codedog(29283212@qq.com)">
+    
+    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="首先，要在/etc/my.cnf文件中追加[mysqld_multi]的相关配置（这可以通过执行mysqld_multi –example获取配置文件内容模板）
+1mysqld_multi --example
+将下面文件内容追加到/etc/my.cnf文件末尾
+123456789101112131415161718192021222324252627282930[mysqld_multi]mysq">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="如何启动多个MySQL实例">
+<meta property="og:url" content="http://codedog.io/2008/04/18/how-to-config-multi-mysql-instances/index.html">
+<meta property="og:site_name" content="codedog">
+<meta property="og:description" content="首先，要在/etc/my.cnf文件中追加[mysqld_multi]的相关配置（这可以通过执行mysqld_multi –example获取配置文件内容模板）
+1mysqld_multi --example
+将下面文件内容追加到/etc/my.cnf文件末尾
+123456789101112131415161718192021222324252627282930[mysqld_multi]mysq">
+<meta property="og:updated_time" content="2016-11-19T06:40:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何启动多个MySQL实例">
+<meta name="twitter:description" content="首先，要在/etc/my.cnf文件中追加[mysqld_multi]的相关配置（这可以通过执行mysqld_multi –example获取配置文件内容模板）
+1mysqld_multi --example
+将下面文件内容追加到/etc/my.cnf文件末尾
+123456789101112131415161718192021222324252627282930[mysqld_multi]mysq">
+    
+    
+    
+        <meta property="og:image" content="/assets/images/avatar.png"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css" type="text/css">
+    <!--STYLES END-->
+    
+    
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+          var ba = document.createElement('script');
+          ba.type = 'text/javascript';
+          ba.async = true;
+          ba.src = "//hm.baidu.com/hm.js?" + 'a2aa6d1270ee6590146b44d36e247c57';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(ba, s);
+        })();
+    </script>
+
+
+
+
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header" data-behavior="3">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">codedog</a>
+    </h1>
+    
+        <a class="header-right-picture" href="/#about">
+            <img class="header-picture" src="/assets/images/avatar.png"/>
+        </a>
+    
+</header>
+            <nav id="sidebar" data-behavior="3">
+    
+        <div class="sidebar-profile">
+            <a href="/#about">
+                
+                    <img class="sidebar-profile-picture" src="/assets/images/avatar.png"/>
+                
+            </a>
+            <span class="sidebar-profile-name">codedog(29283212@qq.com)</span>
+        </div>
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">首页</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-categories"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc">分类</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">标签</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">归档</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">搜索</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/#about"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc">关于</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/bafeimao" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="mailto:29283212@qq.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc">邮箱</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="3"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            如何启动多个MySQL实例
+        </h1>
+    
+    <div class="post-meta">
+    <time itemprop="datePublished" content="Fri Apr 18 2008 19:23:15 GMT+0800">
+	
+		    2008年04月18日
+    	
+    </time>
+    
+</div>
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <p>首先，要在/etc/my.cnf文件中追加[mysqld_multi]的相关配置（这可以通过执行mysqld_multi –example获取配置文件内容模板）</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld_multi <span class="comment">--example</span></span><br></pre></td></tr></table></figure>
+<p>将下面文件内容追加到/etc/my.cnf文件末尾</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">[mysqld_multi]</span></span><br><span class="line"><span class="setting">mysqld     = <span class="value">/usr/bin/mysqld_safe</span></span></span><br><span class="line"><span class="setting">mysqladmin = <span class="value">/usr/bin/mysqladmin</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">#user       = multi_admin</span></span><br><span class="line"><span class="comment">#password   = 1234+aaaa</span></span><br><span class="line"><span class="title"></span><br><span class="line">[mysqld1]</span></span><br><span class="line"><span class="setting">port       = <span class="value"><span class="number">3306</span></span></span></span><br><span class="line"><span class="setting">datadir    = <span class="value">/var/lib/mysql1</span></span></span><br><span class="line"><span class="setting">socket     = <span class="value">/var/lib/mysql1/mysql.sock</span></span></span><br><span class="line"><span class="setting">pid-file   = <span class="value">/var/run/mysqld/mysqld1.pid</span></span></span><br><span class="line"><span class="comment">#language   = /usr/share/mysql/english</span></span><br><span class="line"><span class="setting">user       = <span class="value">mysql</span></span></span><br><span class="line"><span class="title"></span><br><span class="line">[mysqld2]</span></span><br><span class="line"><span class="setting">port       = <span class="value"><span class="number">3307</span></span></span></span><br><span class="line"><span class="setting">datadir    = <span class="value">/var/lib/mysql2</span></span></span><br><span class="line"><span class="setting">socket     = <span class="value">/var/lib/mysql2/mysql.sock</span></span></span><br><span class="line"><span class="setting">pid-file   = <span class="value">/var/run/mysqld/mysqld2.pid</span></span></span><br><span class="line"><span class="comment">#language   = /usr/share/mysql/english</span></span><br><span class="line"><span class="setting">user       = <span class="value">mysql</span></span></span><br><span class="line"><span class="title"></span><br><span class="line">[mysqld3]</span></span><br><span class="line"><span class="setting">port       = <span class="value"><span class="number">3308</span></span></span></span><br><span class="line"><span class="setting">datadir    = <span class="value">/var/lib/mysql3</span></span></span><br><span class="line"><span class="setting">socket     = <span class="value">/var/lib/mysql3/mysql.sock</span></span></span><br><span class="line"><span class="setting">pid-file   = <span class="value">/var/run/mysqld/mysqld3.pid</span></span></span><br><span class="line"><span class="comment">#language   = /usr/share/mysql/english</span></span><br><span class="line"><span class="setting">user       = <span class="value">mysql</span></span></span><br></pre></td></tr></table></figure>
+<p>查看各个mysqld实例的运行状态</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost etc]<span class="comment"># mysqld_multi report</span></span><br><span class="line">Reporting MySQL servers</span><br><span class="line">MySQL server <span class="keyword">from</span> group: mysqld1 <span class="keyword">is</span> <span class="keyword">not</span> <span class="property">running</span></span><br><span class="line">MySQL server <span class="keyword">from</span> group: mysqld2 <span class="keyword">is</span> <span class="keyword">not</span> <span class="property">running</span></span><br><span class="line">MySQL server <span class="keyword">from</span> group: mysqld3 <span class="keyword">is</span> <span class="keyword">not</span> <span class="property">running</span></span><br></pre></td></tr></table></figure>
+<p>三个实例都还没有启动过，下面开始启动MySQL实例</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="constant">@localhost</span> etc]<span class="preprocessor"># mysqld_multi start 1</span></span><br></pre></td></tr></table></figure>
+<p>检查运行状态</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost etc]<span class="comment"># mysqld_multi report</span></span><br><span class="line">Reporting MySQL servers</span><br><span class="line">MySQL server <span class="keyword">from</span> group: mysqld1 <span class="keyword">is</span> <span class="keyword">not</span> <span class="property">running</span></span><br><span class="line">MySQL server <span class="keyword">from</span> group: mysqld2 <span class="keyword">is</span> <span class="keyword">not</span> <span class="property">running</span></span><br><span class="line">MySQL server <span class="keyword">from</span> group: mysqld3 <span class="keyword">is</span> <span class="keyword">not</span> <span class="property">running</span></span><br></pre></td></tr></table></figure>
+<p>发现mysqld1仍没有启动成功，怎么回事？</p>
+<p>查看mysqld日志，发现端口号被占用了</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">cat</span> /<span class="keyword">var</span>/<span class="keyword">log</span>/.mysqld.<span class="literal">log</span></span><br><span class="line">...</span><br><span class="line">150519 16:50:08 [<span class="keyword">ERROR</span>] Can't start server: Bind <span class="keyword">on</span> TCP/IP port: Address already <span class="keyword">in</span> <span class="keyword">use</span></span><br><span class="line">150519 16:50:08 [<span class="keyword">ERROR</span>] <span class="keyword">Do</span> you already have another mysqld server running <span class="keyword">on</span> port: 3306 ?</span><br><span class="line">150519 16:50:08 [<span class="keyword">ERROR</span>] Aborting</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>这是因为本机上mysqld默认实例正在启动中</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost etc]<span class="comment"># service mysqld status</span></span><br><span class="line">mysqld (pid  <span class="number">4535</span>) <span class="keyword">is</span> <span class="property">running</span>...</span><br></pre></td></tr></table></figure>
+<p>我们要将mysqld服务停掉</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">[root@localhost etc]</span># service mysqld stop</span><br><span class="line">Stopping mysqld:                                           <span class="string">[  OK  ]</span></span><br></pre></td></tr></table></figure>
+<p>再次启动mysqld1,并检查是否成功</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost etc]# mysqld_multi <span class="operator"><span class="keyword">start</span> <span class="number">1</span> &amp;&amp; mysqld_multi report</span><br><span class="line">Reporting MySQL servers</span><br><span class="line">MySQL <span class="keyword">server</span> <span class="keyword">from</span> <span class="keyword">group</span>: mysqld1 <span class="keyword">is</span> <span class="keyword">not</span> running</span><br><span class="line">MySQL <span class="keyword">server</span> <span class="keyword">from</span> <span class="keyword">group</span>: mysqld2 <span class="keyword">is</span> <span class="keyword">not</span> running</span><br><span class="line">MySQL <span class="keyword">server</span> <span class="keyword">from</span> <span class="keyword">group</span>: mysqld3 <span class="keyword">is</span> <span class="keyword">not</span> running</span></span><br></pre></td></tr></table></figure>
+<p><strong>Damn it !!!</strong> 仍然没有成功，再次检查日志（/var/log/mysqld.log)</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/usr/libexec/mysqld: <span class="keyword">Table</span> 'mysql.<span class="keyword">plugin</span>' doesn't exist</span><br><span class="line">150519 17:03:27 [<span class="keyword">ERROR</span>] Can't <span class="keyword">open</span> the mysql.<span class="keyword">plugin</span> <span class="keyword">table</span>. Please <span class="keyword">run</span> mysql_upgrade to create it.</span><br></pre></td></tr></table></figure>
+<p>这是因为datadir下还没有安装默认数据库（注：datadir指定的目录会在首次执行mysqld_mult start 1时自动创建并且添加了如下几个文件）<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="variable">@localhost</span> <span class="class"><span class="keyword">lib</span>]<span class="comment"># ls /var/lib/mysql1</span></span></span><br><span class="line">ibdata1  ib_logfile0  ib_logfile1</span><br></pre></td></tr></table></figure></p>
+<p>在datadir下安装数据库</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="variable">@localhost</span> mysql1]<span class="comment"># mysql_install_db --datadir=/var/lib/mysql1</span></span><br><span class="line">Installing MySQL <span class="keyword">system</span> tables...</span><br><span class="line">OK</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>安装数据成功后，再执行mysql1，成功！</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost mysql1]# mysqld_multi <span class="operator"><span class="keyword">start</span> <span class="number">1</span></span><br><span class="line">[root@localhost mysql1]# mysqld_multi report</span><br><span class="line">Reporting MySQL servers</span><br><span class="line">MySQL <span class="keyword">server</span> <span class="keyword">from</span> <span class="keyword">group</span>: mysqld1 <span class="keyword">is</span> running</span><br><span class="line">MySQL <span class="keyword">server</span> <span class="keyword">from</span> <span class="keyword">group</span>: mysqld2 <span class="keyword">is</span> <span class="keyword">not</span> running</span><br><span class="line">MySQL <span class="keyword">server</span> <span class="keyword">from</span> <span class="keyword">group</span>: mysqld3 <span class="keyword">is</span> <span class="keyword">not</span> running</span></span><br></pre></td></tr></table></figure>
+<p>同样的步骤，将mysqld2,mysql3配置好,然后一并启动三个实例</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost mysql1]# mysqld_multi <span class="operator"><span class="keyword">start</span> <span class="number">1</span>-<span class="number">3</span></span><br><span class="line">[root@localhost mysql1]# mysqld_multi report</span><br><span class="line">Reporting MySQL servers</span><br><span class="line">MySQL <span class="keyword">server</span> <span class="keyword">from</span> <span class="keyword">group</span>: mysqld1 <span class="keyword">is</span> running</span><br><span class="line">MySQL <span class="keyword">server</span> <span class="keyword">from</span> <span class="keyword">group</span>: mysqld2 <span class="keyword">is</span> running</span><br><span class="line">MySQL <span class="keyword">server</span> <span class="keyword">from</span> <span class="keyword">group</span>: mysqld3 <span class="keyword">is</span> running</span></span><br></pre></td></tr></table></figure>
+<p>到/var/run/mysqld下瞧瞧，发现有三个pid文件，它们分别对应三个mysqld进程</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost mysql1]# <span class="keyword">ls</span> /<span class="keyword">var</span>/<span class="keyword">run</span>/mysqld</span><br><span class="line">mysqld1.pid  mysqld2.pid  mysqld3.pid</span><br></pre></td></tr></table></figure>
+<p>通过指定的socket连接mysqld实例<br><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="constant">@localhost</span> mysql1]<span class="preprocessor"># mysql -S /var/lib/mysql1/mysql.sock</span></span><br></pre></td></tr></table></figure></p>
+<p>显示pid信息</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="header">mysql&gt; show variables like '%pid%';</span><br><span class="line">+---------------+-----------------------------+</span></span><br><span class="line"><span class="header">| Variable_name | Value                       |</span><br><span class="line">+---------------+-----------------------------+</span></span><br><span class="line"><span class="header">| pid_file      | /var/run/mysqld/mysqld1.pid |</span><br><span class="line">+---------------+-----------------------------+</span></span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>显示port</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="header">mysql&gt; show variables like 'port%';</span><br><span class="line">+---------------+-------+</span></span><br><span class="line"><span class="header">| Variable_name | Value |</span><br><span class="line">+---------------+-------+</span></span><br><span class="line"><span class="header">| port          | 3306  |</span><br><span class="line">+---------------+-------+</span></span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+            
+                
+
+            
+
+            <!-- Copyright info here by bafeimao -->
+             <br>
+             <br>
+             <hr>
+             <br>
+            <p><strong>版权声明:</strong> 本博客所有文章未经特别说明，均采用“署名-非商业性使用-禁止演绎 3.0 中国大陆”授权，欢迎转载，转载时务请注明出处，请尊重作者劳动成果。<br><a href="http://creativecommons.org/licenses/by-nc-nd/3.0/cn/" target="_blank" rel="external"><img src="http://i.creativecommons.org/l/by-nc-nd/2.5/cn/88x31.png" alt="署名-非商业性使用-禁止演绎"></a>
+            </p>
+             
+        </div>
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/howto/">howto</a> <a class="tag tag--primary tag--small t-link" href="/tags/mysql/">mysql</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2008/08/19/lb-lvs-nat-theory/"  data-tooltip="负载均衡(1) - LVS/NAT原理">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2008/04/18/how-to-support-spring-hibernate-natures-in-myeclipse-in-manual/" data-tooltip="如何手动为MyEclipse添加对Spring和Hibernate框架的支持">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://codedog.io/2008/04/18/how-to-config-multi-mysql-instances/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://codedog.io/2008/04/18/how-to-config-multi-mysql-instances/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://codedog.io/2008/04/18/how-to-config-multi-mysql-instances/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            <div class="ds-thread" data-thread-key="post-how-to-config-multi-mysql-instances" data-title="如何启动多个MySQL实例" data-url="http://codedog.io/2008/04/18/how-to-config-multi-mysql-instances/"></div>
+
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 codedog(29283212@qq.com). All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="3">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2008/08/19/lb-lvs-nat-theory/"  data-tooltip="负载均衡(1) - LVS/NAT原理">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2008/04/18/how-to-support-spring-hibernate-natures-in-myeclipse-in-manual/" data-tooltip="如何手动为MyEclipse添加对Spring和Hibernate框架的支持">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://codedog.io/2008/04/18/how-to-config-multi-mysql-instances/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://codedog.io/2008/04/18/how-to-config-multi-mysql-instances/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://codedog.io/2008/04/18/how-to-config-multi-mysql-instances/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="3">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://codedog.io/2008/04/18/how-to-config-multi-mysql-instances/">
+                <i class="fa fa-google-plus"></i><span class="">分享到Google+</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://codedog.io/2008/04/18/how-to-config-multi-mysql-instances/">
+                <i class="fa fa-facebook-official"></i><span>分享到Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://codedog.io/2008/04/18/how-to-config-multi-mysql-instances/">
+                <i class="fa fa-twitter"></i><span>分享到Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/avatar.png"/>
+        
+            <h4 id="about-card-name">codedog(29283212@qq.com)</h4>
+        
+            <h5 id="about-card-bio"><p>苹果越分越少，知识越分越多，欢迎大家一起交流</p>
+</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>29283212@qq.com</p>
+
+            </h5>
+        
+        
+    </div>
+</div>
+
+        <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js" type="text/javascript"></script>
+<script src="/assets/js/tranquilpeak.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name: 'bafeimao'};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+             || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+
+
+    <script type="text/javascript">
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+                (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+            e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','Uk3gquF1bdzDNsD2X5LW','2.0.0');
+    </script>
+
+
+</html>

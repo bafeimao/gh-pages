@@ -6,44 +6,22 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="codedog">
-    <title>Git常用远程操作 - codedog</title>
+    <title>负载均衡(1) - LVS/NAT原理 - codedog</title>
     <meta name="author" content="codedog(29283212@qq.com)">
     
     
         <link rel="alternative" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta name="description" content="Git常用远程操作在对Git远程操作命令理解之前，首先看下图，该图可以直观地帮助我们理解各操作命令执行后所影响的区域。
-
-本文假设你对git的常规概念如：工作区（workspace），索引区（index）,本地仓库（local repository）和远程仓库（remote repository）都已经有了初步的了解。
-
-
-git clone该命令用于克隆一个远程仓库到本地文件。
-
-$ git c">
+    <meta name="description" content="工作原理 VS/NAT（Virtual Server via Network Address Translation）的意思是“网络地址转换”，其原理是：调度器（也称之为：负载均衡器，Director等）收到来自客户端的“请求报文”后，根据指定的调度算法，将请求报文转发（负载分发）给隐藏在调度器后面的一组“真实服务器”（以下称RS）中的某台服务器去处理，当真实服务器处理完成后，又将报文发给Dire">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Git常用远程操作">
-<meta property="og:url" content="http://codedog.io/2011/01/03/how-to-use-git-remote-commands/index.html">
+<meta property="og:title" content="负载均衡(1) - LVS/NAT原理">
+<meta property="og:url" content="http://codedog.io/2008/08/19/lb-lvs-nat-theory/index.html">
 <meta property="og:site_name" content="codedog">
-<meta property="og:description" content="Git常用远程操作在对Git远程操作命令理解之前，首先看下图，该图可以直观地帮助我们理解各操作命令执行后所影响的区域。
-
-本文假设你对git的常规概念如：工作区（workspace），索引区（index）,本地仓库（local repository）和远程仓库（remote repository）都已经有了初步的了解。
-
-
-git clone该命令用于克隆一个远程仓库到本地文件。
-
-$ git c">
-<meta property="og:image" content="http://image.beekka.com/blog/2014/bg2014061202.jpg">
-<meta property="og:updated_time" content="2015-10-17T02:00:44.000Z">
+<meta property="og:description" content="工作原理 VS/NAT（Virtual Server via Network Address Translation）的意思是“网络地址转换”，其原理是：调度器（也称之为：负载均衡器，Director等）收到来自客户端的“请求报文”后，根据指定的调度算法，将请求报文转发（负载分发）给隐藏在调度器后面的一组“真实服务器”（以下称RS）中的某台服务器去处理，当真实服务器处理完成后，又将报文发给Dire">
+<meta property="og:updated_time" content="2016-11-19T06:49:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git常用远程操作">
-<meta name="twitter:description" content="Git常用远程操作在对Git远程操作命令理解之前，首先看下图，该图可以直观地帮助我们理解各操作命令执行后所影响的区域。
-
-本文假设你对git的常规概念如：工作区（workspace），索引区（index）,本地仓库（local repository）和远程仓库（remote repository）都已经有了初步的了解。
-
-
-git clone该命令用于克隆一个远程仓库到本地文件。
-
-$ git c">
+<meta name="twitter:title" content="负载均衡(1) - LVS/NAT原理">
+<meta name="twitter:description" content="工作原理 VS/NAT（Virtual Server via Network Address Translation）的意思是“网络地址转换”，其原理是：调度器（也称之为：负载均衡器，Director等）收到来自客户端的“请求报文”后，根据指定的调度算法，将请求报文转发（负载分发）给隐藏在调度器后面的一组“真实服务器”（以下称RS）中的某台服务器去处理，当真实服务器处理完成后，又将报文发给Dire">
     
     
     
@@ -230,13 +208,13 @@ $ git c">
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            Git常用远程操作
+            负载均衡(1) - LVS/NAT原理
         </h1>
     
     <div class="post-meta">
-    <time itemprop="datePublished" content="Mon Jan 03 2011 16:29:29 GMT+0800">
+    <time itemprop="datePublished" content="Tue Aug 19 2008 16:21:25 GMT+0800">
 	
-		    2011年01月03日
+		    2008年08月19日
     	
     </time>
     
@@ -245,71 +223,35 @@ $ git c">
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <h4 id="Git常用远程操作">Git常用远程操作</h4><p>在对Git远程操作命令理解之前，首先看下图，该图可以直观地帮助我们理解各操作命令执行后所影响的区域。</p>
+            <h3 id="工作原理">工作原理</h3><p> VS/NAT（Virtual Server via Network Address Translation）的意思是“网络地址转换”，其原理是：调度器（也称之为：负载均衡器，Director等）收到来自客户端的“请求报文”后，根据指定的调度算法，将请求报文转发（负载分发）给隐藏在调度器后面的一组“真实服务器”（以下称RS）中的某台服务器去处理，当真实服务器处理完成后，又将报文发给Director，Director再一次修改IP数据包内种中的源地址和源端口，然后将响应报文发回给客户端，至此，完成整个负载分发过程。</p>
+<p>很多硬件负载均衡设备就是基于NAT原理的。</p>
+<h3 id="基本要求">基本要求</h3><ul>
+<li>Director至少需要绑定两个IP（DIP和VIP），其中VIP是作为集群中对外服务的唯一接口；DIP用于连接内部RS服务器组，使调度器和RS服务器组连接在内部LAN中</li>
+<li>调度器需要配置成可以转发IP数据报（设置ip_forward=1）</li>
+<li>RS必须设置默认网关为DIP，以便响应报文能够发回到Director</li>
+<li>RS和Director必须在同一个子网中，否则RS不能正确将响应报文发送到Director</li>
+<li>如果Client和调度器位于同一网段，那么就不能使用VS/NAT模式，此时可配置成VS/DR模式。（请思考为什么？）</li>
+</ul>
+<h3 id="报文转发的详细处理流程">报文转发的详细处理流程</h3><ul>
+<li>来自客户端的请求报文发送到调度器（通过VIP）</li>
+<li>调度器网卡根据数据帧首部MAC地址发现是发给自己的，因此收下该数据帧并将其发给上层网卡驱动程序，网卡驱动去掉帧首部得到IP数据包内容并将其传给IP层处理。</li>
+<li>IPVS模块通过调度算法（或从连接映射hash表中找到映射，如果之前已经映射过的话），得到一台真实服务器（Real Server / RS），假设为RS1。</li>
+<li>修改IP数据报首部的“目标IP地址”和“目标端口”为RS1的IP和端口，然后将该数据包直接又发回给本机ARP模块处理</li>
+<li>ARP模块为IP地址找到对应的mac地址（这里是RS1网卡所对应的MAC地址，关于ARP如何做地址映射可参考<a href="http://baike.baidu.com/view/111783.htm" target="_blank" rel="external">W.Richard Stevens</a>编写的《<a href="http://book.douban.com/subject/1088054/" target="_blank" rel="external">TCP/IP详解-卷一</a>》）</li>
+<li>网卡驱动重新封装数据帧，并直接将数据帧发送到位于同一网络的RS1机器的网络接口卡</li>
+<li>RS1收到从调度器发来的数据帧，发现目标mac地址是自己，同时IP数据包内容中的目标地址也是本主机地址，所以就会处理该报文并交由响应端口对应的应用程序去处理</li>
+<li>当RS处理完成后，会设置响应报文中的“目标IP地址=CIP(CIP表示客户端IP), 源IP地址=RIP”，源端口=RS1的对应端口”</li>
+<li>RS搜索本机路由表，发现CIP并不是一个直接相连的主机也不是位于同一共享网络中，因此使用默认路由(DIP)进行路由转发，此时响应报文被发送到DIP（即调度器的IP）。</li>
+<li>调度器收到来自RS的响应报文，再次修改源IP地址为VIP以及源端口为调度器的端口，然后将报文重新发回给客户端</li>
+</ul>
+<p>至此，对报文的完整流程处理结束!!!</p>
 <blockquote>
-<p>本文假设你对git的常规概念如：工作区（workspace），索引区（index）,本地仓库（local repository）和远程仓库（remote repository）都已经有了初步的了解。</p>
+<p>NOTE: 调度器不但会修改“目标IP”还会修改“目标端口”，因此该模式支持端口映射（其他模式不支持）</p>
 </blockquote>
-<p><img src="http://image.beekka.com/blog/2014/bg2014061202.jpg" alt="Git"></p>
-<h3 id="git_clone">git clone</h3><p>该命令用于克隆一个远程仓库到本地文件。</p>
-<blockquote>
-<p>$ git clone <a href="https://github.com/bafeimao/pages1" target="_blank" rel="external">https://github.com/bafeimao/pages1</a><br>该命令会在本地自动创建文件夹<code>pages1</code></p>
-</blockquote>
-<p>也可以指定要克隆到的本地文件夹名</p>
-<blockquote>
-<p>$ git clone <a href="https://github.com/bafeimao/pages1" target="_blank" rel="external">https://github.com/bafeimao/pages1</a> blog</p>
-</blockquote>
-<p>可以提供多种协议访问方式，例如，github上提供如下三种常见的协议：</p>
-<blockquote>
-<p>$ git clone <a href="https://github.com/bafeimao/pages1" target="_blank" rel="external">https://github.com/bafeimao/pages1</a><br>$ git clone git@github.com:bafeimao/pages1.git</p>
-</blockquote>
-<h3 id="git_remote">git remote</h3><p>要想对远程仓库进行管理，首先要使用<code>remote add</code>命令添加一个远程仓库对应的名称（其他命令如：<code>git pull</code>,<code>git push</code>等操作都将依赖于该远程仓库名 ）</p>
-<p>添加一个远程仓库(需要指定一个名称和仓库的具体地址)</p>
-<blockquote>
-<p>$ git remote add origin git@github.com:bafeimao/pages1.git</p>
-</blockquote>
-<p> 查看当前已经添加过的所有远程仓库列表</p>
-<blockquote>
-<p>$ git remote<br>origin</p>
-</blockquote>
-<p>使用-v选项可以看到更具体的名称和远程仓库URL</p>
-<blockquote>
-<p>$ git remote -v<br>origin    git@github.com:bafeimao/coconut-projects.git (fetch)<br>origin    git@github.com:bafeimao/coconut-projects.git (push)</p>
-</blockquote>
-<h3 id="git_fetch">git fetch</h3><p>成功添加远程仓库后，一旦远程仓库有更新，我就可以使用<code>fetch</code>命令将远程更改取回到本地仓库， 注意：这里是将更改取到本地仓库（local repository）而非本地工作区(workspace)，详见参考图）</p>
-<blockquote>
-<p>$ git fetch origin</p>
-</blockquote>
-<p>默认取回所有分支的更改，可以指定只获取具体分支的更改</p>
-<blockquote>
-<p>$ git fetch origin dev</p>
-</blockquote>
-<h3 id="git_pull">git pull</h3><p>根据上图，也可以直接将远程的某个分支的更改取回到工作区（workspace）中的指定分支上，这就要用到<code>git pull</code>命令了，该命令的基本用法如下:</p>
-<p><code>$ git pull [&lt;remote-repo&gt; [&lt;remote-branch&gt;[:&lt;local-branch&gt;]]]</code></p>
-<p>将远程仓库master分支上的更改合并到本地工作区的dev分支</p>
-<blockquote>
-<p>$ git pull origin master:dev</p>
-<p>冒号后面的本地分支名可以省略，省略时表示合并到当前工作分支:<br>$ git pull origin master</p>
-</blockquote>
-<h3 id="git_push">git push</h3><p>如果需要将本地仓库的更改提交到远程，就需要使用<code>git push</code>命令，该命令的基本用法如下：</p>
-<p><code>$ git push [&lt;remote-repo&gt; [&lt;local-branch&gt;[:&lt;remote-branch&gt;]]]</code></p>
-<p>将本地dev分支推送到远程dev分支</p>
-<blockquote>
-<p>$ git push origin dev:dev</p>
-</blockquote>
-<p>另外可以设定当前工作分支（假设为dev）的upstream分支（即对应的远程分支），这样设定以后，在执行push时可以省略<code>本地分支名：远程分支名</code>，甚至远程仓库名称origin也可以省略</p>
-<blockquote>
-<p>$ git push –set-upstream origin dev</p>
-</blockquote>
-<p>此时可以省略分支名</p>
-<blockquote>
-<p>$ git push origin</p>
-</blockquote>
-<p>甚至连origin都可以省略</p>
-<blockquote>
-<p>$ git push</p>
-</blockquote>
-<p><strong>注意</strong>：如果指定的远程分支不存在，则会在远程自动创建 </p>
-<p>如果没有指定本地分支名则表示删除远程分支，下面两种方式均执行删除远程分支dev<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>git push origin <span class="symbol">:dev</span> </span><br><span class="line"><span class="variable">$ </span>git push origin --delete dev</span><br></pre></td></tr></table></figure></p>
+<h3 id="存在的问题及解决方案">存在的问题及解决方案</h3><h4 id="存在的问题">存在的问题</h4><p>在VS/NAT工作模式中，请求报文和响应报文都要经过Director，因此Director将会成为整个集群的瓶颈，因此集群的吞吐量将受制于Director的处理速度以及Director服务器的出口带宽，由于IPVS工作在内核，处理速度非常高，因此调度器的主要瓶颈来自于调度器的网卡带宽上。</p>
+<h4 id="解决方案">解决方案</h4><p><strong>方案1：</strong>为应付流量增长，可以升级Director服务器的网卡为千兆网卡或万兆网卡，同时Director与RS连接的交换机也要换成千兆或万兆的。除此以外，还要考虑Director服务器的总线带宽，看操作系统以及服务器的硬件配置能否应付处理的了那么大的流量。</p>
+<p><strong>方案2：</strong>结合DNS-RR（DNS轮询策略）。将大的VS/NAT集群按照某种策略（如按地域或业务模块）划分成多个小的集群，结合DNS-RR组成两级负载均衡调度方式，由此每个小集群中的Director则只分担了部分流量。</p>
+<p><strong>方案3：</strong>考虑到多数应用请求报文小而响应报文大的这种<strong>非对称性</strong>特点，我们可以将VS/NAT模式换成VS/DR模式，这将会极大的提升调度器的吞吐率。</p>
 
             
                 
@@ -331,7 +273,7 @@ $ git c">
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">标签</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/git/">git</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/ipvs/">ipvs</a> <a class="tag tag--primary tag--small t-link" href="/tags/linux/">linux</a> <a class="tag tag--primary tag--small t-link" href="/tags/load-balancer/">load balancer</a> <a class="tag tag--primary tag--small t-link" href="/tags/lvs/">lvs</a>
 
             </div>
         
@@ -340,7 +282,7 @@ $ git c">
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2011/09/25/how-to-config-ssh-login-without-password/"  data-tooltip="配置SSH无密码登陆">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2008/08/22/lb-lvs-nat-config/"  data-tooltip="负载均衡(2) - LVS/NAT配置">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -348,7 +290,7 @@ $ git c">
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2010/08/25/how-to-build-blog-on-github-by-hexo/" data-tooltip="使用Hexo在github上建立博客">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2008/04/18/how-to-config-multi-mysql-instances/" data-tooltip="如何启动多个MySQL实例">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -363,17 +305,17 @@ $ git c">
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://codedog.io/2011/01/03/how-to-use-git-remote-commands/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://codedog.io/2008/08/19/lb-lvs-nat-theory/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://codedog.io/2011/01/03/how-to-use-git-remote-commands/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://codedog.io/2008/08/19/lb-lvs-nat-theory/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://codedog.io/2011/01/03/how-to-use-git-remote-commands/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://codedog.io/2008/08/19/lb-lvs-nat-theory/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -397,7 +339,7 @@ $ git c">
 
         
         
-            <div class="ds-thread" data-thread-key="post-how-to-use-git-remote-commands" data-title="Git常用远程操作" data-url="http://codedog.io/2011/01/03/how-to-use-git-remote-commands/"></div>
+            <div class="ds-thread" data-thread-key="post-lb-lvs-nat-theory" data-title="负载均衡(1) - LVS/NAT原理" data-url="http://codedog.io/2008/08/19/lb-lvs-nat-theory/"></div>
 
         
     </div>
@@ -419,7 +361,7 @@ $ git c">
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2011/09/25/how-to-config-ssh-login-without-password/"  data-tooltip="配置SSH无密码登陆">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2008/08/22/lb-lvs-nat-config/"  data-tooltip="负载均衡(2) - LVS/NAT配置">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -427,7 +369,7 @@ $ git c">
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2010/08/25/how-to-build-blog-on-github-by-hexo/" data-tooltip="使用Hexo在github上建立博客">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2008/04/18/how-to-config-multi-mysql-instances/" data-tooltip="如何启动多个MySQL实例">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -442,17 +384,17 @@ $ git c">
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://codedog.io/2011/01/03/how-to-use-git-remote-commands/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://codedog.io/2008/08/19/lb-lvs-nat-theory/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://codedog.io/2011/01/03/how-to-use-git-remote-commands/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://codedog.io/2008/08/19/lb-lvs-nat-theory/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://codedog.io/2011/01/03/how-to-use-git-remote-commands/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://codedog.io/2008/08/19/lb-lvs-nat-theory/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -478,17 +420,17 @@ $ git c">
                 <div id="share-options-bar" class="share-options-bar" data-behavior="3">
     <ul class="share-options">
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://codedog.io/2011/01/03/how-to-use-git-remote-commands/">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://codedog.io/2008/08/19/lb-lvs-nat-theory/">
                 <i class="fa fa-google-plus"></i><span class="">分享到Google+</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://codedog.io/2011/01/03/how-to-use-git-remote-commands/">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://codedog.io/2008/08/19/lb-lvs-nat-theory/">
                 <i class="fa fa-facebook-official"></i><span>分享到Facebook</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://codedog.io/2011/01/03/how-to-use-git-remote-commands/">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://codedog.io/2008/08/19/lb-lvs-nat-theory/">
                 <i class="fa fa-twitter"></i><span>分享到Twitter</span>
             </a>
         </li>
