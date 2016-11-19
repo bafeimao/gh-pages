@@ -24,7 +24,7 @@
 1$ hexo init ~/blog &amp;amp;&amp;amp; cd ~/blog &amp;amp;&amp;amp; cnpm install
 成功执行后查看文件夹下的内容如下：
 12345678910total 24drwxr-xr-x   9 ktgu  staff   306  7 28 13:23 .drwxr-xr-x+ 66 ktgu  staff  2244">
-<meta property="og:updated_time" content="2015-10-18T05:38:58.000Z">
+<meta property="og:updated_time" content="2016-11-19T07:28:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Hexo在github上建立博客">
 <meta name="twitter:description" content="初始化运行如下命令以完成初始化操作
@@ -244,11 +244,11 @@
 <p>$ cnpm install hexo-deployer-git –save</p>
 </blockquote>
 <p>然后打开_config.yaml文件，修改如下配置：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github<span class="class">.com</span>:bafeimao/pages1<span class="class">.git</span></span><br><span class="line">  branch: gh-pages</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github<span class="class">.com</span>:gukt/pages1<span class="class">.git</span></span><br><span class="line">  branch: gh-pages</span><br></pre></td></tr></table></figure>
 <p>然后执行生成并部署</p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ hexo <span class="keyword">g</span> &amp;&amp; hexo <span class="literal">d</span></span><br><span class="line">或者</span><br><span class="line">$ hexo <span class="keyword">g</span> --deploy</span><br><span class="line">或者</span><br><span class="line">$ hexo <span class="keyword">d</span> --<span class="keyword">generate</span></span><br></pre></td></tr></table></figure>
 <p>若成功部署，会看到如下信息：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">To git<span class="annotation">@github</span>.<span class="string">com:</span>bafeimao/pages.git</span><br><span class="line">* [<span class="keyword">new</span> branch]      master -&gt; gh-pages</span><br><span class="line">Branch master set up to track remote branch gh-pages from git<span class="annotation">@github</span>.<span class="string">com:</span>bafeimao/pages.git.</span><br><span class="line">INFO  Deploy <span class="string">done:</span> git</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">To git<span class="annotation">@github</span>.<span class="string">com:</span>gukt/pages.git</span><br><span class="line">* [<span class="keyword">new</span> branch]      master -&gt; gh-pages</span><br><span class="line">Branch master set up to track remote branch gh-pages from git<span class="annotation">@github</span>.<span class="string">com:</span>gukt/pages.git.</span><br><span class="line">INFO  Deploy <span class="string">done:</span> git</span><br></pre></td></tr></table></figure>
 <p><strong>注意</strong>：如部署失败，默认不显示任何错误信息，你可以加上–debug参数查看详情</p>
 <blockquote>
 <p>$ hexo d –debug</p>
