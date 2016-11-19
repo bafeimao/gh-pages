@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title><![CDATA[巴菲猫学技术]]></title>
+  <title><![CDATA[codedog]]></title>
   <subtitle><![CDATA[苹果越分越少，知识越分越多！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
-  <link href="http://bafeimao.net/"/>
+  <link href="http://codedog.io/"/>
   <updated>2015-11-14T15:15:20.000Z</updated>
-  <id>http://bafeimao.net/</id>
+  <id>http://codedog.io/</id>
   
   <author>
-    <name><![CDATA[巴菲猫(29283212@qq.com)]]></name>
+    <name><![CDATA[codedog(29283212@qq.com)]]></name>
     
   </author>
   
@@ -16,8 +16,8 @@
   
   <entry>
     <title><![CDATA[编译Protobuf(On Mac)]]></title>
-    <link href="http://bafeimao.net/2015/11/14/compile-protobuf-on-mac/"/>
-    <id>http://bafeimao.net/2015/11/14/compile-protobuf-on-mac/</id>
+    <link href="http://codedog.io/2015/11/14/compile-protobuf-on-mac/"/>
+    <id>http://codedog.io/2015/11/14/compile-protobuf-on-mac/</id>
     <published>2015-11-14T15:14:37.000Z</published>
     <updated>2015-11-14T15:15:20.000Z</updated>
     <content type="html"><![CDATA[<p>Protobuf推出3.0 beta版本了，相比2.0版提供了更多的语言支持，和更丰富的功能，2.0版只支持C++, JAVA, Python，3.0增加了对：Go, JavaNano, Ruby, and C#,等语言的支持，还会有更多的语言被支持。</p>
@@ -54,14 +54,14 @@
 <p>想要使]]>
     </summary>
     
-      <category term="protobuf" scheme="http://bafeimao.net/tags/protobuf/"/>
+      <category term="protobuf" scheme="http://codedog.io/tags/protobuf/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[游戏服务器中的ID生成策略]]></title>
-    <link href="http://bafeimao.net/2013/06/17/generate-unique-id-in-distributed-system/"/>
-    <id>http://bafeimao.net/2013/06/17/generate-unique-id-in-distributed-system/</id>
+    <link href="http://codedog.io/2013/06/17/generate-unique-id-in-distributed-system/"/>
+    <id>http://codedog.io/2013/06/17/generate-unique-id-in-distributed-system/</id>
     <published>2013-06-17T11:45:37.000Z</published>
     <updated>2015-10-31T06:25:49.000Z</updated>
     <content type="html"><![CDATA[<p>常见的游戏架构和部署中，很多采用分服的一服一库的部署模式，而且运营过程中经常会有合服要求。</p>
@@ -132,20 +132,20 @@
 </bl]]>
     </summary>
     
-      <category term="distributed" scheme="http://bafeimao.net/tags/distributed/"/>
+      <category term="distributed" scheme="http://codedog.io/tags/distributed/"/>
     
-      <category term="game" scheme="http://bafeimao.net/tags/game/"/>
+      <category term="game" scheme="http://codedog.io/tags/game/"/>
     
-      <category term="mongodb" scheme="http://bafeimao.net/tags/mongodb/"/>
+      <category term="mongodb" scheme="http://codedog.io/tags/mongodb/"/>
     
-      <category term="redis" scheme="http://bafeimao.net/tags/redis/"/>
+      <category term="redis" scheme="http://codedog.io/tags/redis/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[如何将mave项目部署到本地仓库]]></title>
-    <link href="http://bafeimao.net/2012/11/18/howto-deploy-project-to-local-repo-in-maven/"/>
-    <id>http://bafeimao.net/2012/11/18/howto-deploy-project-to-local-repo-in-maven/</id>
+    <link href="http://codedog.io/2012/11/18/howto-deploy-project-to-local-repo-in-maven/"/>
+    <id>http://codedog.io/2012/11/18/howto-deploy-project-to-local-repo-in-maven/</id>
     <published>2012-11-18T05:26:50.000Z</published>
     <updated>2015-10-31T10:39:32.000Z</updated>
     <content type="html"><![CDATA[<p>在pom.xml文件中添加以下配置节点</p>
@@ -160,18 +160,18 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line]]>
     </summary>
     
-      <category term="howto" scheme="http://bafeimao.net/tags/howto/"/>
+      <category term="howto" scheme="http://codedog.io/tags/howto/"/>
     
-      <category term="maven" scheme="http://bafeimao.net/tags/maven/"/>
+      <category term="maven" scheme="http://codedog.io/tags/maven/"/>
     
-      <category term="nexus" scheme="http://bafeimao.net/tags/nexus/"/>
+      <category term="nexus" scheme="http://codedog.io/tags/nexus/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[网络游戏中的数据交互]]></title>
-    <link href="http://bafeimao.net/2012/11/17/data-interactive-in-game/"/>
-    <id>http://bafeimao.net/2012/11/17/data-interactive-in-game/</id>
+    <link href="http://codedog.io/2012/11/17/data-interactive-in-game/"/>
+    <id>http://codedog.io/2012/11/17/data-interactive-in-game/</id>
     <published>2012-11-17T01:49:33.000Z</published>
     <updated>2015-10-31T08:17:09.000Z</updated>
     <content type="html"><![CDATA[<p>设计网络游戏，首先要面对的就是考虑如何实现客户端与服务端的数据交互。</p>
@@ -237,24 +237,24 @@
 <p>通讯协议常用的无外乎两种：]]>
     </summary>
     
-      <category term="game" scheme="http://bafeimao.net/tags/game/"/>
+      <category term="game" scheme="http://codedog.io/tags/game/"/>
     
-      <category term="grpc" scheme="http://bafeimao.net/tags/grpc/"/>
+      <category term="grpc" scheme="http://codedog.io/tags/grpc/"/>
     
-      <category term="json" scheme="http://bafeimao.net/tags/json/"/>
+      <category term="json" scheme="http://codedog.io/tags/json/"/>
     
-      <category term="protobuf" scheme="http://bafeimao.net/tags/protobuf/"/>
+      <category term="protobuf" scheme="http://codedog.io/tags/protobuf/"/>
     
-      <category term="rpc" scheme="http://bafeimao.net/tags/rpc/"/>
+      <category term="rpc" scheme="http://codedog.io/tags/rpc/"/>
     
-      <category term="thrift" scheme="http://bafeimao.net/tags/thrift/"/>
+      <category term="thrift" scheme="http://codedog.io/tags/thrift/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[使用nexus搭建maven本地仓库]]></title>
-    <link href="http://bafeimao.net/2012/10/31/setup-maven-local-repository-proxy/"/>
-    <id>http://bafeimao.net/2012/10/31/setup-maven-local-repository-proxy/</id>
+    <link href="http://codedog.io/2012/10/31/setup-maven-local-repository-proxy/"/>
+    <id>http://codedog.io/2012/10/31/setup-maven-local-repository-proxy/</id>
     <published>2012-10-31T10:14:43.000Z</published>
     <updated>2015-10-31T10:36:31.000Z</updated>
     <content type="html"><![CDATA[<h2 id="1-_nexus的安装与配置">1. nexus的安装与配置</h2><p>搭建maven本地仓库私服可以使用多个不同的软件，本文讲述使用nexus来搭建maven私服。</p>
@@ -283,18 +283,18 @@
 <p>官方下载页: <a href="http://www.sonatype.org]]>
     </summary>
     
-      <category term="gradle" scheme="http://bafeimao.net/tags/gradle/"/>
+      <category term="gradle" scheme="http://codedog.io/tags/gradle/"/>
     
-      <category term="maven" scheme="http://bafeimao.net/tags/maven/"/>
+      <category term="maven" scheme="http://codedog.io/tags/maven/"/>
     
-      <category term="nexus" scheme="http://bafeimao.net/tags/nexus/"/>
+      <category term="nexus" scheme="http://codedog.io/tags/nexus/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[CentOS下yum安装maven]]></title>
-    <link href="http://bafeimao.net/2012/10/30/install-maven-by-yum-on-centos/"/>
-    <id>http://bafeimao.net/2012/10/30/install-maven-by-yum-on-centos/</id>
+    <link href="http://codedog.io/2012/10/30/install-maven-by-yum-on-centos/"/>
+    <id>http://codedog.io/2012/10/30/install-maven-by-yum-on-centos/</id>
     <published>2012-10-30T12:28:49.000Z</published>
     <updated>2015-10-31T10:36:31.000Z</updated>
     <content type="html"><![CDATA[<p>在linux下安装maven，常见的方法是：下载压缩包，然后解压安装并设置环境变量等，比较繁琐，其实是可以使用yum快速安装的。</p>
@@ -318,20 +318,20 @@
 <p>maven rpm包并不存在于yum主仓库，也不存在于EPEL库中，因此]]>
     </summary>
     
-      <category term="centos" scheme="http://bafeimao.net/tags/centos/"/>
+      <category term="centos" scheme="http://codedog.io/tags/centos/"/>
     
-      <category term="howto" scheme="http://bafeimao.net/tags/howto/"/>
+      <category term="howto" scheme="http://codedog.io/tags/howto/"/>
     
-      <category term="maven" scheme="http://bafeimao.net/tags/maven/"/>
+      <category term="maven" scheme="http://codedog.io/tags/maven/"/>
     
-      <category term="yum" scheme="http://bafeimao.net/tags/yum/"/>
+      <category term="yum" scheme="http://codedog.io/tags/yum/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[VIM常用命令]]></title>
-    <link href="http://bafeimao.net/2012/10/17/vim-the-most-common-commands/"/>
-    <id>http://bafeimao.net/2012/10/17/vim-the-most-common-commands/</id>
+    <link href="http://codedog.io/2012/10/17/vim-the-most-common-commands/"/>
+    <id>http://codedog.io/2012/10/17/vim-the-most-common-commands/</id>
     <published>2012-10-17T03:50:53.000Z</published>
     <updated>2015-10-31T08:13:29.000Z</updated>
     <content type="html"><![CDATA[<h3 id="模式切换">模式切换</h3><p>按下<code>i, I, o, O, a, A, r, R</code>从<code>一般模式</code>进入<code>编辑模式</code>，按<code>ESC</code>从<code>编辑模式</code>退出到<code>一般模式</code></p>
@@ -356,14 +356,14 @@
     <![CDATA[<h3 id="模式切换">模式切换</h3><p>按下<code>i, I, o, O, a, A, r, R</code>从<code>一般模式</code>进入<code>编辑模式</code>，按<code>ESC</code>从<code>编辑模式</code>退出到<]]>
     </summary>
     
-      <category term="vim" scheme="http://bafeimao.net/tags/vim/"/>
+      <category term="vim" scheme="http://codedog.io/tags/vim/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[常见的Web负载均衡技术详解]]></title>
-    <link href="http://bafeimao.net/2012/09/25/web-load-balance-technologies-in-detail/"/>
-    <id>http://bafeimao.net/2012/09/25/web-load-balance-technologies-in-detail/</id>
+    <link href="http://codedog.io/2012/09/25/web-load-balance-technologies-in-detail/"/>
+    <id>http://codedog.io/2012/09/25/web-load-balance-technologies-in-detail/</id>
     <published>2012-09-25T15:51:01.000Z</published>
     <updated>2015-10-31T08:10:19.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-_基于镜像站点的负载均衡">1. 基于镜像站点的负载均衡</h3><p>最早的负载均衡技术可以追溯到古老的镜像站点技术，其本质是制作多个站点的拷贝（镜像），然后在网页上提供站点列表，供用户选择，从而达到分流负载的目的。该技术现在仍然被一些如下载站点使用。</p>
@@ -462,22 +462,22 @@
     <![CDATA[<h3 id="1-_基于镜像站点的负载均衡">1. 基于镜像站点的负载均衡</h3><p>最早的负载均衡技术可以追溯到古老的镜像站点技术，其本质是制作多个站点的拷贝（镜像），然后在网页上提供站点列表，供用户选择，从而达到分流负载的目的。该技术现在仍然被一些如下载站点使用。</p]]>
     </summary>
     
-      <category term="dns" scheme="http://bafeimao.net/tags/dns/"/>
+      <category term="dns" scheme="http://codedog.io/tags/dns/"/>
     
-      <category term="ipvs" scheme="http://bafeimao.net/tags/ipvs/"/>
+      <category term="ipvs" scheme="http://codedog.io/tags/ipvs/"/>
     
-      <category term="load balance" scheme="http://bafeimao.net/tags/load-balance/"/>
+      <category term="load balance" scheme="http://codedog.io/tags/load-balance/"/>
     
-      <category term="lvs" scheme="http://bafeimao.net/tags/lvs/"/>
+      <category term="lvs" scheme="http://codedog.io/tags/lvs/"/>
     
-      <category term="web" scheme="http://bafeimao.net/tags/web/"/>
+      <category term="web" scheme="http://codedog.io/tags/web/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[如何为Git添加忽略]]></title>
-    <link href="http://bafeimao.net/2011/10/18/howto-add-ignores-for-git/"/>
-    <id>http://bafeimao.net/2011/10/18/howto-add-ignores-for-git/</id>
+    <link href="http://codedog.io/2011/10/18/howto-add-ignores-for-git/"/>
+    <id>http://codedog.io/2011/10/18/howto-add-ignores-for-git/</id>
     <published>2011-10-18T05:33:11.000Z</published>
     <updated>2015-10-18T05:35:35.000Z</updated>
     <content type="html"><![CDATA[<p>添加.gitignore文件</p>
@@ -498,16 +498,16 @@
 <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">]]>
     </summary>
     
-      <category term="git" scheme="http://bafeimao.net/tags/git/"/>
+      <category term="git" scheme="http://codedog.io/tags/git/"/>
     
-      <category term="howto" scheme="http://bafeimao.net/tags/howto/"/>
+      <category term="howto" scheme="http://codedog.io/tags/howto/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[配置SSH无密码登陆]]></title>
-    <link href="http://bafeimao.net/2011/09/25/ssh-login-without-password-configuration/"/>
-    <id>http://bafeimao.net/2011/09/25/ssh-login-without-password-configuration/</id>
+    <link href="http://codedog.io/2011/09/25/ssh-login-without-password-configuration/"/>
+    <id>http://codedog.io/2011/09/25/ssh-login-without-password-configuration/</id>
     <published>2011-09-25T15:19:08.000Z</published>
     <updated>2015-10-17T04:37:16.000Z</updated>
     <content type="html"><![CDATA[<p>SSH(Secure Shell)是建立在应用层和传输层基础上的安全协议，利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题，他提供两种方式的验证：</p>
@@ -543,16 +543,16 @@
 <bloc]]>
     </summary>
     
-      <category term="linux" scheme="http://bafeimao.net/tags/linux/"/>
+      <category term="linux" scheme="http://codedog.io/tags/linux/"/>
     
-      <category term="ssh" scheme="http://bafeimao.net/tags/ssh/"/>
+      <category term="ssh" scheme="http://codedog.io/tags/ssh/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[如何快速切换多个JDK版本]]></title>
-    <link href="http://bafeimao.net/2011/04/18/howto-switch-jdk-version-quickly/"/>
-    <id>http://bafeimao.net/2011/04/18/howto-switch-jdk-version-quickly/</id>
+    <link href="http://codedog.io/2011/04/18/howto-switch-jdk-version-quickly/"/>
+    <id>http://codedog.io/2011/04/18/howto-switch-jdk-version-quickly/</id>
     <published>2011-04-18T05:16:01.000Z</published>
     <updated>2015-10-18T05:37:43.000Z</updated>
     <content type="html"><![CDATA[<p>很多时候，我们的开发机上往往安装着多个JDK版本（有的用于开发，有的用于尝鲜），并在需要的时候在多个不同版本之间切换，如果每次用到时都去手动修改JAVA_HOME环境变量确实麻烦，其实这些操作都可以写到开机脚本中，以后切换JDK版本只需执行一条命令即可（以下以mac系统为例，其他linux系统同理）</p>
@@ -571,18 +571,18 @@
     <![CDATA[<p>很多时候，我们的开发机上往往安装着多个JDK版本（有的用于开发，有的用于尝鲜），并在需要的时候在多个不同版本之间切换，如果每次用到时都去手动修改JAVA_HOME环境变量确实麻烦，其实这些操作都可以写到开机脚本中，以后切换JDK版本只需执行一条命令即可（以下以mac系统为例]]>
     </summary>
     
-      <category term="java" scheme="http://bafeimao.net/tags/java/"/>
+      <category term="java" scheme="http://codedog.io/tags/java/"/>
     
-      <category term="jdk" scheme="http://bafeimao.net/tags/jdk/"/>
+      <category term="jdk" scheme="http://codedog.io/tags/jdk/"/>
     
-      <category term="mac" scheme="http://bafeimao.net/tags/mac/"/>
+      <category term="mac" scheme="http://codedog.io/tags/mac/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Git常用远程操作]]></title>
-    <link href="http://bafeimao.net/2011/01/03/how-to-use-git-remote-commands/"/>
-    <id>http://bafeimao.net/2011/01/03/how-to-use-git-remote-commands/</id>
+    <link href="http://codedog.io/2011/01/03/how-to-use-git-remote-commands/"/>
+    <id>http://codedog.io/2011/01/03/how-to-use-git-remote-commands/</id>
     <published>2011-01-03T08:29:29.000Z</published>
     <updated>2015-10-17T02:00:44.000Z</updated>
     <content type="html"><![CDATA[<h4 id="Git常用远程操作">Git常用远程操作</h4><p>在对Git远程操作命令理解之前，首先看下图，该图可以直观地帮助我们理解各操作命令执行后所影响的区域。</p>
@@ -657,14 +657,14 @@
 <p>本文假设你对git的常规概念如：工作区（workspace），索引]]>
     </summary>
     
-      <category term="git" scheme="http://bafeimao.net/tags/git/"/>
+      <category term="git" scheme="http://codedog.io/tags/git/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[使用Hexo在github上建立博客]]></title>
-    <link href="http://bafeimao.net/2010/08/25/how-to-build-blog-on-github-by-hexo/"/>
-    <id>http://bafeimao.net/2010/08/25/how-to-build-blog-on-github-by-hexo/</id>
+    <link href="http://codedog.io/2010/08/25/how-to-build-blog-on-github-by-hexo/"/>
+    <id>http://codedog.io/2010/08/25/how-to-build-blog-on-github-by-hexo/</id>
     <published>2010-08-25T06:07:42.000Z</published>
     <updated>2015-10-18T05:38:58.000Z</updated>
     <content type="html"><![CDATA[<h3 id="初始化">初始化</h3><p>运行如下命令以完成初始化操作</p>
@@ -696,16 +696,16 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</spa]]>
     </summary>
     
-      <category term="github" scheme="http://bafeimao.net/tags/github/"/>
+      <category term="github" scheme="http://codedog.io/tags/github/"/>
     
-      <category term="hexo" scheme="http://bafeimao.net/tags/hexo/"/>
+      <category term="hexo" scheme="http://codedog.io/tags/hexo/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Maven常用操作]]></title>
-    <link href="http://bafeimao.net/2010/06/18/maven-common-operations/"/>
-    <id>http://bafeimao.net/2010/06/18/maven-common-operations/</id>
+    <link href="http://codedog.io/2010/06/18/maven-common-operations/"/>
+    <id>http://codedog.io/2010/06/18/maven-common-operations/</id>
     <published>2010-06-18T05:09:39.000Z</published>
     <updated>2015-10-18T05:12:10.000Z</updated>
     <content type="html"><![CDATA[<p>清理项目（删除target文件夹）</p>
@@ -741,16 +741,16 @@
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td c]]>
     </summary>
     
-      <category term="maven" scheme="http://bafeimao.net/tags/maven/"/>
+      <category term="maven" scheme="http://codedog.io/tags/maven/"/>
     
-      <category term="nexus" scheme="http://bafeimao.net/tags/nexus/"/>
+      <category term="nexus" scheme="http://codedog.io/tags/nexus/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Tomcat发生OutOfMemoryError: PermGen space的解决方案]]></title>
-    <link href="http://bafeimao.net/2010/05/25/tomcat-oom-permgen-solution/"/>
-    <id>http://bafeimao.net/2010/05/25/tomcat-oom-permgen-solution/</id>
+    <link href="http://codedog.io/2010/05/25/tomcat-oom-permgen-solution/"/>
+    <id>http://codedog.io/2010/05/25/tomcat-oom-permgen-solution/</id>
     <published>2010-05-25T14:59:35.000Z</published>
     <updated>2015-10-31T09:30:57.000Z</updated>
     <content type="html"><![CDATA[<p>产生该问题的主要原因是JVM永久带空间不足导致的，可以在环境变量CATALINA_OPTS中提高MaxPermSize参数值</p>
@@ -768,20 +768,20 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span]]>
     </summary>
     
-      <category term="howto" scheme="http://bafeimao.net/tags/howto/"/>
+      <category term="howto" scheme="http://codedog.io/tags/howto/"/>
     
-      <category term="tomcat" scheme="http://bafeimao.net/tags/tomcat/"/>
+      <category term="tomcat" scheme="http://codedog.io/tags/tomcat/"/>
     
-      <category term="troubleshooting" scheme="http://bafeimao.net/tags/troubleshooting/"/>
+      <category term="troubleshooting" scheme="http://codedog.io/tags/troubleshooting/"/>
     
-      <category term="aaa" scheme="http://bafeimao.net/categories/aaa/"/>
+      <category term="aaa" scheme="http://codedog.io/categories/aaa/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[在linux上搭建svn服务器]]></title>
-    <link href="http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/"/>
-    <id>http://bafeimao.net/2010/02/26/setup-svn-server-on-linux/</id>
+    <link href="http://codedog.io/2010/02/26/setup-svn-server-on-linux/"/>
+    <id>http://codedog.io/2010/02/26/setup-svn-server-on-linux/</id>
     <published>2010-02-26T00:40:53.000Z</published>
     <updated>2015-10-17T04:37:16.000Z</updated>
     <content type="html"><![CDATA[<h3 id="创建svn仓库根目录">创建svn仓库根目录</h3><p>在创建代码仓库之前，我们需要创建一个svn仓库根目录，以后所有的代码仓库都是在这个根目录下创建</p>
@@ -820,18 +820,18 @@
 <figure class="highlight crystal"><table><tr><td c]]>
     </summary>
     
-      <category term="linux" scheme="http://bafeimao.net/tags/linux/"/>
+      <category term="linux" scheme="http://codedog.io/tags/linux/"/>
     
-      <category term="svn" scheme="http://bafeimao.net/tags/svn/"/>
+      <category term="svn" scheme="http://codedog.io/tags/svn/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[XPath详解]]></title>
-    <link href="http://bafeimao.net/2009/04/16/xpath-in-detail/"/>
-    <id>http://bafeimao.net/2009/04/16/xpath-in-detail/</id>
+    <link href="http://codedog.io/2009/04/16/xpath-in-detail/"/>
+    <id>http://codedog.io/2009/04/16/xpath-in-detail/</id>
     <published>2009-04-16T09:27:49.000Z</published>
-    <updated>2015-10-31T09:40:09.000Z</updated>
+    <updated>2016-11-19T03:41:36.000Z</updated>
     <content type="html"><![CDATA[<p>经常在工作中会使用到XPath的相关知识，但每次总会在一些关键的地方不记得或不太清楚，所以免不了每次总要查一些零碎的知识，感觉即很烦又浪费时间，所以对XPath归纳及总结一下。</p>
 <p>在这篇文章中你将能学习到：</p>
 <ul>
@@ -1236,22 +1236,22 @@
 <]]>
     </summary>
     
-      <category term="dom" scheme="http://bafeimao.net/tags/dom/"/>
+      <category term="dom" scheme="http://codedog.io/tags/dom/"/>
     
-      <category term="xml" scheme="http://bafeimao.net/tags/xml/"/>
+      <category term="xml" scheme="http://codedog.io/tags/xml/"/>
     
-      <category term="xpath" scheme="http://bafeimao.net/tags/xpath/"/>
+      <category term="xpath" scheme="http://codedog.io/tags/xpath/"/>
     
-      <category term="xquery" scheme="http://bafeimao.net/tags/xquery/"/>
+      <category term="xquery" scheme="http://codedog.io/tags/xquery/"/>
     
-      <category term="xslt" scheme="http://bafeimao.net/tags/xslt/"/>
+      <category term="xslt" scheme="http://codedog.io/tags/xslt/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[IP负载均衡 - LVS/NAT配置详解]]></title>
-    <link href="http://bafeimao.net/2008/08/31/vs-nat-config-in-detail/"/>
-    <id>http://bafeimao.net/2008/08/31/vs-nat-config-in-detail/</id>
+    <link href="http://codedog.io/2008/08/31/vs-nat-config-in-detail/"/>
+    <id>http://codedog.io/2008/08/31/vs-nat-config-in-detail/</id>
     <published>2008-08-31T05:25:59.000Z</published>
     <updated>2015-10-31T08:06:55.000Z</updated>
     <content type="html"><![CDATA[<p>本文记录LVA/NAT模式的配置过程，先对接下来出现的名词做必要的解释</p>
@@ -1290,22 +1290,22 @@
 <li>VIP（Virtual IP，虚拟IP，该IP用在负载均衡器上用]]>
     </summary>
     
-      <category term="howto" scheme="http://bafeimao.net/tags/howto/"/>
+      <category term="howto" scheme="http://codedog.io/tags/howto/"/>
     
-      <category term="ipvs" scheme="http://bafeimao.net/tags/ipvs/"/>
+      <category term="ipvs" scheme="http://codedog.io/tags/ipvs/"/>
     
-      <category term="linux" scheme="http://bafeimao.net/tags/linux/"/>
+      <category term="linux" scheme="http://codedog.io/tags/linux/"/>
     
-      <category term="load balancer" scheme="http://bafeimao.net/tags/load-balancer/"/>
+      <category term="load balancer" scheme="http://codedog.io/tags/load-balancer/"/>
     
-      <category term="lvs" scheme="http://bafeimao.net/tags/lvs/"/>
+      <category term="lvs" scheme="http://codedog.io/tags/lvs/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[IP负载均衡 - VS/NAT原理详解]]></title>
-    <link href="http://bafeimao.net/2008/08/19/vs-nat-principle-in-detail/"/>
-    <id>http://bafeimao.net/2008/08/19/vs-nat-principle-in-detail/</id>
+    <link href="http://codedog.io/2008/08/19/vs-nat-principle-in-detail/"/>
+    <id>http://codedog.io/2008/08/19/vs-nat-principle-in-detail/</id>
     <published>2008-08-19T08:21:25.000Z</published>
     <updated>2015-10-31T08:06:58.000Z</updated>
     <content type="html"><![CDATA[<h3 id="工作原理">工作原理</h3><p> VS/NAT（Virtual Server via Network Address Translation）的意思是“网络地址转换”，其原理是：调度器（也称之为：负载均衡器，Director等）收到来自客户端的“请求报文”后，根据指定的调度算法，将请求报文转发（负载分发）给隐藏在调度器后面的一组“真实服务器”（以下称RS）中的某台服务器去处理，当真实服务器处理完成后，又将报文发给Director，Director再一次修改IP数据包内种中的源地址和源端口，然后将响应报文发回给客户端，至此，完成整个负载分发过程。</p>
@@ -1342,20 +1342,20 @@
     <![CDATA[<h3 id="工作原理">工作原理</h3><p> VS/NAT（Virtual Server via Network Address Translation）的意思是“网络地址转换”，其原理是：调度器（也称之为：负载均衡器，Director等）收到来自客户端的“请求报文”后，]]>
     </summary>
     
-      <category term="ipvs" scheme="http://bafeimao.net/tags/ipvs/"/>
+      <category term="ipvs" scheme="http://codedog.io/tags/ipvs/"/>
     
-      <category term="linux" scheme="http://bafeimao.net/tags/linux/"/>
+      <category term="linux" scheme="http://codedog.io/tags/linux/"/>
     
-      <category term="load balancer" scheme="http://bafeimao.net/tags/load-balancer/"/>
+      <category term="load balancer" scheme="http://codedog.io/tags/load-balancer/"/>
     
-      <category term="lvs" scheme="http://bafeimao.net/tags/lvs/"/>
+      <category term="lvs" scheme="http://codedog.io/tags/lvs/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[如何启动多个MySQL实例]]></title>
-    <link href="http://bafeimao.net/2008/04/18/howto-config-multi-mysql-instances/"/>
-    <id>http://bafeimao.net/2008/04/18/howto-config-multi-mysql-instances/</id>
+    <link href="http://codedog.io/2008/04/18/howto-config-multi-mysql-instances/"/>
+    <id>http://codedog.io/2008/04/18/howto-config-multi-mysql-instances/</id>
     <published>2008-04-18T11:23:15.000Z</published>
     <updated>2015-10-18T05:24:25.000Z</updated>
     <content type="html"><![CDATA[<p>首先，要在/etc/my.cnf文件中追加[mysqld_multi]的相关配置（这可以通过执行mysqld_multi –example获取配置文件内容模板）</p>
@@ -1392,9 +1392,9 @@
 <figure class="highlight applescript"><table><tr><td]]>
     </summary>
     
-      <category term="howto" scheme="http://bafeimao.net/tags/howto/"/>
+      <category term="howto" scheme="http://codedog.io/tags/howto/"/>
     
-      <category term="mysql" scheme="http://bafeimao.net/tags/mysql/"/>
+      <category term="mysql" scheme="http://codedog.io/tags/mysql/"/>
     
   </entry>
   
