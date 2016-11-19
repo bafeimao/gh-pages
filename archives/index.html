@@ -346,52 +346,6 @@
                 <div class="postShorten-header">
                     <h1 class="postShorten-title" itemprop="headline">
                         
-                                <a class="link-unstyled" href="/2012/10/31/how-to-setup-maven-local-repository-proxy/">使用nexus搭建maven本地仓库</a>
-                        
-                    </h1>
-                    <div class="postShorten-meta">
-    <time itemprop="datePublished" content="Wed Oct 31 2012 18:14:43 GMT+0800">
-	
-		    2012年10月31日
-    	
-    </time>
-    
-</div>
-                </div>
-                <div class="postShorten-excerpt" itemprop="articleBody">
-                    
-                        <p>
-                            1. nexus的安装与配置搭建maven本地仓库私服可以使用多个不同的软件，本文讲述使用nexus来搭建maven私服。
-官方下载页: http://www.sonatype.org/nexus/go
-安装方式有两种：
-
-独立服务器方式运行，nexus内置netty， 
-下载.war文件，然后将其扔到web容器中运行（比如tomcat）
-
-建议采用第二种方式，将nexus.war放到web容器中<br>
-                    
-                    
-                        
-                            <a href="/2012/10/31/how-to-setup-maven-local-repository-proxy/" class="postShorten-excerpt_link link ">阅读全文</a>
-                            
-                        
-                    
-                    
-                        </p>
-                    
-                </div>
-            </div>
-            
-        </article>
-    
-        
-        
-                <article class="postShorten" itemscope itemType="http://schema.org/BlogPosting">
-        
-            <div class="postShorten-wrap">
-                <div class="postShorten-header">
-                    <h1 class="postShorten-title" itemprop="headline">
-                        
                                 <a class="link-unstyled" href="/2012/10/17/vim-the-most-common-commands/">VIM常用命令</a>
                         
                     </h1>
@@ -570,50 +524,6 @@ $ git c<br>
                 <div class="postShorten-header">
                     <h1 class="postShorten-title" itemprop="headline">
                         
-                                <a class="link-unstyled" href="/2010/02/26/how-to-setup-svn-server-on-linux/">在linux上搭建svn服务器</a>
-                        
-                    </h1>
-                    <div class="postShorten-meta">
-    <time itemprop="datePublished" content="Fri Feb 26 2010 08:40:53 GMT+0800">
-	
-		    2010年02月26日
-    	
-    </time>
-    
-</div>
-                </div>
-                <div class="postShorten-excerpt" itemprop="articleBody">
-                    
-                        <p>
-                            创建svn仓库根目录在创建代码仓库之前，我们需要创建一个svn仓库根目录，以后所有的代码仓库都是在这个根目录下创建
-1$ mkdir ~/.svn
-创建仓库1$ svnadmin create ~/.svn/coconut
-成功创建后，会在coconut目录下生成一些文件：
-1$ cd ~/.svn/coconut
-12345678$ ls -ltotal 16-rw-r--r--   1 ktg<br>
-                    
-                    
-                        
-                            <a href="/2010/02/26/how-to-setup-svn-server-on-linux/" class="postShorten-excerpt_link link ">阅读全文</a>
-                            
-                        
-                    
-                    
-                        </p>
-                    
-                </div>
-            </div>
-            
-        </article>
-    
-        
-        
-                <article class="postShorten" itemscope itemType="http://schema.org/BlogPosting">
-        
-            <div class="postShorten-wrap">
-                <div class="postShorten-header">
-                    <h1 class="postShorten-title" itemprop="headline">
-                        
                                 <a class="link-unstyled" href="/2009/04/16/xpath-in-detail/">XPath详解</a>
                         
                     </h1>
@@ -642,6 +552,93 @@ XPath是W3C的一个标准。它最主要的目的是为了在XML1.0或XML1.1文
                     
                         
                             <a href="/2009/04/16/xpath-in-detail/" class="postShorten-excerpt_link link ">阅读全文</a>
+                            
+                        
+                    
+                    
+                        </p>
+                    
+                </div>
+            </div>
+            
+        </article>
+    
+        
+        
+                <article class="postShorten" itemscope itemType="http://schema.org/BlogPosting">
+        
+            <div class="postShorten-wrap">
+                <div class="postShorten-header">
+                    <h1 class="postShorten-title" itemprop="headline">
+                        
+                                <a class="link-unstyled" href="/2008/08/25/lb-common-solutions/">负载均衡(3) - 常见Web负载均衡技术</a>
+                        
+                    </h1>
+                    <div class="postShorten-meta">
+    <time itemprop="datePublished" content="Mon Aug 25 2008 22:12:25 GMT+0800">
+	
+		    2008年08月25日
+    	
+    </time>
+    
+</div>
+                </div>
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    
+                        <p>
+                            1. 基于镜像站点的负载均衡最早的负载均衡技术可以追溯到古老的镜像站点技术，其本质是制作多个站点的拷贝（镜像），然后在网页上提供站点列表，供用户选择，从而达到分流负载的目的。该技术现在仍然被一些如下载站点使用。
+优缺点该方案最大的特点就是简单；服务端不需要特别的技术支持，只要克隆多个站点即可，制作镜像本质上是文件的同步，因为它更加适合用在静态网站上。
+2. 基于HTTP重定向的负载均衡什么是HTT<br>
+                    
+                    
+                        
+                            <a href="/2008/08/25/lb-common-solutions/" class="postShorten-excerpt_link link ">阅读全文</a>
+                            
+                        
+                    
+                    
+                        </p>
+                    
+                </div>
+            </div>
+            
+        </article>
+    
+        
+        
+                <article class="postShorten" itemscope itemType="http://schema.org/BlogPosting">
+        
+            <div class="postShorten-wrap">
+                <div class="postShorten-header">
+                    <h1 class="postShorten-title" itemprop="headline">
+                        
+                                <a class="link-unstyled" href="/2008/08/22/lb-lvs-nat-config/">负载均衡(2) - LVS/NAT配置</a>
+                        
+                    </h1>
+                    <div class="postShorten-meta">
+    <time itemprop="datePublished" content="Fri Aug 22 2008 10:15:25 GMT+0800">
+	
+		    2008年08月22日
+    	
+    </time>
+    
+</div>
+                </div>
+                <div class="postShorten-excerpt" itemprop="articleBody">
+                    
+                        <p>
+                            本文记录LVA/NAT模式的配置过程，先对接下来出现的名词做必要的解释
+
+Director（负载均衡器）
+RS（Real Server，真实服务器）
+VIP（Virtual IP，虚拟IP，该IP用在负载均衡器上用以对外提供服务）
+DIP（Director的内网IP）
+
+1. Director服务器配置在NAT模式下，Director需要能够转发报文给RS，因此首先要开启IP路由转发功能，缺省情况<br>
+                    
+                    
+                        
+                            <a href="/2008/08/22/lb-lvs-nat-config/" class="postShorten-excerpt_link link ">阅读全文</a>
                             
                         
                     
