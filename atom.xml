@@ -252,7 +252,7 @@
     <link href="http://codedog.io/2012/10/17/vim-the-most-common-commands/"/>
     <id>http://codedog.io/2012/10/17/vim-the-most-common-commands/</id>
     <published>2012-10-17T03:50:53.000Z</published>
-    <updated>2015-10-31T08:13:29.000Z</updated>
+    <updated>2016-11-19T06:50:04.000Z</updated>
     <content type="html"><![CDATA[<h3 id="模式切换">模式切换</h3><p>按下<code>i, I, o, O, a, A, r, R</code>从<code>一般模式</code>进入<code>编辑模式</code>，按<code>ESC</code>从<code>编辑模式</code>退出到<code>一般模式</code></p>
 <h3 id="删除操作">删除操作</h3><p><code>dw</code>    ：从光标开始删除到下一个单词的开头<br><code>d2w</code>   ：删除两个单词（到第三个单词的开头）<br><code>de</code>    :   从光标处开始删除到当前单词结尾<br><code>d2e</code>   :   从光标出开始删除到第2个单词结尾<br><code>d$</code>    :   从光标位置删除到行尾<br><code>d0</code>    :   删除行首到光标处内容<br><code>dd</code>    :   删除整行<br><code>2dd</code>   :   删除两行<br><code>d1G,dgg</code>   :   删除第一行到光标行（光标所在行也被删除）<br><code>dG</code>    :   删除光标所在行到最后一行的所有行<br><code>dj</code>    :   删除当前光标所在行以及下一行（<code>j</code>换成<code>k</code>表示删除上一行）<br><code>d2j</code>   :   删除当前行及随后的2行</p>
 <p><code>x</code>     :   向后删除一个字符，相当于DELETE)<br><code>X</code>     :   向前删除一个字符，相当于Backspace<br><code>nx，nX</code>     :   连续向后，向前删除n个字符</p>
@@ -501,7 +501,7 @@
     <link href="http://codedog.io/2009/04/16/xpath-in-detail/"/>
     <id>http://codedog.io/2009/04/16/xpath-in-detail/</id>
     <published>2009-04-16T09:27:49.000Z</published>
-    <updated>2016-11-19T03:41:36.000Z</updated>
+    <updated>2016-11-19T06:57:31.000Z</updated>
     <content type="html"><![CDATA[<p>经常在工作中会使用到XPath的相关知识，但每次总会在一些关键的地方不记得或不太清楚，所以免不了每次总要查一些零碎的知识，感觉即很烦又浪费时间，所以对XPath归纳及总结一下。</p>
 <p>在这篇文章中你将能学习到：</p>
 <ul>
