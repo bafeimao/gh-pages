@@ -42,16 +42,13 @@
 
 **使用-verbosegc实际上等同于使用-XX:+PrintGC:**
 
-`C:\Users\Administrator>java -XX:+PrintCommandLineFlags -version`
-输出：
-
 ```
+$ java -XX:+PrintCommandLineFlags -version
+
 -XX:InitialHeapSize=266340672 -XX:MaxHeapSize=4261450752 -XX:+PrintCommandLineFlags -XX:+UseCompressedOops -XX:-UseLargePagesIndividualAllocation -XX:+UseParallelGC
-```
 
-`C:\Users\Administrator>java -XX:+PrintCommandLineFlags -verbosegc -version`
+$ java -XX:+PrintCommandLineFlags -verbosegc -version
 
-```
 -XX:InitialHeapSize=266340672 -XX:MaxHeapSize=4261450752 -XX:+PrintCommandLineFlags **-XX:+PrintGC** -XX:+UseCompressedOops -XX:-UseLargePagesIndividua
 lAllocation -XX:+UseParallelGC
 java version "1.7.0_80"
@@ -61,7 +58,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 24.80-b11, mixed mode)
 
 ## 使用-Xloggc将GC信息输出到文件中
 
-在java程序启动时添加：`-Xloggc:e:\gs.vgc`选项，即可开启记录GC信息
+在java程序启动时添加：`-Xloggc:/tmp/gs.vgc`选项，即可开启记录GC信息
 
 打开`gs.vgc`:
 
@@ -86,4 +83,4 @@ CommandLine flags: -XX:InitialHeapSize=104857600 -XX:MaxHeapSize=157286400 -XX:M
 2016-11-09T14:48:37.189+0800: 3.794: [GC 31101K->12979K(107008K), 0.0102915 secs]
 ```
 
-但是，带上日期后HPJmeter打开就会报错了
+但是，带上日期后HPJmeter打开就会报错了。
