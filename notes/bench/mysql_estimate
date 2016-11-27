@@ -1,0 +1,120 @@
+SELECT table_name AS "Table",
+ROUND(((data_length + index_length) / 1024 / 1024), 2) AS "Size (MB)"
+FROM information_schema.TABLES
+WHERE table_schema = "qyc_heitao_1"
+ORDER BY (data_length + index_length) DESC;
+
++--------------------+-----------+
+| Database           | Size (MB) |
++--------------------+-----------+
+| information_schema |      0.01 |
+| inuyasha-account   |      1.53 |
+| inuyasha-report    |      0.19 |
+| inuyasha-server-1  |    103.08 |
+| inuyasha-server-10 |      0.53 |
+| inuyasha-server-2  |      3.63 |
+| inuyasha-web       |      1.72 |
+| mysql              |      0.86 |
+| performance_schema |      0.00 |
+| qyc_auth_pre       |      1.53 |
+| qyc_heitao_1       |    165.75 |
+| qyc_heitao_pre     |      2.16 |
++--------------------+-----------+
+
+
+mysql> select TABLE_NAME,ENGINE, TABLE_ROWS,AVG_ROW_LENGTH, DATA_LENGTH, MAX_DATA_LENGTH, INDEX_LENGTH from information_schema.TABLES where TABLE_SCHEMA='qyc_heitao_1';
++--------------------------+--------+------------+----------------+-------------+-----------------+--------------+
+| TABLE_NAME               | ENGINE | TABLE_ROWS | AVG_ROW_LENGTH | DATA_LENGTH | MAX_DATA_LENGTH | INDEX_LENGTH |
++--------------------------+--------+------------+----------------+-------------+-----------------+--------------+
+| t_activity_angpao        | InnoDB |          0 |              0 |       16384 |               0 |            0 |
+| t_activity_day_charge    | InnoDB |          0 |              0 |       16384 |               0 |            0 |
+| t_activity_day_consume   | InnoDB |          0 |              0 |       16384 |               0 |            0 |
+| t_activity_super_gift    | InnoDB |          0 |              0 |       16384 |               0 |            0 |
+| t_activity_total_charge  | InnoDB |          0 |              0 |       16384 |               0 |            0 |
+| t_activity_total_consume | InnoDB |          0 |              0 |       16384 |               0 |            0 |
+| t_activity_total_login   | InnoDB |          0 |              0 |       16384 |               0 |            0 |
+| t_arena                  | InnoDB |       6995 |            515 |     3604480 |               0 |            0 |
+| t_charge_record          | InnoDB |          0 |              0 |       16384 |               0 |            0 |
+| t_dogking                | InnoDB |       3336 |             68 |      229376 |               0 |            0 |
+| t_equip                  | InnoDB |     135137 |            142 |    19218432 |               0 |            0 |
+| t_friend                 | InnoDB |          0 |              0 |       16384 |               0 |            0 |
+| t_friend_apply_invite    | InnoDB |          0 |              0 |       16384 |               0 |            0 |
+| t_hell_break             | InnoDB |       2018 |            186 |      376832 |               0 |            0 |
+| t_hero                   | InnoDB |      21154 |           1614 |    34144256 |               0 |            0 |
+| t_invest                 | InnoDB |          0 |              0 |       16384 |               0 |            0 |
+| t_item                   | InnoDB |     153950 |            179 |    27705344 |               0 |            0 |
+| t_login_big_gift         | InnoDB |       7498 |             61 |      458752 |               0 |            0 |
+| t_login_notice           | InnoDB |          0 |              0 |       16384 |               0 |            0 |
+| t_lottery                | InnoDB |          0 |              0 |       16384 |               0 |            0 |
+| t_mail                   | InnoDB |      17837 |            441 |     7880704 |               0 |            0 |
+| t_mail_state             | InnoDB |      25359 |            104 |     2637824 |               0 |            0 |
+| t_role                   | InnoDB |       8260 |           1836 |    15171584 |               0 |            0 |
+| t_sign                   | InnoDB |       7032 |            223 |     1572864 |               0 |            0 |
+| t_soul                   | InnoDB |       7587 |             51 |      393216 |               0 |            0 |
+| t_soul_monster           | InnoDB |          0 |              0 |       16384 |               0 |            0 |
+| t_soul_monster_history   | InnoDB |          0 |              0 |       16384 |               0 |            0 |
+| t_soul_piece             | InnoDB |          0 |              0 |       16384 |               0 |            0 |
+| t_soul_trip              | InnoDB |          0 |              0 |       16384 |               0 |            0 |
+| t_soul_trip_card         | InnoDB |          0 |              0 |       16384 |               0 |            0 |
+| t_space_time             | InnoDB |       1654 |            118 |      196608 |               0 |            0 |
+| t_stage                  | InnoDB |     141911 |            122 |    17350656 |               0 |            0 |
+| t_task                   | InnoDB |     337407 |            126 |    42565632 |               0 |            0 |
++--------------------------+--------+------------+----------------+-------------+-----------------+--------------+
+33 rows in set (0.00 sec)
+
+mysql> SELECT
+    ->     IF(ISNULL(DB)+ISNULL(ENGINE)=2,'Database Total',
+    ->     CONCAT(DB,' ',IFNULL(ENGINE,'Total'))) "Reported Statistic",
+    ->     LPAD(CONCAT(FORMAT(DAT/POWER(1024,pw1),2),' ',
+    ->     SUBSTR(units,pw1*2+1,2)),17,' ') "Data Size",
+    ->     LPAD(CONCAT(FORMAT(NDX/POWER(1024,pw2),2),' ',
+    ->     SUBSTR(units,pw2*2+1,2)),17,' ') "Index Size",
+    ->     LPAD(CONCAT(FORMAT(TBL/POWER(1024,pw3),2),' ',
+    ->     SUBSTR(units,pw3*2+1,2)),17,' ') "Total Size"
+    -> FROM
+    -> (
+    ->     SELECT DB,ENGINE,DAT,NDX,TBL,
+    ->     IF(px>4,4,px) pw1,IF(py>4,4,py) pw2,IF(pz>4,4,pz) pw3
+    ->     FROM 
+    ->     (SELECT *,
+    ->         FLOOR(LOG(IF(DAT=0,1,DAT))/LOG(1024)) px,
+    ->         FLOOR(LOG(IF(NDX=0,1,NDX))/LOG(1024)) py,
+    ->         FLOOR(LOG(IF(TBL=0,1,TBL))/LOG(1024)) pz
+    ->     FROM
+    ->     (SELECT
+    ->         DB,ENGINE,
+    ->         SUM(data_length) DAT,
+    ->         SUM(index_length) NDX,
+    ->         SUM(data_length+index_length) TBL
+    ->     FROM
+    ->     (
+    ->        SELECT table_schema DB,ENGINE,data_length,index_length FROM
+    ->        information_schema.tables WHERE table_schema NOT IN
+    ->        ('information_schema','performance_schema','mysql')
+    ->        AND ENGINE IS NOT NULL
+    ->     ) AAA GROUP BY DB,ENGINE WITH ROLLUP
+    -> ) AAA) AA) A,(SELECT ' BKBMBGBTB' units) B;
++---------------------------+-------------------+-------------------+-------------------+
+| Reported Statistic        | Data Size         | Index Size        | Total Size        |
++---------------------------+-------------------+-------------------+-------------------+
+| inuyasha-account InnoDB   |           1.53 MB |           0.00  B |           1.53 MB |
+| inuyasha-account Total    |           1.53 MB |           0.00  B |           1.53 MB |
+| inuyasha-report InnoDB    |         176.00 KB |          16.00 KB |         192.00 KB |
+| inuyasha-report Total     |         176.00 KB |          16.00 KB |         192.00 KB |
+| inuyasha-server-1 InnoDB  |         103.08 MB |           0.00  B |         103.08 MB |
+| inuyasha-server-1 Total   |         103.08 MB |           0.00  B |         103.08 MB |
+| inuyasha-server-10 InnoDB |         544.00 KB |           0.00  B |         544.00 KB |
+| inuyasha-server-10 Total  |         544.00 KB |           0.00  B |         544.00 KB |
+| inuyasha-server-2 InnoDB  |           3.62 MB |           0.00  B |           3.62 MB |
+| inuyasha-server-2 Total   |           3.62 MB |           0.00  B |           3.62 MB |
+| inuyasha-web InnoDB       |           1.69 MB |          32.00 KB |           1.72 MB |
+| inuyasha-web Total        |           1.69 MB |          32.00 KB |           1.72 MB |
+| qyc_auth_pre InnoDB       |           1.53 MB |           0.00  B |           1.53 MB |
+| qyc_auth_pre Total        |           1.53 MB |           0.00  B |           1.53 MB |
+| qyc_heitao_1 InnoDB       |         165.75 MB |           0.00  B |         165.75 MB |
+| qyc_heitao_1 Total        |         165.75 MB |           0.00  B |         165.75 MB |
+| qyc_heitao_pre InnoDB     |           2.16 MB |           0.00  B |           2.16 MB |
+| qyc_heitao_pre Total      |           2.16 MB |           0.00  B |           2.16 MB |
+| Database Total            |         280.06 MB |          48.00 KB |         280.11 MB |
++---------------------------+-------------------+-------------------+-------------------+
+19 rows in set (0.01 sec)

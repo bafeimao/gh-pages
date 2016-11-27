@@ -1,0 +1,343 @@
+syntax = "proto2";
+
+import "stage.common.proto";
+
+import "common.proto";
+
+import "hero.proto";
+
+// package Inuyasha.Generated;
+
+option java_package = "com.xy.inuyasha.generated";
+
+option java_outer_classname = "StageProto";
+
+option optimize_for = SPEED;
+
+/** 进入pve关卡 - 请求（该请求无对应的response) */
+message PveBeginRequest {
+    optional int64 role_id = 1; //TBD
+    optional int32 stage_id = 2; // 关卡id
+    optional StageType stage_type = 3; // 关卡类pro型
+    optional int32 attack_food_id = 4; // 选择的攻击食物(OLD:foodAttUid)
+    optional int32 defense_food_id = 5; // 选择的防御食物(OLD:foodDefUid)
+    optional int32 hp_food_id = 6; // 选择的生命食物(OLD:foodHpUid)
+    repeated int64 hero_sid = 7; // 选择出战英雄列表
+    optional BattleType battle_type = 8; // 对战类型
+}
+
+/** Pvp（异步，同步） */
+message PvpBeginRequest {
+    optional int64 oppRole_id = 1; //对手玩家Id
+    optional BattleType battle_type = 2; // 对战类型
+}
+
+// 已废弃，合并到BattleRewardRequest中
+///** PVE战斗结束 */
+//message PveEndRequest {
+//    optional int64 role_id = 1;
+//    optional int32 battle_type = 2; // 对战类型
+//    optional int32 battle_id = 3; // 对战Id
+//    optional int32 hp_total = 4; // 总血量
+//}
+//
+//message PveEndResponse {
+//    optional int32 result = 1; // 结果
+//}
+
+/** 战场上人物信息 - 响应 */
+message BattlePlayerInfoResponse {
+    optional BattleType battle_type = 1; // 对战类型
+    optional int32 battle_id = 2; // 对战Id TBD
+    optional string room_id = 3; //房间Id
+    repeated RoleInfo role = 4; // 玩家数据
+
+    message RoleInfo{
+        int64 role_id = 1; //玩家Id
+        optional int32 team_id = 2; // 队伍Id
+        repeated HeroInfo hero = 3; //英雄数据
+    }
+
+    message HeroInfo {
+        optional int32 hero_id = 1; // 英雄策划Id
+        repeated Attr attr = 2; // 属性列表
+        repeated BattleCommonSkill skill = 3; // 技能信息(OLD:skillList)
+        repeated BuffDetailMsg buff = 4; // buff信息(OLD:buffList)
+        optional int32 spMax = 5; // Sp上限
+    }
+}
+
+enum EnemyType {
+    Close = 1; // 近战
+    Remote = 2; //远程
+    Magic = 3; //魔法
+    CloseElite = 4; //近战精英
+    RemoteElite = 5; //远程精英
+    MagicElite = 6; //魔法精英
+    BossEnemy = 10; //boss
+    SceneProp = 11; //场景道具
+}
+
+enum BattleType {
+   PvE = 1;
+   PvP_Async = 2;
+   Pvp_Sync = 3;
+}
+
+/** 战场上敌兵信息 */
+message BattleEnemyInfoRequest {
+    optional int32 stage_id = 1; // 关卡id
+    optional StageType stage_type = 2; // 关卡类型
+    optional int32 battle_id = 3; // 对战Id
+    repeated EnemyType enemy_type = 4; // 敌兵兵种类型
+    repeated int32 skill_id = 5; // Skillids
+}
+
+message BattleEnemyInfoResponse {
+    optional int32 battle_id = 1; // 对战Id
+    repeated EnemyMsg enemy = 2; // 敌兵信息列表
+    repeated BattleCommonSkill skill = 4; // 技能信息(OLD:skillList)
+
+    message EnemyMsg {
+        optional EnemyType type = 1; // 敌兵兵种类型(OLD:enemyType)
+        optional int32 id = 2; // 敌兵Id(OLD:enemyId)
+        repeated Attr attr = 3; // 基本属性集合
+    }
+}
+
+/** 战场BUFF数据列表 - 请求*/
+message BattleCommonBuffRequest {
+    repeated int32 buff_id = 1;
+}
+
+message BattleCommonBuffResponse {
+    repeated BuffDetailMsg buff_detail = 1; // buff具体数据
+}
+
+/** 奖励结算 */
+message BattleRewardRequest {
+    optional int64 role_id = 1;
+    optional int32 battle_type = 2; // 对战类型 // TODO enum
+    optional int32 battle_id = 3; // 对战Id
+    optional int32 hp_total = 4; // 总血量
+    optional int32 elapse_time = 5; // 过关消耗的时间
+    optional int32 max_combo_hits = 6; // 最大连击数
+}
+
+/** 奖励结算 */
+message BattleRewardResponse {
+    optional int64 role_id = 1;
+    optional int32 battle_type = 2; // 对战类型
+    optional int32 battle_id = 3; // 对战Id
+    optional bool success = 4; // 是否成功
+    optional int32 score1 = 5; // 评分1
+    optional int32 score2 = 6; // 评分2
+    optional int32 score3 = 7; // 评分3
+    repeated ItemMsg reward_item = 8; // 免费奖励
+    repeated ItemMsg lottery_item = 9; // 抽奖奖励(TBD)
+    optional int32 next_stage_id = 10; // 下一关Id
+    optional bool chapter_open = 11; // 是否有章节开启
+    repeated HeroMsg hero = 12; // 出战角色列表信息
+    optional int32 gold_lottery_consumed = 13; // 甲州金抽奖消耗
+    repeated ItemMsg vip_item = 14; // VIP奖励
+    optional int32 hero_exp_incr = 15; // 获得的英雄经验
+    optional int32 role_level = 16; // 队伍经验
+}
+
+/** 使用甲州金抽奖 - 请求*/
+message StageRewardLotteryRequest {
+}
+
+/** 使用甲州金抽奖 - 响应 */
+message StageRewardLotteryResponse {
+    repeated ItemMsg lottery_item = 1; // 抽奖奖励
+}
+
+/** 章节列表 */
+message StageChapterInfoRequest {
+}
+
+message StageChapterInfoResponse {
+    repeated StageChapter chapter = 1; // 章节列表
+
+    /** 章节信息 */
+    message StageChapter {
+        optional int32 chapter_id = 1; // 章节id
+        optional int32 cur_star = 2; // 当前获得珠子
+        optional int32 max_star = 3; // 最大获得珠子
+        optional bool status = 4; // 开启状态(true:已开启，false:未开启）
+    }
+}
+
+/** 关卡章节奖励信息 */
+message StageChapterStarRequest {
+    optional int32 chapter_id = 1; // 章节id
+}
+
+enum StageType {
+    Normal = 10; // 普通
+    Elite = 11; // 精英
+    Boss = 20; // boss关卡
+    Hell = 21; // 地狱闯关
+    Daily = 22; // 日常关卡
+    Rank = 23; // 排行榜挑战
+    Arena = 24; // 竞技场
+    SoulTrip = 25; //四魂之旅
+    SpaceTime = 26; //时空炼狱
+}
+
+/** 关卡章节星级奖励信息 */
+message StageChapterStarResponse {
+    optional int32 chapter_id = 1; // 章节id
+    repeated ChapterReward reward = 2; // 章节奖励（普通+精英）
+
+    message ChapterReward {
+        optional StageType type = 1 [default = Normal]; // 关卡类型（普通/精英）
+        optional int32 cur_num = 2; // 玩家在该章节已得到的珠子数
+        optional int32 max_num = 3; // 改章节可得到的最大珠子数
+        repeated ChapterRewardPhase phase = 4; // 章节奖励的多个阶段
+
+        // 章节奖励的多个阶段
+        message ChapterRewardPhase {
+            optional int32 reward_id = 1; // 奖励id
+            optional int32 aim_num = 2; // 要求值
+            optional RewardStatus status = 3 [default = Locked]; // 领取状态
+            repeated ItemMsg item = 4; // 获取道具列表
+
+            // 领取状态
+            enum RewardStatus {
+                Locked = 1; // 不可领取
+                CanTaking = 2; // 可领取
+                Taken = 3; // 已获取
+            }
+        }
+    }
+}
+
+/** 获得指定章节的所有关卡列表 - 请求 */
+message StageListRequest {
+    optional int32 chapter_id = 1; // 章节id
+}
+
+/** 获得指定章节的所有关卡列表 - 响应 */
+message StageListResponse {
+    optional int32 chapter_id = 1; // 章节id
+    repeated StageInfo stage = 2; // 关卡信息列表
+
+    message StageInfo {
+        optional StageType type = 1; // 类型
+        optional int32 stage_id = 2; // 关卡id
+        optional string name = 3; // 关卡名称
+        optional int32 pic_id = 4; // 关卡图片
+        optional int32 star = 5; // 当前星级
+        optional bool state = 6; // 关卡状态(是否可以进入）
+    }
+}
+
+/** 关卡信息 - 请求 */
+message StageInfoRequest {
+    optional int32 stage_id = 1; // stageId
+}
+
+/** 关卡信息 - 响应 */
+message StageInfoResponse {
+    optional StageInfo stage = 1;
+
+    message StageInfo {
+        optional int32 stage_id = 1; // 关卡Id
+        optional string name = 2; // 关卡名称
+        optional int32 pic_id = 3; // 关卡图片
+        optional int32 map_id = 4; // 关卡地图id
+        optional int32 need_level = 5; // 所需等级
+        optional int32 need_energy = 6; // 所需体力
+        optional int32 time_score = 7; // 时间评价秒
+        optional int32 time_score_state = 8; // 达成:1,未达成：0
+        optional int32 hp_score = 9; // 血量评价百分比
+        optional int32 hp_score_state = 10; // 达成:1,未达成; //0
+        optional int32 pass_score_state = 11; // 通关状态
+        optional int32 power = 12; // 推荐战力
+        optional int32 hero_power = 13; // 角色战力
+        optional string desc = 14; // 描述
+        optional int32 sweep_item_num = 15; // 扫荡卡数量
+        optional int32 fight_num_remain = 16; // 剩余战斗次数
+        optional int32 fight_num_max = 17; // 最大战斗次数
+        repeated ItemMsg show_item = 18; // 获得道具列表
+        repeated ItemMsg food = 19; // 已选择的食品列表
+        repeated HeroMsg hero = 20; // 关卡英雄选择列表(OLD:heroList)
+        repeated int32 required_hero = 21; // 剧情必须的上场角色
+        repeated int32 banned_hero = 22; // 剧情禁止上场的角色
+    }
+}
+
+/** 奖励获取 - 请求 */
+message RewardReceiveRequest {
+    optional int32 type = 1; // 类型
+    optional int32 award_id = 2; // 奖励id
+}
+
+/** 奖励获取 - 响应 */
+message RewardReceiveResponse {
+    optional int32 type = 1; // 类型
+    optional int32 award_id = 2; // 奖励id
+    repeated ItemMsg item = 3; // 道具列表
+}
+
+
+
+message HeroFateInfoRequest {
+    optional int64 hero_sid = 1; // hero_sid(OLD:heroUid)
+}
+
+message HeroFateInfoResponse {
+    optional HeroFateInfo hero_fate = 1; // 宿命之力信息
+}
+
+/** 宿命之力信息 */
+message HeroFateInfo {
+    optional int64 hero_sid = 1; // hero_sid(OLD:heroUid)
+    optional int32 fate_power_level = 2; // 宿命之力等级(OLD:fatePowerLv)
+    optional string skill_name = 3; // 激活的技能名称
+    optional int32 fatePowerAttrType = 4; // 宿命之力属性类型
+    optional int32 fatePowerAttrVal = 5; // 宿命之力属性值
+    optional int32 fatePowerAttrAdd = 6; // 宿命之力全属性加成
+    repeated AbilityInfo ability = 7; // ability list
+
+    message AbilityInfo {
+        optional int32 id = 1; // 能力Id
+        optional string icon = 2; // 能力图标
+        optional string name = 3; // 能力名字
+        optional int32 need_level = 4; // 升级需求等级
+        optional int32 status = 5; // 状态
+    }
+}
+
+/** 关卡英雄选择列表 */
+message StageHeroChooseListRequest {
+    optional int32 stage_id = 1; // 关卡Id
+}
+
+/** 关卡英雄选择列表 - 响应 */
+message StageHeroChooseListResponse {
+    repeated HeroMsg hero = 1;
+}
+
+/** 保存关卡英雄选择列表- 请求 */
+message StageHeroChooseListSaveRequest {
+    repeated int32 hero_id = 1;
+}
+
+/** 关卡扫荡 */
+message StageSweepRequest {
+    optional int32 stage_id = 1; // 关卡Id
+    optional int32 count = 2; // 扫荡次数
+    optional bool gold_reward = 3; // 是否选择钻石奖励
+}
+
+/** 关卡扫荡 */
+message StageSweepResponse {
+    repeated SweepReward reward = 1; // 扫荡奖励列表
+
+    message SweepReward {
+        repeated ItemMsg item = 1; // 奖励道具
+    }
+}

@@ -1,0 +1,37 @@
+ 
+-XX:+CITime -XX:InitialHeapSize=266340672 -XX:MaxHeapSize=4261450752 -XX:+PrintCommandLineFlags -XX:+UseCompressedOops -XX:-UseLargePagesIndividualAllocation -XX:+UseParallelGC 
+
+
+C1000k notes:
+
+cat /proc/sys/fs/file-nr
+640     0       3271422
+
+用 root 权限修改 /etc/sysctl.conf 文件:
+
+fs.file-max = 1020000
+net.ipv4.ip_conntrack_max = 1020000
+net.ipv4.netfilter.ip_conntrack_max = 1020000
+
+需要重启系统服务生效:
+$ sudo sysctl -p /etc/sysctl.conf 
+
+进程限制
+
+ulimit -n
+65535 每一个进程只能最多打开 65535 个文件
+
+临时修改
+ulimit -n 1020000
+
+永久修改
+
+编辑 /etc/security/limits.conf 文件, 加入如下行:
+
+# /etc/security/limits.conf
+work         hard    nofile      1020000
+work         soft    nofile      1020000
+
+操作系统维持百万连接需要多少内存?
+
+即 2KB 每连接

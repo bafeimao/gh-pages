@@ -1,0 +1,39 @@
+changelog:
+===================================
+2016-07-21:
+game#server.properties:
++ # game.pay.currency.name=金币
++ # game.name=犬夜叉
++ game.pay_server_address
++ game.pay.callback
+- server.config.file
+- auth.server.address
+
+auth#server.properties:
+- gm.address
+- api.qihoo.auth
+- ip.excludes
+
+gameserver移除了log4j.properties
+
+2016-07-23:
+gameserver#server.properties:
+以下前缀改为了c3p0,，并且相应的参数值也发生了变化，建议全拷贝覆盖
+jdbc.maxIdleTime=60
+jdbc.maxPoolSize=100
+jdbc.minPoolSize=5
+jdbc.initialPoolSize=5
+jdbc.acquireIncrement=5
+jdbc.acquireRetryAttempts=30
+jdbc.acquireRetryDelay=1000
+jdbc.idleConnectionTestPeriod=60
+
+2016-07-25：
+1. 修改了gameserer#context.xml中的以下行，参数由2->5
+<task:scheduler id="taskScheduler" pool-size="5"/>
+
+2. game#context.xml中增加：
+<task:scheduled-tasks scheduler="taskScheduler">
+	...
+</task:scheduled-tasks>
+

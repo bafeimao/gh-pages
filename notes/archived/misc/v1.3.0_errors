@@ -1,0 +1,529 @@
+errors
+
+2016-07-21 22:21:07,842 [MessageHandler-1] ERROR PacketMessageDispatcher[54] - 处理消息时发生异常：
+java.util.ConcurrentModificationException: null
+	at java.util.ArrayList$SubList$1.checkForComodification(ArrayList.java:1143)
+	at java.util.ArrayList$SubList$1.next(ArrayList.java:1064)
+	at com.xy.inuyasha.servers.world.service.rank.RankItemToProto.convertPowerRank(RankItemToProto.java:28)
+	at com.xy.inuyasha.servers.world.handler.RankController.rank(RankController.java:59)
+	at com.xy.inuyasha.servers.world.handler.RankControllerMethodAccess.invoke(Unknown Source)
+	at com.xy.inuyasha.support.server.message.PacketMessageHandlerAdapter.handle(PacketMessageHandlerAdapter.java:37)
+	at com.xy.inuyasha.support.server.message.PacketMessageHandlerAdapter.handle(PacketMessageHandlerAdapter.java:27)
+	at com.xy.inuyasha.support.server.message.PacketMessageDispatcher.dispatch(PacketMessageDispatcher.java:46)
+	at com.xy.inuyasha.support.server.message.PacketMessageDispatcher.dispatch(PacketMessageDispatcher.java:24)
+	at com.xy.inuyasha.servers.world.common.SocketServerHandler$2.run(SocketServerHandler.java:172)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+
+
+
+2016-07-14 18:31:40,323 [pool-2-thread-1] ERROR ThreadBee$Bee[136] - {}
+java.lang.InterruptedException: sleep interrupted
+	at java.lang.Thread.sleep(Native Method)
+	at com.xy.inuyasha.support.data.bee.ThreadBee$Bee.run(ThreadBee.java:133)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+
+
+2016-07-17 00:20:34,795 [MessageHandler-1] ERROR PacketMessageDispatcher[54] - 处理消息时发生异常：
+com.googlecode.cqengine.query.parser.common.InvalidQueryException: Failed to parse query at line 1:35: mismatched input 'Bin' expecting <EOF>
+	at com.googlecode.cqengine.query.parser.common.QueryParser$1.syntaxError(QueryParser.java:54)
+	at org.antlr.v4.runtime.ProxyErrorListener.syntaxError(ProxyErrorListener.java:65)
+	at org.antlr.v4.runtime.Parser.notifyErrorListeners(Parser.java:566)
+	at org.antlr.v4.runtime.DefaultErrorStrategy.reportInputMismatch(DefaultErrorStrategy.java:325)
+	at org.antlr.v4.runtime.DefaultErrorStrategy.reportError(DefaultErrorStrategy.java:148)
+	at com.googlecode.cqengine.query.parser.sql.grammar.SQLGrammarParser.start(SQLGrammarParser.java:263)
+	at com.googlecode.cqengine.query.parser.sql.SQLParser.parse(SQLParser.java:62)
+	at com.googlecode.cqengine.query.parser.common.QueryParser.query(QueryParser.java:161)
+	at com.xy.inuyasha.support.data.cache.EntityCache.retrieve(EntityCache.java:180)
+	at com.xy.inuyasha.support.data.cache.EntityCache.unique(EntityCache.java:301)
+	at com.xy.inuyasha.support.data.cache.SystemScopedCacheRepositoryImpl.unique(SystemScopedCacheRepositoryImpl.java:34)
+	at com.xy.inuyasha.servers.world.repository.RoleRepositoryImpl.getRoleByNickName(RoleRepositoryImpl.java:27)
+	at com.xy.inuyasha.servers.world.service.role.RoleServiceImpl.getRoleByNickName(RoleServiceImpl.java:90)
+	at com.xy.inuyasha.servers.world.service.nick.NickServiceImpl.changeName(NickServiceImpl.java:80)
+	at com.xy.inuyasha.servers.world.handler.NickNameController.rename(NickNameController.java:52)
+	at com.xy.inuyasha.servers.world.handler.NickNameControllerMethodAccess.invoke(Unknown Source)
+	at com.xy.inuyasha.support.server.message.PacketMessageHandlerAdapter.handle(PacketMessageHandlerAdapter.java:37)
+	at com.xy.inuyasha.support.server.message.PacketMessageHandlerAdapter.handle(PacketMessageHandlerAdapter.java:27)
+	at com.xy.inuyasha.support.server.message.PacketMessageDispatcher.dispatch(PacketMessageDispatcher.java:46)
+	at com.xy.inuyasha.support.server.message.PacketMessageDispatcher.dispatch(PacketMessageDispatcher.java:24)
+	at com.xy.inuyasha.servers.world.common.SocketServerHandler$2.run(SocketServerHandler.java:172)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+
+
+
+2016-07-17 02:41:12,101 [MessageHandler-1] ERROR PacketMessageDispatcher[54] - 处理消息时发生异常：
+java.lang.NullPointerException: null
+	at com.xy.inuyasha.servers.world.service.hero.EquipServiceImpl.gemTackOff(EquipServiceImpl.java:1049)
+	at com.xy.inuyasha.servers.world.service.hero.EquipServiceImpl.gemAction(EquipServiceImpl.java:710)
+	at com.xy.inuyasha.servers.world.handler.EquipController.heroEquipGem(EquipController.java:133)
+	at com.xy.inuyasha.servers.world.handler.EquipControllerMethodAccess.invoke(Unknown Source)
+	at com.xy.inuyasha.support.server.message.PacketMessageHandlerAdapter.handle(PacketMessageHandlerAdapter.java:37)
+	at com.xy.inuyasha.support.server.message.PacketMessageHandlerAdapter.handle(PacketMessageHandlerAdapter.java:27)
+	at com.xy.inuyasha.support.server.message.PacketMessageDispatcher.dispatch(PacketMessageDispatcher.java:46)
+	at com.xy.inuyasha.support.server.message.PacketMessageDispatcher.dispatch(PacketMessageDispatcher.java:24)
+	at com.xy.inuyasha.servers.world.common.SocketServerHandler$2.run(SocketServerHandler.java:172)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+
+
+2016-07-17 04:52:25,332 [MessageHandler-1] ERROR EventPublisher$LoggingSubscriberExceptionHandler[160] - 不能派发事件com.xy.inuyasha.servers.world.service.hero.HeroServiceImpl@1b5af471到public void com.xy.inuyasha.servers.world.service.hero.HeroServiceImpl.heroAddExp(com.xy.inuyasha.servers.world.event.HeroExpGainingEvent)，异常：{}
+java.lang.NullPointerException: null
+	at com.xy.inuyasha.servers.world.service.hero.HeroServiceImpl.heroAddExp(HeroServiceImpl.java:1241)
+	at com.xy.inuyasha.servers.world.service.hero.HeroServiceImpl$$FastClassBySpringCGLIB$$a1b1d3b4.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:651)
+	at com.xy.inuyasha.servers.world.service.hero.HeroServiceImpl$$EnhancerBySpringCGLIB$$941ff1f5.heroAddExp(<generated>)
+	at sun.reflect.GeneratedMethodAccessor629.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at com.google.common.eventbus.EventSubscriber.handleEvent(EventSubscriber.java:74)
+	at com.google.common.eventbus.SynchronizedEventSubscriber.handleEvent(SynchronizedEventSubscriber.java:47)
+	at com.google.common.eventbus.EventBus.dispatch(EventBus.java:322)
+	at com.google.common.eventbus.EventBus.dispatchQueuedEvents(EventBus.java:304)
+	at com.google.common.eventbus.EventBus.post(EventBus.java:275)
+	at com.xy.inuyasha.servers.world.common.EventPublisher.fireEvent(EventPublisher.java:143)
+	at com.xy.inuyasha.servers.world.handler.StageController.BattleRewardRequest(StageController.java:483)
+	at com.xy.inuyasha.servers.world.handler.StageControllerMethodAccess.invoke(Unknown Source)
+	at com.xy.inuyasha.support.server.message.PacketMessageHandlerAdapter.handle(PacketMessageHandlerAdapter.java:37)
+	at com.xy.inuyasha.support.server.message.PacketMessageHandlerAdapter.handle(PacketMessageHandlerAdapter.java:27)
+	at com.xy.inuyasha.support.server.message.PacketMessageDispatcher.dispatch(PacketMessageDispatcher.java:46)
+	at com.xy.inuyasha.support.server.message.PacketMessageDispatcher.dispatch(PacketMessageDispatcher.java:24)
+	at com.xy.inuyasha.servers.world.common.SocketServerHandler$2.run(SocketServerHandler.java:172)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2016-07-17 04:52:25,335 [MessageHandler-1] ERROR PacketMessageDispatcher[54] - 处理消息时发生异常：
+java.lang.NullPointerException: null
+	at com.xy.inuyasha.servers.world.service.hero.HeroUtils.parseHeroMsg(HeroUtils.java:46)
+	at com.xy.inuyasha.servers.world.service.hero.HeroServiceImpl.getHeroMsgBySid(HeroServiceImpl.java:286)
+	at com.xy.inuyasha.servers.world.service.hero.HeroServiceImpl$$FastClassBySpringCGLIB$$a1b1d3b4.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:651)
+	at com.xy.inuyasha.servers.world.service.hero.HeroServiceImpl$$EnhancerBySpringCGLIB$$941ff1f5.getHeroMsgBySid(<generated>)
+	at com.xy.inuyasha.servers.world.handler.StageController.BattleRewardRequest(StageController.java:508)
+	at com.xy.inuyasha.servers.world.handler.StageControllerMethodAccess.invoke(Unknown Source)
+	at com.xy.inuyasha.support.server.message.PacketMessageHandlerAdapter.handle(PacketMessageHandlerAdapter.java:37)
+	at com.xy.inuyasha.support.server.message.PacketMessageHandlerAdapter.handle(PacketMessageHandlerAdapter.java:27)
+	at com.xy.inuyasha.support.server.message.PacketMessageDispatcher.dispatch(PacketMessageDispatcher.java:46)
+	at com.xy.inuyasha.support.server.message.PacketMessageDispatcher.dispatch(PacketMessageDispatcher.java:24)
+	at com.xy.inuyasha.servers.world.common.SocketServerHandler$2.run(SocketServerHandler.java:172)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+
+
+2016-07-17 08:17:16,352 [MessageHandler-1] ERROR PacketMessageDispatcher[54] - 处理消息时发生异常：
+java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Long.parseLong(Long.java:453)
+	at java.lang.Long.valueOf(Long.java:540)
+	at com.xy.inuyasha.servers.world.handler.RoleController.reconnect(RoleController.java:84)
+	at com.xy.inuyasha.servers.world.handler.RoleControllerMethodAccess.invoke(Unknown Source)
+	at com.xy.inuyasha.support.server.message.PacketMessageHandlerAdapter.handle(PacketMessageHandlerAdapter.java:37)
+	at com.xy.inuyasha.support.server.message.PacketMessageHandlerAdapter.handle(PacketMessageHandlerAdapter.java:27)
+	at com.xy.inuyasha.support.server.message.PacketMessageDispatcher.dispatch(PacketMessageDispatcher.java:46)
+	at com.xy.inuyasha.support.server.message.PacketMessageDispatcher.dispatch(PacketMessageDispatcher.java:24)
+	at com.xy.inuyasha.servers.world.common.SocketServerHandler$2.run(SocketServerHandler.java:172)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+
+
+2016-07-16 16:31:46,510 [MessageHandler-1] ERROR PacketMessageDispatcher[54] - 处理消息时发生异常：
+java.lang.NullPointerException: null
+	at com.xy.inuyasha.servers.world.service.notice.NoticeServiceImpl.clientGetLoginNotice(NoticeServiceImpl.java:57)
+	at com.xy.inuyasha.servers.world.handler.NoticeController.getCurrentLoginNotice(NoticeController.java:39)
+	at com.xy.inuyasha.servers.world.handler.NoticeControllerMethodAccess.invoke(Unknown Source)
+	at com.xy.inuyasha.support.server.message.PacketMessageHandlerAdapter.handle(PacketMessageHandlerAdapter.java:37)
+	at com.xy.inuyasha.support.server.message.PacketMessageHandlerAdapter.handle(PacketMessageHandlerAdapter.java:27)
+	at com.xy.inuyasha.support.server.message.PacketMessageDispatcher.dispatch(PacketMessageDispatcher.java:46)
+	at com.xy.inuyasha.support.server.message.PacketMessageDispatcher.dispatch(PacketMessageDispatcher.java:24)
+	at com.xy.inuyasha.servers.world.common.SocketServerHandler$2.run(SocketServerHandler.java:172)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+
+
+2016-07-16 16:31:46,596 [MessageHandler-1] ERROR PacketMessageDispatcher[54] - 处理消息时发生异常：
+java.lang.NullPointerException: null
+	at com.xy.inuyasha.servers.world.handler.MailController.getMailList(MailController.java:43)
+	at com.xy.inuyasha.servers.world.handler.MailControllerMethodAccess.invoke(Unknown Source)
+	at com.xy.inuyasha.support.server.message.PacketMessageHandlerAdapter.handle(PacketMessageHandlerAdapter.java:37)
+	at com.xy.inuyasha.support.server.message.PacketMessageHandlerAdapter.handle(PacketMessageHandlerAdapter.java:27)
+	at com.xy.inuyasha.support.server.message.PacketMessageDispatcher.dispatch(PacketMessageDispatcher.java:46)
+	at com.xy.inuyasha.support.server.message.PacketMessageDispatcher.dispatch(PacketMessageDispatcher.java:24)
+	at com.xy.inuyasha.servers.world.common.SocketServerHandler$2.run(SocketServerHandler.java:172)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+
+2016-07-16 16:31:46,644 [MessageHandler-1] ERROR PacketMessageDispatcher[54] - 处理消息时发生异常：
+java.lang.NullPointerException: null
+	at com.xy.inuyasha.servers.world.service.fate.FatePowerServiceImpl.info(FatePowerServiceImpl.java:323)
+	at com.xy.inuyasha.servers.world.handler.FatePowerController.info(FatePowerController.java:42)
+	at com.xy.inuyasha.servers.world.handler.FatePowerControllerMethodAccess.invoke(Unknown Source)
+	at com.xy.inuyasha.support.server.message.PacketMessageHandlerAdapter.handle(PacketMessageHandlerAdapter.java:37)
+	at com.xy.inuyasha.support.server.message.PacketMessageHandlerAdapter.handle(PacketMessageHandlerAdapter.java:27)
+	at com.xy.inuyasha.support.server.message.PacketMessageDispatcher.dispatch(PacketMessageDispatcher.java:46)
+	at com.xy.inuyasha.support.server.message.PacketMessageDispatcher.dispatch(PacketMessageDispatcher.java:24)
+	at com.xy.inuyasha.servers.world.common.SocketServerHandler$2.run(SocketServerHandler.java:172)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+
+
+2016-07-16 18:02:05,722 [Http-Handle-Thread-2] ERROR HttpRequestHandlerAdapter[47] - {}
+java.lang.NullPointerException: null
+	at com.xy.inuyasha.servers.world.api.RoleAction.findById(RoleAction.java:78)
+	at com.xy.inuyasha.servers.world.api.RoleActionMethodAccess.invoke(Unknown Source)
+	at com.xy.inuyasha.support.server.http.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:45)
+	at com.xy.inuyasha.support.server.http.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:33)
+	at com.xy.inuyasha.support.server.http.UrlMappingChainHandler.handle(UrlMappingChainHandler.java:46)
+	at com.xy.inuyasha.support.server.http.HttpRequestDispatcher.dispatch(HttpRequestDispatcher.java:29)
+	at com.xy.inuyasha.support.server.http.HttpRequestDispatcher.dispatch(HttpRequestDispatcher.java:18)
+	at com.xy.inuyasha.support.server.http.HttpServerHandler$2.run(HttpServerHandler.java:89)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2016-07-16 18:02:05,907 [Http-Handle-Thread-3] ERROR HttpRequestHandlerAdapter[47] - {}
+java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Long.parseLong(Long.java:453)
+	at java.lang.Long.valueOf(Long.java:540)
+	at com.xy.inuyasha.support.server.http.SmartHttpRequest$ParamValueWrapper.longValue(SmartHttpRequest.java:263)
+	at com.xy.inuyasha.servers.world.api.StageAction.loadFinishStage(StageAction.java:43)
+	at com.xy.inuyasha.servers.world.api.StageActionMethodAccess.invoke(Unknown Source)
+	at com.xy.inuyasha.support.server.http.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:45)
+	at com.xy.inuyasha.support.server.http.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:33)
+	at com.xy.inuyasha.support.server.http.UrlMappingChainHandler.handle(UrlMappingChainHandler.java:46)
+	at com.xy.inuyasha.support.server.http.HttpRequestDispatcher.dispatch(HttpRequestDispatcher.java:29)
+	at com.xy.inuyasha.support.server.http.HttpRequestDispatcher.dispatch(HttpRequestDispatcher.java:18)
+	at com.xy.inuyasha.support.server.http.HttpServerHandler$2.run(HttpServerHandler.java:89)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+
+
+2016-07-16 19:16:27,431 [MessageHandler-1] ERROR PacketMessageDispatcher[54] - 处理消息时发生异常：
+com.google.protobuf.InvalidProtocolBufferException: Protocol message tag had invalid wire type.
+	at com.google.protobuf.InvalidProtocolBufferException.invalidWireType(InvalidProtocolBufferException.java:78)
+	at com.google.protobuf.UnknownFieldSet$Builder.mergeFieldFrom(UnknownFieldSet.java:498)
+	at com.google.protobuf.GeneratedMessage$Builder.parseUnknownField(GeneratedMessage.java:438)
+	at com.xy.inuyasha.generated.StageProto$StageSweepRequest$Builder.mergeFrom(StageProto.java:16893)
+	at com.xy.inuyasha.generated.StageProto$StageSweepRequest$Builder.mergeFrom(StageProto.java:16757)
+	at com.google.protobuf.AbstractMessage$Builder.mergeFrom(AbstractMessage.java:300)
+	at com.google.protobuf.AbstractMessage$Builder.mergeFrom(AbstractMessage.java:238)
+	at com.google.protobuf.AbstractMessageLite$Builder.mergeFrom(AbstractMessageLite.java:121)
+	at com.google.protobuf.AbstractMessage$Builder.mergeFrom(AbstractMessage.java:695)
+	at com.xy.inuyasha.generated.StageProto$StageSweepRequest.parseFrom(StageProto.java:16680)
+	at com.xy.inuyasha.servers.world.handler.StageController.StageSweepRequest(StageController.java:587)
+	at com.xy.inuyasha.servers.world.handler.StageControllerMethodAccess.invoke(Unknown Source)
+	at com.xy.inuyasha.support.server.message.PacketMessageHandlerAdapter.handle(PacketMessageHandlerAdapter.java:37)
+	at com.xy.inuyasha.support.server.message.PacketMessageHandlerAdapter.handle(PacketMessageHandlerAdapter.java:27)
+	at com.xy.inuyasha.support.server.message.PacketMessageDispatcher.dispatch(PacketMessageDispatcher.java:46)
+	at com.xy.inuyasha.support.server.message.PacketMessageDispatcher.dispatch(PacketMessageDispatcher.java:24)
+	at com.xy.inuyasha.servers.world.common.SocketServerHandler$2.run(SocketServerHandler.java:172)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2016-07-16 19:16:34,091 [MessageHandler-1] ERROR PacketMessageDispatcher[54] - 处理消息时发生异常：
+com.google.protobuf.InvalidProtocolBufferException: Protocol message contained an invalid tag (zero).
+	at com.google.protobuf.InvalidProtocolBufferException.invalidTag(InvalidProtocolBufferException.java:68)
+	at com.google.protobuf.CodedInputStream.readTag(CodedInputStream.java:108)
+	at com.xy.inuyasha.generated.StageProto$StageSweepRequest$Builder.mergeFrom(StageProto.java:16886)
+	at com.xy.inuyasha.generated.StageProto$StageSweepRequest$Builder.mergeFrom(StageProto.java:16757)
+	at com.google.protobuf.AbstractMessage$Builder.mergeFrom(AbstractMessage.java:300)
+	at com.google.protobuf.AbstractMessage$Builder.mergeFrom(AbstractMessage.java:238)
+	at com.google.protobuf.AbstractMessageLite$Builder.mergeFrom(AbstractMessageLite.java:121)
+	at com.google.protobuf.AbstractMessage$Builder.mergeFrom(AbstractMessage.java:695)
+	at com.xy.inuyasha.generated.StageProto$StageSweepRequest.parseFrom(StageProto.java:16680)
+	at com.xy.inuyasha.servers.world.handler.StageController.StageSweepRequest(StageController.java:587)
+	at com.xy.inuyasha.servers.world.handler.StageControllerMethodAccess.invoke(Unknown Source)
+	at com.xy.inuyasha.support.server.message.PacketMessageHandlerAdapter.handle(PacketMessageHandlerAdapter.java:37)
+	at com.xy.inuyasha.support.server.message.PacketMessageHandlerAdapter.handle(PacketMessageHandlerAdapter.java:27)
+	at com.xy.inuyasha.support.server.message.PacketMessageDispatcher.dispatch(PacketMessageDispatcher.java:46)
+	at com.xy.inuyasha.support.server.message.PacketMessageDispatcher.dispatch(PacketMessageDispatcher.java:24)
+	at com.xy.inuyasha.servers.world.common.SocketServerHandler$2.run(SocketServerHandler.java:172)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2016-07-16 19:18:38,297 [MessageHandler-1] ERROR PacketMessageDispatcher[59] - *** No handler for _RoleStatusChange ***
+2016-07-16 19:19:32,508 [MessageHandler-1] ERROR PacketMessageDispatcher[59] - *** No handler for _StageSweepResponse ***
+2016-07-16 19:19:36,955 [MessageHandler-1] ERROR PacketMessageDispatcher[59] - *** No handler for _StageSweepResponse ***
+2016-07-16 19:19:47,420 [MessageHandler-1] ERROR PacketMessageDispatcher[59] - *** No handler for _StageSweepResponse ***
+
+
+2016-07-20 16:21:25,524 [Cache-Flush] ERROR LocalDataProvider[125] - 存档失败：[DELETED] ==> Item#3022493916805992448， 原因：
+org.hibernate.exception.ConstraintViolationException: could not execute batch
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:112)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:42)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:109)
+	at org.hibernate.engine.jdbc.batch.internal.BatchingBatch.performExecution(BatchingBatch.java:119)
+	at org.hibernate.engine.jdbc.batch.internal.BatchingBatch.doExecuteBatch(BatchingBatch.java:97)
+	at org.hibernate.engine.jdbc.batch.internal.AbstractBatchImpl.execute(AbstractBatchImpl.java:147)
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.executeBatch(JdbcCoordinatorImpl.java:214)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:589)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:434)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:337)
+	at org.hibernate.event.internal.DefaultAutoFlushEventListener.onAutoFlush(DefaultAutoFlushEventListener.java:50)
+	at org.hibernate.internal.SessionImpl.autoFlushIfRequired(SessionImpl.java:1251)
+	at org.hibernate.internal.SessionImpl.executeUpdate(SessionImpl.java:1343)
+	at org.hibernate.internal.QueryImpl.executeUpdate(QueryImpl.java:102)
+	at com.xy.inuyasha.servers.world.service.cache.LocalDataProvider.batchUpdate(LocalDataProvider.java:118)
+	at com.xy.inuyasha.servers.world.service.cache.LocalDataProvider$$FastClassBySpringCGLIB$$779c46d.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:720)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:281)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:655)
+	at com.xy.inuyasha.servers.world.service.cache.LocalDataProvider$$EnhancerBySpringCGLIB$$42f22c8e.batchUpdate(<generated>)
+	at com.xy.inuyasha.servers.world.service.cache.CacheService.persist(CacheService.java:86)
+	at com.xy.inuyasha.servers.world.service.cache.CacheService.flush(CacheService.java:205)
+	at com.xy.inuyasha.servers.world.service.cache.CacheService.access$400(CacheService.java:34)
+	at com.xy.inuyasha.servers.world.service.cache.CacheService$3.run(CacheService.java:148)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:304)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:178)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.sql.BatchUpdateException: Duplicate entry '3022713801179926528' for key 'PRIMARY'
+	at com.mysql.jdbc.SQLError.createBatchUpdateException(SQLError.java:1158)
+	at com.mysql.jdbc.PreparedStatement.executeBatchSerially(PreparedStatement.java:1773)
+	at com.mysql.jdbc.PreparedStatement.executeBatchInternal(PreparedStatement.java:1257)
+	at com.mysql.jdbc.StatementImpl.executeBatch(StatementImpl.java:959)
+	at com.mchange.v2.c3p0.impl.NewProxyPreparedStatement.executeBatch(NewProxyPreparedStatement.java:1723)
+	at org.hibernate.engine.jdbc.batch.internal.BatchingBatch.performExecution(BatchingBatch.java:110)
+	... 32 common frames omitted
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '3022713801179926528' for key 'PRIMARY'
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:404)
+	at com.mysql.jdbc.Util.getInstance(Util.java:387)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:932)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3878)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3814)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2478)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2625)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2551)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1861)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2073)
+	at com.mysql.jdbc.PreparedStatement.executeBatchSerially(PreparedStatement.java:1751)
+	... 36 common frames omitted
+2016-07-20 16:21:25,530 [Cache-Flush] ERROR LocalDataProvider[125] - 存档失败：[DELETED] ==> Item#3022710853288857600， 原因：
+org.hibernate.exception.ConstraintViolationException: could not execute batch
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:112)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:42)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:109)
+	at org.hibernate.engine.jdbc.batch.internal.BatchingBatch.performExecution(BatchingBatch.java:119)
+	at org.hibernate.engine.jdbc.batch.internal.BatchingBatch.doExecuteBatch(BatchingBatch.java:97)
+	at org.hibernate.engine.jdbc.batch.internal.AbstractBatchImpl.execute(AbstractBatchImpl.java:147)
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.executeBatch(JdbcCoordinatorImpl.java:214)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:589)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:434)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:337)
+	at org.hibernate.event.internal.DefaultAutoFlushEventListener.onAutoFlush(DefaultAutoFlushEventListener.java:50)
+	at org.hibernate.internal.SessionImpl.autoFlushIfRequired(SessionImpl.java:1251)
+	at org.hibernate.internal.SessionImpl.executeUpdate(SessionImpl.java:1343)
+	at org.hibernate.internal.QueryImpl.executeUpdate(QueryImpl.java:102)
+	at com.xy.inuyasha.servers.world.service.cache.LocalDataProvider.batchUpdate(LocalDataProvider.java:118)
+	at com.xy.inuyasha.servers.world.service.cache.LocalDataProvider$$FastClassBySpringCGLIB$$779c46d.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:720)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:281)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:655)
+	at com.xy.inuyasha.servers.world.service.cache.LocalDataProvider$$EnhancerBySpringCGLIB$$42f22c8e.batchUpdate(<generated>)
+	at com.xy.inuyasha.servers.world.service.cache.CacheService.persist(CacheService.java:86)
+	at com.xy.inuyasha.servers.world.service.cache.CacheService.flush(CacheService.java:205)
+	at com.xy.inuyasha.servers.world.service.cache.CacheService.access$400(CacheService.java:34)
+	at com.xy.inuyasha.servers.world.service.cache.CacheService$3.run(CacheService.java:148)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:304)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:178)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.sql.BatchUpdateException: Duplicate entry '3022713747677384704' for key 'PRIMARY'
+	at com.mysql.jdbc.SQLError.createBatchUpdateException(SQLError.java:1158)
+	at com.mysql.jdbc.PreparedStatement.executeBatchSerially(PreparedStatement.java:1773)
+	at com.mysql.jdbc.PreparedStatement.executeBatchInternal(PreparedStatement.java:1257)
+	at com.mysql.jdbc.StatementImpl.executeBatch(StatementImpl.java:959)
+	at com.mchange.v2.c3p0.impl.NewProxyPreparedStatement.executeBatch(NewProxyPreparedStatement.java:1723)
+	at org.hibernate.engine.jdbc.batch.internal.BatchingBatch.performExecution(BatchingBatch.java:110)
+	... 32 common frames omitted
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '3022713747677384704' for key 'PRIMARY'
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:404)
+	at com.mysql.jdbc.Util.getInstance(Util.java:387)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:932)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3878)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3814)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2478)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2625)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2551)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1861)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2073)
+	at com.mysql.jdbc.PreparedStatement.executeBatchSerially(PreparedStatement.java:1751)
+	... 36 common frames omitted
+2016-07-20 16:21:25,542 [Cache-Flush] ERROR LocalDataProvider[125] - 存档失败：[DELETED] ==> Item#3022497769878196224， 原因：
+org.hibernate.exception.ConstraintViolationException: could not execute batch
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:112)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:42)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:109)
+	at org.hibernate.engine.jdbc.batch.internal.BatchingBatch.performExecution(BatchingBatch.java:119)
+	at org.hibernate.engine.jdbc.batch.internal.BatchingBatch.doExecuteBatch(BatchingBatch.java:97)
+	at org.hibernate.engine.jdbc.batch.internal.AbstractBatchImpl.execute(AbstractBatchImpl.java:147)
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.executeBatch(JdbcCoordinatorImpl.java:214)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:589)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:434)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:337)
+	at org.hibernate.event.internal.DefaultAutoFlushEventListener.onAutoFlush(DefaultAutoFlushEventListener.java:50)
+	at org.hibernate.internal.SessionImpl.autoFlushIfRequired(SessionImpl.java:1251)
+	at org.hibernate.internal.SessionImpl.executeUpdate(SessionImpl.java:1343)
+	at org.hibernate.internal.QueryImpl.executeUpdate(QueryImpl.java:102)
+	at com.xy.inuyasha.servers.world.service.cache.LocalDataProvider.batchUpdate(LocalDataProvider.java:118)
+	at com.xy.inuyasha.servers.world.service.cache.LocalDataProvider$$FastClassBySpringCGLIB$$779c46d.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:720)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:281)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:655)
+	at com.xy.inuyasha.servers.world.service.cache.LocalDataProvider$$EnhancerBySpringCGLIB$$42f22c8e.batchUpdate(<generated>)
+	at com.xy.inuyasha.servers.world.service.cache.CacheService.persist(CacheService.java:86)
+	at com.xy.inuyasha.servers.world.service.cache.CacheService.flush(CacheService.java:205)
+	at com.xy.inuyasha.servers.world.service.cache.CacheService.access$400(CacheService.java:34)
+	at com.xy.inuyasha.servers.world.service.cache.CacheService$3.run(CacheService.java:148)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:304)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:178)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.sql.BatchUpdateException: Duplicate entry '3022713682263019520' for key 'PRIMARY'
+	at com.mysql.jdbc.SQLError.createBatchUpdateException(SQLError.java:1158)
+	at com.mysql.jdbc.PreparedStatement.executeBatchSerially(PreparedStatement.java:1773)
+	at com.mysql.jdbc.PreparedStatement.executeBatchInternal(PreparedStatement.java:1257)
+	at com.mysql.jdbc.StatementImpl.executeBatch(StatementImpl.java:959)
+	at com.mchange.v2.c3p0.impl.NewProxyPreparedStatement.executeBatch(NewProxyPreparedStatement.java:1723)
+	at org.hibernate.engine.jdbc.batch.internal.BatchingBatch.performExecution(BatchingBatch.java:110)
+	... 32 common frames omitted
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '3022713682263019520' for key 'PRIMARY'
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:404)
+	at com.mysql.jdbc.Util.getInstance(Util.java:387)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:932)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3878)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3814)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2478)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2625)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2551)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1861)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2073)
+	at com.mysql.jdbc.PreparedStatement.executeBatchSerially(PreparedStatement.java:1751)
+	... 36 common frames omitted
+
+java.lang.NullPointerException: null
+	at com.xy.inuyasha.servers.world.service.shop.ShopServiceImpl.buyShopItem(ShopServiceImpl.java:340)
+	at com.xy.inuyasha.servers.world.handler.ShopController.buyShopItem(ShopController.java:77)
+	at com.xy.inuyasha.servers.world.handler.ShopControllerMethodAccess.invoke(Unknown Source)
+	at com.xy.inuyasha.support.server.message.PacketMessageHandlerAdapter.handle(PacketMessageHandlerAdapter.java:37)
+	at com.xy.inuyasha.support.server.message.PacketMessageHandlerAdapter.handle(PacketMessageHandlerAdapter.java:27)
+	at com.xy.inuyasha.support.server.message.PacketMessageDispatcher.dispatch(PacketMessageDispatcher.java:46)
+	at com.xy.inuyasha.support.server.message.PacketMessageDispatcher.dispatch(PacketMessageDispatcher.java:24)
+	at com.xy.inuyasha.servers.world.common.SocketServerHandler$2.run(SocketServerHandler.java:172)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

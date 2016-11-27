@@ -1,0 +1,15 @@
+# 回调测试接口
+@gukt1
+http://101.231.116.174:38888/pay/heitao/callback?sid=9042&puid=20351738&uid=20351738&orderno=1607192000571021002438LW&amount=1&status=1&extinfo=3021487430449393664,http://101.231.116.174:38888/pay/heitao/real_callback&htnonce=1468929679&httoken=580195c3c1053d7bd557b5b0a309daec&pfid=102
+
+
+120.92.9.251 9080
+
+@test1
+http://101.231.116.174:38888/pay/heitao/callback?sid=10977&puid=8233450&uid=8233450&orderno=1607211203421021002450GB&amount=6&status=1&extinfo=3023905994766708736%2Chttp%3A%2F%2F172.16.3.1%2Fpay%2Fheitao%2Freal_callback&htnonce=1469073860&httoken=42be02ac7d4946b14bfb1d277847024c&pfid=102
+
+# 通知服务器发货
+http://172.16.3.1:13301/pay/add_coin?role_id=2990843870067281920&amount=1&product_id=2004&order_id=3021487430449393664&channel_order_id=1607192000571021002438LW
+
+# 通过callback dispatcher 分发请求到真实的地址
+http://120.92.9.251:9080/callback/dispatcher?sid=9042&puid=20351738&uid=20351738&orderno=1607192000571021002438LW&amount=1&status=1&extinfo=3021487430449393664,http://101.231.116.174:38888/pay/heitao/real_callback&htnonce=1468929679&httoken=580195c3c1053d7bd557b5b0a309daec&pfid=102

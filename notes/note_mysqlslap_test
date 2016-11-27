@@ -1,0 +1,2 @@
+
+mysqlslap.exe -uroot -p1234+aaaa --concurrency=50,100,200 -i1 --auto-generate-sql --auto-generate-sql-load-type=mixed --auto-generate-sql-add-autoincrement --engine=myisam,innodb --number-of-queries=10 -x10 -y10 -v

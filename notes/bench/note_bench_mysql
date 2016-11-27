@@ -1,0 +1,253 @@
+note_bench_mysql
+===================
+
+编译sysbench：
+
+1. 下载源代码：
+> git clone https://github.com/akopytov/sysbench.git
+
+> ./autogen.sh
+
+执行configure
+> ./configure --prefix=/usr/local/sysbench --with-mysql-includes=/usr/local/mysql/include --with-mysql-libs=/usr/local/mysql/lib
+
+可能出现的错误：
+configure: error: mysql_config executable not found
+********************************************************************************
+ERROR: cannot find MySQL libraries. If you want to compile with MySQL support,
+       please install the package containing MySQL client libraries and headers.
+       On Debian-based systems the package name is libmysqlclient-dev.
+       On RedHat-based systems, it is mysql-devel.
+       If you have those libraries installed in non-standard locations,
+       you must either specify file locations explicitly using
+       --with-mysql-includes and --with-mysql-libs options, or make sure path to
+       mysql_config is listed in your PATH environment variable. If you want to
+       disable MySQL support, use --without-mysql option.
+********************************************************************************
+加上--with-mysql-includes=/usr/local/mysql/include --with-mysql-libs=/usr/local/mysql/lib参数即可
+
+
+检查是否有错
+> echo #? 
+
+> make
+
+
+执行sysbench
+
+./sysbench: error while loading shared libraries: libmysqlclient.so.18: cannot open shared object file: No such file or directory
+
+数据库密码：
+mysql -uadmin -p4ucJ3ju0Re -h172.31.252.234 -e "create database qyc_heitao_log$i;"
+
+
+CREATE DATABASE mydatabase CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+
+BEGIN
+  #声明一个变量,表示当前进行到第几行
+  DECLARE IDX INT DEFAULT 0;
+
+  #准备一个创建表的表达式
+  PREPARE SQL_CREATE_TABLE FROM 'CREATE TABLE if not exists `t_user` (
+    `id` bigint(20) NOT NULL,
+    `banTime` bigint(20) DEFAULT NULL,
+    `channel` varchar(255) DEFAULT NULL,
+    `channelUserId` varchar(255) DEFAULT NULL,
+    `channelUserName` varchar(255) DEFAULT NULL,
+    `createTime` datetime DEFAULT NULL,
+    `name` varchar(50) DEFAULT NULL,
+    `password` varchar(255) DEFAULT NULL,
+    `subChannel` varchar(255) DEFAULT NULL,
+    `temp` bit(1) DEFAULT NULL,
+    `type` int(11) DEFAULT NULL,
+    PRIMARY KEY (`id`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8';
+  EXECUTE SQL_CREATE_TABLE;
+
+  WHILE IDX < TOTAL DO
+    set IDX = IDX + 1;
+    INSERT INTO t_user(id, `name`, `password`, banTime, type, createTime, channel, subChannel, channelUserId, channelUserName, temp )
+    VALUES(UUID_SHORT(), rand_string(30), 'aaaaaa', 0, 0, NOW(), 0, 666666, 0, 'auto-gen', 0);
+    -- SELECT IDX;
+  END WHILE;
+
+END
+
+
+
+执行以下语句：
+[opuser@ops sysbench]$ ./sysbench --test=./tests/db/oltp.lua --debug=on --mysql-host=172.31.252.234 --mysql-user=admin --mysql-password=4ucJ3ju0Re --oltp-table-size=5000000 --mysql-db=sbtest --db-driver=mysql --verbosity=5 --num-threads=10 run
+
+OLTP test statistics:
+    queries performed:
+        read:                            140000
+        write:                           40000
+        other:                           20000
+        total:                           200000
+    transactions:                        10000  (764.46 per sec.)
+    read/write requests:                 180000 (13760.26 per sec.)
+    other operations:                    20000  (1528.92 per sec.)
+    ignored errors:                      0      (0.00 per sec.)
+    reconnects:                          0      (0.00 per sec.)
+
+General statistics:
+    total time:                          13.0811s
+    total number of events:              10000
+    total time taken by event execution: 130.7261s
+    response time:
+         min:                                  7.32ms
+         avg:                                 13.07ms
+         max:                                 74.31ms
+         approx.  95 percentile:              15.04ms
+
+Threads fairness:
+    events (avg/stddev):           1000.0000/45.71
+    execution time (avg/stddev):   13.0726/0.00
+
+请求个数不限，60000秒内持续压测，每10秒报告一次：
+[opuser@ops sysbench]$ ./sysbench --test=./tests/db/oltp.lua --debug=on --mysql-host=172.31.252.234 --mysql-user=admin --mysql-password=4ucJ3ju0Re --oltp-table-size=5000000 --mysql-db=sbtest --db-driver=mysql --verbosity=5 --num-threads=10 --max-time=60000 --max-requests=0 --report-interval=10  run
+
+[  10s] threads: 10, tps: 757.49, reads: 10616.59, writes: 3031.77, response time: 15.31ms (95%), errors: 0.00, reconnects:  0.00
+[  20s] threads: 10, tps: 763.10, reads: 10682.61, writes: 3052.10, response time: 15.32ms (95%), errors: 0.00, reconnects:  0.00
+[  30s] threads: 10, tps: 700.40, reads: 9805.58, writes: 2801.30, response time: 16.14ms (95%), errors: 0.00, reconnects:  0.00
+[  40s] threads: 10, tps: 728.40, reads: 10197.51, writes: 2912.80, response time: 15.90ms (95%), errors: 0.00, reconnects:  0.00
+[  50s] threads: 10, tps: 725.60, reads: 10156.30, writes: 2902.50, response time: 15.83ms (95%), errors: 0.00, reconnects:  0.00
+
+[  10s] threads: 50, tps: 1632.72, reads: 22910.74, writes: 6538.27, response time: 54.35ms (95%), errors: 0.00, reconnects:  0.00
+[  20s] threads: 50, tps: 1579.70, reads: 22123.04, writes: 6320.71, response time: 68.50ms (95%), errors: 0.00, reconnects:  0.00
+[  30s] threads: 50, tps: 1502.80, reads: 21034.61, writes: 6007.70, response time: 74.80ms (95%), errors: 0.00, reconnects:  0.00
+[  40s] threads: 50, tps: 1453.00, reads: 20352.86, writes: 5814.69, response time: 89.60ms (95%), errors: 0.00, reconnects:  0.00
+[  50s] threads: 50, tps: 1440.70, reads: 20168.12, writes: 5762.41, response time: 89.57ms (95%), errors: 0.00, reconnects:  0.00
+ 
+[  10s] threads: 100, tps: 1914.97, reads: 26922.71, writes: 7667.09, response time: 79.06ms (95%), errors: 0.00, reconnects:  0.00
+[  20s] threads: 100, tps: 1790.20, reads: 25089.70, writes: 7193.00, response time: 94.33ms (95%), errors: 0.00, reconnects:  0.00
+[  30s] threads: 100, tps: 1833.20, reads: 25664.78, writes: 7333.39, response time: 99.47ms (95%), errors: 0.00, reconnects:  0.00
+[  40s] threads: 100, tps: 1813.20, reads: 25384.84, writes: 7252.51, response time: 99.50ms (95%), errors: 0.00, reconnects:  0.00
+[  50s] threads: 100, tps: 1874.70, reads: 26245.80, writes: 7489.00, response time: 99.62ms (95%), errors: 0.00, reconnects:  0.00
+ 
+[  10s] threads: 200, tps: 1890.24, reads: 26734.32, writes: 7630.33, response time: 153.16ms (95%), errors: 0.00, reconnects:  0.00
+[  20s] threads: 200, tps: 1900.60, reads: 26599.22, writes: 7598.51, response time: 155.51ms (95%), errors: 0.00, reconnects:  0.00
+[  30s] threads: 200, tps: 1986.10, reads: 27774.43, writes: 7929.01, response time: 147.36ms (95%), errors: 0.00, reconnects:  0.00
+[  40s] threads: 200, tps: 1907.09, reads: 26732.53, writes: 7646.08, response time: 157.53ms (95%), errors: 0.00, reconnects:  0.00
+[  50s] threads: 200, tps: 1920.80, reads: 26865.45, writes: 7667.61, response time: 149.85ms (95%), errors: 0.00, reconnects:  0.00
+ 
+[  10s] threads: 300, tps: 1891.62, reads: 26765.60, writes: 7583.47, response time: 226.02ms (95%), errors: 0.00, reconnects:  0.00
+[  20s] threads: 300, tps: 1968.80, reads: 27569.55, writes: 7886.02, response time: 223.73ms (95%), errors: 0.00, reconnects:  0.00
+[  30s] threads: 300, tps: 1872.90, reads: 26180.28, writes: 7470.89, response time: 242.20ms (95%), errors: 0.00, reconnects:  0.00
+[  40s] threads: 300, tps: 1911.60, reads: 26844.46, writes: 7667.39, response time: 230.60ms (95%), errors: 0.00, reconnects:  0.00
+[  50s] threads: 300, tps: 1865.41, reads: 26025.08, writes: 7469.52, response time: 236.54ms (95%), errors: 0.00, reconnects:  0.00
+
+[  10s] threads: 400, tps: 1878.15, reads: 26849.52, writes: 7659.55, response time: 312.65ms (95%), errors: 0.00, reconnects:  0.00
+[  20s] threads: 400, tps: 2004.90, reads: 27916.28, writes: 7899.09, response time: 306.35ms (95%), errors: 0.00, reconnects:  0.00
+[  30s] threads: 400, tps: 1795.59, reads: 25085.33, writes: 7198.97, response time: 333.54ms (95%), errors: 0.00, reconnects:  0.00
+[  40s] threads: 400, tps: 1931.25, reads: 27078.94, writes: 7706.78, response time: 349.80ms (95%), errors: 0.00, reconnects:  0.00
+[  50s] threads: 400, tps: 1874.70, reads: 26318.19, writes: 7541.10, response time: 333.54ms (95%), errors: 0.00, reconnects:  0.00
+
+[  10s] threads: 500, tps: 1716.46, reads: 24563.08, writes: 6930.98, response time: 433.28ms (95%), errors: 0.00, reconnects:  0.00
+[  20s] threads: 500, tps: 1866.40, reads: 26054.28, writes: 7442.99, response time: 471.58ms (95%), errors: 0.00, reconnects:  0.00
+[  30s] threads: 500, tps: 1905.90, reads: 26886.56, writes: 7706.52, response time: 455.49ms (95%), errors: 0.00, reconnects:  0.00
+[  40s] threads: 500, tps: 1932.00, reads: 26813.07, writes: 7623.29, response time: 457.13ms (95%), errors: 0.00, reconnects:  0.00
+[  50s] threads: 500, tps: 1799.60, reads: 25202.30, writes: 7207.40, response time: 483.30ms (95%), errors: 0.00, reconnects:  0.00
+
+
+
+Scenario： t_user(500w)
+
+
+# 查看指定库各表的数据大小，索引大小，以及总大小
+SELECT table_name AS "Table",
+TABLE_ROWS, AVG_ROW_LENGTH, 
+ROUND((data_length / 1024 / 1024), 2) AS "Date Size (MB)",
+ROUND((index_length / 1024 / 1024), 2) AS "Index Size (MB)",
+ROUND(((data_length + index_length) / 1024 / 1024), 2) AS "Total Size (MB)"
+FROM information_schema.TABLES
+WHERE table_schema = "qyc_heitao_account"
+ORDER BY (data_length + index_length) DESC;
++-------------+------------+----------------+----------------+-----------------+-----------------+
+| Table       | TABLE_ROWS | AVG_ROW_LENGTH | Date Size (MB) | Index Size (MB) | Total Size (MB) |
++-------------+------------+----------------+----------------+-----------------+-----------------+
+| t_user_500w |    4933021 |            117 |         551.00 |            0.00 |          551.00 |
+| t_user      |    4856971 |            109 |         508.00 |            0.00 |          508.00 |
+| t_user_400w |    3923884 |            116 |         437.00 |            0.00 |          437.00 |
+| t_user_300w |    2961387 |            115 |         324.88 |            0.00 |          324.88 |
+| t_user_200w |    1990449 |            111 |         211.77 |            0.00 |          211.77 |
+| t_user_100w |    1004614 |            102 |          98.64 |            0.00 |           98.64 |
+| t_user_50w  |     500456 |             89 |          42.58 |            0.00 |           42.58 |
+| t_user_20w  |     199092 |             92 |          17.55 |            0.00 |           17.55 |
+| t_order     |          0 |              0 |           0.02 |            0.00 |            0.02 |
++-------------+------------+----------------+----------------+-----------------+-----------------+
+
+没有索引的情况下检索3次：
+mysql> select * from t_user where name = 'q4wev7b7sw0d5pibl3kd';
++---------------------+---------+---------+---------------+-----------------+---------------------+----------------------+----------+------------+------+------+
+| id                  | banTime | channel | channelUserId | channelUserName | createTime          | name                 | password | subChannel | temp | type |
++---------------------+---------+---------+---------------+-----------------+---------------------+----------------------+----------+------------+------+------+
+| 3044458375349379073 |       0 | NULL    | NULL          | NULL            | 2016-08-04 16:20:35 | q4wev7b7sw0d5pibl3kd | aaaaaa   | NULL       |      |    0 |
++---------------------+---------+---------+---------------+-----------------+---------------------+----------------------+----------+------------+------+------+
+1 row in set (2.64 sec)
+
+mysql> select * from t_user where name = 'q4wev7b7sw0d5pibl3kd';
++---------------------+---------+---------+---------------+-----------------+---------------------+----------------------+----------+------------+------+------+
+| id                  | banTime | channel | channelUserId | channelUserName | createTime          | name                 | password | subChannel | temp | type |
++---------------------+---------+---------+---------------+-----------------+---------------------+----------------------+----------+------------+------+------+
+| 3044458375349379073 |       0 | NULL    | NULL          | NULL            | 2016-08-04 16:20:35 | q4wev7b7sw0d5pibl3kd | aaaaaa   | NULL       |      |    0 |
++---------------------+---------+---------+---------------+-----------------+---------------------+----------------------+----------+------------+------+------+
+1 row in set (2.63 sec)
+
+mysql> select * from t_user where name = 'q4wev7b7sw0d5pibl3kd';
++---------------------+---------+---------+---------------+-----------------+---------------------+----------------------+----------+------------+------+------+
+| id                  | banTime | channel | channelUserId | channelUserName | createTime          | name                 | password | subChannel | temp | type |
++---------------------+---------+---------+---------------+-----------------+---------------------+----------------------+----------+------------+------+------+
+| 3044458375349379073 |       0 | NULL    | NULL          | NULL            | 2016-08-04 16:20:35 | q4wev7b7sw0d5pibl3kd | aaaaaa   | NULL       |      |    0 |
++---------------------+---------+---------+---------------+-----------------+---------------------+----------------------+----------+------------+------+------+
+1 row in set (2.62 sec)
+
+
+执行查询计划：
+
+mysql> explain select * from t_user where name = 'q4wev7b7sw0d5pibl3kd';
++----+-------------+--------+------+---------------+------+---------+------+---------+-------------+
+| id | select_type | table  | type | possible_keys | key  | key_len | ref  | rows    | Extra       |
++----+-------------+--------+------+---------------+------+---------+------+---------+-------------+
+|  1 | SIMPLE      | t_user | ALL  | NULL          | NULL | NULL    | NULL | 4856971 | Using where |
++----+-------------+--------+------+---------------+------+---------+------+---------+-------------+
+1 row in set (0.00 sec)
+
+
+添加索引：
+
+ALTER TABLE `t_user`
+ADD INDEX `idx_name` (`name`) ,
+ADD INDEX `idx_channel_channelUserId` (`channel`, `channelUserId`) ;
+
+显示索引是否创建成功：
+show create table t_user;
+
+输出：
+CREATE TABLE `t_user` (
+  `id` bigint(20) NOT NULL,
+  `banTime` bigint(20) DEFAULT NULL,
+  `channel` varchar(255) DEFAULT NULL,
+  `channelUserId` varchar(255) DEFAULT NULL,
+  `channelUserName` varchar(255) DEFAULT NULL,
+  `createTime` datetime DEFAULT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `subChannel` varchar(255) DEFAULT NULL,
+  `temp` bit(1) DEFAULT NULL,
+  `type` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_name` (`name`),
+  KEY `idx_channel_channelUserId` (`channel`,`channelUserId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+
+加完索引后查询：
+mysql> select * from t_user where name = 'q4wev7b7sw0d5pibl3kd';
++---------------------+---------+---------+---------------+-----------------+---------------------+----------------------+----------+------------+------+------+
+| id                  | banTime | channel | channelUserId | channelUserName | createTime          | name                 | password | subChannel | temp | type |
++---------------------+---------+---------+---------------+-----------------+---------------------+----------------------+----------+------------+------+------+
+| 3044458375349379073 |       0 | NULL    | NULL          | NULL            | 2016-08-04 16:20:35 | q4wev7b7sw0d5pibl3kd | aaaaaa   | NULL       |      |    0 |
++---------------------+---------+---------+---------------+-----------------+---------------------+----------------------+----------+------------+------+------+
+1 row in set (0.00 sec)

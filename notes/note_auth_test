@@ -1,0 +1,5 @@
+note_auth_test
+
+充值回调测试：
+http://pay.qyc.heitao2014.com:8088/callback/dispatcher?sid=1&puid=20259137&uid=20259137&orderno=1605261935471711002437NI&amount=1.00&status=1&extinfo=2943186320735760384,http://101.231.116.174:38888/pay/heitao/real_callback&htnonce=1464262657&httoken=9616b0101f804fdf73670822f57ccf9d&pfid=171
+
