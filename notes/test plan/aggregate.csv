@@ -1,3 +1,0 @@
-Label,# Samples,Average,Median,90% Line,95% Line,99% Line,Min,Max,Error %,Throughput,KB/sec
-fnng.cnblogs.com,1000,34,33,42,46,63,21,158,0.00%,10.0,344.1
-змЬх,1000,34,33,42,46,63,21,158,0.00%,10.0,344.1

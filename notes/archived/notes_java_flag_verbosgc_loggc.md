@@ -58,9 +58,9 @@ Java HotSpot(TM) 64-Bit Server VM (build 24.80-b11, mixed mode)
 
 ## 使用-Xloggc将GC信息输出到文件中
 
-在java程序启动时添加：`-Xloggc:/tmp/gs.vgc`选项，即可开启记录GC信息
+在java程序启动时添加：`-Xloggc:/tmp/gs.vgc`选项，即可开启记录GC信息到文件
 
-打开`gs.vgc`:
+文件`gs.vgc`内容如下:
 
 ```
 Java HotSpot(TM) 64-Bit Server VM (24.80-b11) for windows-amd64 JRE (1.7.0_80-b15), built on Apr 10 2015 11:26:34 by "java_re" with unknown MS VC++:1600
