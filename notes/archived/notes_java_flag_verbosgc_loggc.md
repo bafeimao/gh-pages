@@ -1,5 +1,9 @@
 ## 使用verbosegc输出GC结果
 
+```
+# java -jar -verbosegc xxx.jar
+```
+
 输出的信息如：
 ```
 [GC 65536K->6204K(249344K), 0.0081203 secs]

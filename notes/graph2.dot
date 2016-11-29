@@ -1,0 +1,10 @@
+digraph G {
+	root -> a;
+	root -> b;
+	root -> c;
+	a -> a1
+	a -> a2;
+	a1 -> a11;
+	a1 -> a12
+	
+}
