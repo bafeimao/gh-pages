@@ -4,18 +4,18 @@ A thread state. A thread can be in one of the following states:
 A thread that has not yet started is in this state.
 线程创建了，但是还没有启动
 
-**RUNNABLE**
+## RUNNABLE
 A thread executing in the Java virtual machine is in this state.
 线程正在JVM中执行
 
-**BLOCKED**
+## BLOCKED
 A thread that is blocked waiting for a monitor lock is in this state.
 线程被一个监视器锁阻塞住。当前线程正在等待监视器锁以便进入同步快。
 进入同步块有两种情况：
 1. 第一次尝试进入
 2. 被唤醒（notify/notifyAll),然后重新竞争监视器锁
 
-**WAITING**
+## WAITING
 A thread that is waiting indefinitely for another thread to perform a particular action is in this state.
 线程正在无限期等待其他线程执行一个特殊操作
 
@@ -24,7 +24,7 @@ A thread that is waiting indefinitely for another thread to perform a particular
 . Thread.join()
 . LockSupport.park()
 
-**TIMED_WAITING**
+## TIMED_WAITING
 A thread that is waiting for another thread to perform an action for up to a specified waiting time is in this state.
 带超时的等待
 
@@ -35,7 +35,7 @@ A thread that is waiting for another thread to perform an action for up to a spe
 .LockSupport.parkNanos(timeout)
 .LockSupport.parkUntil(timeout)
 
-**TERMINATED**
+## TERMINATED
 A thread that has exited is in this state.
 线程已经完成了执行
 
