@@ -1,9 +1,6 @@
-
-# 请描述Java线程状态
-
 A thread state. A thread can be in one of the following states:
 
-**NEW**
+>NEW
 A thread that has not yet started is in this state.
 线程创建了，但是还没有启动
 
